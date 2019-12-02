@@ -7,15 +7,16 @@
  * @since   1.0.0
  *
  * @wordpress-plugin
- * Plugin Name:       WordPress plugin boilerplate
- * Plugin URI:        --
- * Description:       --
- * Version:           1.0.0
+ * Plugin Name:       Device Detector
+ * Plugin URI:        https://github.com/Pierre-Lannoy/wp-device-detector
+ * Description:       OPcache statistics and management right in the WordPress admin dashboard.
+ * Version:           1.0.2
  * Author:            Pierre Lannoy
  * Author URI:        https://pierre.lannoy.fr
- * License:           GPLv2 or later
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       wp-plugin-boilerplate
+ * License:           GPLv3
+ * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
+ * Network:           true
+ * Text Domain:       device-detector
  * Domain Path:       /languages
  */
 
@@ -36,8 +37,8 @@ require_once __DIR__ . '/includes/libraries/autoload.php';
  *
  * @since 1.0.0
  */
-function wppb_activate() {
-	WPPluginBoilerplate\Plugin\Activator::activate();
+function podd_activate() {
+	PODeviceDetector\Plugin\Activator::activate();
 }
 
 /**
@@ -45,8 +46,8 @@ function wppb_activate() {
  *
  * @since 1.0.0
  */
-function wppb_deactivate() {
-	WPPluginBoilerplate\Plugin\Deactivator::deactivate();
+function podd_deactivate() {
+	PODeviceDetector\Plugin\Deactivator::deactivate();
 }
 
 /**
@@ -54,8 +55,8 @@ function wppb_deactivate() {
  *
  * @since 1.0.0
  */
-function wppb_uninstall() {
-	WPPluginBoilerplate\Plugin\Uninstaller::uninstall();
+function podd_uninstall() {
+	PODeviceDetector\Plugin\Uninstaller::uninstall();
 }
 
 /**
@@ -63,14 +64,14 @@ function wppb_uninstall() {
  *
  * @since 1.0.0
  */
-function wppb_run() {
-	WPPluginBoilerplate\System\Logger::init();
-	WPPluginBoilerplate\System\Cache::init();
-	$plugin = new WPPluginBoilerplate\Plugin\Core();
+function podd_run() {
+	PODeviceDetector\System\Logger::init();
+	PODeviceDetector\System\Cache::init();
+	$plugin = new PODeviceDetector\Plugin\Core();
 	$plugin->run();
 }
 
-register_activation_hook( __FILE__, 'wppb_activate' );
-register_deactivation_hook( __FILE__, 'wppb_deactivate' );
-register_uninstall_hook( __FILE__, 'wppb_uninstall' );
-wppb_run();
+register_activation_hook( __FILE__, 'podd_activate' );
+register_deactivation_hook( __FILE__, 'podd_deactivate' );
+register_uninstall_hook( __FILE__, 'podd_uninstall' );
+podd_run();

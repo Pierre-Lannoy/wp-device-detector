@@ -9,9 +9,9 @@
  * @since   1.0.0
  */
 
-namespace WPPluginBoilerplate\System;
+namespace PODeviceDetector\System;
 
-use WPPluginBoilerplate\System\Environment;
+use PODeviceDetector\System\Environment;
 
 /**
  * Define the timezone functionality.

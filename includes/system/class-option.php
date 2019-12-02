@@ -9,7 +9,7 @@
  * @since   1.0.0
  */
 
-namespace WPPluginBoilerplate\System;
+namespace PODeviceDetector\System;
 
 /**
  * Define the options functionality.
@@ -37,13 +37,17 @@ class Option {
 	 * @since 1.0.0
 	 */
 	public static function init() {
-		self::$defaults['use_cdn']           = false;
-		self::$defaults['download_favicons'] = false;
-		self::$defaults['script_in_footer']  = false;
-		self::$defaults['auto_update']       = true;
-		self::$defaults['display_nag']       = true;
-		self::$defaults['nags']              = [];
-		self::$defaults['version']           = '0.0.0';
+		self::$defaults['use_cdn']          = false;
+		self::$defaults['script_in_footer'] = false;
+		self::$defaults['auto_update']      = true;
+		self::$defaults['display_nag']      = true;
+		self::$defaults['nags']             = [];
+		self::$defaults['version']          = '0.0.0';
+		self::$defaults['reset_frequency']  = 'never';
+		self::$defaults['last_check']       = [];
+		self::$defaults['history']          = 21;
+		self::$defaults['analytics']        = true;
+		self::$defaults['warmup']           = false;
 	}
 
 	/**
@@ -60,7 +64,7 @@ class Option {
 		if ( array_key_exists( $option, self::$defaults ) ) {
 			$default = self::$defaults[ $option ];
 		}
-		return get_option( WPPB_PRODUCT_ABBREVIATION . '_' . $option, $default );
+		return get_option( PODD_PRODUCT_ABBREVIATION . '_' . $option, $default );
 	}
 
 	/**
@@ -77,7 +81,7 @@ class Option {
 		if ( array_key_exists( $option, self::$defaults ) ) {
 			$default = self::$defaults[ $option ];
 		}
-		return get_site_option( WPPB_PRODUCT_ABBREVIATION . '_' . $option, $default );
+		return get_site_option( PODD_PRODUCT_ABBREVIATION . '_' . $option, $default );
 	}
 
 	/**
@@ -88,7 +92,7 @@ class Option {
 	 * @since 1.0.0
 	 */
 	public static function site_exists( $option ) {
-		return 'non_existent_option' !== get_option( WPPB_PRODUCT_ABBREVIATION . '_' . $option, 'non_existent_option' );
+		return 'non_existent_option' !== get_option( PODD_PRODUCT_ABBREVIATION . '_' . $option, 'non_existent_option' );
 	}
 
 	/**
@@ -99,7 +103,7 @@ class Option {
 	 * @since 1.0.0
 	 */
 	public static function network_exists( $option ) {
-		return 'non_existent_option' !== get_site_option( WPPB_PRODUCT_ABBREVIATION . '_' . $option, 'non_existent_option' );
+		return 'non_existent_option' !== get_site_option( PODD_PRODUCT_ABBREVIATION . '_' . $option, 'non_existent_option' );
 	}
 
 	/**
@@ -115,7 +119,7 @@ class Option {
 	 * @since 1.0.0
 	 */
 	public static function site_set( $option, $value, $autoload = null ) {
-		return update_option( WPPB_PRODUCT_ABBREVIATION . '_' . $option, $value, $autoload );
+		return update_option( PODD_PRODUCT_ABBREVIATION . '_' . $option, $value, $autoload );
 	}
 
 	/**
@@ -127,7 +131,7 @@ class Option {
 	 * @since 1.0.0
 	 */
 	public static function network_set( $option, $value ) {
-		return update_site_option( WPPB_PRODUCT_ABBREVIATION . '_' . $option, $value );
+		return update_site_option( PODD_PRODUCT_ABBREVIATION . '_' . $option, $value );
 	}
 
 	/**
@@ -140,13 +144,29 @@ class Option {
 		global $wpdb;
 		$result = 0;
 		// phpcs:ignore
-		$delete = $wpdb->get_col( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE '" . WPPB_PRODUCT_ABBREVIATION . '_%' . "';" );
+		$delete = $wpdb->get_col( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE '" . PODD_PRODUCT_ABBREVIATION . '_%' . "';" );
 		foreach ( $delete as $option ) {
 			if ( delete_option( $option ) ) {
 				++$result;
 			}
 		}
 		return $result;
+	}
+
+	/**
+	 * Reset some options to their defaults.
+	 *
+	 * @since 1.0.0
+	 */
+	public static function reset_to_defaults() {
+		self::network_set( 'use_cdn', self::$defaults['use_cdn'] );
+		self::network_set( 'script_in_footer', self::$defaults['script_in_footer'] );
+		self::network_set( 'auto_update', self::$defaults['auto_update'] );
+		self::network_set( 'display_nag', self::$defaults['display_nag'] );
+		self::network_set( 'reset_frequency', self::$defaults['reset_frequency'] );
+		self::network_set( 'analytics', self::$defaults['analytics'] );
+		self::network_set( 'history', self::$defaults['history'] );
+		self::network_set( 'warmup', self::$defaults['warmup'] );
 	}
 
 	/**

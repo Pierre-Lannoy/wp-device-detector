@@ -7,7 +7,7 @@
  * @since   1.0.0
  */
 
-namespace WPPluginBoilerplate\Plugin;
+namespace PODeviceDetector\Plugin;
 
 /**
  * Fired after 'plugins_loaded' hook.

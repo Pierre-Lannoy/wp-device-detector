@@ -10,7 +10,7 @@
  * @since   1.0.0
  */
 
-namespace WPPluginBoilerplate\System;
+namespace PODeviceDetector\System;
 
 /**
  * Define the internationalization functionality.
@@ -49,9 +49,9 @@ class I18n {
 	 */
 	public function load_plugin_textdomain() {
 		load_plugin_textdomain(
-			WPPB_SLUG,
+			PODD_SLUG,
 			false,
-			WPPB_LANGUAGES_DIR
+			PODD_LANGUAGES_DIR
 		);
 	}
 

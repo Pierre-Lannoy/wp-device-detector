@@ -7,15 +7,14 @@
  * @since   1.0.0
  */
 
-namespace WPPluginBoilerplate\Plugin;
+namespace PODeviceDetector\Plugin;
 
 use Parsedown;
-use WPPluginBoilerplate\System\Nag;
-use WPPluginBoilerplate\System\Option;
-use WPPluginBoilerplate\System\Role;
-use WPPluginBoilerplate\System\Logger;
-use WPPluginBoilerplate\System\Environment;
+use PODeviceDetector\System\Nag;
+use PODeviceDetector\System\Option;
 use Exception;
+use PODeviceDetector\Plugin\Feature\Schema;
+use PODeviceDetector\System\Logger;
 
 /**
  * Plugin updates handling.
@@ -36,21 +35,21 @@ class Updater {
 	 */
 	public function __construct() {
 		$old = Option::network_get( 'version' );
-		if ( TRAFFIC_VERSION !== $old ) {
+		if ( PODD_VERSION !== $old ) {
 			if ( '0.0.0' === $old ) {
 				$this->install();
 				// phpcs:ignore
-				$message = sprintf( esc_html__( '%1$s has been correctly installed.', 'wp-plugin-boilerplate' ), WPPB_PRODUCT_NAME );
+				$message = sprintf( esc_html__( '%1$s has been correctly installed.', 'device-detector' ), PODD_PRODUCT_NAME );
 			} else {
 				$this->update( $old );
 				// phpcs:ignore
-				$message  = sprintf( esc_html__( '%1$s has been correctly updated from version %2$s to version %3$s.', 'wp-plugin-boilerplate' ), WPPB_PRODUCT_NAME, $old, WPPB_VERSION );
+				$message  = sprintf( esc_html__( '%1$s has been correctly updated from version %2$s to version %3$s.', 'device-detector' ), PODD_PRODUCT_NAME, $old, PODD_VERSION );
 				Logger::notice( $message );
 				// phpcs:ignore
-				$message .= ' ' . sprintf( __( 'See <a href="%s">what\'s new</a>.', 'wp-plugin-boilerplate' ), admin_url( 'options-general.php?page=wp-plugin-boilerplate-settings&tab=about' ) );
+				$message .= ' ' . sprintf( __( 'See <a href="%s">what\'s new</a>.', 'device-detector' ), admin_url( 'options-general.php?page=podd-settings&tab=about' ) );
 			}
 			Nag::add( 'update', 'info', $message );
-			Option::network_set( 'version', TRAFFIC_VERSION );
+			Option::network_set( 'version', PODD_VERSION );
 		}
 	}
 
@@ -70,7 +69,8 @@ class Updater {
 	 * @since 1.0.0
 	 */
 	private function update( $from ) {
-
+		$schema = new Schema();
+		$schema->update();
 	}
 
 	/**
@@ -96,7 +96,7 @@ class Updater {
 	 * @since 1.0.0
 	 */
 	public function is_autoupdatable() {
-		return ( $this->is_updatable() && Option::site_get( 'auto_update' ) );
+		return ( $this->is_updatable() && Option::network_get( 'auto_update' ) );
 	}
 
 	/**
@@ -109,7 +109,7 @@ class Updater {
 	 * @since 1.0.0
 	 */
 	public function auto_update_plugin( $update, $item ) {
-		if ( ( WPPB_SLUG === $item->slug ) && $this->is_autoupdatable() ) {
+		if ( ( PODD_SLUG === $item->slug ) && $this->is_autoupdatable() ) {
 			return true;
 		} else {
 			return $update;
@@ -134,9 +134,9 @@ class Updater {
 		);
 		$style       = $_attributes['style'];
 		$mode        = $_attributes['mode'];
-		$error       = esc_html__( 'Sorry, unable to find or read changelog file.', 'wp-plugin-boilerplate' );
+		$error       = esc_html__( 'Sorry, unable to find or read changelog file.', 'device-detector' );
 		$result      = esc_html( $error );
-		$changelog   = WPPB_PLUGIN_DIR . 'CHANGELOG.md';
+		$changelog   = PODD_PLUGIN_DIR . 'CHANGELOG.md';
 		if ( file_exists( $changelog ) ) {
 			try {
 				// phpcs:ignore
