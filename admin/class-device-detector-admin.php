@@ -28,7 +28,7 @@ use PODeviceDetector\System\Timezone;
  * @author  Pierre Lannoy <https://pierre.lannoy.fr/>.
  * @since   1.0.0
  */
-class Opcache_Manager_Admin {
+class Device_Detector_Admin {
 
 	/**
 	 * The assets manager that's responsible for handling all assets of the plugin.
@@ -55,10 +55,6 @@ class Opcache_Manager_Admin {
 	 */
 	public function enqueue_styles() {
 		$this->assets->register_style( PODD_ASSETS_ID, PODD_ADMIN_URL, 'css/device-detector.min.css' );
-		$this->assets->register_style( 'podd-daterangepicker', PODD_ADMIN_URL, 'css/daterangepicker.min.css' );
-		$this->assets->register_style( 'podd-tooltip', PODD_ADMIN_URL, 'css/tooltip.min.css' );
-		$this->assets->register_style( 'podd-chartist', PODD_ADMIN_URL, 'css/chartist.min.css' );
-		$this->assets->register_style( 'podd-chartist-tooltip', PODD_ADMIN_URL, 'css/chartist-plugin-tooltip.min.css' );
 	}
 
 	/**
@@ -68,10 +64,6 @@ class Opcache_Manager_Admin {
 	 */
 	public function enqueue_scripts() {
 		$this->assets->register_script( PODD_ASSETS_ID, PODD_ADMIN_URL, 'js/device-detector.min.js', [ 'jquery' ] );
-		$this->assets->register_script( 'podd-moment-with-locale', PODD_ADMIN_URL, 'js/moment-with-locales.min.js', [ 'jquery' ] );
-		$this->assets->register_script( 'podd-daterangepicker', PODD_ADMIN_URL, 'js/daterangepicker.min.js', [ 'jquery' ] );
-		$this->assets->register_script( 'podd-chartist', PODD_ADMIN_URL, 'js/chartist.min.js', [ 'jquery' ] );
-		$this->assets->register_script( 'podd-chartist-tooltip', PODD_ADMIN_URL, 'js/chartist-plugin-tooltip.min.js', [ 'podd-chartist' ] );
 	}
 
 	/**
@@ -83,24 +75,6 @@ class Opcache_Manager_Admin {
 		if ( Role::SUPER_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() ) {
 			/* translators: as in the sentence "Device Detector Settings" or "WordPress Settings" */
 			$settings = add_submenu_page( 'options-general.php', sprintf( esc_html__( '%s Settings', 'device-detector' ), PODD_PRODUCT_NAME ), PODD_PRODUCT_NAME, 'manage_options', 'podd-settings', [ $this, 'get_settings_page' ] );
-			$name     = add_submenu_page(
-				'tools.php',
-				esc_html__( 'OPcache Tools', 'device-detector' ),
-				esc_html__( 'OPcache Tools', 'device-detector' ),
-				'manage_options',
-				'podd-tools',
-				[ $this, 'get_tools_page' ]
-			);
-		}
-		if ( Role::SUPER_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() ) {
-			$name = add_submenu_page(
-				'tools.php',
-				esc_html__( 'OPcache Analytics', 'device-detector' ),
-				esc_html__( 'OPcache Analytics', 'device-detector' ),
-				'manage_options',
-				'podd-viewer',
-				[ $this, 'get_viewer_page' ]
-			);
 		}
 	}
 

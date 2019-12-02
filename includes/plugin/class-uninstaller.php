@@ -11,7 +11,6 @@ namespace PODeviceDetector\Plugin;
 
 use PODeviceDetector\System\Option;
 use PODeviceDetector\System\User;
-use PODeviceDetector\Plugin\Feature\Schema;
 
 /**
  * Fired during plugin deletion.
@@ -32,8 +31,6 @@ class Uninstaller {
 	public static function uninstall() {
 		Option::site_delete_all();
 		User::delete_all_meta();
-		$schema = new Schema();
-		$schema->finalize();
 	}
 
 }

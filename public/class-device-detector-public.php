@@ -18,7 +18,7 @@ use PODeviceDetector\System\Assets;
  * @author  Pierre Lannoy <https://pierre.lannoy.fr/>.
  * @since   1.0.0
  */
-class Opcache_Manager_Public {
+class Device_Detector_Public {
 
 
 	/**

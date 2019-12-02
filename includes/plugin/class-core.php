@@ -78,7 +78,6 @@ class Core {
 	 * @access private
 	 */
 	private function define_global_hooks() {
-		add_action( 'cron_schedules', [ 'PODeviceDetector\Plugin\Feature\Capture', 'add_cron_05_minutes_interval' ]);
 		$bootstrap = new Initializer();
 		$assets    = new Assets();
 		$updater   = new Updater();
@@ -89,28 +88,6 @@ class Core {
 		add_shortcode( 'podd-changelog', [ $updater, 'sc_get_changelog' ] );
 		add_shortcode( 'podd-libraries', [ $libraries, 'sc_get_list' ] );
 		add_shortcode( 'podd-statistics', [ 'PODeviceDetector\System\Statistics', 'sc_get_raw' ] );
-		$event = wp_get_scheduled_event( PODD_CRON_RESET_NAME );
-		if ( false !== $event ) {
-			if ( Option::network_get( 'reset_frequency' ) !== $event->schedule ) {
-				wp_clear_scheduled_hook( PODD_CRON_RESET_NAME );
-			}
-		}
-		if ( 'never' !== Option::network_get( 'reset_frequency' ) ) {
-			$this->loader->add_action( PODD_CRON_RESET_NAME, 'PODeviceDetector\System\OPcache', 'reset' );
-		}
-		if ( ! wp_next_scheduled( PODD_CRON_RESET_NAME ) ) {
-			if ( 'never' !== Option::network_get( 'reset_frequency' ) ) {
-				wp_schedule_event( time(), Option::network_get( 'reset_frequency' ), PODD_CRON_RESET_NAME );
-			}
-		}
-		if ( Option::network_get( 'analytics' ) ) {
-			$this->loader->add_action( PODD_CRON_STATS_NAME, 'PODeviceDetector\Plugin\Feature\Capture', 'check' );
-		}
-		if ( ! wp_next_scheduled( PODD_CRON_STATS_NAME ) ) {
-			if ( Option::network_get( 'analytics' ) ) {
-				wp_schedule_event( time(), 'five_minutes', PODD_CRON_STATS_NAME );
-			}
-		}
 	}
 
 	/**
@@ -121,7 +98,7 @@ class Core {
 	 * @access private
 	 */
 	private function define_admin_hooks() {
-		$plugin_admin = new Opcache_Manager_Admin();
+		$plugin_admin = new Device_Detector_Admin();
 		$nag          = new Nag();
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -131,7 +108,6 @@ class Core {
 		$this->loader->add_filter( 'plugin_row_meta', $plugin_admin, 'add_row_meta', 10, 2 );
 		$this->loader->add_action( 'admin_notices', $nag, 'display' );
 		$this->loader->add_action( 'wp_ajax_hide_podd_nag', $nag, 'hide_callback' );
-		$this->loader->add_action( 'wp_ajax_podd_get_stats', 'PODeviceDetector\Plugin\Feature\AnalyticsFactory', 'get_stats_callback' );
 	}
 
 	/**
@@ -142,7 +118,7 @@ class Core {
 	 * @access private
 	 */
 	private function define_public_hooks() {
-		$plugin_public = new Opcache_Manager_Public();
+		$plugin_public = new Device_Detector_Public();
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 	}
@@ -223,7 +199,6 @@ class Core {
 		$source .= '<linearGradient id="_Linear10" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1,0,0,-1,0,0)"><stop offset="0" style="stop-color:rgb(25,39,131);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(65,172,255);stop-opacity:1"/></linearGradient>';
 		$source .= '</defs>';
 		$source .= '</svg>';
-
 		// phpcs:ignore
 		return 'data:image/svg+xml;base64,' . base64_encode( $source );
 	}

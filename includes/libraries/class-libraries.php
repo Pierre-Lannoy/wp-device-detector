@@ -124,6 +124,9 @@ class Libraries {
 			case 'gpl3':
 				$result = esc_html__( 'GPL-3.0 license', 'device-detector' );
 				break;
+			case 'lgpl3':
+				$result = esc_html__( 'GNU Lesser-GPL 3 license', 'device-detector' );
+				break;
 			default:
 				$result = esc_html__( 'unknown license', 'device-detector' );
 				break;
@@ -164,36 +167,6 @@ class Libraries {
 		$item['author']  = 'Pierre Lannoy';
 		$item['url']     = 'https://github.com/Pierre-Lannoy/wp-' . 'plugin-' . 'boilerplate';
 		$item['license'] = $this->license_name( 'gpl3' );
-		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
-		$list[]          = $item;
-		$item            = [];
-		$item['name']    = 'Date Range Picker';
-		$item['version'] = '3.0.5';
-		$item['author']  = sprintf( esc_html__( '%s & contributors', 'device-detector' ), 'Dan Grossman' );
-		$item['url']     = 'https://github.com/dangrossman/daterangepicker';
-		$item['license'] = $this->license_name( 'mit' );
-		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
-		$list[]          = $item;
-		$item            = [];
-		$item['name']    = 'Moment';
-		$item['version'] = '2.24.0';
-		$item['author']  = sprintf( esc_html__( '%s & contributors', 'device-detector' ), 'Tim Wood' );
-		$item['url']     = 'https://github.com/moment/moment';
-		$item['license'] = $this->license_name( 'mit' );
-		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
-		$list[]          = $item;
-		$item['name']    = 'SVG-Loaders';
-		$item['version'] = '1.0.2';
-		$item['author']  = sprintf( esc_html__( '%s & contributors', 'device-detector' ), 'Sam Herbert' );
-		$item['url']     = 'https://github.com/SamHerbert/SVG-Loaders';
-		$item['license'] = $this->license_name( 'mit' );
-		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
-		$list[]          = $item;
-		$item['name']    = 'Chartist-JS';
-		$item['version'] = '0.11.4';
-		$item['author']  = sprintf( esc_html__( '%s & contributors', 'device-detector' ), 'Gion Kunz' );
-		$item['url']     = 'https://github.com/gionkunz/chartist-js';
-		$item['license'] = $this->license_name( 'mit' );
 		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
 		$list[]          = $item;
 		usort( $list, function ( $a, $b ) { return strcmp( strtolower( $a['name'] ), strtolower( $b['name'] ) );} );
