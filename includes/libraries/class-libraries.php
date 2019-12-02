@@ -58,6 +58,17 @@ class Libraries {
 	 */
 	public static function init() {
 		self::$psr4_libraries              = [];
+		self::$psr4_libraries['udd']       = [
+			'name'    => 'Universal Device Detection',
+			'prefix'  => 'UDD',
+			'base'    => PODD_VENDOR_DIR . 'udd/',
+			'version' => '3.12.1',
+			// phpcs:ignore
+			'author'  => sprintf( esc_html__( '%s & contributors', 'device-detector' ), 'Matomo Analytics' ),
+			'url'     => 'https://github.com/matomo-org/device-detector',
+			'license' => 'lgpl3',
+			'langs'   => 'en',
+		];
 		self::$psr4_libraries['feather']   = [
 			'name'    => 'Feather',
 			'prefix'  => 'Feather',
@@ -78,6 +89,17 @@ class Libraries {
 			// phpcs:ignore
 			'author'  => sprintf( esc_html__( '%s & contributors', 'device-detector' ), 'Emanuil Rusev' ),
 			'url'     => 'https://parsedown.org',
+			'license' => 'mit',
+			'langs'   => 'en',
+		];
+		self::$mono_libraries['spyc']      = [
+			'name'    => 'Spyc',
+			'detect'  => 'Spyc',
+			'base'    => PODD_VENDOR_DIR . 'spyc/',
+			'version' => '0.6.2',
+			// phpcs:ignore
+			'author'  => sprintf( esc_html__( '%s, %s & contributors', 'device-detector' ), 'Vlad Andersen', 'Chris Wanstrath' ),
+			'url'     => 'https://github.com/mustangostang/spyc/',
 			'license' => 'mit',
 			'langs'   => 'en',
 		];
