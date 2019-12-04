@@ -18,11 +18,13 @@ use UDD\Parser\Device\DeviceParserAbstract;
 // OPTIONAL: Set version truncation to none, so full versions will be returned
 // By default only minor versions will be returned (e.g. X.Y)
 // for other options see VERSION_TRUNCATION_* constants in DeviceParserAbstract class
-DeviceParserAbstract::setVersionTruncation(DeviceParserAbstract::VERSION_TRUNCATION_NONE);
+//DeviceParserAbstract::setVersionTruncation(DeviceParserAbstract::VERSION_TRUNCATION_NONE);
 
-$userAgent = $_SERVER['HTTP_USER_AGENT']; // change this to the useragent you want to parse
+//$userAgent = $_SERVER['HTTP_USER_AGENT']; // change this to the useragent you want to parse
 
-$dd = new DeviceDetector($userAgent);
+//$dd = new DeviceDetector($userAgent);
+
+//$dd = PODeviceDetector\Plugin\Feature\Detector::new();
 
 // OPTIONAL: Set caching method
 // By default static cache is used, which works best within one php process (memory array caching)
@@ -40,16 +42,15 @@ $dd = new DeviceDetector($userAgent);
 // OPTIONAL: If called, bot detection will completely be skipped (bots will be detected as regular devices then)
 // $dd->skipBotDetection();
 
-$dd->parse();
+//$dd->parse();
 
-if ($dd->isBot()) {
+if (podd_is_bot()) {
 	// handle bots,spiders,crawlers,...
-	$text = 'bot / ' . $dd->getBot();
+	//$text = 'bot / ' . $dd->getBot();
+	$text = 'bot';
 } else {
-	$text = $dd->getDevice() . ' / ' . $dd->getDeviceName() . ' / ' . $dd->getClient() . ' / ' . $dd->getOs() . ' / ' . $dd->getBrandName() . ' / ' . $dd->getModel() ;
-
-
-
+	$text = 'not a bot';
+	//$text = $dd->getDevice() . ' / ' . $dd->getDeviceName() . ' / ' . $dd->getClient() . ' / ' . $dd->getOs() . ' / ' . $dd->getBrandName() . ' / ' . $dd->getModel() ;
 }
 ?>
 
