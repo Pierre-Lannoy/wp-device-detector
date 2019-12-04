@@ -14,6 +14,7 @@ use PODeviceDetector\System\Nag;
 use PODeviceDetector\System\Option;
 use Exception;
 use PODeviceDetector\System\Logger;
+use PODeviceDetector\System\Cache;
 
 /**
  * Plugin updates handling.
@@ -68,6 +69,8 @@ class Updater {
 	 * @since 1.0.0
 	 */
 	private function update( $from ) {
+		Cache::delete_global( '/Plugin/Objects/*' );
+		Logger::notice( 'Cache purged.' );
 	}
 
 	/**
