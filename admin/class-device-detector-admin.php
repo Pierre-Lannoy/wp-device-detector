@@ -184,7 +184,6 @@ class Device_Detector_Admin {
 			if ( array_key_exists( '_wpnonce', $_POST ) && wp_verify_nonce( $_POST['_wpnonce'], 'podd-plugin-options' ) ) {
 				$old_frequency = Option::network_get( 'reset_frequency' );
 				Option::network_set( 'use_cdn', array_key_exists( 'podd_plugin_options_usecdn', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_options_usecdn' ) : false );
-				Option::network_set( 'auto_update', array_key_exists( 'podd_plugin_options_autoupdate', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_options_autoupdate' ) : false );
 				Option::network_set( 'display_nag', array_key_exists( 'podd_plugin_options_nag', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_options_nag' ) : false );
 				Option::network_set( 'analytics', array_key_exists( 'podd_plugin_features_analytics', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_features_analytics' ) : false );
 				Option::network_set( 'history', array_key_exists( 'podd_plugin_features_history', $_POST ) ? (string) filter_input( INPUT_POST, 'podd_plugin_features_history', FILTER_SANITIZE_NUMBER_INT ) : Option::network_get( 'history' ) );
@@ -272,22 +271,6 @@ class Device_Detector_Admin {
 			]
 		);
 		register_setting( 'podd_plugin_options_section', 'podd_plugin_options_usecdn' );
-		add_settings_field(
-			'podd_plugin_options_autoupdate',
-			esc_html__( 'Plugin updates', 'device-detector' ),
-			[ $form, 'echo_field_checkbox' ],
-			'podd_plugin_options_section',
-			'podd_plugin_options_section',
-			[
-				'text'        => esc_html__( 'Automatic (recommended)', 'device-detector' ),
-				'id'          => 'podd_plugin_options_autoupdate',
-				'checked'     => Option::network_get( 'auto_update' ),
-				'description' => esc_html__( 'If checked, Device Detector will update itself as soon as a new version is available.', 'device-detector' ),
-				'full_width'  => true,
-				'enabled'     => true,
-			]
-		);
-		register_setting( 'podd_plugin_options_section', 'podd_plugin_options_autoupdate' );
 		add_settings_field(
 			'podd_plugin_options_nag',
 			esc_html__( 'Admin notices', 'device-detector' ),

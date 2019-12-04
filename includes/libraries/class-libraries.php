@@ -147,7 +147,7 @@ class Libraries {
 				$result = esc_html__( 'GPL-3.0 license', 'device-detector' );
 				break;
 			case 'lgpl3':
-				$result = esc_html__( 'GNU Lesser-GPL 3 license', 'device-detector' );
+				$result = esc_html__( 'LGPL-3.0 license', 'device-detector' );
 				break;
 			default:
 				$result = esc_html__( 'unknown license', 'device-detector' );

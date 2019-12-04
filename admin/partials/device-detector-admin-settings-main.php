@@ -96,4 +96,7 @@ if ($dd->isBot()) {
 
     <p>&nbsp;</p>
     <em><?php echo $text;?></em>
+
+	<?php print_r($dd->getClient()); ?>
+	<?php print_r($dd->getOs()); ?>
 </div>
