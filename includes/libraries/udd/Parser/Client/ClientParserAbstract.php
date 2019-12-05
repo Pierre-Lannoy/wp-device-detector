@@ -12,7 +12,7 @@ use UDD\Parser\ParserAbstract;
 abstract class ClientParserAbstract extends ParserAbstract
 {
     protected $fixtureFile = '';
-    protected $parserName = '';
+   // protected $parserName = '';
 
     /**
      * Parses the current UA and checks whether it contains any client information
