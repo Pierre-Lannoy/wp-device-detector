@@ -42,11 +42,10 @@ class Option {
 		self::$defaults['display_nag']      = true;
 		self::$defaults['nags']             = [];
 		self::$defaults['version']          = '0.0.0';
-		self::$defaults['reset_frequency']  = 'never';
-		self::$defaults['last_check']       = [];
-		self::$defaults['history']          = 21;
+		self::$defaults['history']          = 30;
 		self::$defaults['analytics']        = true;
-		self::$defaults['warmup']           = false;
+
+		self::$defaults['wp_is_mobile']     = true;
 	}
 
 	/**
@@ -161,10 +160,8 @@ class Option {
 		self::network_set( 'use_cdn', self::$defaults['use_cdn'] );
 		self::network_set( 'script_in_footer', self::$defaults['script_in_footer'] );
 		self::network_set( 'display_nag', self::$defaults['display_nag'] );
-		self::network_set( 'reset_frequency', self::$defaults['reset_frequency'] );
 		self::network_set( 'analytics', self::$defaults['analytics'] );
 		self::network_set( 'history', self::$defaults['history'] );
-		self::network_set( 'warmup', self::$defaults['warmup'] );
 	}
 
 	/**

@@ -69,7 +69,7 @@ class Updater {
 	 * @since 1.0.0
 	 */
 	private function update( $from ) {
-		Cache::delete_global( '/Plugin/Objects/*' );
+		Cache::delete_global( '/Data/Devices/*' );
 		Logger::notice( 'Cache purged.' );
 	}
 

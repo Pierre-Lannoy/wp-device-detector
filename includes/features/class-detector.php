@@ -48,7 +48,7 @@ class Detector {
 			$ua = filter_input( INPUT_SERVER, 'HTTP_USER_AGENT', FILTER_SANITIZE_STRING );
 		}
 		$id        = Cache::id( $ua );
-		$cache_key = '/Plugin/Devices/' . $id;
+		$cache_key = '/Data/Devices/' . $id;
 		if ( array_key_exists( $id, self::$cache ) ) {
 			Logger::debug( 'Internal cache hit.' );
 			return self::$cache[ $id ];

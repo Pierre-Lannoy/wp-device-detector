@@ -17,7 +17,8 @@ use PODeviceDetector\System\I18n;
 use PODeviceDetector\System\Assets;
 use PODeviceDetector\Library\Libraries;
 use PODeviceDetector\System\Nag;
-use PODeviceDetector\System\Option;
+use PODeviceDetector\Plugin\Feature\CoreModifier;
+use PODeviceDetector\Plugin\Feature\CSSModifier;
 
 /**
  * The core plugin class.
@@ -87,6 +88,8 @@ class Core {
 		add_shortcode( 'podd-changelog', [ $updater, 'sc_get_changelog' ] );
 		add_shortcode( 'podd-libraries', [ $libraries, 'sc_get_list' ] );
 		add_shortcode( 'podd-statistics', [ 'PODeviceDetector\System\Statistics', 'sc_get_raw' ] );
+		CoreModifier::init();
+		CSSModifier::init();
 	}
 
 	/**

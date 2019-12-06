@@ -9,10 +9,14 @@
  * @since   1.0.0
  */
 
+use PODeviceDetector\API\Device;
+use PODeviceDetector\System\Role;
+
 // phpcs:ignore
 $active_tab = ( isset( $_GET['tab'] ) ? $_GET['tab'] : 'misc' );
-
-use PODeviceDetector\API\Device;
+if ( 'misc' === $active_tab && ! ( Role::SUPER_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() ) ) {
+	$active_tab = 'core';
+}
 
 ?>
 
@@ -41,6 +45,32 @@ use PODeviceDetector\API\Device;
 			add_query_arg(
 				array(
 					'page' => 'podd-settings',
+					'tab'  => 'core',
+				),
+				admin_url( 'options-general.php' )
+			)
+		);
+		?>
+		" class="nav-tab <?php echo 'core' === $active_tab ? 'nav-tab-active' : ''; ?>"><?php esc_html_e( 'WordPress core', 'device-detector' ); ?></a>
+		<a href="
+		<?php
+		echo esc_url(
+			add_query_arg(
+				array(
+					'page' => 'podd-settings',
+					'tab'  => 'css',
+				),
+				admin_url( 'options-general.php' )
+			)
+		);
+		?>
+		" class="nav-tab <?php echo 'css' === $active_tab ? 'nav-tab-active' : ''; ?>"><?php esc_html_e( 'CSS', 'device-detector' ); ?></a>
+		<a href="
+		<?php
+		echo esc_url(
+			add_query_arg(
+				array(
+					'page' => 'podd-settings',
 					'tab'  => 'about',
 				),
 				admin_url( 'options-general.php' )
@@ -50,8 +80,14 @@ use PODeviceDetector\API\Device;
 		" class="nav-tab <?php echo 'about' === $active_tab ? 'nav-tab-active' : ''; ?>" style="float:right;"><?php esc_html_e( 'About', 'device-detector' ); ?></a>
 	</h2>
     
-	<?php if ( 'misc' === $active_tab ) { ?>
+	<?php if ( 'misc' === $active_tab && ( Role::SUPER_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() ) ) { ?>
 		<?php include __DIR__ . '/device-detector-admin-settings-options.php'; ?>
+	<?php } ?>
+	<?php if ( 'core' === $active_tab ) { ?>
+		<?php include __DIR__ . '/device-detector-admin-settings-core.php'; ?>
+	<?php } ?>
+	<?php if ( 'css' === $active_tab ) { ?>
+		<?php include __DIR__ . '/device-detector-admin-settings-css.php'; ?>
 	<?php } ?>
 	<?php if ( 'about' === $active_tab ) { ?>
 		<?php include __DIR__ . '/device-detector-admin-settings-about.php'; ?>
