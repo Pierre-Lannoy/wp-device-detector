@@ -20,6 +20,7 @@ use PODeviceDetector\System\Logger;
 use PODeviceDetector\System\Cache;
 use PODeviceDetector\System\Timezone;
 use PODeviceDetector\Plugin\Feature\Detector;
+use PODeviceDetector\System\Http;
 
 /**
  * Define the schema functionality.
@@ -88,7 +89,10 @@ class Schema {
 			$record['brand'] = substr( $device->bot_producer_name, 0, 40 );
 		}
 		if ( $device->class_is_bot && '' !== $device->bot_producer_url ) {
-			$record['url'] = substr( $device->bot_producer_url, 0, 2083 );
+			$url_parts = wp_parse_url( $device->bot_producer_url );
+			if ( array_key_exists( 'host', $url_parts ) && isset( $url_parts['host'] ) ) {
+				$record['url'] = substr( $url_parts['host'], 0, 2083 );
+			}
 		}
 		if ( $device->class_is_bot && '' !== $device->bot_name ) {
 			$record['name'] = substr( $device->bot_name, 0, 40 );
@@ -130,6 +134,9 @@ class Schema {
 			$sql .= 'ON DUPLICATE KEY UPDATE ' . implode( ',', $value_update ) . ';';
 			// phpcs:ignore
 			$wpdb->query( $sql );
+		}
+		if ( array_key_exists( 'url', $record ) && '' !== $record['url'] ) {
+			Favicon::get_raw( $record['url'], true );
 		}
 	}
 

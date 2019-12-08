@@ -38,13 +38,14 @@ class Option {
 	 */
 	public static function init() {
 		// Options for whole site(s).
-		self::$defaults['use_cdn']          = false;
-		self::$defaults['script_in_footer'] = false;
-		self::$defaults['display_nag']      = true;
-		self::$defaults['nags']             = [];
-		self::$defaults['version']          = '0.0.0';
-		self::$defaults['history']          = 30;
-		self::$defaults['analytics']        = true;
+		self::$defaults['use_cdn']           = false;
+		self::$defaults['script_in_footer']  = false;
+		self::$defaults['download_favicons'] = false;
+		self::$defaults['display_nag']       = true;
+		self::$defaults['nags']              = [];
+		self::$defaults['version']           = '0.0.0';
+		self::$defaults['history']           = 30;
+		self::$defaults['analytics']         = true;
 		// Per site options.
 		self::$defaults['wp_is_mobile']   = true;
 		self::$defaults['css_class']      = true;

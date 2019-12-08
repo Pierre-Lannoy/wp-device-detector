@@ -9,9 +9,9 @@
  * @since   1.0.0
  */
 
-namespace WPPluginBoilerplate\System;
+namespace PODeviceDetector\System;
 
-use WPPluginBoilerplate\System\Logger;
+use PODeviceDetector\System\Logger;
 
 /**
  * Define the favicons functionality.
