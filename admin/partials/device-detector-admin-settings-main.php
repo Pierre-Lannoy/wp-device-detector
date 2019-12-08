@@ -17,6 +17,15 @@ $active_tab = ( isset( $_GET['tab'] ) ? $_GET['tab'] : 'misc' );
 if ( 'misc' === $active_tab && ! ( Role::SUPER_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() ) ) {
 	$active_tab = 'core';
 }
+$url  = esc_url(
+	add_query_arg(
+		[
+			'page' => 'podd-viewer',
+		],
+		admin_url( 'tools.php' )
+	)
+);
+$note = sprintf( __( 'Note: analytics reports are available via the <a href="%s">tools menu</a>.', 'traffic' ), $url );
 
 ?>
 
@@ -65,7 +74,7 @@ if ( 'misc' === $active_tab && ! ( Role::SUPER_ADMIN === Role::admin_type() || R
 		);
 		?>
 		" class="nav-tab <?php echo 'css' === $active_tab ? 'nav-tab-active' : ''; ?>"><?php esc_html_e( 'CSS', 'device-detector' ); ?></a>
-		<a href="
+        <a href="
 		<?php
 		echo esc_url(
 			add_query_arg(
@@ -78,6 +87,19 @@ if ( 'misc' === $active_tab && ! ( Role::SUPER_ADMIN === Role::admin_type() || R
 		);
 		?>
 		" class="nav-tab <?php echo 'about' === $active_tab ? 'nav-tab-active' : ''; ?>" style="float:right;"><?php esc_html_e( 'About', 'device-detector' ); ?></a>
+        <a href="
+		<?php
+		echo esc_url(
+			add_query_arg(
+				array(
+					'page' => 'podd-settings',
+					'tab'  => 'devices',
+				),
+				admin_url( 'options-general.php' )
+			)
+		);
+		?>
+		" class="nav-tab <?php echo 'devices' === $active_tab ? 'nav-tab-active' : ''; ?>" style="float:right;"><?php esc_html_e( 'Devices', 'device-detector' ); ?></a>
 	</h2>
     
 	<?php if ( 'misc' === $active_tab && ( Role::SUPER_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() ) ) { ?>
@@ -92,13 +114,12 @@ if ( 'misc' === $active_tab && ! ( Role::SUPER_ADMIN === Role::admin_type() || R
 	<?php if ( 'about' === $active_tab ) { ?>
 		<?php include __DIR__ . '/device-detector-admin-settings-about.php'; ?>
 	<?php } ?>
+	<?php if ( 'devices' === $active_tab ) { ?>
+		<?php include __DIR__ . '/device-detector-admin-settings-devices.php'; ?>
+	<?php } ?>
+
 
     <p>&nbsp;</p>
-
-    <hr/>
-
-	<pre><?php var_dump(Device::get()); ?></pre>
-
-
+    <em><?php echo $note;?></em>
 
 </div>

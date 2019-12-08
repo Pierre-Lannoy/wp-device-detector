@@ -20,6 +20,7 @@ use PODeviceDetector\System\Form;
 use PODeviceDetector\System\Blog;
 use PODeviceDetector\System\Date;
 use PODeviceDetector\System\Timezone;
+use PODeviceDetector\Plugin\Feature\CSSModifier;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -161,10 +162,16 @@ class Device_Detector_Admin {
 					}
 					break;
 				case 'core':
+					switch ( $action ) {
+						case 'do-save':
+							$this->save_core_options();
+							break;
+					}
+					break;
 				case 'css':
 					switch ( $action ) {
 						case 'do-save':
-							$this->save_other_options();
+							$this->save_css_options();
 							break;
 					}
 					break;
@@ -174,14 +181,42 @@ class Device_Detector_Admin {
 	}
 
 	/**
-	 * Save the plugin options.
+	 * Save the core plugin options.
 	 *
 	 * @since 1.0.0
 	 */
-	private function save_other_options() {
+	private function save_core_options() {
 		if ( ! empty( $_POST ) ) {
 			if ( array_key_exists( '_wpnonce', $_POST ) && wp_verify_nonce( $_POST['_wpnonce'], 'podd-plugin-options' ) ) {
 				Option::site_set( 'wp_is_mobile', array_key_exists( 'podd_plugin_core_wp_is_mobile', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_core_wp_is_mobile' ) : false );
+				$message = esc_html__( 'Plugin settings have been saved.', 'device-detector' );
+				$code    = 0;
+				add_settings_error( 'podd_no_error', $code, $message, 'updated' );
+				Logger::info( 'Plugin settings updated.', $code );
+			} else {
+				$message = esc_html__( 'Plugin settings have not been saved. Please try again.', 'device-detector' );
+				$code    = 2;
+				add_settings_error( 'podd_nonce_error', $code, $message, 'error' );
+				Logger::warning( 'Plugin settings not updated.', $code );
+			}
+		}
+	}
+
+	/**
+	 * Save the css plugin options.
+	 *
+	 * @since 1.0.0
+	 */
+	private function save_css_options() {
+		if ( ! empty( $_POST ) ) {
+			if ( array_key_exists( '_wpnonce', $_POST ) && wp_verify_nonce( $_POST['_wpnonce'], 'podd-plugin-options' ) ) {
+				Option::site_set( 'css_class', array_key_exists( 'podd_plugin_css_class', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_css_class' ) : false );
+				Option::site_set( 'css_device', array_key_exists( 'podd_plugin_css_device', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_css_device' ) : false );
+				Option::site_set( 'css_client', array_key_exists( 'podd_plugin_css_client', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_css_client' ) : false );
+				Option::site_set( 'css_os', array_key_exists( 'podd_plugin_css_os', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_css_os' ) : false );
+				Option::site_set( 'css_brand', array_key_exists( 'podd_plugin_css_brand', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_css_brand' ) : false );
+				Option::site_set( 'css_bot', array_key_exists( 'podd_plugin_css_bot', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_css_bot' ) : false );
+				Option::site_set( 'css_capability', array_key_exists( 'podd_plugin_css_capability', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_css_capability' ) : false );
 				$message = esc_html__( 'Plugin settings have been saved.', 'device-detector' );
 				$code    = 0;
 				add_settings_error( 'podd_no_error', $code, $message, 'updated' );
@@ -393,22 +428,45 @@ class Device_Detector_Admin {
 	 */
 	public function plugin_css_section_callback() {
 		$form = new Form();
-		/*add_settings_field(
-			'podd_plugin_css_wp_is_mobile',
-			esc_html__( 'Improvements', 'device-detector' ),
-			[ $form, 'echo_field_checkbox' ],
+		foreach ( CSSModifier::$specifiers as $spec ) {
+			add_settings_field(
+				'podd_plugin_css_' . $spec,
+				'class' === $spec ? esc_html__( 'Body classes', 'device-detector' ) : '',
+				[ $form, 'echo_field_checkbox' ],
+				'podd_plugin_css_section',
+				'podd_plugin_css_section',
+				[
+					'text'        => CSSModifier::get_label( $spec ),
+					'id'          => 'podd_plugin_css_' . $spec,
+					'checked'     => Option::site_get( 'css_' . $spec ),
+					'description' => CSSModifier::get_description( $spec ),
+					'more'        => CSSModifier::get_example( $spec ),
+					'full_width'  => true,
+					'enabled'     => true,
+				]
+			);
+			register_setting( 'podd_plugin_css_section', 'podd_plugin_css_' . $spec );
+		}
+		$current = [];
+		foreach ( CSSModifier::get_current_classes() as $item ) {
+			$current[] = '<code style="font-size: x-small">' . $item . '</code>';
+		}
+		if ( 0 < count( $current ) ) {
+			$current = sprintf( esc_html__('Based on these settings, the classes for this current session would be: %s.', 'device-detector' ), implode( ' ', $current ) );
+		} else {
+			$current = esc_html__( 'Based on these settings, no classes will be added to the body.', 'device-detector' );
+		}
+		add_settings_field(
+			'podd_plugin_css_current',
+			'',
+			[ $form, 'echo_field_simple_text' ],
 			'podd_plugin_css_section',
 			'podd_plugin_css_section',
 			[
-				'text'        => esc_html__( 'Mobile detection', 'device-detector' ),
-				'id'          => 'podd_plugin_css_wp_is_mobile',
-				'checked'     => Option::site_get( 'wp_is_mobile' ),
-				'description' => sprintf( esc_html__( 'If checked, the standard %s function will be improved by Device Detector.', 'device-detector' ), '<code>wp_is_mobile()</code>' ),
-				'full_width'  => true,
-				'enabled'     => true,
+				'text' => $current,
 			]
 		);
-		register_setting( 'podd_plugin_css_section', 'podd_plugin_css_wp_is_mobile' );*/
+		register_setting( 'podd_plugin_css_section', 'podd_plugin_css_current' );
 	}
 
 }

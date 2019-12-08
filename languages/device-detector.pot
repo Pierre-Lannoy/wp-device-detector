@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Device Detector\n"
-"POT-Creation-Date: 2019-12-02 14:55+0100\n"
+"POT-Creation-Date: 2019-12-08 10:46+0100\n"
 "PO-Revision-Date: 2019-07-08 14:07+0200\n"
 "Last-Translator: Pierre Lannoy <pierre@lannoy.fr>\n"
 "Language-Team: Pierre Lannoy <pierre@lannoy.fr>\n"
@@ -22,73 +22,58 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #. translators: as in the sentence "Device Detector Settings" or "WordPress Settings"
-#: admin/class-device-detector-admin.php:85
-#: admin/partials/device-detector-admin-settings-main.php:36
+#: admin/class-device-detector-admin.php:78
+#: admin/partials/device-detector-admin-settings-main.php:34
 #, php-format
 msgid "%s Settings"
 msgstr ""
 
 #: admin/class-device-detector-admin.php:88
-#: admin/class-device-detector-admin.php:89
-msgid "OPcache Tools"
-msgstr ""
-
-#: admin/class-device-detector-admin.php:98
-#: admin/class-device-detector-admin.php:99
-#: includes/features/class-analytics.php:1128
-msgid "OPcache Analytics"
-msgstr ""
-
-#: admin/class-device-detector-admin.php:113
 msgid "Plugin Features"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:114
+#: admin/class-device-detector-admin.php:89
 msgid "Plugin options"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:130
+#: admin/class-device-detector-admin.php:107
 msgid "Settings"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:131
-msgid "Tools"
-msgstr ""
-
-#: admin/class-device-detector-admin.php:132
-msgid "Statistics"
-msgstr ""
-
-#: admin/class-device-detector-admin.php:146
+#: admin/class-device-detector-admin.php:121
 msgid "Support"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:147
+#: admin/class-device-detector-admin.php:122
 msgid "GitHub repository"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:225
+#: admin/class-device-detector-admin.php:192
+#: admin/class-device-detector-admin.php:220
+#: admin/class-device-detector-admin.php:245
 msgid "Plugin settings have been saved."
 msgstr ""
 
-#: admin/class-device-detector-admin.php:230
+#: admin/class-device-detector-admin.php:197
+#: admin/class-device-detector-admin.php:225
+#: admin/class-device-detector-admin.php:250
 msgid "Plugin settings have not been saved. Please try again."
 msgstr ""
 
-#: admin/class-device-detector-admin.php:247
+#: admin/class-device-detector-admin.php:267
 msgid "Plugin settings have been reset to defaults."
 msgstr ""
 
-#: admin/class-device-detector-admin.php:252
+#: admin/class-device-detector-admin.php:272
 msgid "Plugin settings have not been reset to defaults. Please try again."
 msgstr ""
 
-#: admin/class-device-detector-admin.php:269
+#: admin/class-device-detector-admin.php:289
 #, php-format
 msgid "Your site is currently using %s."
 msgstr ""
 
-#: admin/class-device-detector-admin.php:272
+#: admin/class-device-detector-admin.php:292
 #, php-format
 msgid ""
 "Your site does not use any logging plugin. To log all events triggered in "
@@ -96,142 +81,103 @@ msgid ""
 "But it is not mandatory."
 msgstr ""
 
-#: admin/class-device-detector-admin.php:276
+#: admin/class-device-detector-admin.php:296
 msgid "Logging"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:287
+#: admin/class-device-detector-admin.php:307
 msgid "Resources"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:292
+#: admin/class-device-detector-admin.php:312
 msgid "Use public CDN"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:295
+#: admin/class-device-detector-admin.php:315
 msgid ""
 "If checked, Device Detector will use a public CDN (jsDelivr) to serve "
 "scripts and stylesheets."
 msgstr ""
 
-#: admin/class-device-detector-admin.php:303
-msgid "Plugin updates"
-msgstr ""
-
-#: admin/class-device-detector-admin.php:308
-msgid "Automatic (recommended)"
-msgstr ""
-
-#: admin/class-device-detector-admin.php:311
-msgid ""
-"If checked, Device Detector will update itself as soon as a new version is "
-"available."
-msgstr ""
-
-#: admin/class-device-detector-admin.php:319
+#: admin/class-device-detector-admin.php:323
 msgid "Admin notices"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:324
+#: admin/class-device-detector-admin.php:328
 msgid "Display"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:327
+#: admin/class-device-detector-admin.php:331
 msgid ""
 "Allows Device Detector to display admin notices throughout the admin "
 "dashboard."
 msgstr ""
 
-#: admin/class-device-detector-admin.php:327
+#: admin/class-device-detector-admin.php:331
 msgid "Note: Device Detector respects DISABLE_NAG_NOTICES flag."
 msgstr ""
 
-#: admin/class-device-detector-admin.php:343
-msgid "Never"
-msgstr ""
-
-#: admin/class-device-detector-admin.php:344
-msgid "Once Hourly"
-msgstr ""
-
-#: admin/class-device-detector-admin.php:345
-msgid "Twice Daily"
-msgstr ""
-
-#: admin/class-device-detector-admin.php:346
-msgid "Once Daily"
-msgstr ""
-
-#: admin/class-device-detector-admin.php:360
-#, php-format
-msgid "%d week"
-msgid_plural "%d weeks"
-msgstr[0] ""
-msgstr[1] ""
-
-#: admin/class-device-detector-admin.php:364
+#: admin/class-device-detector-admin.php:349
 #, php-format
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/class-device-detector-admin.php:378
+#: admin/class-device-detector-admin.php:353
+#, php-format
+msgid "%d year"
+msgid_plural "%d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-device-detector-admin.php:367
 msgid "Analytics"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:383
-#: admin/class-device-detector-admin.php:438
+#: admin/class-device-detector-admin.php:372
 msgid "Activated"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:386
+#: admin/class-device-detector-admin.php:375
 msgid ""
-"If checked, Device Detector will analyze OPcache operations and store "
-"statistics every five minutes."
+"If checked, Device Detector will store statistics about detected devices."
 msgstr ""
 
-#: admin/class-device-detector-admin.php:386
-msgid ""
-"Note: for this to work, your WordPress site must have an operational CRON."
-msgstr ""
-
-#: admin/class-device-detector-admin.php:394
+#: admin/class-device-detector-admin.php:383
 msgid "Historical data"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:402
+#: admin/class-device-detector-admin.php:391
 msgid "Maximum age of data to keep for statistics."
 msgstr ""
 
-#: admin/class-device-detector-admin.php:410
-msgid "Site invalidation"
+#: admin/class-device-detector-admin.php:408
+msgid "Improvements"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:418
+#: admin/class-device-detector-admin.php:413
+msgid "Mobile detection"
+msgstr ""
+
+#: admin/class-device-detector-admin.php:416
+#, php-format
 msgid ""
-"Frequency at which files belonging to this site must be automatically "
-"reset."
+"If checked, the standard %s function will be improved by Device Detector."
 msgstr ""
 
-#: admin/class-device-detector-admin.php:425
-msgid "Network warm-up"
+#: admin/class-device-detector-admin.php:434
+msgid "Body classes"
 msgstr ""
 
-#: admin/class-device-detector-admin.php:426
+#: admin/class-device-detector-admin.php:455
+#, php-format
 msgid ""
-"If checked, Device Detector will warm-up the full network (all sites) "
-"after each automatic site invalidation."
+"Based on these settings, the classes for this current session would be: %s."
 msgstr ""
 
-#: admin/class-device-detector-admin.php:428
-msgid "Site warm-up"
-msgstr ""
-
-#: admin/class-device-detector-admin.php:429
-msgid ""
-"If checked, Device Detector will warm-up the full site after each "
-"automatic site invalidation."
+#: admin/class-device-detector-admin.php:457
+msgid "Based on these settings, no classes will be added to the body."
 msgstr ""
 
 #: admin/partials/device-detector-admin-settings-about.php:20
@@ -269,19 +215,92 @@ msgstr ""
 msgid "Changelog"
 msgstr ""
 
-#: admin/partials/device-detector-admin-settings-main.php:30
+#: admin/partials/device-detector-admin-settings-devices.php:15
 #, php-format
-msgid ""
-"Note: <a href=\"%s\">management tools</a> and <a href=\"%s\">analytics "
-"reports</a> are available via the <strong>tools menu</strong>."
+msgid "%1$s (engine version %2$s) allows to detect:"
 msgstr ""
 
-#: admin/partials/device-detector-admin-settings-main.php:52
+#: admin/partials/device-detector-admin-settings-devices.php:20
+msgid "Classes"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-devices.php:22
+msgid "Types"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-devices.php:24
+msgid "Clients"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-devices.php:26
+msgid "Details"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-devices.php:27
+msgid "Operating Systems"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-devices.php:29
+msgid "Browsers"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-devices.php:31
+msgid "Browser Engines"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-devices.php:33
+msgid "Application Libraries"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-devices.php:35
+msgid "Media Players"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-devices.php:37
+msgid "Mobile Applications"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-devices.php:39
+msgid "PIMs"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-devices.php:41
+msgid "Feed Readers"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-devices.php:43
+msgid "Brands"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-devices.php:45
+msgid "Bots"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-main.php:28
+#, php-format
+msgid ""
+"Note: analytics reports are available via the <a href=\"%s\">tools menu</"
+"a>."
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-main.php:50
 msgid "Options"
 msgstr ""
 
-#: admin/partials/device-detector-admin-settings-main.php:65
+#: admin/partials/device-detector-admin-settings-main.php:63
+msgid "WordPress core"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-main.php:76
+msgid "CSS"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-main.php:89
 msgid "About"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-main.php:102
+msgid "Devices"
 msgstr ""
 
 #: admin/partials/device-detector-admin-settings-options.php:31
@@ -301,7 +320,6 @@ msgid "Number of files to display"
 msgstr ""
 
 #: admin/partials/device-detector-admin-tools-lines.php:29
-#: includes/features/class-analytics.php:1391
 msgid "Apply"
 msgstr ""
 
@@ -309,496 +327,206 @@ msgstr ""
 msgid "Site Invalidation"
 msgstr ""
 
-#: includes/features/class-analytics.php:163
-#: includes/features/class-analytics.php:277
-#: includes/features/class-analytics.php:323
-#: includes/features/class-analytics.php:331
-msgid "Timeframe"
+#: includes/features/class-cssmodifier.php:48
+msgid "Class"
 msgstr ""
 
-#: includes/features/class-analytics.php:164
-#: includes/features/class-analytics.php:278
-#: includes/features/class-analytics.php:324
-#: includes/features/class-analytics.php:332
-msgid "Details"
+#: includes/features/class-cssmodifier.php:50
+msgid "Device"
 msgstr ""
 
-#: includes/features/class-analytics.php:176
-msgid "Reset due to free memory exhaustion."
+#: includes/features/class-cssmodifier.php:52
+msgid "Client"
 msgstr ""
 
-#: includes/features/class-analytics.php:180
-msgid "Reset due to excessive keys saturation."
+#: includes/features/class-cssmodifier.php:54
+msgid "Operating system"
 msgstr ""
 
-#: includes/features/class-analytics.php:184
-msgid "Programmatic or manual reset."
+#: includes/features/class-cssmodifier.php:56
+msgid "Brand"
 msgstr ""
 
-#: includes/features/class-analytics.php:189
-msgid "Programmatic site invalidation and warm-up."
+#: includes/features/class-cssmodifier.php:58
+#: includes/features/class-detector.php:267
+msgid "Bot"
 msgstr ""
 
-#: includes/features/class-analytics.php:194
-msgid "Manual site warm-up."
+#: includes/features/class-cssmodifier.php:60
+msgid "Capabilities"
 msgstr ""
 
-#: includes/features/class-analytics.php:200
-msgid "Cache is full."
+#: includes/features/class-cssmodifier.php:74
+msgid "Adds the class of the device."
 msgstr ""
 
-#: includes/features/class-analytics.php:209
-msgid "OPcache disabled."
+#: includes/features/class-cssmodifier.php:76
+msgid "Adds the type of the device."
 msgstr ""
 
-#: includes/features/class-analytics.php:216
-msgid "OPcache enabled."
+#: includes/features/class-cssmodifier.php:78
+msgid "Adds the client type, engine and name used on the device."
 msgstr ""
 
-#: includes/features/class-analytics.php:237
+#: includes/features/class-cssmodifier.php:80
+msgid "Adds the operating system running on the device."
+msgstr ""
+
+#: includes/features/class-cssmodifier.php:82
+msgid "Adds the brand and model of the device."
+msgstr ""
+
+#: includes/features/class-cssmodifier.php:84
+msgid "Adds the bot name."
+msgstr ""
+
+#: includes/features/class-cssmodifier.php:86
+msgid "Adds the device capabilities."
+msgstr ""
+
+#: includes/features/class-cssmodifier.php:110
+#: includes/features/class-cssmodifier.php:148
 #, php-format
-msgid "Total memory size increased by %s."
+msgid "Available classes: %s. If not detected, the class will be %s."
 msgstr ""
 
-#: includes/features/class-analytics.php:239
+#: includes/features/class-cssmodifier.php:119
 #, php-format
-msgid "Total memory size decreased by %s."
+msgid "Available type classes: %s. If not detected, the class will be %s."
 msgstr ""
 
-#: includes/features/class-analytics.php:245
+#: includes/features/class-cssmodifier.php:127
 #, php-format
-msgid "Total buffer size increased by %s."
+msgid "Available engine classes: %s. If not detected, the class will be %s."
 msgstr ""
 
-#: includes/features/class-analytics.php:247
+#: includes/features/class-cssmodifier.php:138
 #, php-format
-msgid "Total buffer size decreased by %s."
+msgid "Available name classes: %s. If not detected, the class will be %s."
 msgstr ""
 
-#: includes/features/class-analytics.php:253
+#: includes/features/class-cssmodifier.php:149
 #, php-format
-msgid "Maximum keys slots increased by %s."
-msgstr ""
-
-#: includes/features/class-analytics.php:255
-#, php-format
-msgid "Maximum keys slots decreased by %s."
-msgstr ""
-
-#: includes/features/class-analytics.php:273
-msgid "Settings changed."
-msgstr ""
-
-#: includes/features/class-analytics.php:291
-#, php-format
-msgid "Free memory size increased by %s."
-msgstr ""
-
-#: includes/features/class-analytics.php:293
-#, php-format
-msgid "Free memory size decreased by %s."
-msgstr ""
-
-#: includes/features/class-analytics.php:297
-#, php-format
-msgid "Free buffer size increased by %s."
-msgstr ""
-
-#: includes/features/class-analytics.php:299
-#, php-format
-msgid "Free buffer size decreased by %s."
-msgstr ""
-
-#: includes/features/class-analytics.php:303
-#, php-format
-msgid "Free keys slots increased by %s."
-msgstr ""
-
-#: includes/features/class-analytics.php:305
-#, php-format
-msgid "Free keys slots decreased by %s."
-msgstr ""
-
-#: includes/features/class-analytics.php:315
-#, php-format
-msgid "Current wasted memory: %s."
-msgstr ""
-
-#: includes/features/class-analytics.php:330
-msgid "No status events in the selected time range."
-msgstr ""
-
-#: includes/features/class-analytics.php:525
-#: includes/features/class-analytics.php:1224
-msgctxt "Noun - Cache hit ratio."
-msgid "Hit Ratio"
-msgstr ""
-
-#: includes/features/class-analytics.php:542
-msgid "Availability"
-msgstr ""
-
-#: includes/features/class-analytics.php:561
-msgid "Hit Count"
-msgstr ""
-
-#: includes/features/class-analytics.php:565
-msgid "Miss Count"
-msgstr ""
-
-#: includes/features/class-analytics.php:582
-msgid "Files Count"
-msgstr ""
-
-#: includes/features/class-analytics.php:599
-msgid "Strings Count"
-msgstr ""
-
-#: includes/features/class-analytics.php:615
-msgid "Used Memory"
-msgstr ""
-
-#: includes/features/class-analytics.php:619
-msgid "Free Memory"
-msgstr ""
-
-#: includes/features/class-analytics.php:623
-msgid "Wasted Memory"
-msgstr ""
-
-#: includes/features/class-analytics.php:641
-msgid "Used Key Slots"
-msgstr ""
-
-#: includes/features/class-analytics.php:645
-msgid "Free Key Slots"
-msgstr ""
-
-#: includes/features/class-analytics.php:663
-msgid "Used Buffer"
-msgstr ""
-
-#: includes/features/class-analytics.php:667
-msgid "Free Buffer"
-msgstr ""
-
-#: includes/features/class-analytics.php:847
-#: includes/features/class-analytics.php:876
-#: includes/system/class-conversion.php:84
-msgctxt "Abbreviation - Stands for \"megabytes\"."
-msgid "MB"
-msgstr ""
-
-#: includes/features/class-analytics.php:905
-#: includes/system/class-conversion.php:46
-msgctxt "Abbreviation - Stands for \"thousand\"."
-msgid "K"
-msgstr ""
-
-#: includes/features/class-analytics.php:1059
-#, php-format
-msgid "%s hits"
-msgstr ""
-
-#: includes/features/class-analytics.php:1063
-#, php-format
-msgid "total memory: %s"
-msgstr ""
-
-#: includes/features/class-analytics.php:1066
-#, php-format
-msgid "buffer size: %s"
-msgstr ""
-
-#: includes/features/class-analytics.php:1069
-#, php-format
-msgid "%s keys (avg.)"
-msgstr ""
-
-#: includes/features/class-analytics.php:1075
-msgid "no availability"
-msgstr ""
-
-#: includes/features/class-analytics.php:1077
-#, php-format
-msgid "available %s"
-msgstr ""
-
-#: includes/features/class-analytics.php:1162
-msgid "Hit ratio variation."
-msgstr ""
-
-#: includes/features/class-analytics.php:1163
-msgid "Hit and miss distribution."
-msgstr ""
-
-#: includes/features/class-analytics.php:1164
-msgid "Memory distribution."
-msgstr ""
-
-#: includes/features/class-analytics.php:1165
-msgid "Files variation."
-msgstr ""
-
-#: includes/features/class-analytics.php:1166
-msgid "Keys distribution."
-msgstr ""
-
-#: includes/features/class-analytics.php:1167
-msgid "Strings variation."
-msgstr ""
-
-#: includes/features/class-analytics.php:1168
-msgid "Buffer distribution."
-msgstr ""
-
-#: includes/features/class-analytics.php:1169
-msgid "Availability variation."
-msgstr ""
-
-#: includes/features/class-analytics.php:1180
-msgid "Metrics Variations"
-msgstr ""
-
-#: includes/features/class-analytics.php:1201
-msgid "Status Events"
-msgstr ""
-
-#: includes/features/class-analytics.php:1225
-msgid "The ratio between hit and total calls."
-msgstr ""
-
-#: includes/features/class-analytics.php:1229
-msgctxt "Noun - Memory free of allocation."
-msgid "Free Memory"
-msgstr ""
-
-#: includes/features/class-analytics.php:1230
-msgid "Ratio of free available memory."
-msgstr ""
-
-#: includes/features/class-analytics.php:1234
-msgctxt "Noun - Number of already cached files."
-msgid "Cached Files"
-msgstr ""
-
-#: includes/features/class-analytics.php:1235
-msgid "Number of compiled and cached files."
-msgstr ""
-
-#: includes/features/class-analytics.php:1239
-msgctxt ""
-"Noun - Ratio of the allocated keys to the total available keys slots."
-msgid "Keys Saturation"
-msgstr ""
-
-#: includes/features/class-analytics.php:1240
-msgid "Ratio of the allocated keys to the total available keys slots."
-msgstr ""
-
-#: includes/features/class-analytics.php:1244
-msgctxt "Noun - Ratio of the used buffer to the total buffer size."
-msgid "Buffer Saturation"
-msgstr ""
-
-#: includes/features/class-analytics.php:1245
-msgid "Ratio of the used buffer to the total buffer size."
-msgstr ""
-
-#: includes/features/class-analytics.php:1249
-msgctxt "Noun - Ratio of time when OPcache is not disabled."
-msgid "Availability"
-msgstr ""
-
-#: includes/features/class-analytics.php:1250
-msgid "Time ratio with an operational OPcache."
-msgstr ""
-
-#: includes/features/class-analytics.php:1287
-msgid "No Data"
-msgstr ""
-
-#: includes/features/class-analytics.php:1391
-msgid "Custom Range"
-msgstr ""
-
-#: includes/features/class-analytics.php:1391
-msgid "Cancel"
-msgstr ""
-
-#: includes/features/class-analytics.php:1393
-msgid "Today"
-msgstr ""
-
-#: includes/features/class-analytics.php:1394
-msgid "Yesterday"
-msgstr ""
-
-#: includes/features/class-analytics.php:1395
-msgid "This Month"
-msgstr ""
-
-#: includes/features/class-analytics.php:1396
-msgid "Last Month"
-msgstr ""
-
-#: includes/features/class-capture.php:53
-msgid "Every five minutes"
-msgstr ""
-
-#: includes/features/class-scripts.php:234
-msgid "File"
-msgstr ""
-
-#: includes/features/class-scripts.php:235
-msgid "Timestamp"
-msgstr ""
-
-#: includes/features/class-scripts.php:236
-msgid "Hits"
-msgstr ""
-
-#: includes/features/class-scripts.php:237
-msgid "Memory size"
-msgstr ""
-
-#: includes/features/class-scripts.php:238
-msgid "Used"
-msgstr ""
-
-#: includes/features/class-scripts.php:278
-msgid "Invalidate"
-msgstr ""
-
-#: includes/features/class-scripts.php:279
-msgid "Force invalidate"
-msgstr ""
-
-#: includes/features/class-scripts.php:280
-msgid "Recompile"
-msgstr ""
-
-#: includes/features/class-scripts.php:368
-#, php-format
-msgid "Display %d files per page"
-msgstr ""
-
-#: includes/features/class-scripts.php:395
-#, php-format
-msgid "%s item"
-msgid_plural "%s items"
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/features/class-scripts.php:427
-msgid "First page"
-msgstr ""
-
-#: includes/features/class-scripts.php:437
-msgid "Previous page"
-msgstr ""
-
-#: includes/features/class-scripts.php:443
-#: includes/features/class-scripts.php:447
-msgid "Current Page"
-msgstr ""
-
-#: includes/features/class-scripts.php:454
-#, php-format
-msgctxt "paging"
-msgid "%1$s of %2$s"
-msgstr ""
-
-#: includes/features/class-scripts.php:461
-msgid "Next page"
-msgstr ""
-
-#: includes/features/class-scripts.php:471
-msgid "Last page"
-msgstr ""
-
-#: includes/features/class-scripts.php:501
-msgid "Select All"
-msgstr ""
-
-#: includes/features/class-scripts.php:551
-#: includes/features/class-scripts.php:560
-msgid "OPcache is not enabled on this site. There's nothing to see here."
-msgstr ""
-
-#: includes/features/class-scripts.php:554
 msgid ""
-"A full reset is currently pending. Displayed values may be inaccurate."
+"If (and only if) model is detected an extra class is added. It may be be "
+"something like %s or %s."
 msgstr ""
 
-#: includes/features/class-scripts.php:557
-msgid ""
-"A full reset is currently in progress. Displayed values may be inaccurate."
-msgstr ""
-
-#: includes/features/class-scripts.php:656
+#: includes/features/class-cssmodifier.php:157
 #, php-format
-msgid "Network warm-up has been initiated. %d relevant files."
+msgid "Available classes: %s."
 msgstr ""
 
-#: includes/features/class-scripts.php:659
-#, php-format
-msgid "Site warm-up has been initiated. %d relevant files."
+#: includes/features/class-detector.php:267
+msgid "Mobile"
 msgstr ""
 
-#: includes/features/class-scripts.php:665
-msgid ""
-"Site invalidation has been initiated. It may take a few seconds to "
-"complete."
+#: includes/features/class-detector.php:267
+msgid "Desktop"
 msgstr ""
 
-#: includes/features/class-scripts.php:670
-#, php-format
-msgid "Invalidation done: %d file(s)."
+#: includes/features/class-detector.php:270
+msgid "Smart Display"
 msgstr ""
 
-#: includes/features/class-scripts.php:675
-#, php-format
-msgid "Forced invalidation done: %d file(s)."
+#: includes/features/class-detector.php:270
+msgid "Smartphone"
 msgstr ""
 
-#: includes/features/class-scripts.php:680
-#, php-format
-msgid "Recompilation done: %d file(s)."
+#: includes/features/class-detector.php:270
+msgid "Tablet"
+msgstr ""
+
+#: includes/features/class-detector.php:270
+msgid "TV"
+msgstr ""
+
+#: includes/features/class-detector.php:270
+msgid "Feature Phone"
+msgstr ""
+
+#: includes/features/class-detector.php:270
+msgid "Phablet"
+msgstr ""
+
+#: includes/features/class-detector.php:270
+msgid "Portable Media Player"
+msgstr ""
+
+#: includes/features/class-detector.php:270
+msgid "Camera"
+msgstr ""
+
+#: includes/features/class-detector.php:270
+msgid "Car Browser"
+msgstr ""
+
+#: includes/features/class-detector.php:270
+msgid "Console"
+msgstr ""
+
+#: includes/features/class-detector.php:273
+msgid "PIM"
+msgstr ""
+
+#: includes/features/class-detector.php:273
+msgid "Browser"
+msgstr ""
+
+#: includes/features/class-detector.php:273
+msgid "Application Library"
+msgstr ""
+
+#: includes/features/class-detector.php:273
+msgid "Media Player"
+msgstr ""
+
+#: includes/features/class-detector.php:273
+msgid "Feed Reader"
+msgstr ""
+
+#: includes/features/class-detector.php:273
+msgid "Mobile Application"
 msgstr ""
 
 #: includes/libraries/class-libraries.php:67
-#: includes/libraries/class-libraries.php:79
-#: includes/libraries/class-libraries.php:172
-#: includes/libraries/class-libraries.php:180
-#: includes/libraries/class-libraries.php:187
-#: includes/libraries/class-libraries.php:194
+#: includes/libraries/class-libraries.php:78
+#: includes/libraries/class-libraries.php:90
 #, php-format
 msgid "%s & contributors"
 msgstr ""
 
-#: includes/libraries/class-libraries.php:116
+#: includes/libraries/class-libraries.php:101
+#, php-format
+msgid "%s, %s & contributors"
+msgstr ""
+
+#: includes/libraries/class-libraries.php:138
 msgid "MIT license"
 msgstr ""
 
-#: includes/libraries/class-libraries.php:119
+#: includes/libraries/class-libraries.php:141
 msgid "Apache license, version 2.0"
 msgstr ""
 
-#: includes/libraries/class-libraries.php:122
+#: includes/libraries/class-libraries.php:144
 msgid "GPL-2.0 license"
 msgstr ""
 
-#: includes/libraries/class-libraries.php:125
+#: includes/libraries/class-libraries.php:147
 msgid "GPL-3.0 license"
 msgstr ""
 
-#: includes/libraries/class-libraries.php:128
+#: includes/libraries/class-libraries.php:150
+msgid "LGPL-3.0 license"
+msgstr ""
+
+#: includes/libraries/class-libraries.php:153
 msgid "unknown license"
 msgstr ""
 
 #. translators: as in the sentence "Product W version X by author Y (license Z)"
-#: includes/libraries/class-libraries.php:204
+#: includes/libraries/class-libraries.php:199
 #, php-format
 msgid "<a href=\"%1$s\">%2$s %3$s</a>%4$s by %5$s (%6$s)"
 msgstr ""
@@ -818,8 +546,13 @@ msgstr ""
 msgid "See <a href=\"%s\">what's new</a>."
 msgstr ""
 
-#: includes/plugin/class-updater.php:137
+#: includes/plugin/class-updater.php:94
 msgid "Sorry, unable to find or read changelog file."
+msgstr ""
+
+#: includes/system/class-conversion.php:46
+msgctxt "Abbreviation - Stands for \"thousand\"."
+msgid "K"
 msgstr ""
 
 #: includes/system/class-conversion.php:47
@@ -855,6 +588,11 @@ msgstr ""
 #: includes/system/class-conversion.php:83
 msgctxt "Abbreviation - Stands for \"kilobytes\"."
 msgid "KB"
+msgstr ""
+
+#: includes/system/class-conversion.php:84
+msgctxt "Abbreviation - Stands for \"megabytes\"."
+msgid "MB"
 msgstr ""
 
 #: includes/system/class-conversion.php:85

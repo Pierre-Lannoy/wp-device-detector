@@ -37,6 +37,7 @@ class Option {
 	 * @since 1.0.0
 	 */
 	public static function init() {
+		// Options for whole site(s).
 		self::$defaults['use_cdn']          = false;
 		self::$defaults['script_in_footer'] = false;
 		self::$defaults['display_nag']      = true;
@@ -44,8 +45,15 @@ class Option {
 		self::$defaults['version']          = '0.0.0';
 		self::$defaults['history']          = 30;
 		self::$defaults['analytics']        = true;
-
-		self::$defaults['wp_is_mobile']     = true;
+		// Per site options.
+		self::$defaults['wp_is_mobile']   = true;
+		self::$defaults['css_class']      = true;
+		self::$defaults['css_device']     = false;
+		self::$defaults['css_client']     = false;
+		self::$defaults['css_os']         = false;
+		self::$defaults['css_brand']      = false;
+		self::$defaults['css_bot']        = false;
+		self::$defaults['css_capability'] = false;
 	}
 
 	/**
