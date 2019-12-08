@@ -15,6 +15,7 @@ use PODeviceDetector\System\Option;
 use Exception;
 use PODeviceDetector\System\Logger;
 use PODeviceDetector\System\Cache;
+use PODeviceDetector\Plugin\Feature\Schema;
 
 /**
  * Plugin updates handling.
@@ -69,6 +70,8 @@ class Updater {
 	 * @since 1.0.0
 	 */
 	private function update( $from ) {
+		$schema = new Schema();
+		$schema->update();
 		Cache::delete_global( '/Data/Devices/*' );
 		Logger::notice( 'Cache purged.' );
 	}
