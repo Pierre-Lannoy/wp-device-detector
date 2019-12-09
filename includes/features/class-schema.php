@@ -19,6 +19,7 @@ use PODeviceDetector\System\Logger;
 use PODeviceDetector\System\Cache;
 use PODeviceDetector\System\Timezone;
 use PODeviceDetector\Plugin\Feature\Detector;
+use PODeviceDetector\System\Http;
 
 /**
  * Define the schema functionality.
@@ -120,11 +121,17 @@ class Schema {
 		if ( $device->class_is_bot && '' !== $device->bot_name ) {
 			$record['name'] = substr( $device->bot_name, 0, 40 );
 		}
+		if ( ! $device->class_is_bot && '' !== $device->brand_short_name ) {
+			$record['brand_id'] = substr( $device->brand_short_name, 0, 2 );
+		}
 		if ( ! $device->class_is_bot && '' !== $device->brand_name ) {
 			$record['brand'] = substr( $device->brand_name, 0, 40 );
 		}
 		if ( ! $device->class_is_bot && '' !== $device->model_name ) {
 			$record['model'] = substr( $device->model_name, 0, 40 );
+		}
+		if ( ! $device->class_is_bot && '' !== $device->client_short_name && 'UN' !== $device->client_short_name ) {
+			$record['client_id'] = substr( $device->client_short_name, 0, 2 );
 		}
 		if ( ! $device->class_is_bot && '' !== $device->client_name ) {
 			$record['name'] = substr( $device->client_name, 0, 40 );
@@ -134,6 +141,9 @@ class Schema {
 		}
 		if ( ! $device->class_is_bot && 'UNK' !== $device->client_engine ) {
 			$record['engine'] = substr( $device->client_engine, 0, 10 );
+		}
+		if ( ! $device->class_is_bot && 'UNK' !== $device->os_short_name ) {
+			$record['os_id'] = substr( $device->os_short_name, 0, 3 );
 		}
 		if ( ! $device->class_is_bot && 'UNK' !== $device->os_name ) {
 			$record['os'] = substr( $device->os_name, 0, 25 );
@@ -236,15 +246,18 @@ class Schema {
 		$sql            .= " `class` enum('bot','desktop','mobile','other') NOT NULL DEFAULT 'other',";
 		$sql            .= " `device` enum('camera','car-browser','console','featurephone','phablet','portable-media-player','smartphone','smart-display','tablet','tv','other') NOT NULL DEFAULT 'other',";
 		$sql            .= " `client` enum('browser','feed-reader','library','media-player','mobile-app','pim','other') NOT NULL DEFAULT 'other',";
+		$sql            .= " `brand_id` varchar(2) NOT NULL DEFAULT '-',";
 		$sql            .= " `brand` varchar(40) NOT NULL DEFAULT '-',";  // May be device brand or bot producer.
 		$sql            .= " `model` varchar(40) NOT NULL DEFAULT '-',";
+		$sql            .= " `client_id` varchar(2) NOT NULL DEFAULT '-',";
 		$sql            .= " `name` varchar(40) NOT NULL DEFAULT '-',";  // May be client name or bot name.
 		$sql            .= " `client_version` varchar(20) NOT NULL DEFAULT '-',";
 		$sql            .= " `engine` varchar(20) NOT NULL DEFAULT '-',";
+		$sql            .= " `os_id` varchar(3) NOT NULL DEFAULT '-',";
 		$sql            .= " `os` varchar(25) NOT NULL DEFAULT '-',";
 		$sql            .= " `os_version` varchar(20) NOT NULL DEFAULT '-',";
 		$sql            .= " `url` varchar(2083) NOT NULL DEFAULT '-',";
-		$sql            .= ' UNIQUE KEY u_stat (timestamp, site, channel, class, device, client, brand, model, name, client_version, os, os_version)';
+		$sql            .= ' UNIQUE KEY u_stat (timestamp, site, channel, class, device, client, brand_id, model, name, client_version, os_id, os_version)';
 		$sql            .= ") $charset_collate;";
 		// phpcs:ignore
 		$wpdb->query( $sql );

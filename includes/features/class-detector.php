@@ -100,7 +100,7 @@ class Detector {
 					} elseif ( $value->device_is_console ) {
 						return 'console';
 					} elseif ( $value->device_is_featurephone ) {
-						return 'featurephone';
+						return 'feature-phone';
 					} elseif ( $value->device_is_phablet ) {
 						return 'phablet';
 					} elseif ( $value->device_is_portable_media_player ) {
@@ -205,7 +205,7 @@ class Detector {
 				$result = [ 'mobile', 'desktop', 'bot' ];
 				break;
 			case 'device':
-				$result = [ 'smartphone', 'featurephone', 'tablet', 'phablet', 'console', 'portable_media_player', 'car_browser', 'tv', 'smart_display', 'camera' ];
+				$result = [ 'smartphone', 'feature_phone', 'tablet', 'phablet', 'console', 'portable_media_player', 'car_browser', 'tv', 'smart_display', 'camera' ];
 				break;
 			case 'client':
 				$result = [ 'browser', 'feed_reader', 'mobile_app', 'library', 'pim', 'media_player' ];
