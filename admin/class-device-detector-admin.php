@@ -56,6 +56,11 @@ class Device_Detector_Admin {
 	 */
 	public function enqueue_styles() {
 		$this->assets->register_style( PODD_ASSETS_ID, PODD_ADMIN_URL, 'css/device-detector.min.css' );
+		$this->assets->register_style( 'podd-daterangepicker', PODD_ADMIN_URL, 'css/daterangepicker.min.css' );
+		$this->assets->register_style( 'podd-switchery', PODD_ADMIN_URL, 'css/switchery.min.css' );
+		$this->assets->register_style( 'podd-tooltip', PODD_ADMIN_URL, 'css/tooltip.min.css' );
+		$this->assets->register_style( 'podd-chartist', PODD_ADMIN_URL, 'css/chartist.min.css' );
+		$this->assets->register_style( 'podd-chartist-tooltip', PODD_ADMIN_URL, 'css/chartist-plugin-tooltip.min.css' );
 	}
 
 	/**
@@ -65,6 +70,11 @@ class Device_Detector_Admin {
 	 */
 	public function enqueue_scripts() {
 		$this->assets->register_script( PODD_ASSETS_ID, PODD_ADMIN_URL, 'js/device-detector.min.js', [ 'jquery' ] );
+		$this->assets->register_script( 'podd-moment-with-locale', PODD_ADMIN_URL, 'js/moment-with-locales.min.js', [ 'jquery' ] );
+		$this->assets->register_script( 'podd-daterangepicker', PODD_ADMIN_URL, 'js/daterangepicker.min.js', [ 'jquery' ] );
+		$this->assets->register_script( 'podd-switchery', PODD_ADMIN_URL, 'js/switchery.min.js', [ 'jquery' ] );
+		$this->assets->register_script( 'podd-chartist', PODD_ADMIN_URL, 'js/chartist.min.js', [ 'jquery' ] );
+		$this->assets->register_script( 'podd-chartist-tooltip', PODD_ADMIN_URL, 'js/chartist-plugin-tooltip.min.js', [ 'podd-chartist' ] );
 	}
 
 	/**
@@ -76,7 +86,48 @@ class Device_Detector_Admin {
 		if ( Role::SUPER_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() ) {
 			/* translators: as in the sentence "Device Detector Settings" or "WordPress Settings" */
 			$settings = add_submenu_page( 'options-general.php', sprintf( esc_html__( '%s Settings', 'device-detector' ), PODD_PRODUCT_NAME ), PODD_PRODUCT_NAME, 'manage_options', 'podd-settings', [ $this, 'get_settings_page' ] );
+			$name     = add_submenu_page(
+				'tools.php',
+				/* translators: as in the sentence "Device Detector Viewer" */
+				sprintf( esc_html__( '%s Viewer', 'device-detector' ), PODD_PRODUCT_NAME ),
+				PODD_PRODUCT_NAME,
+				'manage_options',
+				'podd-viewer',
+				[ $this, 'get_viewer_page' ]
+			);
 		}
+	}
+
+	/**
+	 * Get actions links for myblogs_blog_actions hook.
+	 *
+	 * @param string $actions   The HTML site link markup.
+	 * @param object $user_blog An object containing the site data.
+	 * @return string   The action string.
+	 * @since 1.2.0
+	 */
+	public function blog_action( $actions, $user_blog ) {
+		if ( Role::SUPER_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() ) {
+			$actions .= " | <a href='" . esc_url( admin_url( 'tools.php?page=podd-viewer&site=' . $user_blog->userblog_id ) ) . "'>" . __( 'Devices', 'device-detector' ) . '</a>';
+		}
+		return $actions;
+	}
+
+	/**
+	 * Get actions for manage_sites_action_links hook.
+	 *
+	 * @param string[] $actions  An array of action links to be displayed.
+	 * @param int      $blog_id  The site ID.
+	 * @param string   $blogname Site path, formatted depending on whether it is a sub-domain
+	 *                           or subdirectory multisite installation.
+	 * @return array   The actions.
+	 * @since 1.2.0
+	 */
+	public function site_action( $actions, $blog_id, $blogname ) {
+		if ( Role::SUPER_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() ) {
+			$actions['devices'] = "<a href='" . esc_url( admin_url( 'tools.php?page=podd-viewer&site=' . $blog_id ) ) . "' rel='bookmark'>" . __( 'Devices', 'device-detector' ) . '</a>';
+		}
+		return $actions;
 	}
 
 	/**
@@ -105,6 +156,7 @@ class Device_Detector_Admin {
 	 */
 	public function add_actions_links( $actions, $plugin_file, $plugin_data, $context ) {
 		$actions[] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'options-general.php?page=podd-settings' ) ), esc_html__( 'Settings', 'device-detector' ) );
+		$actions[] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'tools.php?page=podd-viewer' ) ), esc_html__( 'Statistics', 'device-detector' ) );
 		return $actions;
 	}
 
