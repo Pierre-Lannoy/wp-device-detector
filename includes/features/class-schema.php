@@ -11,7 +11,6 @@
 
 namespace PODeviceDetector\Plugin\Feature;
 
-use PODeviceDetector\System\Blog;
 use PODeviceDetector\System\Option;
 use PODeviceDetector\System\Database;
 use PODeviceDetector\System\Environment;
@@ -20,7 +19,6 @@ use PODeviceDetector\System\Logger;
 use PODeviceDetector\System\Cache;
 use PODeviceDetector\System\Timezone;
 use PODeviceDetector\Plugin\Feature\Detector;
-use PODeviceDetector\System\Http;
 
 /**
  * Define the schema functionality.
@@ -69,6 +67,30 @@ class Schema {
 	}
 
 	/**
+	 * Get the current channel tag.
+	 *
+	 * @return  string The current channel tag.
+	 * @since 1.0.0
+	 */
+	private static function current_channel_tag() {
+		return self::channel_tag( Environment::exec_mode() );
+	}
+
+	/**
+	 * Get the channel tag.
+	 *
+	 * @param   integer $id Optional. The channel id (execution mode).
+	 * @return  string The channel tag.
+	 * @since 1.0.0
+	 */
+	public static function channel_tag( $id = 0 ) {
+		if ( $id >= count( ChannelTypes::$channels ) ) {
+			$id = 0;
+		}
+		return ChannelTypes::$channels[ $id ];
+	}
+
+	/**
 	 * Effectively write a buffer element in the database.
 	 *
 	 * @since    1.0.0
@@ -82,6 +104,7 @@ class Schema {
 		$datetime            = new \DateTime( 'now', Timezone::network_get() );
 		$record['timestamp'] = $datetime->format( 'Y-m-d' );
 		$record['site']      = get_current_blog_id();
+		$record['channel']   = strtolower( self::current_channel_tag() );
 		$record['class']     = Detector::get_element( 'class', $device );
 		$record['device']    = Detector::get_element( 'device', $device );
 		$record['client']    = Detector::get_element( 'client', $device );
@@ -208,6 +231,7 @@ class Schema {
 		$sql             = 'CREATE TABLE IF NOT EXISTS ' . $wpdb->base_prefix . self::$statistics;
 		$sql            .= " (`timestamp` date NOT NULL DEFAULT '0000-00-00',";
 		$sql            .= " `site` int(11) UNSIGNED NOT NULL DEFAULT '0',";
+		$sql            .= " `channel` enum('cli','cron','ajax','xmlrpc','api','feed','wback','wfront','unknown') NOT NULL DEFAULT 'unknown',";
 		$sql            .= " `hit` int(11) UNSIGNED NOT NULL DEFAULT '1',";
 		$sql            .= " `class` enum('bot','desktop','mobile','other') NOT NULL DEFAULT 'other',";
 		$sql            .= " `device` enum('camera','car-browser','console','featurephone','phablet','portable-media-player','smartphone','smart-display','tablet','tv','other') NOT NULL DEFAULT 'other',";
@@ -220,7 +244,7 @@ class Schema {
 		$sql            .= " `os` varchar(25) NOT NULL DEFAULT '-',";
 		$sql            .= " `os_version` varchar(20) NOT NULL DEFAULT '-',";
 		$sql            .= " `url` varchar(2083) NOT NULL DEFAULT '-',";
-		$sql            .= ' UNIQUE KEY u_stat (timestamp, site, class, device, client, brand, model, name, client_version, os, os_version)';
+		$sql            .= ' UNIQUE KEY u_stat (timestamp, site, channel, class, device, client, brand, model, name, client_version, os, os_version)';
 		$sql            .= ") $charset_collate;";
 		// phpcs:ignore
 		$wpdb->query( $sql );
