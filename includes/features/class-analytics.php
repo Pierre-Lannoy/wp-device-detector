@@ -39,44 +39,12 @@ use Flagiconcss;
 class Analytics {
 
 	/**
-	 * The domain name.
-	 *
-	 * @since  1.0.0
-	 * @var    string    $domain    The domain name.
-	 */
-	public $domain = '';
-
-	/**
-	 * The subdomain name.
-	 *
-	 * @since  1.0.0
-	 * @var    string    $subdomain    The subdomain name.
-	 */
-	public $subdomain = '';
-
-	/**
 	 * The dashboard type.
 	 *
 	 * @since  1.0.0
 	 * @var    string    $title    The dashboard type.
 	 */
 	public $type = '';
-
-	/**
-	 * The dashboard extra.
-	 *
-	 * @since  1.0.0
-	 * @var    string    $extra    The dashboard extra.
-	 */
-	public $extra = '';
-
-	/**
-	 * The dashboard context.
-	 *
-	 * @since  1.0.0
-	 * @var    string    $context    The dashboard context.
-	 */
-	private $context = '';
 
 	/**
 	 * The queried ID.
@@ -151,38 +119,6 @@ class Analytics {
 	private $is_today = false;
 
 	/**
-	 * Has the dataset inbound context.
-	 *
-	 * @since  1.0.0
-	 * @var    boolean    $has_inbound    Has the dataset inbound context.
-	 */
-	private $has_inbound = false;
-
-	/**
-	 * Has the dataset inbound context.
-	 *
-	 * @since  1.0.0
-	 * @var    boolean    $has_outbound    Has the dataset inbound context.
-	 */
-	private $has_outbound = false;
-
-	/**
-	 * Is the inbound context in query.
-	 *
-	 * @since  1.0.0
-	 * @var    boolean    $has_inbound    Is the inbound context in query.
-	 */
-	private $is_inbound = false;
-
-	/**
-	 * Is the outbound context in query.
-	 *
-	 * @since  1.0.0
-	 * @var    boolean    $has_outbound    Is the outbound context in query.
-	 */
-	private $is_outbound = false;
-
-	/**
 	 * Colors for graphs.
 	 *
 	 * @since  1.0.0
@@ -193,21 +129,16 @@ class Analytics {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @param   string  $domain  The domain name, if disambiguation is needed.
-	 * @param   string  $type    The type of analytics ( summary, domain, authority, endpoint, country).
-	 * @param   string  $context The context of analytics (both, inbound, outbound).
+	 * @param   string  $type    The type of analytics ().
+	 * @param   string  $id      The subfilter.
 	 * @param   string  $site    The site to analyze (all or ID).
 	 * @param   string  $start   The start date.
 	 * @param   string  $end     The end date.
-	 * @param   string  $id      The queried ID.
 	 * @param   boolean $reload  Is it a reload of an already displayed analytics.
-	 * @param   string  $extra   The extra view to render.
 	 * @since    1.0.0
 	 */
-	public function __construct( $domain, $type, $context, $site, $start, $end, $id, $reload, $extra ) {
+	public function __construct( $type, $id, $site, $start, $end, $reload ) {
 		$this->id      = $id;
-		$this->extra   = $extra;
-		$this->context = $context;
 		if ( Role::LOCAL_ADMIN === Role::admin_type() ) {
 			$site = get_current_blog_id();
 		}
@@ -215,11 +146,6 @@ class Analytics {
 		if ( 'all' !== $site ) {
 			$this->filter[]   = "site='" . $site . "'";
 			$this->previous[] = "site='" . $site . "'";
-		}
-		if ( '' !== $domain ) {
-			$this->domain     = $domain;
-			$this->filter[]   = "id='" . $domain . "'";
-			$this->previous[] = "id='" . $domain . "'";
 		}
 		if ( $start === $end ) {
 			$this->filter[] = "timestamp='" . $start . "'";
@@ -260,32 +186,11 @@ class Analytics {
 			$this->filter[]   = "id='" . $domain . "'";
 			$this->previous[] = "id='" . $domain . "'";
 		}
-		$this->timezone     = Timezone::network_get();
-		$datetime           = new \DateTime( 'now', $this->timezone );
-		$this->is_today     = ( $this->start === $datetime->format( 'Y-m-d' ) || $this->end === $datetime->format( 'Y-m-d' ) );
-		$bounds             = Schema::get_distinct_context( $this->filter, ! $this->is_today );
-		$this->has_inbound  = ( in_array( 'inbound', $bounds, true ) );
-		$this->has_outbound = ( in_array( 'outbound', $bounds, true ) );
-		$this->is_inbound   = ( 'inbound' === $context || 'both' === $context );
-		$this->is_outbound  = ( 'outbound' === $context || 'both' === $context );
-		if ( 'inbound' === $context && ! $this->has_inbound ) {
-			$this->is_inbound  = false;
-			$this->is_outbound = true;
-		}
-		if ( 'outbound' === $context && ! $this->has_outbound ) {
-			$this->is_inbound  = true;
-			$this->is_outbound = false;
-		}
-		if ( $this->is_inbound xor $this->is_outbound ) {
-			$context = 'outbound';
-			if ( $this->is_inbound ) {
-				$context = 'inbound';
-			}
-			$this->filter[]   = "context='" . $context . "'";
-			$this->previous[] = "context='" . $context . "'";
-		}
-		$start = new \DateTime( $this->start, $this->timezone );
-		$end   = new \DateTime( $this->end, $this->timezone );
+		$this->timezone = Timezone::network_get();
+		$datetime       = new \DateTime( 'now', $this->timezone );
+		$this->is_today = ( $this->start === $datetime->format( 'Y-m-d' ) || $this->end === $datetime->format( 'Y-m-d' ) );
+		$start          = new \DateTime( $this->start, $this->timezone );
+		$end            = new \DateTime( $this->end, $this->timezone );
 		$start->sub( new \DateInterval( 'P1D' ) );
 		$end->sub( new \DateInterval( 'P1D' ) );
 		$delta = $start->diff( $end, true );
@@ -735,53 +640,6 @@ class Analytics {
 	 * @return array The result of the query, ready to encode.
 	 * @since    1.0.0
 	 */
-	private function query_map() {
-		$uuid   = UUID::generate_unique_id( 5 );
-		$data   = Schema::get_grouped_list( 'country', [], $this->filter, ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
-		$series = [];
-		foreach ( $data as $datum ) {
-			if ( array_key_exists( 'country', $datum ) && ! empty( $datum['country'] ) ) {
-				$series[ strtoupper( $datum['country'] ) ] = $datum['sum_hit'];
-			}
-		}
-		$plus    = '<img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'plus-square', 'none', '#73879C' ) . '"/>';
-		$minus   = '<img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'minus-square', 'none', '#73879C' ) . '"/>';
-		$result  = '<div class="podd-map-handler">';
-		$result .= '</div>';
-		$result .= '<script>';
-		$result .= 'jQuery(function ($) {';
-		$result .= ' var mapdata' . $uuid . ' = ' . wp_json_encode( $series ) . ';';
-		$result .= ' $(".podd-map-handler").vectorMap({';
-		$result .= ' map: "world_mill",';
-		$result .= ' backgroundColor: "#FFFFFF",';
-		$result .= ' series: {';
-		$result .= '  regions: [{';
-		$result .= '   values: mapdata' . $uuid . ',';
-		$result .= '   scale: ["#BDC7D1", "#73879C"],';
-		$result .= '   normalizeFunction: "polynomial"';
-		$result .= '  }]';
-		$result .= ' },';
-		$result .= '  regionStyle: {';
-		$result .= '   initial: {fill: "#EEEEEE", "fill-opacity": 0.7},';
-		$result .= '   hover: {"fill-opacity": 1,cursor: "default"},';
-		$result .= '   selected: {},';
-		$result .= '   selectedHover: {},';
-		$result .= ' },';
-		$result .= ' onRegionTipShow: function(e, el, code){if (mapdata' . $uuid . '[code]){el.html(el.html() + " (" + mapdata' . $uuid . '[code] + " ' . esc_html__( 'calls', 'device-detector' ) . ')")};},';
-		$result .= ' });';
-		$result .= ' $(".jvectormap-zoomin").html(\'' . $plus . '\');';
-		$result .= ' $(".jvectormap-zoomout").html(\'' . $minus . '\');';
-		$result .= '});';
-		$result .= '</script>';
-		return [ 'podd-map' => $result ];
-	}
-
-	/**
-	 * Query statistics table.
-	 *
-	 * @return array The result of the query, ready to encode.
-	 * @since    1.0.0
-	 */
 	private function query_chart() {
 		$uuid           = UUID::generate_unique_id( 5 );
 		$data_total     = Schema::get_time_series( $this->filter, ! $this->is_today, '', [], false );
@@ -1065,169 +923,6 @@ class Analytics {
 	}
 
 	/**
-	 * Query statistics table.
-	 *
-	 * @param   mixed $queried The query params.
-	 * @return array  The result of the query, ready to encode.
-	 * @since    1.0.0
-	 */
-	private function query_kpi( $queried ) {
-		$result = [];
-		if ( 'call' === $queried ) {
-			$data     = Schema::get_std_kpi( $this->filter, ! $this->is_today );
-			$pdata    = Schema::get_std_kpi( $this->previous );
-			$current  = 0.0;
-			$previous = 0.0;
-			if ( is_array( $data ) && array_key_exists( 'sum_hit', $data ) && ! empty( $data['sum_hit'] ) ) {
-				$current = (float) $data['sum_hit'];
-			}
-			if ( is_array( $pdata ) && array_key_exists( 'sum_hit', $pdata ) && ! empty( $pdata['sum_hit'] ) ) {
-				$previous = (float) $pdata['sum_hit'];
-			}
-			$result[ 'kpi-main-' . $queried ] = Conversion::number_shorten( $current, 1, false, '&nbsp;' );
-			if ( 0.0 !== $current && 0.0 !== $previous ) {
-				$percent = round( 100 * ( $current - $previous ) / $previous, 1 );
-				if ( 0.1 > abs( $percent ) ) {
-					$percent = 0;
-				}
-				$result[ 'kpi-index-' . $queried ] = '<span style="color:' . ( 0 <= $percent ? '#18BB9C' : '#E74C3C' ) . ';">' . ( 0 < $percent ? '+' : '' ) . $percent . '&nbsp;%</span>';
-			} elseif ( 0.0 === $previous && 0.0 !== $current ) {
-				$result[ 'kpi-index-' . $queried ] = '<span style="color:#18BB9C;">+∞</span>';
-			} elseif ( 0.0 !== $previous && 100 !== $previous && 0.0 === $current ) {
-				$result[ 'kpi-index-' . $queried ] = '<span style="color:#E74C3C;">-∞</span>';
-			}
-			if ( is_array( $data ) && array_key_exists( 'avg_latency', $data ) && ! empty( $data['avg_latency'] ) ) {
-				$result[ 'kpi-bottom-' . $queried ] = '<span class="podd-kpi-large-bottom-text">' . sprintf( esc_html__( 'avg latency: %s ms.', 'device-detector' ), (int) $data['avg_latency'] ) . '</span>';
-			}
-		}
-		if ( 'data' === $queried ) {
-			$data         = Schema::get_std_kpi( $this->filter, ! $this->is_today );
-			$pdata        = Schema::get_std_kpi( $this->previous );
-			$current_in   = 0.0;
-			$current_out  = 0.0;
-			$previous_in  = 0.0;
-			$previous_out = 0.0;
-			if ( is_array( $data ) && array_key_exists( 'sum_kb_in', $data ) && ! empty( $data['sum_kb_in'] ) ) {
-				$current_in = (float) $data['sum_kb_in'] * 1024;
-			}
-			if ( is_array( $data ) && array_key_exists( 'sum_kb_out', $data ) && ! empty( $data['sum_kb_out'] ) ) {
-				$current_out = (float) $data['sum_kb_out'] * 1024;
-			}
-			if ( is_array( $pdata ) && array_key_exists( 'sum_kb_in', $pdata ) && ! empty( $pdata['sum_kb_in'] ) ) {
-				$previous_in = (float) $pdata['sum_kb_in'] * 1024;
-			}
-			if ( is_array( $pdata ) && array_key_exists( 'sum_kb_out', $pdata ) && ! empty( $pdata['sum_kb_out'] ) ) {
-				$previous_out = (float) $pdata['sum_kb_out'] * 1024;
-			}
-			$current                          = $current_in + $current_out;
-			$previous                         = $previous_in + $previous_out;
-			$result[ 'kpi-main-' . $queried ] = Conversion::data_shorten( $current, 1, false, '&nbsp;' );
-			if ( 0.0 !== $current && 0.0 !== $previous ) {
-				$percent = round( 100 * ( $current - $previous ) / $previous, 1 );
-				if ( 0.1 > abs( $percent ) ) {
-					$percent = 0;
-				}
-				$result[ 'kpi-index-' . $queried ] = '<span style="color:' . ( 0 <= $percent ? '#18BB9C' : '#E74C3C' ) . ';">' . ( 0 < $percent ? '+' : '' ) . $percent . '&nbsp;%</span>';
-			} elseif ( 0.0 === $previous && 0.0 !== $current ) {
-				$result[ 'kpi-index-' . $queried ] = '<span style="color:#18BB9C;">+∞</span>';
-			} elseif ( 0.0 !== $previous && 100 !== $previous && 0.0 === $current ) {
-				$result[ 'kpi-index-' . $queried ] = '<span style="color:#E74C3C;">-∞</span>';
-			}
-			$in                                 = '<img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'arrow-down-right', 'none', '#73879C' ) . '" /><span class="podd-kpi-large-bottom-text">' . Conversion::data_shorten( $current_in, 2, false, '&nbsp;' ) . '</span>';
-			$out                                = '<span class="podd-kpi-large-bottom-text">' . Conversion::data_shorten( $current_out, 2, false, '&nbsp;' ) . '</span><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'arrow-up-right', 'none', '#73879C' ) . '" />';
-			$result[ 'kpi-bottom-' . $queried ] = $in . ' &nbsp;&nbsp; ' . $out;
-		}
-		if ( 'server' === $queried || 'quota' === $queried || 'pass' === $queried || 'uptime' === $queried ) {
-			$not = false;
-			if ( 'server' === $queried ) {
-				$codes = Http::$http_error_codes;
-			} elseif ( 'quota' === $queried ) {
-				$codes = Http::$http_quota_codes;
-			} elseif ( 'pass' === $queried ) {
-				$codes = Http::$http_effective_pass_codes;
-			} elseif ( 'uptime' === $queried ) {
-				$codes = Http::$http_failure_codes;
-				$not   = true;
-			}
-			$base        = Schema::get_std_kpi( $this->filter, ! $this->is_today );
-			$pbase       = Schema::get_std_kpi( $this->previous );
-			$data        = Schema::get_std_kpi( $this->filter, ! $this->is_today, 'code', $codes, $not );
-			$pdata       = Schema::get_std_kpi( $this->previous, true, 'code', $codes, $not );
-			$base_value  = 0.0;
-			$pbase_value = 0.0;
-			$data_value  = 0.0;
-			$pdata_value = 0.0;
-			$current     = 0.0;
-			$previous    = 0.0;
-			if ( is_array( $data ) && array_key_exists( 'sum_hit', $base ) && ! empty( $base['sum_hit'] ) ) {
-				$base_value = (float) $base['sum_hit'];
-			}
-			if ( is_array( $pbase ) && array_key_exists( 'sum_hit', $pbase ) && ! empty( $pbase['sum_hit'] ) ) {
-				$pbase_value = (float) $pbase['sum_hit'];
-			}
-			if ( is_array( $data ) && array_key_exists( 'sum_hit', $data ) && ! empty( $data['sum_hit'] ) ) {
-				$data_value = (float) $data['sum_hit'];
-			}
-			if ( is_array( $pdata ) && array_key_exists( 'sum_hit', $pdata ) && ! empty( $pdata['sum_hit'] ) ) {
-				$pdata_value = (float) $pdata['sum_hit'];
-			}
-			if ( 0.0 !== $base_value && 0.0 !== $data_value ) {
-				$current                          = 100 * $data_value / $base_value;
-				$result[ 'kpi-main-' . $queried ] = round( $current, 1 ) . '&nbsp;%';
-			} else {
-				if ( 0.0 !== $data_value ) {
-					$result[ 'kpi-main-' . $queried ] = '100&nbsp;%';
-				} elseif ( 0.0 !== $base_value ) {
-					$result[ 'kpi-main-' . $queried ] = '0&nbsp;%';
-				} else {
-					$result[ 'kpi-main-' . $queried ] = '-';
-				}
-			}
-			if ( 0.0 !== $pbase_value && 0.0 !== $pdata_value ) {
-				$previous = 100 * $pdata_value / $pbase_value;
-			} else {
-				if ( 0.0 !== $pdata_value ) {
-					$previous = 100.0;
-				}
-			}
-			if ( 0.0 !== $current && 0.0 !== $previous ) {
-				$percent = round( 100 * ( $current - $previous ) / $previous, 1 );
-				if ( 0.1 > abs( $percent ) ) {
-					$percent = 0;
-				}
-				$result[ 'kpi-index-' . $queried ] = '<span style="color:' . ( 0 <= $percent ? '#18BB9C' : '#E74C3C' ) . ';">' . ( 0 < $percent ? '+' : '' ) . $percent . '&nbsp;%</span>';
-			} elseif ( 0.0 === $previous && 0.0 !== $current ) {
-				$result[ 'kpi-index-' . $queried ] = '<span style="color:#18BB9C;">+∞</span>';
-			} elseif ( 0.0 !== $previous && 100 !== $previous && 0.0 === $current ) {
-				$result[ 'kpi-index-' . $queried ] = '<span style="color:#E74C3C;">-∞</span>';
-			}
-			switch ( $queried ) {
-				case 'server':
-					$result[ 'kpi-bottom-' . $queried ] = '<span class="podd-kpi-large-bottom-text">' . sprintf( esc_html__( '%s calls in error', 'device-detector' ), Conversion::number_shorten( $data_value, 2, false, '&nbsp;' ) ) . '</span>';
-					break;
-				case 'quota':
-					$result[ 'kpi-bottom-' . $queried ] = '<span class="podd-kpi-large-bottom-text">' . sprintf( esc_html__( '%s blocked calls', 'device-detector' ), Conversion::number_shorten( $data_value, 2, false, '&nbsp;' ) ) . '</span>';
-					break;
-				case 'pass':
-					$result[ 'kpi-bottom-' . $queried ] = '<span class="podd-kpi-large-bottom-text">' . sprintf( esc_html__( '%s successful calls', 'device-detector' ), Conversion::number_shorten( $data_value, 2, false, '&nbsp;' ) ) . '</span>';
-					break;
-				case 'uptime':
-					if ( 0.0 !== $base_value ) {
-						$duration = implode( ', ', Date::get_age_array_from_seconds( $this->duration * DAY_IN_SECONDS * ( 1 - ( $data_value / $base_value ) ), true, true ) );
-						if ( '' === $duration ) {
-							$duration = esc_html__( 'no downtime', 'device-detector' );
-						} else {
-							$duration = sprintf( esc_html__( 'down %s', 'device-detector' ), $duration );
-						}
-						$result[ 'kpi-bottom-' . $queried ] = '<span class="podd-kpi-large-bottom-text">' . $duration . '</span>';
-					}
-					break;
-			}
-		}
-		return $result;
-	}
-
-	/**
 	 * Get the title selector.
 	 *
 	 * @return string  The selector ready to print.
@@ -1395,28 +1090,6 @@ class Analytics {
 		$result .= '<span class="podd-title">' . $title . '</span>';
 		$result .= '<span class="podd-subtitle">' . $subtitle . '</span>';
 		$result .= '<span class="podd-datepicker">' . $this->get_date_box() . '</span>';
-		$result .= '<span class="podd-switch">' . $this->get_switch_box( 'inbound' ) . '</span>';
-		$result .= '<span class="podd-switch">' . $this->get_switch_box( 'outbound' ) . '</span>';
-		$result .= '</div>';
-		return $result;
-	}
-
-	/**
-	 * Get the KPI bar.
-	 *
-	 * @return string  The bar ready to print.
-	 * @since    1.0.0
-	 */
-	public function get_kpi_bar() {
-		$result  = '<div class="podd-box podd-box-full-line">';
-		$result .= '<div class="podd-kpi-bar">';
-		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'call' ) . '</div>';
-		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'data' ) . '</div>';
-		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'server' ) . '</div>';
-		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'quota' ) . '</div>';
-		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'pass' ) . '</div>';
-		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'uptime' ) . '</div>';
-		$result .= '</div>';
 		$result .= '</div>';
 		return $result;
 	}
@@ -2024,65 +1697,6 @@ class Analytics {
 			}
 		}
 		return $url;
-	}
-
-	/**
-	 * Get a large kpi box.
-	 *
-	 * @return string  The box ready to print.
-	 * @since    1.0.0
-	 */
-	private function get_switch_box( $bound ) {
-		$enabled = false;
-		$other   = false;
-		$other_t = 'both';
-		if ( 'inbound' === $bound ) {
-			$enabled = $this->has_inbound;
-			$other   = $this->is_outbound;
-			$other_t = 'outbound';
-		}
-		if ( 'outbound' === $bound ) {
-			$enabled = $this->has_outbound;
-			$other   = $this->is_inbound;
-			$other_t = 'inbound';
-		}
-		if ( $enabled ) {
-			$opacity = '';
-			if ( 'inbound' === $bound ) {
-				$checked = $this->is_inbound;
-			}
-			if ( 'outbound' === $bound ) {
-				$checked = $this->is_outbound;
-			}
-		} else {
-			$opacity = ' style="opacity:0.4"';
-			$checked = false;
-		}
-		$result = '<input type="checkbox" class="podd-input-' . $bound . '-switch"' . ( $checked ? ' checked' : '' ) . ' />';
-		// phpcs:ignore
-		$result .= '&nbsp;<span class="podd-text-' . $bound . '-switch"' . $opacity . '>' . esc_html__( $bound, 'device-detector' ) . '</span>';
-		$result .= '<script>';
-		$result .= 'jQuery(function ($) {';
-		$result .= ' var elem = document.querySelector(".podd-input-' . $bound . '-switch");';
-		$result .= ' var params = {size: "small", color: "#5A738E", disabledOpacity:0.6 };';
-		$result .= ' var ' . $bound . ' = new Switchery(elem, params);';
-		if ( $enabled ) {
-			$result .= ' ' . $bound . '.enable();';
-		} else {
-			$result .= ' ' . $bound . '.disable();';
-		}
-		$result .= ' elem.onchange = function() {';
-		$result .= '  var url="' . $this->get_url( [ 'context' ], [ 'domain' => $this->domain ] ) . '";';
-		if ( $other ) {
-			$result .= ' if (!elem.checked) {url = url + "&context=' . $other_t . '";}';
-		} else {
-			$result .= ' if (elem.checked) {url = url + "&context=' . $other_t . '";}';
-		}
-		$result .= '  $(location).attr("href", url);';
-		$result .= ' };';
-		$result .= '});';
-		$result .= '</script>';
-		return $result;
 	}
 
 	/**

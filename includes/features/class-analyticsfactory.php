@@ -33,7 +33,7 @@ class AnalyticsFactory {
 	 * @since  1.0.0
 	 * @var    array    $allowed_types    Maintain the allowed types.
 	 */
-	private static $allowed_types = [ 'domain', 'domains', 'authority', 'authorities', 'endpoint', 'endpoints' ];
+	private static $allowed_types = [ 'class', 'device', 'client', 'authorities', 'endpoint', 'endpoints' ];
 
 	/**
 	 * Ajax callback.
@@ -49,34 +49,13 @@ class AnalyticsFactory {
 	}
 
 	/**
-	 * Get the content of the tools page.
+	 * Get the content of the viewer page.
 	 *
 	 * @param   boolean $reload  Optional. Is it a reload of an already displayed analytics.
 	 * @since 1.0.0
 	 */
 	public static function get_analytics( $reload = false ) {
 		$timezone = Timezone::network_get();
-		// ID.
-		if ( ! ( $id = filter_input( INPUT_GET, 'id' ) ) ) {
-			$id = filter_input( INPUT_POST, 'id' );
-		}
-		if ( empty( $id ) ) {
-			$id = '';
-		}
-		// Domain.
-		if ( ! ( $domain = filter_input( INPUT_GET, 'domain' ) ) ) {
-			$domain = filter_input( INPUT_POST, 'domain' );
-		}
-		if ( empty( $domain ) ) {
-			$domain = '';
-		}
-		// Extra>.
-		if ( ! ( $extra = filter_input( INPUT_GET, 'extra' ) ) ) {
-			$extra = filter_input( INPUT_POST, 'extra' );
-		}
-		if ( empty( $extra ) ) {
-			$extra = '';
-		}
 		// Analytics type.
 		if ( ! ( $type = filter_input( INPUT_GET, 'type' ) ) ) {
 			$type = filter_input( INPUT_POST, 'type' );
@@ -85,11 +64,11 @@ class AnalyticsFactory {
 			$type = 'summary';
 		}
 		// Filters.
-		if ( ! ( $context = filter_input( INPUT_GET, 'context' ) ) ) {
-			$context = filter_input( INPUT_POST, 'context' );
+		if ( ! ( $id = filter_input( INPUT_GET, 'id' ) ) ) {
+			$id = filter_input( INPUT_POST, 'id' );
 		}
-		if ( empty( $context ) || ( 'inbound' !== $context && 'outbound' !== $context ) ) {
-			$context = 'both';
+		if ( empty( $id ) ) {
+			$id = '';
 		}
 		if ( ! ( $site = filter_input( INPUT_GET, 'site' ) ) ) {
 			$site = filter_input( INPUT_POST, 'site' );
@@ -120,7 +99,7 @@ class AnalyticsFactory {
 			$end   = $sdatetime->format( 'Y-m-d' );
 		}
 
-		return new Analytics( $domain, $type, $context, $site, $start, $end, $id, $reload, $extra );
+		return new Analytics( $type, $id, $site, $start, $end, $reload );
 	}
 
 }
