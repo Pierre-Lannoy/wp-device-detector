@@ -138,7 +138,7 @@ class Analytics {
 	 * @since    1.0.0
 	 */
 	public function __construct( $type, $id, $site, $start, $end, $reload ) {
-		$this->id      = $id;
+		$this->id = $id;
 		if ( Role::LOCAL_ADMIN === Role::admin_type() ) {
 			$site = get_current_blog_id();
 		}
@@ -181,11 +181,6 @@ class Analytics {
 					$this->type = 'summary';
 			}
 		}
-		if ( '' !== $domain && 'domain' !== $type && 'authorities' !== $type ) {
-			$this->domain     = $domain;
-			$this->filter[]   = "id='" . $domain . "'";
-			$this->previous[] = "id='" . $domain . "'";
-		}
 		$this->timezone = Timezone::network_get();
 		$datetime       = new \DateTime( 'now', $this->timezone );
 		$this->is_today = ( $this->start === $datetime->format( 'Y-m-d' ) || $this->end === $datetime->format( 'Y-m-d' ) );
@@ -218,10 +213,6 @@ class Analytics {
 		switch ( $query ) {
 			case 'main-chart':
 				return $this->query_chart();
-			case 'map':
-				return $this->query_map();
-			case 'kpi':
-				return $this->query_kpi( $queried );
 			case 'top-domains':
 				return $this->query_top( 'domains', (int) $queried );
 			case 'top-authorities':

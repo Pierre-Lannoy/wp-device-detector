@@ -33,7 +33,7 @@ class AnalyticsFactory {
 	 * @since  1.0.0
 	 * @var    array    $allowed_types    Maintain the allowed types.
 	 */
-	private static $allowed_types = [ 'class', 'device', 'client', 'authorities', 'endpoint', 'endpoints' ];
+	private static $allowed_types = [ 'class', 'device', 'client', 'brand', 'model', 'os', 'bot', 'channel', 'classes', 'devices', 'clients', 'brands', 'models', 'oss', 'bots', 'channels' ];
 
 	/**
 	 * Ajax callback.
@@ -98,7 +98,6 @@ class AnalyticsFactory {
 			$start = $edatetime->format( 'Y-m-d' );
 			$end   = $sdatetime->format( 'Y-m-d' );
 		}
-
 		return new Analytics( $type, $id, $site, $start, $end, $reload );
 	}
 
