@@ -72,7 +72,7 @@ class Updater {
 	private function update( $from ) {
 		$schema = new Schema();
 		$schema->update();
-		Cache::delete_global( '/Data/Devices/*' );
+		Cache::delete_global( 'data/*' );
 		Logger::notice( 'Cache purged.' );
 	}
 
