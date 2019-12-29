@@ -48,14 +48,12 @@ class Detector {
 			$ua = filter_input( INPUT_SERVER, 'HTTP_USER_AGENT', FILTER_SANITIZE_STRING );
 		}
 		$id        = Cache::id( $ua );
-		$cache_key = '/Data/Devices/' . $id;
+		$cache_key = 'devices/' . $id;
 		if ( array_key_exists( $id, self::$cache ) ) {
-			Logger::debug( 'Internal cache hit.' );
 			return self::$cache[ $id ];
 		}
 		$device = Cache::get_global( $cache_key );
 		if ( isset( $device ) && is_object( $device ) && $device instanceof \PODeviceDetector\API\Device ) {
-			Logger::debug( 'Transient cache hit.' );
 			self::$cache[ $id ] = $device;
 			return self::$cache[ $id ];
 		}
