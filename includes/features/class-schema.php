@@ -63,7 +63,9 @@ class Schema {
 	 * @since    1.0.0
 	 */
 	public static function write() {
-		self::write_current_to_database();
+		if ( Option::network_get( 'analytics' ) ) {
+			self::write_current_to_database();
+		}
 		self::purge();
 	}
 
