@@ -33,7 +33,7 @@ wp_enqueue_style( 'podd-chartist-tooltip' );
 			<?php echo $analytics->get_title_bar() ?>
 		</div>
         <div class="podd-row">
-	        <?php echo $analytics->get_kpi_bar() ?>
+	        <?php //echo $analytics->get_kpi_bar() ?>
         </div>
         <?php if ( 'summary' === $analytics->type && '' === $analytics->extra ) { ?>
             <div class="podd-row">
