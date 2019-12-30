@@ -27,9 +27,36 @@ class Option {
 	 *
 	 * @since  1.0.0
 	 * @access private
-	 * @var    array    $defaults    The $defaults list.
+	 * @var    array    $defaults    The defaults list.
 	 */
 	private static $defaults = [];
+
+	/**
+	 * The list of network-wide options.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    array    $network    The network-wide list.
+	 */
+	private static $network = [];
+
+	/**
+	 * The list of site options.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    array    $site    The site list.
+	 */
+	private static $site = [];
+
+	/**
+	 * The list of private options.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    array    $private    The private options list.
+	 */
+	private static $private = [];
 
 	/**
 	 * Set the defaults options.
@@ -46,6 +73,7 @@ class Option {
 		self::$defaults['version']           = '0.0.0';
 		self::$defaults['history']           = 30;
 		self::$defaults['analytics']         = true;
+		self::$network                       = [ 'version', 'use_cdn', 'download_favicons', 'script_in_footer', 'display_nag', 'analytics', 'history' ];
 		// Per site options.
 		self::$defaults['wp_is_mobile']   = true;
 		self::$defaults['css_class']      = true;
@@ -55,6 +83,38 @@ class Option {
 		self::$defaults['css_brand']      = false;
 		self::$defaults['css_bot']        = false;
 		self::$defaults['css_capability'] = false;
+		self::$site                       = [ 'wp_is_mobile', 'css_class', 'css_device', 'css_client', 'css_os', 'css_brand', 'css_bot', 'css_capability' ];
+	}
+
+	/**
+	 * Get the options infos for Site Health "info" tab.
+	 *
+	 * @since 1.0.0
+	 */
+	public static function debug_info() {
+		$result = [];
+		$si     = '[Site Option] ';
+		$nt     = $si;
+		if ( Environment::is_wordpress_multisite() ) {
+			$nt = '[Network Option] ';
+		}
+		foreach ( self::$network as $opt ) {
+			$val            = self::network_get( $opt );
+			$result[ $opt ] = [
+				'label'   => $nt . $opt,
+				'value'   => is_bool( $val ) ? $val ? 1 : 0 : $val,
+				'private' => in_array( $opt, self::$private, true ),
+			];
+		}
+		foreach ( self::$site as $opt ) {
+			$val            = self::site_get( $opt );
+			$result[ $opt ] = [
+				'label'   => $si . $opt,
+				'value'   => is_bool( $val ) ? $val ? 1 : 0 : $val,
+				'private' => in_array( $opt, self::$private, true ),
+			];
+		}
+		return $result;
 	}
 
 	/**
@@ -170,6 +230,7 @@ class Option {
 	 */
 	public static function reset_to_defaults() {
 		self::network_set( 'use_cdn', self::$defaults['use_cdn'] );
+		self::network_set( 'download_favicons', self::$defaults['download_favicons'] );
 		self::network_set( 'script_in_footer', self::$defaults['script_in_footer'] );
 		self::network_set( 'display_nag', self::$defaults['display_nag'] );
 		self::network_set( 'analytics', self::$defaults['analytics'] );
