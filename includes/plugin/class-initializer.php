@@ -35,7 +35,10 @@ class Initializer {
 	 * @since 1.0.0
 	 */
 	public function initialize() {
-
+		\PODeviceDetector\System\Logger::init();
+		\PODeviceDetector\System\Cache::init();
+		\PODeviceDetector\System\Sitehealth::init();
+		\PODeviceDetector\Plugin\Feature\Schema::init();
 	}
 
 }
