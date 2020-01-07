@@ -39,6 +39,7 @@ class Initializer {
 		\PODeviceDetector\System\Cache::init();
 		\PODeviceDetector\System\Sitehealth::init();
 		\PODeviceDetector\Plugin\Feature\Schema::init();
+		\PODeviceDetector\System\APCu::init();
 	}
 
 }
