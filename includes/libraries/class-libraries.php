@@ -80,6 +80,17 @@ class Libraries {
 			'license' => 'mit',
 			'langs'   => 'en',
 		];
+		self::$psr4_libraries['morpheus']  = [
+			'name'    => 'Morpheus Loader',
+			'prefix'  => 'Morpheus',
+			'base'    => TRAFFIC_VENDOR_DIR . 'morpheus/',
+			'version' => '1.0.0',
+			// phpcs:ignore
+			'author'  => 'Pierre Lannoy',
+			'url'     => 'https://pierre.lannoy.fr',
+			'license' => 'lgpl3',
+			'langs'   => 'en',
+		];
 		self::$mono_libraries              = [];
 		self::$mono_libraries['parsedown'] = [
 			'name'    => 'Parsedown',
