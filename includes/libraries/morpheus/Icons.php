@@ -41,12 +41,12 @@ class Icons {
 	}
 
 	/**
-	 * Get a raw (SVG) icon.
+	 * Get a raw (PNG) icon.
 	 *
-	 * @param string  $name Optional. The name of the flag.
-	 * @param boolean $squared Optional. The flag must be squared.
+	 * @param string  $name Optional. The name of the icon.
+	 * @param boolean $squared Optional. The path of the icon.
 	 *
-	 * @return  string  The raw value of the SVG flag.
+	 * @return  string  The raw value of the PNG icon.
 	 * @since   1.0.0
 	 */
 	public static function get_raw( $name = '-', $type = '' ) {
