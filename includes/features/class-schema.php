@@ -325,104 +325,38 @@ class Schema {
 	}
 
 	/**
-	 * Get the authority.
-	 *
-	 * @param   array $filter   The filter of the query.
-	 * @return  string   The authority.
-	 * @since    1.0.0
-	 */
-	public static function get_authority( $filter ) {
-		// phpcs:ignore
-		$id = Cache::id( __FUNCTION__ . serialize( $filter ) );
-		$result = Cache::get_global( $id );
-		if ( $result ) {
-			return $result;
-		}
-		global $wpdb;
-		$sql = 'SELECT authority FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ') LIMIT 1';
-		// phpcs:ignore
-		$result = $wpdb->get_results( $sql, ARRAY_A );
-		if ( is_array( $result ) && 0 < count( $result ) ) {
-			$authority = $result[0]['authority'];
-			Cache::set_global( $id, $authority, 'infinite' );
-			return $authority;
-		}
-		return '';
-	}
-
-	/**
-	 * Get the distinct contexts.
-	 *
-	 * @param   array   $filter The filter of the query.
-	 * @param   boolean $cache  Optional. Has this query to be cached.
-	 * @return  array   The distinct contexts.
-	 * @since    1.0.0
-	 */
-	public static function get_distinct_context( $filter, $cache = true ) {
-		if ( array_key_exists( 'context', $filter ) ) {
-			unset( $filter['context'] );
-		}
-		// phpcs:ignore
-		$id = Cache::id( __FUNCTION__ . serialize( $filter ) );
-		if ( $cache ) {
-			$result = Cache::get_global( $id );
-			if ( $result ) {
-				return $result;
-			}
-		}
-		global $wpdb;
-		$sql = 'SELECT DISTINCT context FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ')';
-		// phpcs:ignore
-		$result = $wpdb->get_results( $sql, ARRAY_A );
-		if ( is_array( $result ) && 0 < count( $result ) ) {
-			$contexts = [];
-			foreach ( $result as $item ) {
-				$contexts[] = $item['context'];
-			}
-			if ( $cache ) {
-				Cache::set_global( $id, $contexts, 'infinite' );
-			}
-			return $contexts;
-		}
-		return [];
-	}
-
-	/**
 	 * Get the standard KPIs.
 	 *
 	 * @param   array   $filter      The filter of the query.
-	 * @param   boolean $cache       Has the query to be cached.
-	 * @param   string  $extra_field Optional. The extra field to filter.
-	 * @param   array   $extras      Optional. The extra values to match.
-	 * @param   boolean $not         Optional. Exclude extra filter.
-	 * @return  array   The standard KPIs.
+	 * @param   string  $group       Optional. The group of the query.
+	 * @param   boolean $cache       Optional. Has the query to be cached.
+	 * @return  array   The grouped KPIs.
 	 * @since    1.0.0
 	 */
-	public static function get_std_kpi( $filter, $cache = true, $extra_field = '', $extras = [], $not = false ) {
+	public static function get_grouped_kpi( $filter, $group = '', $cache = true ) {
 		if ( array_key_exists( 'context', $filter ) ) {
 			unset( $filter['context'] );
 		}
 		// phpcs:ignore
-		$id = Cache::id( __FUNCTION__ . serialize( $filter ) . $extra_field . serialize( $extras ) . ( $not ? 'no' : 'yes') );
+		$id = Cache::id( __FUNCTION__ . serialize( $filter ) . $group );
 		if ( $cache ) {
 			$result = Cache::get_global( $id );
 			if ( $result ) {
 				return $result;
 			}
 		}
-		$where_extra = '';
-		if ( 0 < count( $extras ) && '' !== $extra_field ) {
-			$where_extra = ' AND ' . $extra_field . ( $not ? ' NOT' : '' ) . " IN ( '" . implode( $extras, "', '" ) . "' )";
+		if ( '' !== $group ) {
+			$group = ' GROUP BY ' . $group;
 		}
 		global $wpdb;
-		$sql = 'SELECT sum(hit) as sum_hit, sum(kb_in) as sum_kb_in, sum(kb_out) as sum_kb_out, sum(hit*latency_avg)/sum(hit) as avg_latency, min(latency_min) as min_latency, max(latency_max) as max_latency FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ') ' . $where_extra;
+		$sql = 'SELECT sum(hit) as sum_hit, class FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ')' . $group;
 		// phpcs:ignore
 		$result = $wpdb->get_results( $sql, ARRAY_A );
-		if ( is_array( $result ) && 1 === count( $result ) ) {
+		if ( is_array( $result ) ) {
 			if ( $cache ) {
-				Cache::set_global( $id, $result[0], 'infinite' );
+				Cache::set_global( $id, $result, 'infinite' );
 			}
-			return $result[0];
+			return $result;
 		}
 		return [];
 	}

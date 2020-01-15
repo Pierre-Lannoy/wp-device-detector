@@ -211,6 +211,11 @@ class Analytics {
 	 */
 	public function query( $query, $queried ) {
 		switch ( $query ) {
+			case 'kpi':
+				return $this->query_kpi( $queried );
+			
+			
+			
 			case 'main-chart':
 				return $this->query_chart();
 			case 'top-domains':
@@ -914,6 +919,109 @@ class Analytics {
 	}
 
 	/**
+	 * Query statistics table.
+	 *
+	 * @param   mixed $queried The query params.
+	 * @return array  The result of the query, ready to encode.
+	 * @since    1.0.0
+	 */
+	private function query_kpi( $queried ) {
+		$result = [];
+		switch ( $queried ) {
+			case 'hit':
+				$data  = Schema::get_grouped_kpi( $this->filter, '', ! $this->is_today );
+				$pdata = Schema::get_grouped_kpi( $this->previous );
+				break;
+			case 'mobile':
+			case 'desktop':
+			case 'bot':
+				$data  = Schema::get_grouped_kpi( $this->filter, 'class', ! $this->is_today );
+				$pdata = Schema::get_grouped_kpi( $this->previous, 'class' );
+				break;
+			case 'client':
+
+				break;
+			case 'engine':
+
+				break;
+		}
+		if ( 'hit' === $queried ) {
+			$current  = 0;
+			$previous = 0;
+			if ( 0 < count( $data ) ) {
+				$current = (int) $data[0]['sum_hit'];
+			}
+			if ( 0 < count( $pdata ) ) {
+				$previous = (int) $pdata[0]['sum_hit'];
+			}
+			$result[ 'kpi-main-' . $queried ] = Conversion::number_shorten( (int) $current, 1, false, '&nbsp;' );
+			if ( 0 !== $current && 0 !== $previous ) {
+				$percent = round( 100 * ( $current - $previous ) / $previous, 1 );
+				if ( 0.1 > abs( $percent ) ) {
+					$percent = 0;
+				}
+				$result[ 'kpi-index-' . $queried ] = '<span style="color:' . ( 0 <= $percent ? '#18BB9C' : '#E74C3C' ) . ';">' . ( 0 < $percent ? '+' : '' ) . $percent . '&nbsp;%</span>';
+			} elseif ( 0 === $previous && 0 !== $current ) {
+				$result[ 'kpi-index-' . $queried ] = '<span style="color:#18BB9C;">+∞</span>';
+			} elseif ( 0 !== $previous && 100 !== $previous && 0 === $current ) {
+				$result[ 'kpi-index-' . $queried ] = '<span style="color:#E74C3C;">-∞</span>';
+			}
+		}
+		if ( 'mobile' === $queried || 'desktop' === $queried || 'bot' === $queried ) {
+			$base_value  = 0.0;
+			$pbase_value = 0.0;
+			$data_value  = 0.0;
+			$pdata_value = 0.0;
+			$current     = 0.0;
+			$previous    = 0.0;
+			foreach ( $data as $row ) {
+				$base_value = $base_value + (float) $row['sum_hit'];
+				if ( $row['class'] === $queried ) {
+					$data_value = (float) $row['sum_hit'];
+				}
+			}
+			foreach ( $pdata as $row ) {
+				$pbase_value = $pbase_value + (float) $row['sum_hit'];
+				if ( $row['class'] === $queried ) {
+					$pdata_value = (float) $row['sum_hit'];
+				}
+			}
+			if ( 0.0 !== $base_value && 0.0 !== $data_value ) {
+				$current                          = 100 * $data_value / $base_value;
+				$result[ 'kpi-main-' . $queried ] = round( $current, 1 ) . '&nbsp;%';
+			} else {
+				if ( 0.0 !== $data_value ) {
+					$result[ 'kpi-main-' . $queried ] = '100&nbsp;%';
+				} elseif ( 0.0 !== $base_value ) {
+					$result[ 'kpi-main-' . $queried ] = '0&nbsp;%';
+				} else {
+					$result[ 'kpi-main-' . $queried ] = '-';
+				}
+			}
+			if ( 0.0 !== $pbase_value && 0.0 !== $pdata_value ) {
+				$previous = 100 * $pdata_value / $pbase_value;
+			} else {
+				if ( 0.0 !== $pdata_value ) {
+					$previous = 100.0;
+				}
+			}
+			if ( 0.0 !== $current && 0.0 !== $previous ) {
+				$percent = round( 100 * ( $current - $previous ) / $previous, 1 );
+				if ( 0.1 > abs( $percent ) ) {
+					$percent = 0;
+				}
+				$result[ 'kpi-index-' . $queried ] = '<span style="color:' . ( 0 <= $percent ? '#18BB9C' : '#E74C3C' ) . ';">' . ( 0 < $percent ? '+' : '' ) . $percent . '&nbsp;%</span>';
+			} elseif ( 0.0 === $previous && 0.0 !== $current ) {
+				$result[ 'kpi-index-' . $queried ] = '<span style="color:#18BB9C;">+∞</span>';
+			} elseif ( 0.0 !== $previous && 100 !== $previous && 0.0 === $current ) {
+				$result[ 'kpi-index-' . $queried ] = '<span style="color:#E74C3C;">-∞</span>';
+			}
+			$result[ 'kpi-bottom-' . $queried ] = '<span class="podd-kpi-large-bottom-text">' . sprintf( esc_html__( '%s hits', 'device-detector' ), Conversion::number_shorten( (int) $data_value, 2, false, '&nbsp;' ) ) . '</span>';
+		}
+		return $result;
+	}
+
+	/**
 	 * Get the title selector.
 	 *
 	 * @return string  The selector ready to print.
@@ -1081,6 +1189,26 @@ class Analytics {
 		$result .= '<span class="podd-title">' . $title . '</span>';
 		$result .= '<span class="podd-subtitle">' . $subtitle . '</span>';
 		$result .= '<span class="podd-datepicker">' . $this->get_date_box() . '</span>';
+		$result .= '</div>';
+		return $result;
+	}
+
+	/**
+	 * Get the KPI bar.
+	 *
+	 * @return string  The bar ready to print.
+	 * @since    1.0.0
+	 */
+	public function get_kpi_bar() {
+		$result  = '<div class="podd-box podd-box-full-line">';
+		$result .= '<div class="podd-kpi-bar">';
+		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'hit' ) . '</div>';
+		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'mobile' ) . '</div>';
+		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'desktop' ) . '</div>';
+		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'bot' ) . '</div>';
+		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'fragmentation' ) . '</div>';
+		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'uptime' ) . '</div>';
+		$result .= '</div>';
 		$result .= '</div>';
 		return $result;
 	}
@@ -1532,35 +1660,35 @@ class Analytics {
 	 */
 	private function get_large_kpi( $kpi ) {
 		switch ( $kpi ) {
-			case 'call':
+			case 'hit':
 				$icon  = Feather\Icons::get_base64( 'hash', 'none', '#73879C' );
-				$title = esc_html_x( 'Number of Calls', 'Noun - Number API calls.', 'device-detector' );
-				$help  = esc_html__( 'Number of API calls.', 'device-detector' );
+				$title = esc_html_x( 'Hits Number', 'Noun - Number of hits.', 'device-detector' );
+				$help  = esc_html__( 'Number of hits.', 'device-detector' );
 				break;
-			case 'data':
-				$icon  = Feather\Icons::get_base64( 'link-2', 'none', '#73879C' );
-				$title = esc_html_x( 'Data Volume', 'Noun - Volume of transferred data.', 'device-detector' );
-				$help  = esc_html__( 'Volume of transferred data.', 'device-detector' );
+			case 'mobile':
+				$icon  = Feather\Icons::get_base64( 'smartphone', 'none', '#73879C' );
+				$title = esc_html_x( 'Mobile', 'Noun - Percentage of mobile hits.', 'device-detector' );
+				$help  = esc_html__( 'Ratio of hits done by mobiles.', 'device-detector' );
 				break;
-			case 'server':
-				$icon  = Feather\Icons::get_base64( 'x-octagon', 'none', '#73879C' );
-				$title = esc_html_x( 'Server Error Rate', 'Noun - Ratio of the number of HTTP errors to the total number of calls.', 'device-detector' );
-				$help  = esc_html__( 'Ratio of the number of HTTP errors to the total number of calls.', 'device-detector' );
+			case 'desktop':
+				$icon  = Feather\Icons::get_base64( 'monitor', 'none', '#73879C' );
+				$title = esc_html_x( 'Desktop', 'Noun - Percentage of desktop hits', 'device-detector' );
+				$help  = esc_html__( 'Ratio of hits done by desktops.', 'device-detector' );
 				break;
-			case 'quota':
-				$icon  = Feather\Icons::get_base64( 'shield-off', 'none', '#73879C' );
-				$title = esc_html_x( 'Quotas Error Rate', 'Noun - Ratio of the quota enforcement number to the total number of calls.', 'device-detector' );
-				$help  = esc_html__( 'Ratio of the quota enforcement number to the total number of calls.', 'device-detector' );
+			case 'bot':
+				$icon  = Feather\Icons::get_base64( 'server', 'none', '#73879C' );
+				$title = esc_html_x( 'Bot', 'Noun - Percentage of bot hits', 'device-detector' );
+				$help  = esc_html__( 'Ratio of hits done by bots.', 'device-detector' );
 				break;
-			case 'pass':
-				$icon  = Feather\Icons::get_base64( 'check-circle', 'none', '#73879C' );
-				$title = esc_html_x( 'Effective Pass Rate', 'Noun - Ratio of the number of HTTP success to the total number of calls.', 'device-detector' );
-				$help  = esc_html__( 'Ratio of the number of HTTP success to the total number of calls.', 'device-detector' );
+			case 'client':
+				$icon  = Feather\Icons::get_base64( 'layout', 'none', '#73879C' );
+				$title = esc_html_x( 'Clients', 'Noun - Number of distinct clients.', 'device-detector' );
+				$help  = esc_html__( 'Number of distinct clients.', 'device-detector' );
 				break;
-			case 'uptime':
-				$icon  = Feather\Icons::get_base64( 'activity', 'none', '#73879C' );
-				$title = esc_html_x( 'Perceived Uptime', 'Noun - Perceived uptime, from the viewpoint of the site.', 'device-detector' );
-				$help  = esc_html__( 'Perceived uptime, from the viewpoint of the site.', 'device-detector' );
+			case 'engine':
+				$icon  = Feather\Icons::get_base64( 'settings', 'none', '#73879C' );
+				$title = esc_html_x( 'Engines', 'Noun - Number of distinct engines.', 'device-detector' );
+				$help  = esc_html__( 'Number of distinct engines.', 'device-detector' );
 				break;
 		}
 		$top       = '<img style="width:12px;vertical-align:baseline;" src="' . $icon . '" />&nbsp;&nbsp;<span style="cursor:help;" class="podd-kpi-large-top-text bottom" data-position="bottom" data-tooltip="' . $help . '">' . $title . '</span>';
