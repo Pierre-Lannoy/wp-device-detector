@@ -11,7 +11,7 @@
 
 namespace Morpheus;
 
-use Traffic\System\Cache;
+use PODeviceDetector\System\Cache;
 
 /**
  * Wraps the Flag-Icon-CSS functionality.
@@ -25,12 +25,12 @@ use Traffic\System\Cache;
 class Icons {
 
 	/**
-	 * Already loaded raw flags.
+	 * Already loaded raw icons.
 	 *
 	 * @since  1.0.0
-	 * @var    array $flags Already loaded raw flags.
+	 * @var    array $icons Already loaded raw flags.
 	 */
-	private static $flags = [];
+	private static $icons = [];
 
 	/**
 	 * Initializes the class and set its properties.
@@ -49,45 +49,75 @@ class Icons {
 	 * @return  string  The raw value of the SVG flag.
 	 * @since   1.0.0
 	 */
-	public static function get_raw( $name = 'fr', $squared = false ) {
-		$fname    = ( $squared ? '1x1/' : '4x3/' ) . strtolower( $name );
-		$filename = __DIR__ . '/flags/' . $fname . '.svg';
+	public static function get_raw( $name = '-', $type = '' ) {
+		$fname    = $type . '_' . $name;
+		$filename = __DIR__ . '/resources/' . $type . '/' . $name . '.png';
 		// phpcs:ignore
-		$id = Cache::id( serialize( [ 'name' => $name, 'squared' => $squared ] ), 'flags/' );
+		$id = Cache::id( serialize( [ 'name' => $name, 'type' => $type ] ), 'morpheus/' );
 		if ( Cache::is_memory() ) {
 			$flag = Cache::get_shared( $id );
 			if ( isset( $flag ) ) {
 				return $flag;
 			}
 		} else {
-			if ( array_key_exists( $fname, self::$flags ) ) {
-				return self::$flags[ $fname ];
+			if ( array_key_exists( $fname, self::$icons ) ) {
+				return self::$icons[ $fname ];
 			}
 		}
 		if ( ! file_exists( $filename ) ) {
-			return ( 'fr' === $name ? '' : self::get_raw() );
+			return ( '-' === $name ? '' : self::get_raw() );
 		}
 		if ( Cache::is_memory() ) {
 			// phpcs:ignore
 			Cache::set_shared( $id, file_get_contents( $filename ), 'infinite' );
 		} else {
 			// phpcs:ignore
-			self::$flags[ $fname ] = file_get_contents( $filename );
+			self::$icons[ $fname ] = file_get_contents( $filename );
 		}
 
 		return ( self::get_raw( $name ) );
 	}
 
 	/**
-	 * Returns a base64 svg resource for the icon.
+	 * Returns a base64 png resource for the icon.
 	 *
-	 * @param string $name Optional. The name of the flag.
+	 * @param string $name Optional. The name of the brand.
 	 *
-	 * @return string The svg resource as a base64.
+	 * @return string The png resource as a base64.
 	 * @since 1.0.0
 	 */
-	public static function get_base64( $name = 'fr' ) {
+	public static function get_brand_base64( $name = 'fr' ) {
+
+		// TODO: sanitize $name
+
+
 		// phpcs:ignore
-		return 'data:image/svg+xml;base64,' . base64_encode( self::get_raw( $name ) );
+		return 'data:image/png;base64,' . base64_encode( self::get_raw( $name, 'brand' ) );
+	}
+
+	/**
+	 * Returns a base64 png resource for the icon.
+	 *
+	 * @param string $name Optional. The name of the browser.
+	 *
+	 * @return string The png resource as a base64.
+	 * @since 1.0.0
+	 */
+	public static function get_browser_base64( $name = 'fr' ) {
+		// phpcs:ignore
+		return 'data:image/png;base64,' . base64_encode( self::get_raw( $name, 'browser' ) );
+	}
+
+	/**
+	 * Returns a base64 png resource for the icon.
+	 *
+	 * @param string $name Optional. The name of the os.
+	 *
+	 * @return string The png resource as a base64.
+	 * @since 1.0.0
+	 */
+	public static function get_os_base64( $name = 'fr' ) {
+		// phpcs:ignore
+		return 'data:image/png;base64,' . base64_encode( self::get_raw( $name, 'os' ) );
 	}
 }
