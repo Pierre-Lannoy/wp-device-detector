@@ -1,10 +1,10 @@
 <?php
 /**
- * Wrapper for Flag-Icon-CSS library.
+ * Loader for Morpheus library.
  *
- * Handles all flags operations.
+ * Handles all icons operations.
  *
- * @package Feather
+ * @package Morpheus
  * @author  Pierre Lannoy <https://pierre.lannoy.fr/>.
  * @since   1.0.0
  */
@@ -14,11 +14,11 @@ namespace Morpheus;
 use PODeviceDetector\System\Cache;
 
 /**
- * Wraps the Flag-Icon-CSS functionality.
+ * Wraps the Morpheus functionality.
  *
- * Handles all flags operations.
+ * Handles all icons operations.
  *
- * @package Feather
+ * @package Morpheus
  * @author  Pierre Lannoy <https://pierre.lannoy.fr/>.
  * @since   1.0.0
  */
@@ -28,7 +28,7 @@ class Icons {
 	 * Already loaded raw icons.
 	 *
 	 * @since  1.0.0
-	 * @var    array $icons Already loaded raw flags.
+	 * @var    array $icons Already loaded raw icons.
 	 */
 	private static $icons = [];
 
@@ -43,8 +43,8 @@ class Icons {
 	/**
 	 * Get a raw (PNG) icon.
 	 *
-	 * @param string  $name Optional. The name of the icon.
-	 * @param boolean $squared Optional. The path of the icon.
+	 * @param string $name Optional. The name of the icon.
+	 * @param string $type Optional. The path of the icon.
 	 *
 	 * @return  string  The raw value of the PNG icon.
 	 * @since   1.0.0
