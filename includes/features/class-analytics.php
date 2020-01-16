@@ -25,6 +25,7 @@ use PODeviceDetector\System\Timezone;
 use PODeviceDetector\System\UUID;
 use Feather;
 use Flagiconcss;
+use Morpheus;
 
 
 /**
@@ -213,7 +214,14 @@ class Analytics {
 		switch ( $query ) {
 			case 'kpi':
 				return $this->query_kpi( $queried );
-			
+			case 'top-browsers':
+				return $this->query_top( 'browsers', (int) $queried );
+			case 'top-bots':
+				return $this->query_top( 'bots', (int) $queried );
+			case 'top-devices':
+				return $this->query_top( 'devices', (int) $queried );
+			case 'top-oses':
+				return $this->query_top( 'oses', (int) $queried );
 			
 			
 			case 'main-chart':
@@ -370,21 +378,23 @@ class Analytics {
 	 */
 	private function query_top( $type, $limit ) {
 		switch ( $type ) {
-			case 'authorities':
-				$group  = 'authority';
-				$follow = 'authority';
+			case 'browsers':
+				$data = Schema::get_grouped_list( $this->filter, 'client_id', ! $this->is_today, 'client', [ 'browser' ], false, 'ORDER BY sum_hit DESC' );
 				break;
-			case 'endpoints':
-				$group  = 'endpoint';
-				$follow = 'endpoint';
+			case 'bots':
+				$data = Schema::get_grouped_list( $this->filter, 'name', ! $this->is_today, 'class', [ 'bot' ], false, 'ORDER BY sum_hit DESC' );
+				break;
+			case 'devices':
+				$data = Schema::get_grouped_list( $this->filter, 'brand, model', ! $this->is_today, 'class', [ 'desktop', 'mobile' ], false, 'ORDER BY sum_hit DESC' );
+				break;
+			case 'oses':
+				$data = Schema::get_grouped_list( $this->filter, 'os, os_version', ! $this->is_today, 'class', [ 'desktop', 'mobile' ], false, 'ORDER BY sum_hit DESC' );
 				break;
 			default:
-				$group  = 'id';
-				$follow = 'domain';
+				$data = [];
 				break;
 
 		}
-		$data  = Schema::get_grouped_list( $group, [], $this->filter, ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
 		$total = 0;
 		$other = 0;
 		foreach ( $data as $key => $row ) {
@@ -404,17 +414,40 @@ class Analytics {
 			$url = $this->get_url(
 				[],
 				[
-					'type'   => $follow,
-					'id'     => $data[ $cpt ][ $group ],
-					'domain' => $data[ $cpt ]['id'],
+					'type'   => 'aaa',//$follow,
+					'id'     => 'aaa',//$data[ $cpt ][ $group ],
+					'domain' => 'aaa',//$data[ $cpt ]['id'],
 				]
 			);
 			if ( 0.5 > $percent ) {
 				$percent = 0.5;
 			}
+
+			switch ( $type ) {
+				case 'browsers':
+					$text = $data[ $cpt ]['name'];
+					$icon = Morpheus\Icons::get_browser_base64( $data[ $cpt ]['client_id'] );
+					break;
+				case 'bots':
+					$text = $data[ $cpt ]['name'];
+					$icon = Favicon::get_base64( $data[ $cpt ]['url'] );
+					break;
+				case 'devices':
+					$text = $data[ $cpt ]['brand'] . ( isset( $data[ $cpt ]['model'] ) && '-' !== $data[ $cpt ]['model'] ? ' - ' . $data[ $cpt ]['model'] : '' );
+					$icon = Morpheus\Icons::get_brand_base64( $data[ $cpt ]['brand'] );
+					break;
+				case 'oses':
+					$text = $data[ $cpt ]['os'] . ( '' !== $data[ $cpt ]['os_version'] ? ' - ' . $data[ $cpt ]['os_version'] : '' );
+					$icon = Morpheus\Icons::get_os_base64( $data[ $cpt ]['os_id'] );
+					break;
+			}
+
+
+
+
 			$result .= '<div class="podd-top-line">';
 			$result .= '<div class="podd-top-line-title">';
-			$result .= '<img style="width:16px;vertical-align:bottom;" src="' . Favicon::get_base64( $data[ $cpt ]['id'] ) . '" />&nbsp;&nbsp;<span class="podd-top-line-title-text"><a href="' . esc_url( $url ) . '">' . $data[ $cpt ][ $group ] . '</a></span>';
+			$result .= '<img style="width:16px;vertical-align:bottom;" src="' . $icon . '" />&nbsp;&nbsp;<span class="podd-top-line-title-text"><a href="' . esc_url( $url ) . '">' . $text . '</a></span>';
 			$result .= '</div>';
 			$result .= '<div class="podd-top-line-content">';
 			$result .= '<div class="podd-bar-graph"><div class="podd-bar-graph-value" style="width:' . $percent . '%"></div></div>';
@@ -1365,22 +1398,22 @@ class Analytics {
 	}
 
 	/**
-	 * Get the top domains box.
+	 * Get the top browser box.
 	 *
 	 * @return string  The box ready to print.
 	 * @since    1.0.0
 	 */
-	public function get_top_domain_box() {
-		$url     = $this->get_url( [ 'domain' ], [ 'type' => 'domains' ] );
+	public function get_top_browser_box() {
+		$url     = $this->get_url( [ 'browser' ], [ 'type' => 'browsers' ] );
 		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
-		$help    = esc_html__( 'View the details of all domains.', 'device-detector' );
-		$result  = '<div class="podd-40-module">';
-		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Domains', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
-		$result .= '<div class="podd-module-content" id="podd-top-domains">' . $this->get_graph_placeholder( 200 ) . '</div>';
+		$help    = esc_html__( 'View the details of all browsers.', 'device-detector' );
+		$result  = '<div class="podd-50-module-left">';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Browsers', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-top-browsers">' . $this->get_graph_placeholder( 200 ) . '</div>';
 		$result .= '</div>';
 		$result .= $this->get_refresh_script(
 			[
-				'query'   => 'top-domains',
+				'query'   => 'top-browsers',
 				'queried' => 5,
 			]
 		);
@@ -1388,28 +1421,22 @@ class Analytics {
 	}
 
 	/**
-	 * Get the top authority box.
+	 * Get the top bot box.
 	 *
 	 * @return string  The box ready to print.
 	 * @since    1.0.0
 	 */
-	public function get_top_authority_box() {
-		$url     = $this->get_url(
-			[],
-			[
-				'type'   => 'authorities',
-				'domain' => $this->domain,
-			]
-		);
+	public function get_top_bot_box() {
+		$url     = $this->get_url( [ 'bot' ], [ 'type' => 'bots' ] );
 		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
-		$help    = esc_html__( 'View the details of all subdomains.', 'device-detector' );
-		$result  = '<div class="podd-40-module">';
-		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Subdomains', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
-		$result .= '<div class="podd-module-content" id="podd-top-authorities">' . $this->get_graph_placeholder( 200 ) . '</div>';
+		$help    = esc_html__( 'View the details of all bots.', 'device-detector' );
+		$result  = '<div class="podd-50-module-right">';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Bots', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-top-bots">' . $this->get_graph_placeholder( 200 ) . '</div>';
 		$result .= '</div>';
 		$result .= $this->get_refresh_script(
 			[
-				'query'   => 'top-authorities',
+				'query'   => 'top-bots',
 				'queried' => 5,
 			]
 		);
@@ -1417,34 +1444,57 @@ class Analytics {
 	}
 
 	/**
-	 * Get the top endpoint box.
+	 * Get the top device box.
 	 *
 	 * @return string  The box ready to print.
 	 * @since    1.0.0
 	 */
-	public function get_top_endpoint_box() {
-		$url     = $this->get_url(
-			[],
-			[
-				'type'   => 'endpoints',
-				'domain' => $this->domain,
-			]
-		);
+	public function get_top_device_box() {
+		$url     = $this->get_url( [ 'device' ], [ 'type' => 'devices' ] );
 		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
-		$help    = esc_html__( 'View the details of all endpoints.', 'device-detector' );
-		$result  = '<div class="podd-40-module">';
-		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Endpoints', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
-		$result .= '<div class="podd-module-content" id="podd-top-endpoints">' . $this->get_graph_placeholder( 200 ) . '</div>';
+		$help    = esc_html__( 'View the details of all devices.', 'device-detector' );
+		$result  = '<div class="podd-50-module-left">';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Devices', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-top-devices">' . $this->get_graph_placeholder( 200 ) . '</div>';
 		$result .= '</div>';
 		$result .= $this->get_refresh_script(
 			[
-				'query'   => 'top-endpoints',
+				'query'   => 'top-devices',
 				'queried' => 5,
 			]
 		);
 		return $result;
 	}
 
+	/**
+	 * Get the top oses box.
+	 *
+	 * @return string  The box ready to print.
+	 * @since    1.0.0
+	 */
+	public function get_top_os_box() {
+		$url     = $this->get_url( [ 'os' ], [ 'type' => 'oses' ] );
+		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$help    = esc_html__( 'View the details of all OS.', 'device-detector' );
+		$result  = '<div class="podd-50-module-right">';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top OS', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-top-oses">' . $this->get_graph_placeholder( 200 ) . '</div>';
+		$result .= '</div>';
+		$result .= $this->get_refresh_script(
+			[
+				'query'   => 'top-oses',
+				'queried' => 5,
+			]
+		);
+		return $result;
+	}
+
+	
+	
+	
+	
+	
+	
 	/**
 	 * Get the map box.
 	 *

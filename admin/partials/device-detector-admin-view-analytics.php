@@ -33,14 +33,34 @@ wp_enqueue_style( 'podd-chartist-tooltip' );
         <div class="podd-row">
 	        <?php echo $analytics->get_kpi_bar() ?>
         </div>
-        <?php if ( 'summary' === $analytics->type && '' === $analytics->extra ) { ?>
+        <?php if ( 'summary' === $analytics->type) { ?>
             <div class="podd-row">
-                <div class="podd-box podd-box-40-60-line">
-                    <?php echo $analytics->get_top_domain_box() ?>
-                    <?php echo $analytics->get_map_box() ?>
+                <div class="podd-box podd-box-50-50-line">
+                    <?php echo $analytics->get_top_browser_box() ?>
+                    <?php echo $analytics->get_top_bot_box() ?>
                 </div>
             </div>
 		<?php } ?>
+
+
+
+
+
+
+		<?php if ( 'summary' === $analytics->type) { ?>
+            <div class="podd-row">
+                <div class="podd-box podd-box-50-50-line">
+					<?php echo $analytics->get_top_device_box() ?>
+					<?php echo $analytics->get_top_os_box() ?>
+                </div>
+            </div>
+		<?php } ?>
+
+
+
+
+
+
 		<?php if ( 'domain' === $analytics->type && '' === $analytics->extra ) { ?>
             <div class="podd-row">
                 <div class="podd-box podd-box-40-60-line">

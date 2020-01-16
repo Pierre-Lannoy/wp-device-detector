@@ -86,7 +86,7 @@ class Icons {
 	 * @return string The png resource as a base64.
 	 * @since 1.0.0
 	 */
-	public static function get_brand_base64( $name = 'fr' ) {
+	public static function get_brand_base64( $name = '-' ) {
 
 		// TODO: sanitize $name
 
@@ -103,7 +103,7 @@ class Icons {
 	 * @return string The png resource as a base64.
 	 * @since 1.0.0
 	 */
-	public static function get_browser_base64( $name = 'fr' ) {
+	public static function get_browser_base64( $name = '-' ) {
 		// phpcs:ignore
 		return 'data:image/png;base64,' . base64_encode( self::get_raw( $name, 'browser' ) );
 	}
@@ -116,7 +116,7 @@ class Icons {
 	 * @return string The png resource as a base64.
 	 * @since 1.0.0
 	 */
-	public static function get_os_base64( $name = 'fr' ) {
+	public static function get_os_base64( $name = '-' ) {
 		// phpcs:ignore
 		return 'data:image/png;base64,' . base64_encode( self::get_raw( $name, 'os' ) );
 	}

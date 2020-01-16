@@ -68,7 +68,7 @@
     box-shadow: var(--main-box-shadow);
 }
 
-.podd-box-40-60-line {
+.podd-box-50-50-line {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -78,9 +78,9 @@
     margin-bottom: -8px;
 }
 
-.podd-40-module {
-    flex-grow: 2;
-    flex-shrink: 2;
+.podd-50-module-left {
+    flex-grow: 1;
+    flex-shrink: 1;
     background-color: var(--main-bg-color);
     border-radius: 2px;
     box-shadow: var(--main-box-shadow);
@@ -89,19 +89,20 @@
     margin-right: 10px;
     padding: 8px;
     height:290px;
-    width: 38%;
+    width: 48%;
 }
 
-.podd-60-module {
-    flex-grow: 3;
-    flex-shrink: 3;
+.podd-50-module-right {
+    flex-grow: 1;
+    flex-shrink: 1;
     background-color: var(--main-bg-color);
     border-radius: 2px;
     box-shadow: var(--main-box-shadow);
-    margin-right: -8px;
+    margin-left: 0px;
     margin-top: -8px;
+    margin-right: -8px;
     padding: 8px;
-    width: 58%;
+    width: 48%;
 }
 
 .podd-box-33-33-33-line {
@@ -615,11 +616,15 @@ button.btn {
 }
 
 @media only screen and (max-width: 1100px) {
-    .podd-40-module {
+    .podd-50-module-left {
         margin-right: -8px;
         margin-bottom: 10px;
         width: 100%;
         height: auto;
+    }
+    .podd-50-module-right {
+        margin-left: -8px;
+        margin-top: 0px;
     }
     .podd-33-module {
         margin-right: -8px;

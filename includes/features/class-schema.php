@@ -334,9 +334,6 @@ class Schema {
 	 * @since    1.0.0
 	 */
 	public static function get_grouped_kpi( $filter, $group = '', $cache = true ) {
-		if ( array_key_exists( 'context', $filter ) ) {
-			unset( $filter['context'] );
-		}
 		// phpcs:ignore
 		$id = Cache::id( __FUNCTION__ . serialize( $filter ) . $group );
 		if ( $cache ) {
@@ -371,9 +368,6 @@ class Schema {
 	 * @since    1.0.0
 	 */
 	public static function get_distinct_kpi( $filter, $distinct = [], $cache = true ) {
-		if ( array_key_exists( 'context', $filter ) ) {
-			unset( $filter['context'] );
-		}
 		// phpcs:ignore
 		$id = Cache::id( __FUNCTION__ . serialize( $filter ) . serialize( $distinct ) );
 		if ( $cache ) {
@@ -389,7 +383,6 @@ class Schema {
 		}
 		global $wpdb;
 		$sql = 'SELECT ' . $select . ' FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ')';
-		Logger::emergency($sql);
 		// phpcs:ignore
 		$result = $wpdb->get_results( $sql, ARRAY_A );
 		if ( is_array( $result ) ) {
@@ -437,7 +430,8 @@ class Schema {
 	 * @return  array   The standard KPIs.
 	 * @since    1.0.0
 	 */
-	public static function get_grouped_list( $group, $count, $filter, $cache = true, $extra_field = '', $extras = [], $not = false, $order = '', $limit = 0 ) {
+	public static function xxxxxxxx_get_grouped_list( $group, $count, $filter, $cache = true, $extra_field = '', $extras = [], $not = false, $order = '', $limit = 0 ) {
+		// TODO:delete this method
 		// phpcs:ignore
 		$id = Cache::id( __FUNCTION__ . $group . serialize( $count ) . serialize( $filter ) . $extra_field . serialize( $extras ) . ( $not ? 'no' : 'yes') . $order . (string) $limit);
 		if ( $cache ) {
@@ -464,6 +458,50 @@ class Schema {
 		// phpcs:ignore
 		$result = $wpdb->get_results( $sql, ARRAY_A );
 		if ( is_array( $result ) && 0 < count( $result ) ) {
+			if ( $cache ) {
+				Cache::set_global( $id, $result, 'infinite' );
+			}
+			return $result;
+		}
+		return [];
+	}
+
+	/**
+	 * Get the a grouped list.
+	 *
+	 * @param   array   $filter      The filter of the query.
+	 * @param   string  $group       Optional. The group of the query.
+	 * @param   boolean $cache       Optional. Has the query to be cached.
+	 * @param   string  $extra_field Optional. The extra field to filter.
+	 * @param   array   $extras      Optional. The extra values to match.
+	 * @param   boolean $not         Optional. Exclude extra filter.
+	 * @param   string  $order       Optional. The sort order of results.
+	 * @param   integer $limit       Optional. The number of results to return.
+	 * @return  array   The grouped list.
+	 * @since    1.0.0
+	 */
+	public static function get_grouped_list( $filter, $group = '', $cache = true, $extra_field = '', $extras = [], $not = false, $order = '', $limit = 0 ) {
+		// phpcs:ignore
+		$id = Cache::id( __FUNCTION__ . serialize( $filter ) . $group );
+		if ( $cache ) {
+			$result = Cache::get_global( $id );
+			if ( $result ) {
+				return $result;
+			}
+		}
+		if ( '' !== $group ) {
+			$group = ' GROUP BY ' . $group;
+		}
+		$where_extra = '';
+		if ( 0 < count( $extras ) && '' !== $extra_field ) {
+			$where_extra = ' AND ' . $extra_field . ( $not ? ' NOT' : '' ) . " IN ( '" . implode( $extras, "', '" ) . "' )";
+		}
+		global $wpdb;
+		$sql = 'SELECT sum(hit) as sum_hit, site, channel, class, device, client, brand_id, brand, model, client_id, name, client_version, engine, os_id, os, os_version, url FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ')' . $where_extra . ' ' . $group . ' ' . $order . ( $limit > 0 ? ' LIMIT ' . $limit : '') .';';
+		Logger::emergency($sql);
+		// phpcs:ignore
+		$result = $wpdb->get_results( $sql, ARRAY_A );
+		if ( is_array( $result ) ) {
 			if ( $cache ) {
 				Cache::set_global( $id, $result, 'infinite' );
 			}
