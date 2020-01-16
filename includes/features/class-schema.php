@@ -362,6 +362,46 @@ class Schema {
 	}
 
 	/**
+	 * Get the standard KPIs.
+	 *
+	 * @param   array   $filter      The filter of the query.
+	 * @param   array   $distinct    Optional. The distinct fields to query.
+	 * @param   boolean $cache       Optional. Has the query to be cached.
+	 * @return  array   The distinct KPIs.
+	 * @since    1.0.0
+	 */
+	public static function get_distinct_kpi( $filter, $distinct = [], $cache = true ) {
+		if ( array_key_exists( 'context', $filter ) ) {
+			unset( $filter['context'] );
+		}
+		// phpcs:ignore
+		$id = Cache::id( __FUNCTION__ . serialize( $filter ) . serialize( $distinct ) );
+		if ( $cache ) {
+			$result = Cache::get_global( $id );
+			if ( $result ) {
+				return $result;
+			}
+		}
+		if ( 0 < count( $distinct ) ) {
+			$select = ' DISTINCT ' . implode( ', ', $distinct );
+		} else {
+			$select = '*';
+		}
+		global $wpdb;
+		$sql = 'SELECT ' . $select . ' FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ')';
+		Logger::emergency($sql);
+		// phpcs:ignore
+		$result = $wpdb->get_results( $sql, ARRAY_A );
+		if ( is_array( $result ) ) {
+			if ( $cache ) {
+				Cache::set_global( $id, $result, 'infinite' );
+			}
+			return $result;
+		}
+		return [];
+	}
+
+	/**
 	 * Get a time series.
 	 *
 	 * @param   array   $filter      The filter of the query.

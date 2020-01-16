@@ -13,13 +13,11 @@ use PODeviceDetector\System\Role;
 
 wp_enqueue_script( 'podd-moment-with-locale' );
 wp_enqueue_script( 'podd-daterangepicker' );
-wp_enqueue_script( 'podd-switchery' );
 wp_enqueue_script( 'podd-chartist' );
 wp_enqueue_script( 'podd-chartist-tooltip' );
 wp_enqueue_script( PODD_ASSETS_ID );
 wp_enqueue_style( PODD_ASSETS_ID );
 wp_enqueue_style( 'podd-daterangepicker' );
-wp_enqueue_style( 'podd-switchery' );
 wp_enqueue_style( 'podd-tooltip' );
 wp_enqueue_style( 'podd-chartist' );
 wp_enqueue_style( 'podd-chartist-tooltip' );

@@ -939,19 +939,21 @@ class Analytics {
 				$pdata = Schema::get_grouped_kpi( $this->previous, 'class' );
 				break;
 			case 'client':
-
+				$data  = Schema::get_distinct_kpi( $this->filter, [ 'client', 'brand_id', 'model', 'client_id', 'client_version', 'os_id', 'os_version' ], ! $this->is_today );
+				$pdata = Schema::get_distinct_kpi( $this->previous, [ 'client', 'brand_id', 'model', 'client_id', 'client_version', 'os_id', 'os_version' ] );
 				break;
 			case 'engine':
-
+				$data  = Schema::get_distinct_kpi( $this->filter, [ 'engine' ], ! $this->is_today );
+				$pdata = Schema::get_distinct_kpi( $this->previous, [ 'engine' ] );
 				break;
 		}
-		if ( 'hit' === $queried ) {
-			$current  = 0;
-			$previous = 0;
-			if ( 0 < count( $data ) ) {
+		if ( 'hit' === $queried || 'client' === $queried || 'engine' === $queried ) {
+			$current  = (int) count( $data );
+			$previous = (int) count( $pdata );
+			if ( 0 < count( $data ) && 'hit' === $queried ) {
 				$current = (int) $data[0]['sum_hit'];
 			}
-			if ( 0 < count( $pdata ) ) {
+			if ( 0 < count( $pdata ) && 'hit' === $queried ) {
 				$previous = (int) $pdata[0]['sum_hit'];
 			}
 			$result[ 'kpi-main-' . $queried ] = Conversion::number_shorten( (int) $current, 1, false, '&nbsp;' );
@@ -1206,8 +1208,8 @@ class Analytics {
 		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'mobile' ) . '</div>';
 		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'desktop' ) . '</div>';
 		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'bot' ) . '</div>';
-		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'fragmentation' ) . '</div>';
-		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'uptime' ) . '</div>';
+		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'client' ) . '</div>';
+		$result .= '<div class="podd-kpi-large">' . $this->get_large_kpi( 'engine' ) . '</div>';
 		$result .= '</div>';
 		$result .= '</div>';
 		return $result;
@@ -1681,7 +1683,7 @@ class Analytics {
 				$help  = esc_html__( 'Ratio of hits done by bots.', 'device-detector' );
 				break;
 			case 'client':
-				$icon  = Feather\Icons::get_base64( 'layout', 'none', '#73879C' );
+				$icon  = Feather\Icons::get_base64( 'users', 'none', '#73879C' );
 				$title = esc_html_x( 'Clients', 'Noun - Number of distinct clients.', 'device-detector' );
 				$help  = esc_html__( 'Number of distinct clients.', 'device-detector' );
 				break;

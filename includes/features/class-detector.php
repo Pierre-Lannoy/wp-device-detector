@@ -47,12 +47,11 @@ class Detector {
 		if ( '' === $ua ) {
 			$ua = filter_input( INPUT_SERVER, 'HTTP_USER_AGENT', FILTER_SANITIZE_STRING );
 		}
-		$id        = Cache::id( $ua );
-		$cache_key = 'devices/' . $id;
+		$id = Cache::id( $ua, 'fingerprint/' );
 		if ( array_key_exists( $id, self::$cache ) ) {
 			return self::$cache[ $id ];
 		}
-		$device = Cache::get_global( $cache_key );
+		$device = Cache::get_global( $id );
 		if ( isset( $device ) && is_object( $device ) && $device instanceof \PODeviceDetector\API\Device ) {
 			self::$cache[ $id ] = $device;
 			return self::$cache[ $id ];
@@ -62,7 +61,7 @@ class Detector {
 		$parser = new \UDD\DeviceDetector( $ua );
 		$parser->parse();
 		$device = new Device( $parser );
-		Cache::set_global( $cache_key, $device, 'infinite' );
+		Cache::set_global( $id, $device, 'infinite' );
 		self::$cache[ $id ] = $device;
 		return self::$cache[ $id ];
 	}
