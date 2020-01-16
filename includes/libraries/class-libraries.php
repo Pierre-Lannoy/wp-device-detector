@@ -83,7 +83,7 @@ class Libraries {
 		self::$psr4_libraries['morpheus']  = [
 			'name'    => 'Morpheus Loader',
 			'prefix'  => 'Morpheus',
-			'base'    => TRAFFIC_VENDOR_DIR . 'morpheus/',
+			'base'    => PODD_VENDOR_DIR . 'morpheus/',
 			'version' => '1.0.0',
 			// phpcs:ignore
 			'author'  => 'Pierre Lannoy',
