@@ -291,6 +291,7 @@ class Device_Detector_Admin {
 		if ( ! empty( $_POST ) ) {
 			if ( array_key_exists( '_wpnonce', $_POST ) && wp_verify_nonce( $_POST['_wpnonce'], 'podd-plugin-options' ) ) {
 				Option::network_set( 'use_cdn', array_key_exists( 'podd_plugin_options_usecdn', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_options_usecdn' ) : false );
+				Option::network_set( 'download_favicons', array_key_exists( 'podd_plugin_options_favicons', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_options_favicons' ) : false );
 				Option::network_set( 'display_nag', array_key_exists( 'podd_plugin_options_nag', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_options_nag' ) : false );
 				Option::network_set( 'analytics', array_key_exists( 'podd_plugin_features_analytics', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_features_analytics' ) : false );
 				Option::network_set( 'history', array_key_exists( 'podd_plugin_features_history', $_POST ) ? (string) filter_input( INPUT_POST, 'podd_plugin_features_history', FILTER_SANITIZE_NUMBER_INT ) : Option::network_get( 'history' ) );
@@ -336,6 +337,22 @@ class Device_Detector_Admin {
 	 */
 	public function plugin_options_section_callback() {
 		$form = new Form();
+		add_settings_field(
+			'podd_plugin_options_favicons',
+			__( 'Favicons', 'device-detector' ),
+			[ $form, 'echo_field_checkbox' ],
+			'podd_plugin_options_section',
+			'podd_plugin_options_section',
+			[
+				'text'        => esc_html__( 'Download and display', 'device-detector' ),
+				'id'          => 'podd_plugin_options_favicons',
+				'checked'     => Option::network_get( 'download_favicons' ),
+				'description' => esc_html__( 'If checked, Traffic will download favicons of websites to display them in reports.', 'device-detector' ) . '<br/>' . esc_html__( 'Note: This feature uses the (free) Google Favicon Service.', 'device-detector' ),
+				'full_width'  => true,
+				'enabled'     => true,
+			]
+		);
+		register_setting( 'podd_plugin_options_section', 'podd_plugin_options_favicons' );
 		if ( defined( 'DECALOG_VERSION' ) ) {
 			$help  = '<img style="width:16px;vertical-align:text-bottom;" src="' . \Feather\Icons::get_base64( 'thumbs-up', 'none', '#00C800' ) . '" />&nbsp;';
 			$help .= sprintf( esc_html__('Your site is currently using %s.', 'device-detector' ), '<em>DecaLog v' . DECALOG_VERSION .'</em>' );
