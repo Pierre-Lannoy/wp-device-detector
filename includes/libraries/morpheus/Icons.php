@@ -12,6 +12,7 @@
 namespace Morpheus;
 
 use PODeviceDetector\System\Cache;
+use PODeviceDetector\System\Logger;
 
 /**
  * Wraps the Morpheus functionality.
@@ -56,7 +57,7 @@ class Icons {
 		$id = Cache::id( serialize( [ 'name' => $name, 'type' => $type ] ), 'morpheus/' );
 		if ( Cache::is_memory() ) {
 			$flag = Cache::get_shared( $id );
-			if ( isset( $flag ) ) {
+			if ( $flag ) {
 				return $flag;
 			}
 		} else {
@@ -74,8 +75,7 @@ class Icons {
 			// phpcs:ignore
 			self::$icons[ $fname ] = file_get_contents( $filename );
 		}
-
-		return ( self::get_raw( $name ) );
+		return ( self::get_raw( $name, $type ) );
 	}
 
 	/**
