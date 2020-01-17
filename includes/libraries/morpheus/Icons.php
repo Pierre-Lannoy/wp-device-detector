@@ -13,6 +13,7 @@ namespace Morpheus;
 
 use PODeviceDetector\System\Cache;
 use PODeviceDetector\System\Logger;
+use Feather;
 
 /**
  * Wraps the Morpheus functionality.
@@ -66,7 +67,7 @@ class Icons {
 			}
 		}
 		if ( ! file_exists( $filename ) ) {
-			return ( '-' === $name ? '' : self::get_raw() );
+			return ( '-' === $name ? null : self::get_raw() );
 		}
 		if ( Cache::is_memory() ) {
 			// phpcs:ignore
@@ -76,6 +77,25 @@ class Icons {
 			self::$icons[ $fname ] = file_get_contents( $filename );
 		}
 		return ( self::get_raw( $name, $type ) );
+	}
+
+	/**
+	 * Returns a base64 png resource for the icon.
+	 *
+	 * @param string $name Optional. The name of the icon.
+	 * @param string $type Optional. The path of the icon.
+	 *
+	 * @return string The png resource as a base64.
+	 * @since 1.0.0
+	 */
+	public static function get_base64( $name = '-', $type = '' ) {
+		$content = self::get_raw( $name, $type );
+		if ( isset( $content ) ) {
+			// phpcs:ignore
+			return 'data:image/png;base64,' . base64_encode( $content );
+		} else {
+			return Feather\Icons::get_base64( 'x', 'none', '#73879C' );
+		}
 	}
 
 	/**
@@ -91,8 +111,8 @@ class Icons {
 		// TODO: sanitize $name
 
 
-		// phpcs:ignore
-		return 'data:image/png;base64,' . base64_encode( self::get_raw( $name, 'brand' ) );
+
+		return self::get_base64( $name, 'brand' );
 	}
 
 	/**
@@ -104,8 +124,7 @@ class Icons {
 	 * @since 1.0.0
 	 */
 	public static function get_browser_base64( $name = '-' ) {
-		// phpcs:ignore
-		return 'data:image/png;base64,' . base64_encode( self::get_raw( $name, 'browser' ) );
+		return self::get_base64( $name, 'browser' );
 	}
 
 	/**
@@ -117,7 +136,6 @@ class Icons {
 	 * @since 1.0.0
 	 */
 	public static function get_os_base64( $name = '-' ) {
-		// phpcs:ignore
-		return 'data:image/png;base64,' . base64_encode( self::get_raw( $name, 'os' ) );
+		return self::get_base64( $name, 'os' );
 	}
 }

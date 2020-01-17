@@ -33,83 +33,39 @@ wp_enqueue_style( 'podd-chartist-tooltip' );
         <div class="podd-row">
 	        <?php echo $analytics->get_kpi_bar() ?>
         </div>
-        <?php if ( 'summary' === $analytics->type) { ?>
+		<?php if ( 'summary' === $analytics->type) { ?>
             <div class="podd-row">
                 <div class="podd-box podd-box-50-50-line">
-                    <?php echo $analytics->get_top_browser_box() ?>
-                    <?php echo $analytics->get_top_bot_box() ?>
+					<?php echo $analytics->get_top_browser_box() ?>
+					<?php echo $analytics->get_top_bot_box() ?>
                 </div>
             </div>
-		<?php } ?>
-
-
-
-
-
-
-		<?php if ( 'summary' === $analytics->type) { ?>
+            <div class="podd-row">
+                <div class="podd-box podd-box-33-33-33-line">
+					<?php echo $analytics->get_classes_box() ?>
+					<?php echo $analytics->get_types_box() ?>
+					<?php echo $analytics->get_clients_box() ?>
+                </div>
+            </div>
             <div class="podd-row">
                 <div class="podd-box podd-box-50-50-line">
 					<?php echo $analytics->get_top_device_box() ?>
 					<?php echo $analytics->get_top_os_box() ?>
                 </div>
             </div>
-		<?php } ?>
-
-
-
-
-
-
-		<?php if ( 'domain' === $analytics->type && '' === $analytics->extra ) { ?>
             <div class="podd-row">
-                <div class="podd-box podd-box-40-60-line">
-					<?php echo $analytics->get_top_authority_box() ?>
-					<?php echo $analytics->get_map_box() ?>
+                <div class="podd-box podd-box-25-25-25-25-line">
+					<?php echo $analytics->get_libraries_box() ?>
+					<?php echo $analytics->get_applications_box() ?>
+					<?php echo $analytics->get_feeds_box() ?>
+					<?php echo $analytics->get_medias_box() ?>
                 </div>
             </div>
 		<?php } ?>
-		<?php if ( 'authority' === $analytics->type && '' === $analytics->extra ) { ?>
-            <div class="podd-row">
-                <div class="podd-box podd-box-40-60-line">
-					<?php echo $analytics->get_top_endpoint_box() ?>
-					<?php echo $analytics->get_map_box() ?>
-                </div>
-            </div>
-		<?php } ?>
-		<?php if ( ( 'summary' === $analytics->type || 'domain' === $analytics->type || 'authority' === $analytics->type || 'endpoint' === $analytics->type ) && '' === $analytics->extra ) { ?>
-			<?php echo $analytics->get_main_chart() ?>
-            <div class="podd-row">
-                <div class="podd-box podd-box-33-33-33-line">
-					<?php echo $analytics->get_codes_box() ?>
-					<?php echo $analytics->get_security_box() ?>
-					<?php echo $analytics->get_method_box() ?>
-                </div>
-            </div>
-		<?php } ?>
-		<?php if ( 'summary' === $analytics->type && '' === $analytics->extra && Role::SUPER_ADMIN === Role::admin_type() && 'all' === $analytics->site) { ?>
+
+		<?php if ( 'summary' === $analytics->type && Role::SUPER_ADMIN === Role::admin_type() && 'all' === $analytics->site) { ?>
             <div class="podd-row last-row">
 	            <?php echo $analytics->get_sites_list() ?>
-            </div>
-		<?php } ?>
-		<?php if ( 'domains' === $analytics->type && '' === $analytics->extra ) { ?>
-            <div class="podd-row">
-	            <?php echo $analytics->get_domains_list() ?>
-            </div>
-		<?php } ?>
-		<?php if ( 'authorities' === $analytics->type && '' === $analytics->extra ) { ?>
-            <div class="podd-row">
-				<?php echo $analytics->get_authorities_list() ?>
-            </div>
-		<?php } ?>
-		<?php if ( 'endpoints' === $analytics->type && '' === $analytics->extra ) { ?>
-            <div class="podd-row">
-				<?php echo $analytics->get_endpoints_list() ?>
-            </div>
-		<?php } ?>
-		<?php if ( '' !== $analytics->extra ) { ?>
-            <div class="podd-row">
-				<?php echo $analytics->get_extra_list() ?>
             </div>
 		<?php } ?>
 	</div>

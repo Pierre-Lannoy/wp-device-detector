@@ -33,7 +33,7 @@ class AnalyticsFactory {
 	 * @since  1.0.0
 	 * @var    array    $allowed_types    Maintain the allowed types.
 	 */
-	private static $allowed_types = [ 'class', 'device', 'client', 'brand', 'model', 'os', 'bot', 'channel', 'classes', 'devices', 'clients', 'brands', 'models', 'oss', 'bots', 'channels' ];
+	private static $allowed_types = [ 'browser', 'browsers', 'bot', 'bots', 'device', 'devices', 'os', 'oses', 'classes', 'types', 'clients', 'libraries', 'applications', 'feeds', 'medias' ];
 
 	/**
 	 * Ajax callback.

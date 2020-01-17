@@ -23,6 +23,9 @@ use PODeviceDetector\System\Http;
 use PODeviceDetector\System\Favicon;
 use PODeviceDetector\System\Timezone;
 use PODeviceDetector\System\UUID;
+use PODeviceDetector\Plugin\Feature\ClassTypes;
+use PODeviceDetector\Plugin\Feature\DeviceTypes;
+use PODeviceDetector\Plugin\Feature\ClientTypes;
 use Feather;
 use Flagiconcss;
 use Morpheus;
@@ -54,6 +57,14 @@ class Analytics {
 	 * @var    string    $id    The queried ID.
 	 */
 	private $id = '';
+
+	/**
+	 * The queried extension.
+	 *
+	 * @since  1.0.0
+	 * @var    string    $extended    The queried extension.
+	 */
+	private $extended = '';
 
 	/**
 	 * The queried site.
@@ -222,7 +233,17 @@ class Analytics {
 				return $this->query_top( 'devices', (int) $queried );
 			case 'top-oses':
 				return $this->query_top( 'oses', (int) $queried );
-			
+			case 'classes':
+			case 'types':
+			case 'clients':
+			case 'libraries':
+			case 'applications':
+			case 'feeds':
+			case 'medias':
+				return $this->query_pie( $query, (int) $queried );
+
+
+
 			
 			case 'main-chart':
 				return $this->query_chart();
@@ -272,99 +293,134 @@ class Analytics {
 		$not         = false;
 		$uuid        = UUID::generate_unique_id( 5 );
 		switch ( $type ) {
-			case 'code':
-				$group       = 'code';
-				$follow      = 'authority';
-				$extra_field = 'code';
-				$extra       = [ 0 ];
-				$not         = true;
+			case 'classes':
+				$data     = Schema::get_grouped_list( $this->filter, 'class', ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
+				$selector = 'class';
+				$names    = ClassTypes::$class_names;
+				$size     = 120;
 				break;
-			case 'security':
-				$group       = 'scheme';
-				$follow      = 'endpoint';
-				$extra_field = 'scheme';
-				$extra       = [ 'http', 'https' ];
-				$not         = false;
+			case 'types':
+				$data     = Schema::get_grouped_list( $this->filter, 'device', ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
+				$selector = 'device';
+				$names    = DeviceTypes::$device_names;
+				$size     = 120;
 				break;
-			case 'method':
-				$group  = 'verb';
-				$follow = 'domain';
+			case 'clients':
+				$data     = Schema::get_grouped_list( $this->filter, 'client', ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
+				$selector = 'client';
+				$names    = ClientTypes::$client_names;
+				$size     = 120;
+				break;
+			case 'libraries':
+				$data     = Schema::get_grouped_list( $this->filter, 'name', ! $this->is_today, 'client', [ 'library' ], false, 'ORDER BY sum_hit DESC' );
+				$selector = 'name';
+				$names    = [];
+				$size     = 100;
+				break;
+			case 'applications':
+				$data     = Schema::get_grouped_list( $this->filter, 'name', ! $this->is_today, 'client', [ 'mobile-app' ], false, 'ORDER BY sum_hit DESC' );
+				$selector = 'name';
+				$names    = [];
+				$size     = 100;
+				break;
+			case 'feeds':
+				$data     = Schema::get_grouped_list( $this->filter, 'name', ! $this->is_today, 'client', [ 'feed-reader' ], false, 'ORDER BY sum_hit DESC' );
+				$selector = 'name';
+				$names    = [];
+				$size     = 100;
+				break;
+			case 'medias':
+				$data     = Schema::get_grouped_list( $this->filter, 'name', ! $this->is_today, 'client', [ 'media-player' ], false, 'ORDER BY sum_hit DESC' );
+				$selector = 'name';
+				$names    = [];
+				$size     = 100;
 				break;
 
 		}
-		$data  = Schema::get_grouped_list( $group, [], $this->filter, ! $this->is_today, $extra_field, $extra, $not, 'ORDER BY sum_hit DESC' );
-		$total = 0;
-		$other = 0;
-		foreach ( $data as $key => $row ) {
-			$total = $total + $row['sum_hit'];
-			if ( $limit <= $key ) {
-				$other = $other + $row['sum_hit'];
+		if ( 0 < count( $data ) ) {
+			$total = 0;
+			$other = 0;
+			foreach ( $data as $key => $row ) {
+				$total = $total + $row['sum_hit'];
+				if ( $limit <= $key || 'other' === $row[ $selector ] ) {
+					$other = $other + $row['sum_hit'];
+				}
 			}
+			$cpt    = 0;
+			$labels = [];
+			$series = [];
+			while ( $cpt < $limit && array_key_exists( $cpt, $data ) ) {
+				if ( 'other' !== $data[ $cpt ][ $selector ] ) {
+					if ( 0 < $total ) {
+						$percent = round( 100 * $data[ $cpt ]['sum_hit'] / $total, 1 );
+					} else {
+						$percent = 100;
+					}
+					if ( 0.1 > $percent ) {
+						$percent = 0.1;
+					}
+					if ( 0 < count( $names ) ) {
+						$meta = $names[ $data[ $cpt ][ $selector ] ];
+					} else {
+						$meta = $data[ $cpt ][ $selector ];
+					}
+					$labels[] = $meta;
+					$series[] = [
+						'meta'  => $meta,
+						'value' => (float) $percent,
+					];
+				}
+				++$cpt;
+			}
+			if ( 0 < $other ) {
+				if ( 0 < $total ) {
+					$percent = round( 100 * $other / $total, 1 );
+				} else {
+					$percent = 100;
+				}
+				if ( 0.1 > $percent ) {
+					$percent = 0.1;
+				}
+				$labels[] = esc_html__( 'Other', 'device-detector' );
+				$series[] = [
+					'meta'  => esc_html__( 'Other', 'device-detector' ),
+					'value' => (float) $percent,
+				];
+			}
+			$result  = '<div class="podd-pie-box">';
+			$result .= '<div class="podd-pie-graph">';
+			$result .= '<div class="podd-pie-graph-handler-' . $size . '" id="podd-pie-' . $type . '"></div>';
+			$result .= '</div>';
+			$result .= '<div class="podd-pie-legend">';
+			foreach ( $labels as $key => $label ) {
+				$icon    = '<img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'square', $this->colors[ $key ], $this->colors[ $key ] ) . '" />';
+				$result .= '<div class="podd-pie-legend-item">' . $icon . '&nbsp;&nbsp;' . $label . '</div>';
+			}
+			$result .= '';
+			$result .= '</div>';
+			$result .= '</div>';
+			$result .= '<script>';
+			$result .= 'jQuery(function ($) {';
+			$result .= ' var data' . $uuid . ' = ' . wp_json_encode(
+					[
+						'labels' => $labels,
+						'series' => $series,
+					]
+				) . ';';
+			$result .= ' var tooltip' . $uuid . ' = Chartist.plugins.tooltip({percentage: true, appendToBody: true});';
+			$result .= ' var option' . $uuid . ' = {width: ' . $size . ', height: ' . $size . ', showLabel: false, donut: true, donutWidth: "40%", startAngle: 270, plugins: [tooltip' . $uuid . ']};';
+			$result .= ' new Chartist.Pie("#podd-pie-' . $type . '", data' . $uuid . ', option' . $uuid . ');';
+			$result .= '});';
+			$result .= '</script>';
+		} else {
+			$result  = '<div class="podd-pie-box">';
+			$result .= '<div class="podd-pie-graph" style="margin:0 !important;">';
+			$result .= '<div class="podd-pie-graph-nodata-handler-' . $size . '" id="podd-pie-' . $type . '"><span style="position: relative; top: 37px;">-&nbsp;' . esc_html__( 'no data', 'device-detector' ) . '&nbsp;-</span></div>';
+			$result .= '</div>';
+			$result .= '';
+			$result .= '</div>';
+			$result .= '</div>';
 		}
-		$result = '';
-		$cpt    = 0;
-		$labels = [];
-		$series = [];
-		while ( $cpt < $limit && array_key_exists( $cpt, $data ) ) {
-			if ( 0 < $total ) {
-				$percent = round( 100 * $data[ $cpt ]['sum_hit'] / $total, 1 );
-			} else {
-				$percent = 100;
-			}
-			if ( 0.1 > $percent ) {
-				$percent = 0.1;
-			}
-			$meta = strtoupper( $data[ $cpt ][ $group ] );
-			if ( 'code' === $type ) {
-				$meta = $data[ $cpt ][ $group ] . ' ' . Http::$http_status_codes[ (int) $data[ $cpt ][ $group ] ];
-			}
-			$labels[] = strtoupper( $data[ $cpt ][ $group ] );
-			$series[] = [
-				'meta'  => $meta,
-				'value' => (float) $percent,
-			];
-			++$cpt;
-		}
-		if ( 0 < $other ) {
-			if ( 0 < $total ) {
-				$percent = round( 100 * $other / $total, 1 );
-			} else {
-				$percent = 100;
-			}
-			if ( 0.1 > $percent ) {
-				$percent = 0.1;
-			}
-			$labels[] = esc_html__( 'Other', 'device-detector' );
-			$series[] = [
-				'meta'  => esc_html__( 'Other', 'device-detector' ),
-				'value' => (float) $percent,
-			];
-		}
-		$result  = '<div class="podd-pie-box">';
-		$result .= '<div class="podd-pie-graph">';
-		$result .= '<div class="podd-pie-graph-handler" id="podd-pie-' . $group . '"></div>';
-		$result .= '</div>';
-		$result .= '<div class="podd-pie-legend">';
-		foreach ( $labels as $key => $label ) {
-			$icon    = '<img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'square', $this->colors[ $key ], $this->colors[ $key ] ) . '" />';
-			$result .= '<div class="podd-pie-legend-item">' . $icon . '&nbsp;&nbsp;' . $label . '</div>';
-		}
-		$result .= '';
-		$result .= '</div>';
-		$result .= '</div>';
-		$result .= '<script>';
-		$result .= 'jQuery(function ($) {';
-		$result .= ' var data' . $uuid . ' = ' . wp_json_encode(
-			[
-				'labels' => $labels,
-				'series' => $series,
-			]
-		) . ';';
-		$result .= ' var tooltip' . $uuid . ' = Chartist.plugins.tooltip({percentage: true, appendToBody: true});';
-		$result .= ' var option' . $uuid . ' = {width: 120, height: 120, showLabel: false, donut: true, donutWidth: "40%", startAngle: 270, plugins: [tooltip' . $uuid . ']};';
-		$result .= ' new Chartist.Pie("#podd-pie-' . $group . '", data' . $uuid . ', option' . $uuid . ');';
-		$result .= '});';
-		$result .= '</script>';
 		return [ 'podd-' . $type => $result ];
 	}
 
@@ -388,12 +444,11 @@ class Analytics {
 				$data = Schema::get_grouped_list( $this->filter, 'brand, model', ! $this->is_today, 'class', [ 'desktop', 'mobile' ], false, 'ORDER BY sum_hit DESC' );
 				break;
 			case 'oses':
-				$data = Schema::get_grouped_list( $this->filter, 'os, os_version', ! $this->is_today, 'class', [ 'desktop', 'mobile' ], false, 'ORDER BY sum_hit DESC' );
+				$data = Schema::get_grouped_list( $this->filter, 'os', ! $this->is_today, 'class', [ 'desktop', 'mobile' ], false, 'ORDER BY sum_hit DESC' );
 				break;
 			default:
 				$data = [];
 				break;
-
 		}
 		$total = 0;
 		$other = 0;
@@ -411,40 +466,56 @@ class Analytics {
 			} else {
 				$percent = 100;
 			}
-			$url = $this->get_url(
-				[],
-				[
-					'type'   => 'aaa',//$follow,
-					'id'     => 'aaa',//$data[ $cpt ][ $group ],
-					'domain' => 'aaa',//$data[ $cpt ]['id'],
-				]
-			);
 			if ( 0.5 > $percent ) {
 				$percent = 0.5;
 			}
-
 			switch ( $type ) {
 				case 'browsers':
 					$text = $data[ $cpt ]['name'];
 					$icon = Morpheus\Icons::get_browser_base64( $data[ $cpt ]['client_id'] );
+					$url  = $this->get_url(
+						[],
+						[
+							'type' => 'browser',
+							'id'   => $data[ $cpt ]['client_id'],
+						]
+					);
 					break;
 				case 'bots':
 					$text = $data[ $cpt ]['name'];
 					$icon = Favicon::get_base64( $data[ $cpt ]['url'] );
+					$url  = $this->get_url(
+						[],
+						[
+							'type' => 'bot',
+							'id'   => $data[ $cpt ]['name'],
+						]
+					);
 					break;
 				case 'devices':
-					$text = $data[ $cpt ]['brand'] . ( isset( $data[ $cpt ]['model'] ) && '-' !== $data[ $cpt ]['model'] ? ' - ' . $data[ $cpt ]['model'] : '' );
+					$text = ( isset( $data[ $cpt ]['brand'] ) && '-' !== $data[ $cpt ]['brand'] ? $data[ $cpt ]['brand'] : esc_html__( 'Generic', 'device-detector' ) ) . ( isset( $data[ $cpt ]['model'] ) && '-' !== $data[ $cpt ]['model'] ? ' ' . $data[ $cpt ]['model'] : '' );
 					$icon = Morpheus\Icons::get_brand_base64( $data[ $cpt ]['brand'] );
+					$url  = $this->get_url(
+						[],
+						[
+							'type'     => 'device',
+							'id'       => $data[ $cpt ]['brand'],
+							'extended' => $data[ $cpt ]['model'],
+						]
+					);
 					break;
 				case 'oses':
-					$text = $data[ $cpt ]['os'] . ( '' !== $data[ $cpt ]['os_version'] ? ' - ' . $data[ $cpt ]['os_version'] : '' );
+					$text = $data[ $cpt ]['os'];
 					$icon = Morpheus\Icons::get_os_base64( $data[ $cpt ]['os_id'] );
+					$url  = $this->get_url(
+						[],
+						[
+							'type' => 'os',
+							'id'   => $data[ $cpt ]['os_id'],
+						]
+					);
 					break;
 			}
-
-
-
-
 			$result .= '<div class="podd-top-line">';
 			$result .= '<div class="podd-top-line-title">';
 			$result .= '<img style="width:16px;vertical-align:bottom;" src="' . $icon . '" />&nbsp;&nbsp;<span class="podd-top-line-title-text"><a href="' . esc_url( $url ) . '">' . $text . '</a></span>';
@@ -1361,43 +1432,6 @@ class Analytics {
 	}
 
 	/**
-	 * Get the extra list.
-	 *
-	 * @return string  The table ready to print.
-	 * @since    1.0.0
-	 */
-	public function get_extra_list() {
-		switch ( $this->extra ) {
-			case 'codes':
-				$title = esc_html__( 'All HTTP Codes', 'device-detector' );
-				break;
-			case 'schemes':
-				$title = esc_html__( 'All Protocols', 'device-detector' );
-				break;
-			case 'methods':
-				$title = esc_html__( 'All Methods', 'device-detector' );
-				break;
-			case 'countries':
-				$title = esc_html__( 'All Countries', 'device-detector' );
-				break;
-			default:
-				$title = esc_html__( 'All Endpoints', 'device-detector' );
-
-		}
-		$result  = '<div class="podd-box podd-box-full-line">';
-		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . $title . '</span></div>';
-		$result .= '<div class="podd-module-content" id="podd-' . $this->extra . '">' . $this->get_graph_placeholder( 200 ) . '</div>';
-		$result .= '</div>';
-		$result .= $this->get_refresh_script(
-			[
-				'query'   => $this->extra,
-				'queried' => 0,
-			]
-		);
-		return $result;
-	}
-
-	/**
 	 * Get the top browser box.
 	 *
 	 * @return string  The box ready to print.
@@ -1489,110 +1523,28 @@ class Analytics {
 		return $result;
 	}
 
-	
-	
-	
-	
-	
-	
 	/**
-	 * Get the map box.
+	 * Get the classes box.
 	 *
 	 * @return string  The box ready to print.
 	 * @since    1.0.0
 	 */
-	public function get_map_box() {
-		switch ( $this->type ) {
-			case 'domain':
-				$url = $this->get_url(
-					[],
-					[
-						'type'   => 'authorities',
-						'domain' => $this->domain,
-						'extra'  => 'countries',
-					]
-				);
-				break;
-			case 'authority':
-				$url = $this->get_url(
-					[],
-					[
-						'type'   => 'endpoints',
-						'domain' => $this->domain,
-						'extra'  => 'countries',
-					]
-				);
-				break;
-			default:
-				$url = $this->get_url(
-					[ 'domain' ],
-					[
-						'type'  => 'domains',
-						'extra' => 'countries',
-					]
-				);
-		}
-		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
-		$help    = esc_html__( 'View the details of all countries.', 'device-detector' );
-		$result  = '<div class="podd-60-module">';
-		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Countries', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
-		$result .= '<div class="podd-module-content" id="podd-map">' . $this->get_graph_placeholder( 200 ) . '</div>';
-		$result .= '</div>';
-		$result .= $this->get_refresh_script(
+	public function get_classes_box() {
+		$url     = $this->get_url(
+			[],
 			[
-				'query'   => 'map',
-				'queried' => 0,
+				'type' => 'classes',
 			]
 		);
-		return $result;
-	}
-
-	/**
-	 * Get the map box.
-	 *
-	 * @return string  The box ready to print.
-	 * @since    1.0.0
-	 */
-	public function get_codes_box() {
-		switch ( $this->type ) {
-			case 'domain':
-				$url = $this->get_url(
-					[],
-					[
-						'type'   => 'authorities',
-						'domain' => $this->domain,
-						'extra'  => 'codes',
-					]
-				);
-				break;
-			case 'authority':
-				$url = $this->get_url(
-					[],
-					[
-						'type'   => 'endpoints',
-						'domain' => $this->domain,
-						'extra'  => 'codes',
-					]
-				);
-				break;
-			default:
-				$url = $this->get_url(
-					[ 'domain' ],
-					[
-						'type'  => 'domains',
-						'extra' => 'codes',
-					]
-				);
-		}
 		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
-		$help    = esc_html__( 'View the details of all codes.', 'device-detector' );
+		$help    = esc_html__( 'View the details of all classes.', 'device-detector' );
 		$result  = '<div class="podd-33-module podd-33-left-module">';
-		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'HTTP codes', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
-		$result .= '<div class="podd-module-content" id="podd-code">' . $this->get_graph_placeholder( 90 ) . '</div>';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Classes', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-classes">' . $this->get_graph_placeholder( 90 ) . '</div>';
 		$result .= '</div>';
 		$result .= $this->get_refresh_script(
 			[
-				'query'   => 'code',
+				'query'   => 'classes',
 				'queried' => 4,
 			]
 		);
@@ -1600,51 +1552,27 @@ class Analytics {
 	}
 
 	/**
-	 * Get the map box.
+	 * Get the types box.
 	 *
 	 * @return string  The box ready to print.
 	 * @since    1.0.0
 	 */
-	public function get_security_box() {
-		switch ( $this->type ) {
-			case 'domain':
-				$url = $this->get_url(
-					[],
-					[
-						'type'   => 'authorities',
-						'domain' => $this->domain,
-						'extra'  => 'schemes',
-					]
-				);
-				break;
-			case 'authority':
-				$url = $this->get_url(
-					[],
-					[
-						'type'   => 'endpoints',
-						'domain' => $this->domain,
-						'extra'  => 'schemes',
-					]
-				);
-				break;
-			default:
-				$url = $this->get_url(
-					[ 'domain' ],
-					[
-						'type'  => 'domains',
-						'extra' => 'schemes',
-					]
-				);
-		}
+	public function get_types_box() {
+		$url     = $this->get_url(
+			[],
+			[
+				'type' => 'types',
+			]
+		);
 		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
-		$help    = esc_html__( 'View the details of protocols breakdown.', 'device-detector' );
+		$help    = esc_html__( 'View the details of all device types.', 'device-detector' );
 		$result  = '<div class="podd-33-module podd-33-center-module">';
-		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Protocols', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
-		$result .= '<div class="podd-module-content" id="podd-security">' . $this->get_graph_placeholder( 90 ) . '</div>';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Device Types', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-types">' . $this->get_graph_placeholder( 90 ) . '</div>';
 		$result .= '</div>';
 		$result .= $this->get_refresh_script(
 			[
-				'query'   => 'security',
+				'query'   => 'types',
 				'queried' => 4,
 			]
 		);
@@ -1652,51 +1580,139 @@ class Analytics {
 	}
 
 	/**
-	 * Get the map box.
+	 * Get the clients box.
 	 *
 	 * @return string  The box ready to print.
 	 * @since    1.0.0
 	 */
-	public function get_method_box() {
-		switch ( $this->type ) {
-			case 'domain':
-				$url = $this->get_url(
-					[],
-					[
-						'type'   => 'authorities',
-						'domain' => $this->domain,
-						'extra'  => 'methods',
-					]
-				);
-				break;
-			case 'authority':
-				$url = $this->get_url(
-					[],
-					[
-						'type'   => 'endpoints',
-						'domain' => $this->domain,
-						'extra'  => 'methods',
-					]
-				);
-				break;
-			default:
-				$url = $this->get_url(
-					[ 'domain' ],
-					[
-						'type'  => 'domains',
-						'extra' => 'methods',
-					]
-				);
-		}
+	public function get_clients_box() {
+		$url     = $this->get_url(
+			[],
+			[
+				'type' => 'clients',
+			]
+		);
 		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
-		$help    = esc_html__( 'View the details of all methods.', 'device-detector' );
+		$help    = esc_html__( 'View the details of all client types.', 'device-detector' );
 		$result  = '<div class="podd-33-module podd-33-right-module">';
-		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Methods', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
-		$result .= '<div class="podd-module-content" id="podd-method">' . $this->get_graph_placeholder( 90 ) . '</div>';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Client Types', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-clients">' . $this->get_graph_placeholder( 90 ) . '</div>';
 		$result .= '</div>';
 		$result .= $this->get_refresh_script(
 			[
-				'query'   => 'method',
+				'query'   => 'clients',
+				'queried' => 4,
+			]
+		);
+		return $result;
+	}
+
+	/**
+	 * Get the libraries box.
+	 *
+	 * @return string  The box ready to print.
+	 * @since    1.0.0
+	 */
+	public function get_libraries_box() {
+		$url     = $this->get_url(
+			[],
+			[
+				'type' => 'libraries',
+			]
+		);
+		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$help    = esc_html__( 'View the details of all libraries.', 'device-detector' );
+		$result  = '<div class="podd-25-module podd-25-left-module">';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Libraries', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-libraries">' . $this->get_graph_placeholder( 70 ) . '</div>';
+		$result .= '</div>';
+		$result .= $this->get_refresh_script(
+			[
+				'query'   => 'libraries',
+				'queried' => 4,
+			]
+		);
+		return $result;
+	}
+
+	/**
+	 * Get the applications box.
+	 *
+	 * @return string  The box ready to print.
+	 * @since    1.0.0
+	 */
+	public function get_applications_box() {
+		$url     = $this->get_url(
+			[],
+			[
+				'type' => 'applications',
+			]
+		);
+		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$help    = esc_html__( 'View the details of all applications.', 'device-detector' );
+		$result  = '<div class="podd-25-module podd-25-center-left-module">';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Mobile Applications', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-applications">' . $this->get_graph_placeholder( 70 ) . '</div>';
+		$result .= '</div>';
+		$result .= $this->get_refresh_script(
+			[
+				'query'   => 'applications',
+				'queried' => 4,
+			]
+		);
+		return $result;
+	}
+
+	/**
+	 * Get the feeds box.
+	 *
+	 * @return string  The box ready to print.
+	 * @since    1.0.0
+	 */
+	public function get_feeds_box() {
+		$url     = $this->get_url(
+			[],
+			[
+				'type' => 'feeds',
+			]
+		);
+		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$help    = esc_html__( 'View the details of all feed-readers.', 'device-detector' );
+		$result  = '<div class="podd-25-module podd-25-center-right-module">';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Feed Readers', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-feeds">' . $this->get_graph_placeholder( 70 ) . '</div>';
+		$result .= '</div>';
+		$result .= $this->get_refresh_script(
+			[
+				'query'   => 'feeds',
+				'queried' => 4,
+			]
+		);
+		return $result;
+	}
+
+	/**
+	 * Get the medias box.
+	 *
+	 * @return string  The box ready to print.
+	 * @since    1.0.0
+	 */
+	public function get_medias_box() {
+		$url     = $this->get_url(
+			[],
+			[
+				'type' => 'medias',
+			]
+		);
+		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$help    = esc_html__( 'View the details of all media players.', 'device-detector' );
+		$result  = '<div class="podd-25-module podd-25-right-module">';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Media Players', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-medias">' . $this->get_graph_placeholder( 70 ) . '</div>';
+		$result .= '</div>';
+		$result .= $this->get_refresh_script(
+			[
+				'query'   => 'medias',
 				'queried' => 4,
 			]
 		);
@@ -1842,19 +1858,8 @@ class Analytics {
 		if ( '' !== $this->id ) {
 			$params['id'] = $this->id;
 		}
-		if ( '' !== $this->extra ) {
-			$params['extra'] = $this->extra;
-		}
 		$params['start'] = $this->start;
 		$params['end']   = $this->end;
-		if ( ! ( $this->is_inbound && $this->is_outbound ) ) {
-			if ( $this->is_inbound ) {
-				$params['context'] = 'inbound';
-			}
-			if ( $this->is_outbound ) {
-				$params['context'] = 'outbound';
-			}
-		}
 		foreach ( $exclude as $arg ) {
 			unset( $params[ $arg ] );
 		}

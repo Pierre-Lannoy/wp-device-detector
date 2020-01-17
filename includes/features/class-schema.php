@@ -484,7 +484,7 @@ class Schema {
 	 */
 	public static function get_grouped_list( $filter, $group = '', $cache = true, $extra_field = '', $extras = [], $not = false, $order = '', $limit = 0 ) {
 		// phpcs:ignore
-		$id = Cache::id( __FUNCTION__ . serialize( $filter ) . $group );
+		$id = Cache::id( __FUNCTION__ . serialize( $filter ) . $group . $extra_field . serialize( $extras ) . ( $not ? 'no' : 'yes') . $order . (string) $limit);
 		if ( $cache ) {
 			$result = Cache::get_global( $id );
 			if ( $result ) {
