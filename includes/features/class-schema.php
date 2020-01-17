@@ -19,7 +19,9 @@ use PODeviceDetector\System\Logger;
 use PODeviceDetector\System\Cache;
 use PODeviceDetector\System\Timezone;
 use PODeviceDetector\Plugin\Feature\Detector;
-use PODeviceDetector\System\Http;
+use PODeviceDetector\Plugin\Feature\ClassTypes;
+use PODeviceDetector\Plugin\Feature\DeviceTypes;
+use PODeviceDetector\Plugin\Feature\ClientTypes;
 
 /**
  * Define the schema functionality.
@@ -245,9 +247,9 @@ class Schema {
 		$sql            .= " `site` int(11) UNSIGNED NOT NULL DEFAULT '0',";
 		$sql            .= " `channel` enum('cli','cron','ajax','xmlrpc','api','feed','wback','wfront','unknown') NOT NULL DEFAULT 'unknown',";
 		$sql            .= " `hit` int(11) UNSIGNED NOT NULL DEFAULT '1',";
-		$sql            .= " `class` enum('bot','desktop','mobile','other') NOT NULL DEFAULT 'other',";
-		$sql            .= " `device` enum('camera','car-browser','console','featurephone','phablet','portable-media-player','smartphone','smart-display','tablet','tv','other') NOT NULL DEFAULT 'other',";
-		$sql            .= " `client` enum('browser','feed-reader','library','media-player','mobile-app','pim','other') NOT NULL DEFAULT 'other',";
+		$sql            .= " `class` enum('" . implode( "','", ClassTypes::$classes ) . "') NOT NULL DEFAULT 'other',";
+		$sql            .= " `device` enum('" . implode( "','", DeviceTypes::$devices ) . "') NOT NULL DEFAULT 'other',";
+		$sql            .= " `client` enum('" . implode( "','", ClientTypes::$clients ) . "') NOT NULL DEFAULT 'other',";
 		$sql            .= " `brand_id` varchar(2) NOT NULL DEFAULT '-',";
 		$sql            .= " `brand` varchar(40) NOT NULL DEFAULT '-',";  // May be device brand or bot producer.
 		$sql            .= " `model` varchar(40) NOT NULL DEFAULT '-',";
@@ -498,7 +500,6 @@ class Schema {
 		}
 		global $wpdb;
 		$sql = 'SELECT sum(hit) as sum_hit, site, channel, class, device, client, brand_id, brand, model, client_id, name, client_version, engine, os_id, os, os_version, url FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ')' . $where_extra . ' ' . $group . ' ' . $order . ( $limit > 0 ? ' LIMIT ' . $limit : '') .';';
-		Logger::emergency($sql);
 		// phpcs:ignore
 		$result = $wpdb->get_results( $sql, ARRAY_A );
 		if ( is_array( $result ) ) {
