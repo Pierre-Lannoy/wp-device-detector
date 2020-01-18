@@ -22,6 +22,7 @@ wp_enqueue_style( 'podd-tooltip' );
 wp_enqueue_style( 'podd-chartist' );
 wp_enqueue_style( 'podd-chartist-tooltip' );
 
+$simple_list = [ 'classes', 'types', 'clients', 'libraries', 'applications', 'feeds', 'medias' ];
 
 ?>
 
@@ -62,6 +63,19 @@ wp_enqueue_style( 'podd-chartist-tooltip' );
                 </div>
             </div>
 		<?php } ?>
+		<?php if ( in_array( (string) $analytics->type, $simple_list, true ) ) { ?>
+            <div class="podd-row">
+                <?php echo $analytics->get_simple_list() ?>
+            </div>
+		<?php } ?>
+
+
+
+
+
+
+
+
 
 		<?php if ( 'summary' === $analytics->type && Role::SUPER_ADMIN === Role::admin_type() && 'all' === $analytics->site) { ?>
             <div class="podd-row last-row">

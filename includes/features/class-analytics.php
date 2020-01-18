@@ -26,6 +26,7 @@ use PODeviceDetector\System\UUID;
 use PODeviceDetector\Plugin\Feature\ClassTypes;
 use PODeviceDetector\Plugin\Feature\DeviceTypes;
 use PODeviceDetector\Plugin\Feature\ClientTypes;
+use PODeviceDetector\Plugin\Feature\ChannelTypes;
 use Feather;
 use Flagiconcss;
 use Morpheus;
@@ -241,40 +242,19 @@ class Analytics {
 			case 'feeds':
 			case 'medias':
 				return $this->query_pie( $query, (int) $queried );
-
+			case 'classes-list':
+			case 'types-list':
+			case 'clients-list':
+			case 'libraries-list':
+			case 'applications-list':
+			case 'feeds-list':
+			case 'medias-list':
+			return $this->query_list( $query );
 
 
 			
 			case 'main-chart':
 				return $this->query_chart();
-			case 'top-domains':
-				return $this->query_top( 'domains', (int) $queried );
-			case 'top-authorities':
-				return $this->query_top( 'authorities', (int) $queried );
-			case 'top-endpoints':
-				return $this->query_top( 'endpoints', (int) $queried );
-			case 'sites':
-				return $this->query_list( 'sites' );
-			case 'domains':
-				return $this->query_list( 'domains' );
-			case 'authorities':
-				return $this->query_list( 'authorities' );
-			case 'endpoints':
-				return $this->query_list( 'endpoints' );
-			case 'codes':
-				return $this->query_list( 'codes' );
-			case 'schemes':
-				return $this->query_list( 'schemes' );
-			case 'methods':
-				return $this->query_list( 'methods' );
-			case 'countries':
-				return $this->query_list( 'countries' );
-			case 'code':
-				return $this->query_pie( 'code', (int) $queried );
-			case 'security':
-				return $this->query_pie( 'security', (int) $queried );
-			case 'method':
-				return $this->query_pie( 'method', (int) $queried );
 		}
 		return [];
 	}
@@ -288,10 +268,7 @@ class Analytics {
 	 * @since    1.0.0
 	 */
 	private function query_pie( $type, $limit ) {
-		$extra_field = '';
-		$extra       = [];
-		$not         = false;
-		$uuid        = UUID::generate_unique_id( 5 );
+		$uuid = UUID::generate_unique_id( 5 );
 		switch ( $type ) {
 			case 'classes':
 				$data     = Schema::get_grouped_list( $this->filter, 'class', ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
@@ -335,7 +312,6 @@ class Analytics {
 				$names    = [];
 				$size     = 100;
 				break;
-
 		}
 		if ( 0 < count( $data ) ) {
 			$total = 0;
@@ -556,181 +532,81 @@ class Analytics {
 		$has_detail = false;
 		$detail     = '';
 		switch ( $type ) {
-			case 'domains':
-				$group      = 'id';
-				$follow     = 'domain';
-				$has_detail = true;
+			case 'classes-list':
+				$data     = Schema::get_grouped_list( $this->filter, 'class, channel', ! $this->is_today, '', [] );
+				$selector = 'class';
 				break;
-			case 'authorities':
-				$group      = 'authority';
-				$follow     = 'authority';
-				$has_detail = true;
+			case 'types-list':
+				$data     = Schema::get_grouped_list( $this->filter, 'device, channel', ! $this->is_today, '', [] );
+				$selector = 'device';
 				break;
-			case 'endpoints':
-				$group  = 'endpoint';
-				$follow = 'endpoint';
+			case 'clients-list':
+				$data     = Schema::get_grouped_list( $this->filter, 'client, channel', ! $this->is_today, '', [] );
+				$selector = 'client';
 				break;
-			case 'codes':
-				$group = 'code';
+			case 'libraries-list':
+				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'library' ] );
+				$selector = 'name';
 				break;
-			case 'schemes':
-				$group = 'scheme';
+			case 'applications-list':
+				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'mobile-app' ] );
+				$selector = 'name';
 				break;
-			case 'methods':
-				$group = 'verb';
+			case 'feeds-list':
+				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'feed-reader' ] );
+				$selector = 'name';
 				break;
-			case 'countries':
-				$group = 'country';
-				break;
-			case 'sites':
-				$group  = 'site';
-				$follow = 'summary';
+			case 'medias-list':
+				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'media-player' ] );
+				$selector = 'name';
 				break;
 		}
-		$data         = Schema::get_grouped_list( $group, [ 'authority', 'endpoint' ], $this->filter, ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
-		$detail_name  = esc_html__( 'Details', 'device-detector' );
-		$calls_name   = esc_html__( 'Calls', 'device-detector' );
-		$data_name    = esc_html__( 'Data Volume', 'device-detector' );
-		$latency_name = esc_html__( 'Latency', 'device-detector' );
-		$result       = '<table class="podd-table">';
-		$result      .= '<tr>';
-		$result      .= '<th>&nbsp;</th>';
-		if ( $has_detail ) {
-			$result .= '<th>' . $detail_name . '</th>';
-		}
-		$result   .= '<th>' . $calls_name . '</th>';
-		$result   .= '<th>' . $data_name . '</th>';
-		$result   .= '<th>' . $latency_name . '</th>';
-		$result   .= '</tr>';
-		$other     = false;
-		$other_str = '';
-		foreach ( $data as $key => $row ) {
-			$url         = $this->get_url(
-				[],
-				[
-					'type'   => $follow,
-					'id'     => $row[ $group ],
-					'domain' => $row['id'],
-				]
-			);
-			$name        = $row[ $group ];
-			$other       = ( 'countries' === $type && ( empty( $name ) || 2 !== strlen( $name ) ) );
-			$authorities = sprintf( esc_html( _n( '%d subdomain', '%d subdomains', $row['cnt_authority'], 'device-detector' ) ), $row['cnt_authority'] );
-			$endpoints   = sprintf( esc_html( _n( '%d endpoint', '%d endpoints', $row['cnt_endpoint'], 'device-detector' ) ), $row['cnt_endpoint'] );
-			switch ( $type ) {
-				case 'sites':
-					if ( 0 === (int) $row['sum_hit'] ) {
-						break;
+		if ( 0 < count( $data ) ) {
+			$columns = [ 'wfront', 'wback', 'api', 'cron' ];
+			$d       = [];
+			$current = '';
+			$total   = 0;
+			foreach ( $data as $row ) {
+				if ( $current !== $row[ $selector ] ) {
+					$current = $row[ $selector ];
+					foreach ( $columns as $column ) {
+						$d[ $current ][ $column ] = 0;
 					}
-					$url  = $this->get_url(
-						[],
-						[
-							'type' => $follow,
-							'site' => $row['site'],
-						]
-					);
-					$site = Blog::get_blog_url( $row['site'] );
-					$name = '<img style="width:16px;vertical-align:bottom;" src="' . Favicon::get_base64( $site ) . '" />&nbsp;&nbsp;<span class="podd-table-text"><a href="' . esc_url( $url ) . '">' . $site . '</a></span>';
-					break;
-				case 'domains':
-					$detail = $authorities . ' - ' . $endpoints;
-					$name   = '<img style="width:16px;vertical-align:bottom;" src="' . Favicon::get_base64( $row['id'] ) . '" />&nbsp;&nbsp;<span class="podd-table-text"><a href="' . esc_url( $url ) . '">' . $name . '</a></span>';
-					break;
-				case 'authorities':
-					$detail = $endpoints;
-					$name   = '<img style="width:16px;vertical-align:bottom;" src="' . Favicon::get_base64( $row['id'] ) . '" />&nbsp;&nbsp;<span class="podd-table-text"><a href="' . esc_url( $url ) . '">' . $name . '</a></span>';
-					break;
-				case 'endpoints':
-					$name = '<img style="width:16px;vertical-align:bottom;" src="' . Favicon::get_base64( $row['id'] ) . '" />&nbsp;&nbsp;<span class="podd-table-text"><a href="' . esc_url( $url ) . '">' . $name . '</a></span>';
-					break;
-				case 'codes':
-					if ( '0' === $name ) {
-						$name = '000';
-					}
-					$code = (int) $name;
-					if ( 100 > $code ) {
-						$http = '0xx';
-					} elseif ( 200 > $code ) {
-						$http = '1xx';
-					} elseif ( 300 > $code ) {
-						$http = '2xx';
-					} elseif ( 400 > $code ) {
-						$http = '3xx';
-					} elseif ( 500 > $code ) {
-						$http = '4xx';
-					} elseif ( 600 > $code ) {
-						$http = '5xx';
-					} else {
-						$http = 'nxx';
-					}
-					$name  = '<span class="podd-http podd-http-' . $http . '">' . $name . '</span>&nbsp;&nbsp;<span class="podd-table-text">' . Http::$http_status_codes[ $code ] . '</span>';
-					$group = 'code';
-					break;
-				case 'schemes':
-					$icon = Feather\Icons::get_base64( 'unlock', 'none', '#E74C3C' );
-					if ( 'HTTPS' === strtoupper( $name ) ) {
-						$icon = Feather\Icons::get_base64( 'lock', 'none', '#18BB9C' );
-					}
-					$name  = '<img style="width:14px;vertical-align:text-top;" src="' . $icon . '" />&nbsp;&nbsp;<span class="podd-table-text">' . strtoupper( $name ) . '</span>';
-					$group = 'scheme';
-					break;
-				case 'methods':
-					$name  = '<img style="width:14px;vertical-align:text-bottom;" src="' . Feather\Icons::get_base64( 'code', 'none', '#73879C' ) . '" />&nbsp;&nbsp;<span class="podd-table-text">' . strtoupper( $name ) . '</span>';
-					$group = 'verb';
-					break;
-				case 'countries':
-					if ( $other ) {
-						$name = esc_html__( 'Other', 'device-detector' );
-					} else {
-						$country_name = L10n::get_country_name( $name );
-						if ( $country_name === $name ) {
-							$country_name = '';
-						}
-						$name = '<img style="width:16px;vertical-align:baseline;" src="' . Flagiconcss\Flags::get_base64( strtolower( $name ) ) . '" />&nbsp;&nbsp;<span class="podd-table-text" style="vertical-align: text-bottom;">' . $country_name . '</span>';
-					}
-					$group = 'country';
-					break;
-			}
-			$calls = Conversion::number_shorten( $row['sum_hit'], 2, false, '&nbsp;' );
-			$in    = '<img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'arrow-down-right', 'none', '#73879C' ) . '" /><span class="podd-table-text">' . Conversion::data_shorten( $row['sum_kb_in'] * 1024, 2, false, '&nbsp;' ) . '</span>';
-			$out   = '<span class="podd-table-text">' . Conversion::data_shorten( $row['sum_kb_out'] * 1024, 2, false, '&nbsp;' ) . '</span><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'arrow-up-right', 'none', '#73879C' ) . '" />';
-			$data  = $in . ' &nbsp;&nbsp; ' . $out;
-			if ( 1 < $row['sum_hit'] ) {
-				$min = Conversion::number_shorten( $row['min_latency'], 0 );
-				if ( false !== strpos( $min, 'K' ) ) {
-					$min = str_replace( 'K', esc_html_x( 's', 'Unit symbol - Stands for "second".', 'device-detector' ), $min );
-				} else {
-					$min = $min . esc_html_x( 'ms', 'Unit symbol - Stands for "millisecond".', 'device-detector' );
+					$d[ $current ]['other'] = 0;
+					$d[ $current ]['total'] = 0;
+					$d[ $current ]['perct'] = 0.0;
 				}
-				$max = Conversion::number_shorten( $row['max_latency'], 0 );
-				if ( false !== strpos( $max, 'K' ) ) {
-					$max = str_replace( 'K', esc_html_x( 's', 'Unit symbol - Stands for "second".', 'device-detector' ), $max );
+				if ( in_array( $row['channel'], $columns, true ) ) {
+					$d[ $current ][ $row['channel'] ] = $row['sum_hit'];
 				} else {
-					$max = $max . esc_html_x( 'ms', 'Unit symbol - Stands for "millisecond".', 'device-detector' );
+					$d[ $current ]['other'] += $row['sum_hit'];
 				}
-				$latency = (int) $row['avg_latency'] . '&nbsp;' . esc_html_x( 'ms', 'Unit symbol - Stands for "millisecond".', 'device-detector' ) . '&nbsp;<small>(' . $min . '→' . $max . ')</small>';
-			} else {
-				$latency = (int) $row['avg_latency'] . '&nbsp;' . esc_html_x( 'ms', 'Unit symbol - Stands for "millisecond".', 'device-detector' );
+				$d[ $current ]['total'] += $row['sum_hit'];
+				$total                  += $row['sum_hit'];
 			}
-			if ( 'codes' === $type && '0' === $row[ $group ] ) {
-				$latency = '-';
+			uasort( $d, function ( $a, $b ) { if ( $a['total'] === $b['total'] ) { return 0; } return ( $a['total'] > $b['total'] ) ? -1 : 1 ;} );
+			$result  = '<table class="podd-table">';
+			$result .= '<tr>';
+			$result .= '<th>&nbsp;</th>';
+			foreach ( $columns as $column ) {
+				$result .= '<th>' . ChannelTypes::$channel_names[ strtoupper( $column ) ] . '</th>';
 			}
-			$row_str  = '<tr>';
-			$row_str .= '<td data-th="">' . $name . '</td>';
-			if ( $has_detail ) {
-				$row_str .= '<td data-th="' . $detail_name . '">' . $detail . '</td>';
+			$result .= '<th>' . __( 'Other', 'device-detector' ) . '</th>';
+			$result .= '<th>' . __( 'TOTAL', 'device-detector' ) . '</th>';
+			$result .= '</tr>';
+			foreach ( $d as $name => $item ) {
+				$row_str  = '<tr>';
+				$row_str .= '<td data-th="name">' . $name . '</td>';
+				foreach ( $columns as $column ) {
+					$row_str .= '<td data-th="' . $column . '">' . Conversion::number_shorten( $item[ $column ], 2, false, '&nbsp;' ) . '</td>';
+				}
+				$row_str .= '<td data-th="other">' . Conversion::number_shorten( $item['other'], 2, false, '&nbsp;' ) . '</td>';
+				$row_str .= '<td data-th="total">' . Conversion::number_shorten( $item['total'], 2, false, '&nbsp;' ) . '</td>';
+				$row_str .= '</tr>';
+				$result  .= $row_str;
 			}
-			$row_str .= '<td data-th="' . $calls_name . '">' . $calls . '</td>';
-			$row_str .= '<td data-th="' . $data_name . '">' . $data . '</td>';
-			$row_str .= '<td data-th="' . $latency_name . '">' . $latency . '</td>';
-			$row_str .= '</tr>';
-			if ( $other ) {
-				$other_str = $row_str;
-			} else {
-				$result .= $row_str;
-			}
+			$result .= '</table>';
 		}
-		$result .= $other_str . '</table>';
 		return [ 'podd-' . $type => $result ];
 	}
 
@@ -1300,6 +1176,41 @@ class Analytics {
 	}
 
 	/**
+	 * Get the box_title.
+	 *
+	 * @param string $id The box or page id.
+	 * @return string  The box title.
+	 * @since 1.0.0
+	 */
+	public function get_box_title( $id ) {
+		$result = '';
+		switch ( $id ) {
+			case 'classes-list':
+				$result = esc_html__( 'All Classes', 'device-detector' );
+				break;
+			case 'types-list':
+				$result = esc_html__( 'All Device Types', 'device-detector' );
+				break;
+			case 'clients-list':
+				$result = esc_html__( 'All Client Types', 'device-detector' );
+				break;
+			case 'libraries-list':
+				$result = esc_html__( 'All Libraries', 'device-detector' );
+				break;
+			case 'applications-list':
+				$result = esc_html__( 'All Mobile Applications', 'device-detector' );
+				break;
+			case 'feeds-list':
+				$result = esc_html__( 'All Feed Readers', 'device-detector' );
+				break;
+			case 'medias-list':
+				$result = esc_html__( 'All Media Players', 'device-detector' );
+				break;
+		}
+		return $result;
+	}
+
+	/**
 	 * Get the KPI bar.
 	 *
 	 * @return string  The bar ready to print.
@@ -1349,6 +1260,26 @@ class Analytics {
 		} else {
 			return '';
 		}
+	}
+
+	/**
+	 * Get the a simple list.
+	 *
+	 * @return string  The table ready to print.
+	 * @since    1.0.0
+	 */
+	public function get_simple_list() {
+		$result  = '<div class="podd-box podd-box-full-line">';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . $this->get_box_title( $this->type . '-list' ) . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-' . $this->type . '-list">' . $this->get_graph_placeholder( 200 ) . '</div>';
+		$result .= '</div>';
+		$result .= $this->get_refresh_script(
+			[
+				'query'   => $this->type . '-list',
+				'queried' => 0,
+			]
+		);
+		return $result;
 	}
 
 	/**
