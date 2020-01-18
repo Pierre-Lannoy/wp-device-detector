@@ -1011,83 +1011,32 @@ class Analytics {
 	 */
 	public function get_title_selector() {
 		switch ( $this->type ) {
-			case 'domains':
-				$title = esc_html__( 'Domains Details', 'device-detector' );
+			case 'classes':
+				$title = esc_html__( 'Classes', 'device-detector' );
 				break;
-			case 'domain':
-				$title = esc_html__( 'Domain Summary', 'device-detector' );
+			case 'types':
+				$title = esc_html__( 'Device Types', 'device-detector' );
 				break;
+			case 'clients':
+				$title = esc_html__( 'Client Types', 'device-detector' );
+				break;
+			case 'libraries':
+				$title = esc_html__( 'Libraries', 'device-detector' );
+				break;
+			case 'applications':
+				$title = esc_html__( 'Mobile Applications', 'device-detector' );
+				break;
+			case 'feeds':
+				$title = esc_html__( 'Feed Readers', 'device-detector' );
+				break;
+			case 'medias':
+				$title = esc_html__( 'Media Players', 'device-detector' );
+				break;
+
+
+
 			case 'authorities':
 				$title         = esc_html__( 'Domain Details', 'device-detector' );
-				$breadcrumbs[] = [
-					'title'    => esc_html__( 'Domain Summary', 'device-detector' ),
-					'subtitle' => sprintf( esc_html__( 'Return to %s', 'device-detector' ), $this->domain ),
-					'url'      => $this->get_url(
-						[ 'extra' ],
-						[
-							'type'   => 'domain',
-							'domain' => $this->domain,
-							'id'     => $this->domain,
-						]
-					),
-				];
-				break;
-			case 'authority':
-				$title         = esc_html__( 'Subdomain Summary', 'device-detector' );
-				$breadcrumbs[] = [
-					'title'    => esc_html__( 'Domain Summary', 'device-detector' ),
-					'subtitle' => sprintf( esc_html__( 'Return to %s', 'device-detector' ), $this->domain ),
-					'url'      => $this->get_url(
-						[ 'extra' ],
-						[
-							'type'   => 'domain',
-							'domain' => $this->domain,
-							'id'     => $this->domain,
-						]
-					),
-				];
-				break;
-			case 'endpoints':
-				$title         = esc_html__( 'Subdomain Details', 'device-detector' );
-				$breadcrumbs[] = [
-					'title'    => esc_html__( 'Subdomain Summary', 'device-detector' ),
-					'subtitle' => sprintf( esc_html__( 'Return to %s', 'device-detector' ), $this->subdomain ),
-					'url'      => $this->get_url(
-						[ 'extra' ],
-						[
-							'type'   => 'authority',
-							'domain' => $this->domain,
-							'id'     => $this->subdomain,
-						]
-					),
-				];
-				$breadcrumbs[] = [
-					'title'    => esc_html__( 'Domain Summary', 'device-detector' ),
-					'subtitle' => sprintf( esc_html__( 'Return to %s', 'device-detector' ), $this->domain ),
-					'url'      => $this->get_url(
-						[ 'extra' ],
-						[
-							'type'   => 'domain',
-							'domain' => $this->domain,
-							'id'     => $this->domain,
-						]
-					),
-				];
-				break;
-			case 'endpoint':
-				$title         = esc_html__( 'Endpoint Summary', 'device-detector' );
-				$breadcrumbs[] = [
-					'title'    => esc_html__( 'Subdomain Summary', 'device-detector' ),
-					'subtitle' => sprintf( esc_html__( 'Return to %s', 'device-detector' ), $this->subdomain ),
-					'url'      => $this->get_url(
-						[ 'extra' ],
-						[
-							'type'   => 'authority',
-							'domain' => $this->domain,
-							'id'     => $this->subdomain,
-						]
-					),
-				];
 				$breadcrumbs[] = [
 					'title'    => esc_html__( 'Domain Summary', 'device-detector' ),
 					'subtitle' => sprintf( esc_html__( 'Return to %s', 'device-detector' ), $this->domain ),
@@ -1110,7 +1059,7 @@ class Analytics {
 		$breadcrumbs[] = [
 			'title'    => esc_html__( 'Main Summary', 'device-detector' ),
 			'subtitle' => sprintf( esc_html__( 'Return to Device Detector main page.', 'device-detector' ) ),
-			'url'      => $this->get_url( [ 'domain', 'id', 'extra', 'type' ] ),
+			'url'      => $this->get_url( [ 'id', 'type' ] ),
 		];
 		$result        = '<select name="sources" id="sources" class="podd-select sources" placeholder="' . $title . '" style="display:none;">';
 		foreach ( $breadcrumbs as $breadcrumb ) {
@@ -1118,7 +1067,6 @@ class Analytics {
 		}
 		$result .= '</select>';
 		$result .= '';
-
 		return $result;
 	}
 
@@ -1157,12 +1105,13 @@ class Analytics {
 			case 'summary':
 				$title = esc_html__( 'Main Summary', 'device-detector' );
 				break;
-			case 'domain':
-			case 'authority':
-			case 'endpoint':
-			case 'domains':
-			case 'authorities':
-			case 'endpoints':
+			case 'classes':
+			case 'types':
+			case 'clients':
+			case 'libraries':
+			case 'applications':
+			case 'feeds':
+			case 'medias':
 				$title = $this->get_title_selector();
 				break;
 		}
