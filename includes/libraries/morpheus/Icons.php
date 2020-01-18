@@ -89,6 +89,11 @@ class Icons {
 	 * @since 1.0.0
 	 */
 	public static function get_base64( $name = '-', $type = '' ) {
+
+		// TODO: sanitize $name if $type === 'brand'
+
+
+
 		$content = self::get_raw( $name, $type );
 		if ( isset( $content ) ) {
 			// phpcs:ignore
@@ -107,11 +112,6 @@ class Icons {
 	 * @since 1.0.0
 	 */
 	public static function get_brand_base64( $name = '-' ) {
-
-		// TODO: sanitize $name
-
-
-
 		return self::get_base64( $name, 'brand' );
 	}
 

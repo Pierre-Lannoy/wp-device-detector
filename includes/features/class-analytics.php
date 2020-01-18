@@ -249,7 +249,12 @@ class Analytics {
 			case 'applications-list':
 			case 'feeds-list':
 			case 'medias-list':
-			return $this->query_list( $query );
+				return $this->query_list( $query );
+			case 'browsers-list':
+			case 'bots-list':
+			case 'devices-list':
+			case 'oses-list':
+			return $this->query_extended_list( $query );
 
 
 			
@@ -391,7 +396,7 @@ class Analytics {
 		} else {
 			$result  = '<div class="podd-pie-box">';
 			$result .= '<div class="podd-pie-graph" style="margin:0 !important;">';
-			$result .= '<div class="podd-pie-graph-nodata-handler-' . $size . '" id="podd-pie-' . $type . '"><span style="position: relative; top: 37px;">-&nbsp;' . esc_html__( 'no data', 'device-detector' ) . '&nbsp;-</span></div>';
+			$result .= '<div class="podd-pie-graph-nodata-handler-' . $size . '" id="podd-pie-' . $type . '"><span style="position: relative; top: 37px;">-&nbsp;' . esc_html__( 'No Data', 'device-detector' ) . '&nbsp;-</span></div>';
 			$result .= '</div>';
 			$result .= '';
 			$result .= '</div>';
@@ -528,36 +533,33 @@ class Analytics {
 	 * @since    1.0.0
 	 */
 	private function query_list( $type ) {
-		$follow     = '';
-		$has_detail = false;
-		$detail     = '';
 		switch ( $type ) {
 			case 'classes-list':
-				$data     = Schema::get_grouped_list( $this->filter, 'class, channel', ! $this->is_today, '', [] );
+				$data     = Schema::get_grouped_list( $this->filter, 'class, channel', ! $this->is_today, '', [], false, 'ORDER BY class DESC' );
 				$selector = 'class';
 				break;
 			case 'types-list':
-				$data     = Schema::get_grouped_list( $this->filter, 'device, channel', ! $this->is_today, '', [] );
+				$data     = Schema::get_grouped_list( $this->filter, 'device, channel', ! $this->is_today, '', [], false, 'ORDER BY device DESC' );
 				$selector = 'device';
 				break;
 			case 'clients-list':
-				$data     = Schema::get_grouped_list( $this->filter, 'client, channel', ! $this->is_today, '', [] );
+				$data     = Schema::get_grouped_list( $this->filter, 'client, channel', ! $this->is_today, '', [], false, 'ORDER BY client DESC' );
 				$selector = 'client';
 				break;
 			case 'libraries-list':
-				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'library' ] );
+				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'library' ], false, 'ORDER BY name DESC' );
 				$selector = 'name';
 				break;
 			case 'applications-list':
-				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'mobile-app' ] );
+				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'mobile-app' ], false, 'ORDER BY name DESC' );
 				$selector = 'name';
 				break;
 			case 'feeds-list':
-				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'feed-reader' ] );
+				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'feed-reader' ], false, 'ORDER BY name DESC' );
 				$selector = 'name';
 				break;
 			case 'medias-list':
-				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'media-player' ] );
+				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'media-player' ], false, 'ORDER BY name DESC' );
 				$selector = 'name';
 				break;
 		}
@@ -606,6 +608,168 @@ class Analytics {
 				$result  .= $row_str;
 			}
 			$result .= '</table>';
+		} else {
+			$result   = '<table class="podd-table">';
+			$result  .= '<tr>';
+			$result  .= '<th>&nbsp;</th>';
+			$result  .= '</tr>';
+			$row_str  = '<tr>';
+			$row_str .= '<td data-th="" style="color:#73879C;text-align:center;">' . esc_html__( 'No Data', 'device-detector' ) . '</td>';
+			$row_str .= '</tr>';
+			$result  .= $row_str;
+			$result  .= '</table>';
+		}
+		return [ 'podd-' . $type => $result ];
+	}
+
+	/**
+	 * Query statistics table.
+	 *
+	 * @param   string $type    The type of list.
+	 * @return array  The result of the query, ready to encode.
+	 * @since    1.0.0
+	 */
+	private function query_extended_list( $type ) {
+		switch ( $type ) {
+			case 'browsers-list':
+				$data      = Schema::get_grouped_list( $this->filter, 'client_id, client_version, channel', ! $this->is_today, 'client', [ 'browser' ], false, 'ORDER BY client_id DESC' );
+				$selector  = 'client_id';
+				$sub       = 'client_version';
+				$name      = 'name';
+				$icon      = 'client_id';
+				$icon_list = 'browser';
+				$extra     = 'engine';
+				break;
+			case 'bots-list':
+				$data      = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'class', [ 'bot' ], false, 'ORDER BY brand_id DESC' );
+				$selector  = 'name';
+				$sub       = '';
+				$name      = 'name';
+				$icon      = 'url';
+				$icon_list = '';
+				$extra     = '';
+				break;
+			case 'devices-list':
+				$data      = Schema::get_grouped_list( $this->filter, 'brand_id, model, channel', ! $this->is_today, 'class', [ 'desktop', 'mobile' ], false, 'ORDER BY brand_id DESC' );
+				$selector  = 'brand_id';
+				$sub       = 'model';
+				$name      = 'brand';
+				$icon      = 'brand';
+				$icon_list = 'brand';
+				$extra     = '';
+				break;
+			case 'oses-list':
+				$data      = Schema::get_grouped_list( $this->filter, 'os_id, os_version, channel', ! $this->is_today, 'class', [ 'desktop', 'mobile' ], false, 'ORDER BY os_id DESC' );
+				$selector  = 'os_id';
+				$sub       = 'os_version';
+				$name      = 'os';
+				$icon      = 'os_id';
+				$icon_list = 'os';
+				$extra     = '';
+				break;
+
+		}
+		if ( 0 < count( $data ) ) {
+			$columns = [ 'wfront', 'wback', 'api', 'cron' ];
+			$d       = [];
+			$current = '';
+			$total   = 0;
+			foreach ( $data as $row ) {
+				if ( $current !== $row[ $selector ] ) {
+					$current = $row[ $selector ];
+					if ( '-' === $row[ $name ] ) {
+						$row[ $name ] = __( 'Generic', 'device-detector' );
+					}
+					$d[ $current ]['name'] = $row[ $name ] . ( '' !== $extra ? ' / ' . $row[ $extra ] : '' );
+					$d[ $current ]['icon'] = ( '' !== $icon ? $row[ $icon ] : '' );
+					foreach ( $columns as $column ) {
+						$d[ $current ][ $column ] = 0;
+					}
+					$d[ $current ]['other'] = 0;
+					$d[ $current ]['total'] = 0;
+					$d[ $current ]['perct'] = 0.0;
+					$d[ $current ]['data']  = [];
+				}
+				if ( '' !== $sub && ! array_key_exists( $row[ $sub ], $d[ $current ]['data'] ) ) {
+					$d[ $current ]['data'][ $row[ $sub ] ]['name'] = $row[ $name ] . ( '' !== $sub ? ' ' . $row[ $sub ] : '' );
+					if ( '-' === $row[ $name ] ) {
+						$d[ $current ]['data'][ $row[ $sub ] ]['name'] = __( 'Generic', 'device-detector' );
+					}
+					foreach ( $columns as $column ) {
+						$d[ $current ]['data'][ $row[ $sub ] ][ $column ] = 0;
+					}
+					$d[ $current ]['data'][ $row[ $sub ] ]['other'] = 0;
+					$d[ $current ]['data'][ $row[ $sub ] ]['total'] = 0;
+					$d[ $current ]['data'][ $row[ $sub ] ]['perct'] = 0.0;
+				}
+				if ( in_array( $row['channel'], $columns, true ) ) {
+					$d[ $current ][ $row['channel'] ] += $row['sum_hit'];
+					if ( '' !== $sub ) {
+						$d[ $current ]['data'][ $row[ $sub ] ][ $row['channel'] ] = $row['sum_hit'];
+					}
+				} else {
+					$d[ $current ]['other'] += $row['sum_hit'];
+					if ( '' !== $sub ) {
+						$d[ $current ]['data'][ $row[ $sub ] ]['other'] = $row['sum_hit'];
+					}
+				}
+				if ( '' !== $sub ) {
+					$d[ $current ]['data'][ $row[ $sub ] ]['total'] += $row['sum_hit'];
+				}
+				$d[ $current ]['total'] += $row['sum_hit'];
+				$total                  += $row['sum_hit'];
+			}
+			uasort( $d, function ( $a, $b ) { if ( $a['total'] === $b['total'] ) { return 0; } return ( $a['total'] > $b['total'] ) ? -1 : 1 ;} );
+			$result  = '<table class="podd-table">';
+			$result .= '<tr>';
+			$result .= '<th>&nbsp;</th>';
+			foreach ( $columns as $column ) {
+				$result .= '<th>' . ChannelTypes::$channel_names[ strtoupper( $column ) ] . '</th>';
+			}
+			$result .= '<th>' . __( 'Other', 'device-detector' ) . '</th>';
+			$result .= '<th>' . __( 'TOTAL', 'device-detector' ) . '</th>';
+			$result .= '</tr>';
+			foreach ( $d as $item ) {
+				if ( 0 < count( $item['data'] ) ) {
+					uasort( $item['data'], function ( $a, $b ) { if ( $a['total'] === $b['total'] ) { return 0; } return ( $a['total'] > $b['total'] ) ? -1 : 1 ;} );
+				}
+				if ( '' === $icon_list ) {
+					$icon = Favicon::get_base64( $item['icon'] );
+				} else {
+					$icon = Morpheus\Icons::get_base64( $item['icon'], $icon_list );
+				}
+				$row_str  = '<tr style="' . ( '' !== $sub ? 'font-weight: 600;' : '' ) . '">';
+				$row_str .= '<td data-th="name"><img style="width:16px;vertical-align:bottom;" src="' . $icon . '" />&nbsp;&nbsp;' . $item['name'] . '</td>';
+				foreach ( $columns as $column ) {
+					$row_str .= '<td data-th="' . $column . '">' . Conversion::number_shorten( $item[ $column ], 2, false, '&nbsp;' ) . '</td>';
+				}
+				$row_str .= '<td data-th="other">' . Conversion::number_shorten( $item['other'], 2, false, '&nbsp;' ) . '</td>';
+				$row_str .= '<td data-th="total">' . Conversion::number_shorten( $item['total'], 2, false, '&nbsp;' ) . '</td>';
+				$row_str .= '</tr>';
+				$result  .= $row_str;
+				foreach ( $item['data'] as $datum ) {
+					$row_str  = '<tr>';
+					$row_str .= '<td data-th="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style="width:16px;vertical-align:bottom;" src="' . $icon . '" />&nbsp;&nbsp;' . $datum['name'] . '</td>';
+					foreach ( $columns as $column ) {
+						$row_str .= '<td data-th="' . $column . '">' . Conversion::number_shorten( $datum[ $column ], 2, false, '&nbsp;' ) . '</td>';
+					}
+					$row_str .= '<td data-th="other">' . Conversion::number_shorten( $datum['other'], 2, false, '&nbsp;' ) . '</td>';
+					$row_str .= '<td data-th="total">' . Conversion::number_shorten( $datum['total'], 2, false, '&nbsp;' ) . '</td>';
+					$row_str .= '</tr>';
+					$result  .= $row_str;
+				}
+			}
+			$result .= '</table>';
+		} else {
+			$result   = '<table class="podd-table">';
+			$result  .= '<tr>';
+			$result  .= '<th>&nbsp;</th>';
+			$result  .= '</tr>';
+			$row_str  = '<tr>';
+			$row_str .= '<td data-th="" style="color:#73879C;text-align:center;">' . esc_html__( 'No Data', 'device-detector' ) . '</td>';
+			$row_str .= '</tr>';
+			$result  .= $row_str;
+			$result  .= '</table>';
 		}
 		return [ 'podd-' . $type => $result ];
 	}
@@ -1032,6 +1196,18 @@ class Analytics {
 			case 'medias':
 				$title = esc_html__( 'Media Players', 'device-detector' );
 				break;
+			case 'browsers':
+				$title = esc_html__( 'Browsers', 'device-detector' );
+				break;
+			case 'bots':
+				$title = esc_html__( 'Bots', 'device-detector' );
+				break;
+			case 'devices':
+				$title = esc_html__( 'Devices', 'device-detector' );
+				break;
+			case 'oses':
+				$title = esc_html__( 'OS', 'device-detector' );
+				break;
 
 
 
@@ -1112,6 +1288,10 @@ class Analytics {
 			case 'applications':
 			case 'feeds':
 			case 'medias':
+			case 'browsers':
+			case 'bots':
+			case 'devices':
+			case 'oses':
 				$title = $this->get_title_selector();
 				break;
 		}
@@ -1154,6 +1334,18 @@ class Analytics {
 				break;
 			case 'medias-list':
 				$result = esc_html__( 'All Media Players', 'device-detector' );
+				break;
+			case 'browsers-list':
+				$result = esc_html__( 'All Browsers', 'device-detector' );
+				break;
+			case 'bots-list':
+				$result = esc_html__( 'All Bots', 'device-detector' );
+				break;
+			case 'devices-list':
+				$result = esc_html__( 'All Devices', 'device-detector' );
+				break;
+			case 'oses-list':
+				$result = esc_html__( 'All OS', 'device-detector' );
 				break;
 		}
 		return $result;
@@ -1217,7 +1409,7 @@ class Analytics {
 	 * @return string  The table ready to print.
 	 * @since    1.0.0
 	 */
-	public function get_simple_list() {
+	public function get_list() {
 		$result  = '<div class="podd-box podd-box-full-line">';
 		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . $this->get_box_title( $this->type . '-list' ) . '</span></div>';
 		$result .= '<div class="podd-module-content" id="podd-' . $this->type . '-list">' . $this->get_graph_placeholder( 200 ) . '</div>';
@@ -1232,7 +1424,7 @@ class Analytics {
 	}
 
 	/**
-	 * Get the domains list.
+	 * Get the sites list.
 	 *
 	 * @return string  The table ready to print.
 	 * @since    1.0.0
@@ -1245,66 +1437,6 @@ class Analytics {
 		$result .= $this->get_refresh_script(
 			[
 				'query'   => 'sites',
-				'queried' => 0,
-			]
-		);
-		return $result;
-	}
-
-	/**
-	 * Get the domains list.
-	 *
-	 * @return string  The table ready to print.
-	 * @since    1.0.0
-	 */
-	public function get_domains_list() {
-		$result  = '<div class="podd-box podd-box-full-line">';
-		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'All Domains', 'device-detector' ) . '</span></div>';
-		$result .= '<div class="podd-module-content" id="podd-domains">' . $this->get_graph_placeholder( 200 ) . '</div>';
-		$result .= '</div>';
-		$result .= $this->get_refresh_script(
-			[
-				'query'   => 'domains',
-				'queried' => 0,
-			]
-		);
-		return $result;
-	}
-
-	/**
-	 * Get the authorities list.
-	 *
-	 * @return string  The table ready to print.
-	 * @since    1.0.0
-	 */
-	public function get_authorities_list() {
-		$result  = '<div class="podd-box podd-box-full-line">';
-		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'All Subdomains', 'device-detector' ) . '</span></div>';
-		$result .= '<div class="podd-module-content" id="podd-authorities">' . $this->get_graph_placeholder( 200 ) . '</div>';
-		$result .= '</div>';
-		$result .= $this->get_refresh_script(
-			[
-				'query'   => 'authorities',
-				'queried' => 0,
-			]
-		);
-		return $result;
-	}
-
-	/**
-	 * Get the endpoints list.
-	 *
-	 * @return string  The table ready to print.
-	 * @since    1.0.0
-	 */
-	public function get_endpoints_list() {
-		$result  = '<div class="podd-box podd-box-full-line">';
-		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'All Endpoints', 'device-detector' ) . '</span></div>';
-		$result .= '<div class="podd-module-content" id="podd-endpoints">' . $this->get_graph_placeholder( 200 ) . '</div>';
-		$result .= '</div>';
-		$result .= $this->get_refresh_script(
-			[
-				'query'   => 'endpoints',
 				'queried' => 0,
 			]
 		);

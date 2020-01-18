@@ -22,7 +22,8 @@ wp_enqueue_style( 'podd-tooltip' );
 wp_enqueue_style( 'podd-chartist' );
 wp_enqueue_style( 'podd-chartist-tooltip' );
 
-$simple_list = [ 'classes', 'types', 'clients', 'libraries', 'applications', 'feeds', 'medias' ];
+$simple_list   = [ 'classes', 'types', 'clients', 'libraries', 'applications', 'feeds', 'medias' ];
+$extended_list = [ 'browsers', 'bots', 'devices', 'oses' ];
 
 ?>
 
@@ -63,9 +64,9 @@ $simple_list = [ 'classes', 'types', 'clients', 'libraries', 'applications', 'fe
                 </div>
             </div>
 		<?php } ?>
-		<?php if ( in_array( (string) $analytics->type, $simple_list, true ) ) { ?>
+		<?php if ( in_array( (string) $analytics->type, array_merge( $simple_list, $extended_list ), true ) ) { ?>
             <div class="podd-row">
-                <?php echo $analytics->get_simple_list() ?>
+                <?php echo $analytics->get_list() ?>
             </div>
 		<?php } ?>
 
