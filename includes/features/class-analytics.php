@@ -480,7 +480,7 @@ class Analytics {
 						[],
 						[
 							'type'     => 'device',
-							'id'       => $data[ $cpt ]['brand'],
+							'id'       => $data[ $cpt ]['brand_id'],
 							'extended' => $data[ $cpt ]['model'],
 						]
 					);
@@ -639,6 +639,8 @@ class Analytics {
 				$icon      = 'client_id';
 				$icon_list = 'browser';
 				$extra     = 'engine';
+				$link      = 'browser';
+				$elink     = '';
 				break;
 			case 'bots-list':
 				$data      = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'class', [ 'bot' ], false, 'ORDER BY brand_id DESC' );
@@ -648,6 +650,8 @@ class Analytics {
 				$icon      = 'url';
 				$icon_list = '';
 				$extra     = '';
+				$link      = 'bot';
+				$elink     = '';
 				break;
 			case 'devices-list':
 				$data      = Schema::get_grouped_list( $this->filter, 'brand_id, model, channel', ! $this->is_today, 'class', [ 'desktop', 'mobile' ], false, 'ORDER BY brand_id DESC' );
@@ -657,6 +661,8 @@ class Analytics {
 				$icon      = 'brand';
 				$icon_list = 'brand';
 				$extra     = '';
+				$link      = 'device';
+				$elink     = 'model';
 				break;
 			case 'oses-list':
 				$data      = Schema::get_grouped_list( $this->filter, 'os_id, os_version, channel', ! $this->is_today, 'class', [ 'desktop', 'mobile' ], false, 'ORDER BY os_id DESC' );
@@ -666,6 +672,8 @@ class Analytics {
 				$icon      = 'os_id';
 				$icon_list = 'os';
 				$extra     = '';
+				$link      = 'os';
+				$elink     = '';
 				break;
 
 		}
@@ -681,6 +689,7 @@ class Analytics {
 						$row[ $name ] = __( 'Generic', 'device-detector' );
 					}
 					$d[ $current ]['name'] = $row[ $name ] . ( '' !== $extra ? ' / ' . $row[ $extra ] : '' );
+					$d[ $current ]['id']   = $row[ $selector ];
 					$d[ $current ]['icon'] = ( '' !== $icon ? $row[ $icon ] : '' );
 					foreach ( $columns as $column ) {
 						$d[ $current ][ $column ] = 0;
@@ -691,7 +700,10 @@ class Analytics {
 					$d[ $current ]['data']  = [];
 				}
 				if ( '' !== $sub && ! array_key_exists( $row[ $sub ], $d[ $current ]['data'] ) ) {
-					$d[ $current ]['data'][ $row[ $sub ] ]['name'] = $row[ $name ] . ( '' !== $sub ? ' ' . $row[ $sub ] : '' );
+					$d[ $current ]['data'][ $row[ $sub ] ]['name'] = $row[ $name ] . ( 1 < strlen( $row[ $sub ] ) ? ' ' . $row[ $sub ] : '' );
+					if ( '' !== $elink ) {
+						$d[ $current ]['data'][ $row[ $sub ] ]['id'] = $row[ $elink ];
+					}
 					if ( '-' === $row[ $name ] ) {
 						$d[ $current ]['data'][ $row[ $sub ] ]['name'] = __( 'Generic', 'device-detector' );
 					}
@@ -738,8 +750,17 @@ class Analytics {
 				} else {
 					$icon = Morpheus\Icons::get_base64( $item['icon'], $icon_list );
 				}
+				$l = [
+					'type' => $link,
+					'id'   => $item[ 'id' ],
+				];
+				if ( '' !== $elink ) {
+					$name = $item['name'];
+				} else {
+					$name = '<a href="' . esc_url( $this->get_url( [], $l ) ) . '">' . $item['name'] . '</a>';
+				}
 				$row_str  = '<tr style="' . ( '' !== $sub ? 'font-weight: 600;' : '' ) . '">';
-				$row_str .= '<td data-th="name"><img style="width:16px;vertical-align:bottom;" src="' . $icon . '" />&nbsp;&nbsp;' . $item['name'] . '</td>';
+				$row_str .= '<td data-th="name"><img style="width:16px;vertical-align:bottom;" src="' . $icon . '" />&nbsp;&nbsp;<span class="podd-list-text">' . $name . '</span></td>';
 				foreach ( $columns as $column ) {
 					$row_str .= '<td data-th="' . $column . '">' . Conversion::number_shorten( $item[ $column ], 2, false, '&nbsp;' ) . '</td>';
 				}
@@ -748,8 +769,18 @@ class Analytics {
 				$row_str .= '</tr>';
 				$result  .= $row_str;
 				foreach ( $item['data'] as $datum ) {
+					if ( '' !== $elink ) {
+						$l    = [
+							'type'     => $link,
+							'id'       => $item[ 'id' ],
+							'extended' => $datum[ 'id' ],
+						];
+						$name = '<a href="' . esc_url( $this->get_url( [], $l ) ) . '">' . $datum['name'] . '</a>';
+					} else {
+						$name = $datum['name'];
+					}
 					$row_str  = '<tr>';
-					$row_str .= '<td data-th="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style="width:16px;vertical-align:bottom;" src="' . $icon . '" />&nbsp;&nbsp;' . $datum['name'] . '</td>';
+					$row_str .= '<td data-th="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style="width:16px;vertical-align:bottom;" src="' . $icon . '" />&nbsp;&nbsp;<span class="podd-list-text">' . $name . '</span></td>';
 					foreach ( $columns as $column ) {
 						$row_str .= '<td data-th="' . $column . '">' . Conversion::number_shorten( $datum[ $column ], 2, false, '&nbsp;' ) . '</td>';
 					}

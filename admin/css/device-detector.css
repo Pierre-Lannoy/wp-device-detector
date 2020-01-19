@@ -251,7 +251,6 @@
 
 .podd-chart-button.active {
     cursor: default;
-
 }
 
 .podd-chart-button.active img{
@@ -444,6 +443,15 @@
 .podd-top-line-title-text a {
     text-decoration: none;
     color: var(--aux-font-color);
+}
+
+.podd-list-text {
+    vertical-align: baseline;
+}
+
+.podd-list-text a {
+    text-decoration: none;
+    color: var(--main-font-color);
 }
 
 .podd-bar-graph {
