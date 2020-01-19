@@ -239,6 +239,8 @@ class Analytics {
 				return $this->query_top( 'devices', (int) $queried );
 			case 'top-oses':
 				return $this->query_top( 'oses', (int) $queried );
+			case 'top-versions':
+				return $this->query_top( 'versions', (int) $queried );
 			case 'classes':
 			case 'types':
 			case 'clients':
@@ -259,10 +261,7 @@ class Analytics {
 			case 'bots-list':
 			case 'devices-list':
 			case 'oses-list':
-			return $this->query_extended_list( $query );
-
-
-			
+				return $this->query_extended_list( $query );
 			case 'main-chart':
 				return $this->query_chart();
 		}
@@ -432,6 +431,18 @@ class Analytics {
 			case 'oses':
 				$data = Schema::get_grouped_list( $this->filter, 'os', ! $this->is_today, 'class', [ 'desktop', 'mobile' ], false, 'ORDER BY sum_hit DESC' );
 				break;
+			case 'versions':
+				switch ( $this->type ) {
+					case 'browser':
+						$data = Schema::get_grouped_list( $this->filter, 'client_version', ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
+						break;
+				}
+				switch ( $this->type ) {
+					case 'os':
+						$data = Schema::get_grouped_list( $this->filter, 'os_version', ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
+						break;
+				}
+				break;
 			default:
 				$data = [];
 				break;
@@ -491,20 +502,48 @@ class Analytics {
 					);
 					break;
 				case 'oses':
-					$text = $data[ $cpt ]['os'];
-					$icon = Morpheus\Icons::get_os_base64( $data[ $cpt ]['os_id'] );
-					$url  = $this->get_url(
-						[],
-						[
-							'type' => 'os',
-							'id'   => $data[ $cpt ]['os_id'],
-						]
-					);
+					switch ( $this->type ) {
+						case 'device':
+							$text = $data[ $cpt ]['os'] . ' ' . $data[ $cpt ]['os_version'];
+							$icon = Morpheus\Icons::get_os_base64( $data[ $cpt ]['os_id'] );
+							$url  = '';
+							break;
+						default:
+							$text = $data[ $cpt ]['os'];
+							$icon = Morpheus\Icons::get_os_base64( $data[ $cpt ]['os_id'] );
+							$url  = $this->get_url(
+								[],
+								[
+									'type' => 'os',
+									'id'   => $data[ $cpt ]['os_id'],
+								]
+							);
+							break;
+					}
 					break;
+				case 'versions':
+					switch ( $this->type ) {
+						case 'browser':
+							$text = $data[ $cpt ]['name'] . ' ' . $data[ $cpt ]['client_version'];
+							$icon = Morpheus\Icons::get_browser_base64( $data[ $cpt ]['client_id'] );
+							$url  = '';
+							break;
+						case 'os':
+							$text = $data[ $cpt ]['os'] . ' ' . $data[ $cpt ]['os_version'];
+							$icon = Morpheus\Icons::get_os_base64( $data[ $cpt ]['os_id'] );
+							$url  = '';
+							break;
+					}
+					break;
+			}
+			if ( '' !== $url ) {
+				$url = '<a href="' . esc_url( $url ) . '">' . $text . '</a>';
+			} else {
+				$url = $text;
 			}
 			$result .= '<div class="podd-top-line">';
 			$result .= '<div class="podd-top-line-title">';
-			$result .= '<img style="width:16px;vertical-align:bottom;" src="' . $icon . '" />&nbsp;&nbsp;<span class="podd-top-line-title-text"><a href="' . esc_url( $url ) . '">' . $text . '</a></span>';
+			$result .= '<img style="width:16px;vertical-align:bottom;" src="' . $icon . '" />&nbsp;&nbsp;<span class="podd-top-line-title-text">' . $url . '</span>';
 			$result .= '</div>';
 			$result .= '<div class="podd-top-line-content">';
 			$result .= '<div class="podd-bar-graph"><div class="podd-bar-graph-value" style="width:' . $percent . '%"></div></div>';
@@ -817,114 +856,24 @@ class Analytics {
 	 * @since    1.0.0
 	 */
 	private function query_chart() {
-		$uuid           = UUID::generate_unique_id( 5 );
-		$data_total     = Schema::get_time_series( $this->filter, ! $this->is_today, '', [], false );
-		$data_uptime    = Schema::get_time_series( $this->filter, ! $this->is_today, 'code', Http::$http_failure_codes, true );
-		$data_error     = Schema::get_time_series( $this->filter, ! $this->is_today, 'code', array_diff( Http::$http_error_codes, Http::$http_quota_codes ), false );
-		$data_success   = Schema::get_time_series( $this->filter, ! $this->is_today, 'code', Http::$http_success_codes, false );
-		$data_quota     = Schema::get_time_series( $this->filter, ! $this->is_today, 'code', Http::$http_quota_codes, false );
-		$series_uptime  = [];
-		$suc            = [];
-		$err            = [];
-		$quo            = [];
-		$series_success = [];
-		$series_error   = [];
-		$series_quota   = [];
-		$call_max       = 0;
-		$kbin           = [];
-		$kbout          = [];
-		$series_kbin    = [];
-		$series_kbout   = [];
-		$data_max       = 0;
-		$start          = '';
-		foreach ( $data_total as $timestamp => $total ) {
+		$uuid       = UUID::generate_unique_id( 5 );
+		$data_total = Schema::get_time_series( $this->filter, ! $this->is_today );
+		$call_max   = 0;
+		$hits       = [];
+		$start      = '';
+		foreach ( $data_total as $timestamp => $row ) {
 			if ( '' === $start ) {
 				$start = $timestamp;
 			}
-			$ts = 'new Date(' . (string) strtotime( $timestamp ) . '000)';
-			// Calls.
-			if ( array_key_exists( $timestamp, $data_success ) ) {
-				$val = $data_success[ $timestamp ]['sum_hit'];
-				if ( $val > $call_max ) {
-					$call_max = $val;
-				}
-				$suc[] = [
-					'x' => $ts,
-					'y' => $val,
-				];
-			} else {
-				$suc[] = [
-					'x' => $ts,
-					'y' => 0,
-				];
+			$ts  = 'new Date(' . (string) strtotime( $timestamp ) . '000)';
+			$val = $row['sum_hit'];
+			if ( $val > $call_max ) {
+				$call_max = $val;
 			}
-			if ( array_key_exists( $timestamp, $data_error ) ) {
-				$val = $data_error[ $timestamp ]['sum_hit'];
-				if ( $val > $call_max ) {
-					$call_max = $val;
-				}
-				$err[] = [
-					'x' => $ts,
-					'y' => $val,
-				];
-			} else {
-				$err[] = [
-					'x' => $ts,
-					'y' => 0,
-				];
-			}
-			if ( array_key_exists( $timestamp, $data_quota ) ) {
-				$val = $data_quota[ $timestamp ]['sum_hit'];
-				if ( $val > $call_max ) {
-					$call_max = $val;
-				}
-				$quo[] = [
-					'x' => $ts,
-					'y' => $val,
-				];
-			} else {
-				$quo[] = [
-					'x' => $ts,
-					'y' => 0,
-				];
-			}
-			// Data.
-			$val = $total['sum_kb_in'] * 1024;
-			if ( $val > $data_max ) {
-				$data_max = $val;
-			}
-			$kbin[] = [
+			$hits[] = [
 				'x' => $ts,
 				'y' => $val,
 			];
-			$val    = $total['sum_kb_out'] * 1024;
-			if ( $val > $data_max ) {
-				$data_max = $val;
-			}
-			$kbout[] = [
-				'x' => $ts,
-				'y' => $val,
-			];
-			// Uptime.
-			if ( array_key_exists( $timestamp, $data_uptime ) ) {
-				if ( 0 !== $total['sum_hit'] ) {
-					$val             = round( $data_uptime[ $timestamp ]['sum_hit'] * 100 / $total['sum_hit'], 2 );
-					$series_uptime[] = [
-						'x' => $ts,
-						'y' => $val,
-					];
-				} else {
-					$series_uptime[] = [
-						'x' => $ts,
-						'y' => 100,
-					];
-				}
-			} else {
-				$series_uptime[] = [
-					'x' => $ts,
-					'y' => 100,
-				];
-			}
 		}
 		$before = [
 			'x' => 'new Date(' . (string) ( strtotime( $start ) - 86400 ) . '000)',
@@ -934,98 +883,31 @@ class Analytics {
 			'x' => 'new Date(' . (string) ( strtotime( $timestamp ) + 86400 ) . '000)',
 			'y' => 'null',
 		];
-		// Calls.
-		$short     = Conversion::number_shorten( $call_max, 2, true );
-		$call_max  = 0.5 + floor( $call_max / $short['divisor'] );
-		$call_abbr = $short['abbreviation'];
-		foreach ( $suc as $item ) {
-			$item['y']        = $item['y'] / $short['divisor'];
-			$series_success[] = $item;
+		// Hits.
+		$short       = Conversion::number_shorten( $call_max, 2, true );
+		$call_max    = 0.5 + floor( $call_max / $short['divisor'] );
+		$call_abbr   = $short['abbreviation'];
+		$series_hits = [];
+		foreach ( $hits as $item ) {
+			$item['y']     = $item['y'] / $short['divisor'];
+			$series_hits[] = $item;
 		}
-		foreach ( $err as $item ) {
-			$item['y']      = $item['y'] / $short['divisor'];
-			$series_error[] = $item;
-		}
-		foreach ( $quo as $item ) {
-			$item['y']      = $item['y'] / $short['divisor'];
-			$series_quota[] = $item;
-		}
-		array_unshift( $series_success, $before );
-		array_unshift( $series_error, $before );
-		array_unshift( $series_quota, $before );
-		$series_success[] = $after;
-		$series_error[]   = $after;
-		$series_quota[]   = $after;
-		$json_call        = wp_json_encode(
+		array_unshift( $series_hits, $before );
+		$series_hits[] = $after;
+		$json_call     = wp_json_encode(
 			[
 				'series' => [
 					[
-						'name' => esc_html__( 'Success', 'device-detector' ),
-						'data' => $series_success,
-					],
-					[
-						'name' => esc_html__( 'Error', 'device-detector' ),
-						'data' => $series_error,
-					],
-					[
-						'name' => esc_html__( 'Quota Error', 'device-detector' ),
-						'data' => $series_quota,
+						'name' => esc_html__( 'Hits', 'device-detector' ),
+						'data' => $series_hits,
 					],
 				],
 			]
 		);
-		$json_call        = str_replace( '"x":"new', '"x":new', $json_call );
-		$json_call        = str_replace( ')","y"', '),"y"', $json_call );
-		$json_call        = str_replace( '"null"', 'null', $json_call );
-		// Data.
-		$short     = Conversion::data_shorten( $data_max, 2, true );
-		$data_max  = (int) ceil( $data_max / $short['divisor'] );
-		$data_abbr = $short['abbreviation'];
-		foreach ( $kbin as $kb ) {
-			$kb['y']       = $kb['y'] / $short['divisor'];
-			$series_kbin[] = $kb;
-		}
-		foreach ( $kbout as $kb ) {
-			$kb['y']        = $kb['y'] / $short['divisor'];
-			$series_kbout[] = $kb;
-		}
-		array_unshift( $series_kbin, $before );
-		array_unshift( $series_kbout, $before );
-		$series_kbin[]  = $after;
-		$series_kbout[] = $after;
-		$json_data      = wp_json_encode(
-			[
-				'series' => [
-					[
-						'name' => esc_html__( 'Incoming Data', 'device-detector' ),
-						'data' => $series_kbin,
-					],
-					[
-						'name' => esc_html__( 'Outcoming Data', 'device-detector' ),
-						'data' => $series_kbout,
-					],
-				],
-			]
-		);
-		$json_data      = str_replace( '"x":"new', '"x":new', $json_data );
-		$json_data      = str_replace( ')","y"', '),"y"', $json_data );
-		$json_data      = str_replace( '"null"', 'null', $json_data );
-		// Uptime.
-		array_unshift( $series_uptime, $before );
-		$series_uptime[] = $after;
-		$json_uptime     = wp_json_encode(
-			[
-				'series' => [
-					[
-						'name' => esc_html__( 'Perceived Uptime', 'device-detector' ),
-						'data' => $series_uptime,
-					],
-				],
-			]
-		);
-		$json_uptime     = str_replace( '"x":"new', '"x":new', $json_uptime );
-		$json_uptime     = str_replace( ')","y"', '),"y"', $json_uptime );
-		$json_uptime     = str_replace( '"null"', 'null', $json_uptime );
+		$json_call     = str_replace( '"x":"new', '"x":new', $json_call );
+		$json_call     = str_replace( ')","y"', '),"y"', $json_call );
+		$json_call     = str_replace( '"null"', 'null', $json_call );
+
 		// Rendering.
 		if ( 4 < $this->duration ) {
 			if ( 1 === $this->duration % 2 ) {
@@ -1054,44 +936,6 @@ class Analytics {
 		$result .= '  axisY: {type: Chartist.AutoScaleAxis, low: 0, high: ' . $call_max . ', labelInterpolationFnc: function (value) {return value.toString() + " ' . $call_abbr . '";}},';
 		$result .= ' };';
 		$result .= ' new Chartist.Line("#podd-chart-calls", call_data' . $uuid . ', call_option' . $uuid . ');';
-		$result .= '});';
-		$result .= '</script>';
-		$result .= '<div class="podd-multichart-item" id="podd-chart-data">';
-		$result .= '</div>';
-		$result .= '<script>';
-		$result .= 'jQuery(function ($) {';
-		$result .= ' var data_data' . $uuid . ' = ' . $json_data . ';';
-		$result .= ' var data_tooltip' . $uuid . ' = Chartist.plugins.tooltip({percentage: false, appendToBody: true});';
-		$result .= ' var data_option' . $uuid . ' = {';
-		$result .= '  height: 300,';
-		$result .= '  fullWidth: true,';
-		$result .= '  showArea: true,';
-		$result .= '  showLine: true,';
-		$result .= '  showPoint: false,';
-		$result .= '  plugins: [data_tooltip' . $uuid . '],';
-		$result .= '  axisX: {type: Chartist.FixedScaleAxis, divisor:' . $divisor . ', labelInterpolationFnc: function (value) {return moment(value).format("YYYY-MM-DD");}},';
-		$result .= '  axisY: {type: Chartist.AutoScaleAxis, low: 0, high: ' . $data_max . ', labelInterpolationFnc: function (value) {return value.toString() + " ' . $data_abbr . '";}},';
-		$result .= ' };';
-		$result .= ' new Chartist.Line("#podd-chart-data", data_data' . $uuid . ', data_option' . $uuid . ');';
-		$result .= '});';
-		$result .= '</script>';
-		$result .= '<div class="podd-multichart-item" id="podd-chart-uptime">';
-		$result .= '</div>';
-		$result .= '<script>';
-		$result .= 'jQuery(function ($) {';
-		$result .= ' var uptime_data' . $uuid . ' = ' . $json_uptime . ';';
-		$result .= ' var uptime_tooltip' . $uuid . ' = Chartist.plugins.tooltip({percentage: false, appendToBody: true});';
-		$result .= ' var uptime_option' . $uuid . ' = {';
-		$result .= '  height: 300,';
-		$result .= '  fullWidth: true,';
-		$result .= '  showArea: true,';
-		$result .= '  showLine: true,';
-		$result .= '  showPoint: false,';
-		$result .= '  plugins: [uptime_tooltip' . $uuid . '],';
-		$result .= '  axisX: {scaleMinSpace: 100, type: Chartist.FixedScaleAxis, divisor:' . $divisor . ', labelInterpolationFnc: function (value) {return moment(value).format("YYYY-MM-DD");}},';
-		$result .= '  axisY: {type: Chartist.AutoScaleAxis, labelInterpolationFnc: function (value) {return value.toString() + " %";}},';
-		$result .= ' };';
-		$result .= ' new Chartist.Line("#podd-chart-uptime", uptime_data' . $uuid . ', uptime_option' . $uuid . ');';
 		$result .= '});';
 		$result .= '</script>';
 		$result .= '</div>';
@@ -1434,12 +1278,8 @@ class Analytics {
 	 */
 	public function get_main_chart() {
 		if ( 1 < $this->duration ) {
-			$help_calls  = esc_html__( 'Responses types distribution.', 'device-detector' );
-			$help_data   = esc_html__( 'Data volume distribution.', 'device-detector' );
-			$help_uptime = esc_html__( 'Uptime variation.', 'device-detector' );
+			$help_calls  = esc_html__( 'Hits variation.', 'device-detector' );
 			$detail      = '<span class="podd-chart-button not-ready left" id="podd-chart-button-calls" data-position="left" data-tooltip="' . $help_calls . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'hash', 'none', '#73879C' ) . '" /></span>';
-			$detail     .= '&nbsp;&nbsp;&nbsp;<span class="podd-chart-button not-ready left" id="podd-chart-button-data" data-position="left" data-tooltip="' . $help_data . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'link-2', 'none', '#73879C' ) . '" /></span>&nbsp;&nbsp;&nbsp;';
-			$detail     .= '<span class="podd-chart-button not-ready left" id="podd-chart-button-uptime" data-position="left" data-tooltip="' . $help_uptime . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'activity', 'none', '#73879C' ) . '" /></span>';
 			$result      = '<div class="podd-row">';
 			$result     .= '<div class="podd-box podd-box-full-line">';
 			$result     .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Metrics Variations', 'device-detector' ) . '<span class="podd-module-more">' . $detail . '</span></span></div>';
@@ -1584,6 +1424,81 @@ class Analytics {
 		$result .= $this->get_refresh_script(
 			[
 				'query'   => 'top-oses',
+				'queried' => 5,
+			]
+		);
+		return $result;
+	}
+
+	/**
+	 * Get the simple top oses box.
+	 *
+	 * @return string  The box ready to print.
+	 * @since    1.0.0
+	 */
+	public function get_simpletop_os_box() {
+		if ( 'browser' === $this->type ) {
+			$position = 'right';
+		} else {
+			$position = 'left';
+		}
+		$result  = '<div class="podd-50-module-' . $position . '">';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top OS', 'device-detector' ) . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-top-oses">' . $this->get_graph_placeholder( 200 ) . '</div>';
+		$result .= '</div>';
+		$result .= $this->get_refresh_script(
+			[
+				'query'   => 'top-oses',
+				'queried' => 5,
+			]
+		);
+		return $result;
+	}
+
+	/**
+	 * Get the simple top browser box.
+	 *
+	 * @return string  The box ready to print.
+	 * @since    1.0.0
+	 */
+	public function get_simpletop_browser_box() {
+		if ( 'os' === $this->type || 'device' === $this->type ) {
+			$position = 'right';
+		} else {
+			$position = 'left';
+		}
+		$result  = '<div class="podd-50-module-' . $position . '">';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Browser', 'device-detector' ) . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-top-browsers">' . $this->get_graph_placeholder( 200 ) . '</div>';
+		$result .= '</div>';
+		$result .= $this->get_refresh_script(
+			[
+				'query'   => 'top-browsers',
+				'queried' => 5,
+			]
+		);
+		return $result;
+	}
+
+	/**
+	 * Get the simple top version box.
+	 *
+	 * @return string  The box ready to print.
+	 * @since    1.0.0
+	 */
+	public function get_simpletop_version_box() {
+		if ( 'browser' === $this->type || 'os' === $this->type ) {
+			$position = 'left';
+		} else {
+			$position = 'right';
+		}
+		$result  = '<div class="podd-50-module-left">';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Versions', 'device-detector' ) . '</span></div>';
+		$result .= '<div class="podd-module-content" id="podd-top-versions">' . $this->get_graph_placeholder( 200 ) . '</div>';
+		$result .= '</div>';
+		$result .= $this->get_refresh_script(
+			[
+				'query'   => 'top-versions',
 				'queried' => 5,
 			]
 		);

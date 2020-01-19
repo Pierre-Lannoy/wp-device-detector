@@ -35,7 +35,7 @@ $extended_list = [ 'browsers', 'bots', 'devices', 'oses' ];
         <div class="podd-row">
 	        <?php echo $analytics->get_kpi_bar() ?>
         </div>
-		<?php if ( 'summary' === $analytics->type) { ?>
+		<?php if ( 'summary' === $analytics->type ) { ?>
             <div class="podd-row">
                 <div class="podd-box podd-box-50-50-line">
 					<?php echo $analytics->get_top_browser_box() ?>
@@ -64,10 +64,32 @@ $extended_list = [ 'browsers', 'bots', 'devices', 'oses' ];
                 </div>
             </div>
 		<?php } ?>
-		<?php if ( in_array( (string) $analytics->type, array_merge( $simple_list, $extended_list ), true ) ) { ?>
+		<?php if ( 'browser' === $analytics->type ) { ?>
             <div class="podd-row">
-                <?php echo $analytics->get_list() ?>
+                <div class="podd-box podd-box-50-50-line">
+					<?php echo $analytics->get_simpletop_version_box() ?>
+					<?php echo $analytics->get_simpletop_os_box() ?>
+                </div>
             </div>
+		<?php } ?>
+		<?php if ( 'os' === $analytics->type ) { ?>
+            <div class="podd-row">
+                <div class="podd-box podd-box-50-50-line">
+					<?php echo $analytics->get_simpletop_version_box() ?>
+					<?php echo $analytics->get_simpletop_browser_box() ?>
+                </div>
+            </div>
+		<?php } ?>
+		<?php if ( 'device' === $analytics->type ) { ?>
+            <div class="podd-row">
+                <div class="podd-box podd-box-50-50-line">
+					<?php echo $analytics->get_simpletop_os_box() ?>
+					<?php echo $analytics->get_simpletop_browser_box() ?>
+                </div>
+            </div>
+		<?php } ?>
+		<?php if ( 'browser' === $analytics->type || 'os' === $analytics->type || 'device' === $analytics->type || 'bot' === $analytics->type ) { ?>
+			<?php echo $analytics->get_main_chart() ?>
 		<?php } ?>
 
 
@@ -77,7 +99,11 @@ $extended_list = [ 'browsers', 'bots', 'devices', 'oses' ];
 
 
 
-
+		<?php if ( in_array( (string) $analytics->type, array_merge( $simple_list, $extended_list ), true ) ) { ?>
+            <div class="podd-row">
+				<?php echo $analytics->get_list() ?>
+            </div>
+		<?php } ?>
 		<?php if ( 'summary' === $analytics->type && Role::SUPER_ADMIN === Role::admin_type() && 'all' === $analytics->site) { ?>
             <div class="podd-row last-row">
 	            <?php echo $analytics->get_sites_list() ?>
