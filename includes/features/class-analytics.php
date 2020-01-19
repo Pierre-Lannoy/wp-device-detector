@@ -27,6 +27,9 @@ use PODeviceDetector\Plugin\Feature\ClassTypes;
 use PODeviceDetector\Plugin\Feature\DeviceTypes;
 use PODeviceDetector\Plugin\Feature\ClientTypes;
 use PODeviceDetector\Plugin\Feature\ChannelTypes;
+use UDD\Parser\Client\Browser;
+use UDD\Parser\OperatingSystem;
+use UDD\Parser\Device\DeviceParserAbstract;
 use Feather;
 use Flagiconcss;
 use Morpheus;
@@ -147,11 +150,13 @@ class Analytics {
 	 * @param   string  $site    The site to analyze (all or ID).
 	 * @param   string  $start   The start date.
 	 * @param   string  $end     The end date.
+	 * @param   string  $id      The extended filter.
 	 * @param   boolean $reload  Is it a reload of an already displayed analytics.
 	 * @since    1.0.0
 	 */
-	public function __construct( $type, $id, $site, $start, $end, $reload ) {
-		$this->id = $id;
+	public function __construct( $type, $id, $site, $start, $end, $extended, $reload ) {
+		$this->id       = $id;
+		$this->extended = $extended;
 		if ( Role::LOCAL_ADMIN === Role::admin_type() ) {
 			$site = get_current_blog_id();
 		}
@@ -170,25 +175,25 @@ class Analytics {
 		$this->type  = $type;
 		if ( '' !== $id ) {
 			switch ( $type ) {
-				case 'domain':
-				case 'authorities':
-					$this->filter[]   = "id='" . $id . "'";
-					$this->previous[] = "id='" . $id . "'";
+				case 'browser':
+					$this->filter[]   = "client_id='" . $id . "'";
+					$this->previous[] = "client_id='" . $id . "'";
 					break;
-				case 'authority':
-				case 'endpoints':
-					$this->filter[]   = "authority='" . $id . "'";
-					$this->previous[] = "authority='" . $id . "'";
-					$this->subdomain  = Schema::get_authority( $this->filter );
+				case 'bot':
+					$this->filter[]   = "class='bot'";
+					$this->previous[] = "class='bot'";
+					$this->filter[]   = "name='" . $id . "'";
+					$this->previous[] = "name='" . $id . "'";
 					break;
-				case 'endpoint':
-					$this->filter[]   = "endpoint='" . $id . "'";
-					$this->previous[] = "endpoint='" . $id . "'";
-					$this->subdomain  = Schema::get_authority( $this->filter );
+				case 'os':
+					$this->filter[]   = "os_id='" . $id . "'";
+					$this->previous[] = "os_id='" . $id . "'";
 					break;
-				case 'country':
-					$this->filter[]   = "country='" . strtoupper( $id ) . "'";
-					$this->previous[] = "country='" . strtoupper( $id ) . "'";
+				case 'device':
+					$this->filter[]   = "brand_id='" . $id . "'";
+					$this->previous[] = "brand_id='" . $id . "'";
+					$this->filter[]   = "model='" . $extended . "'";
+					$this->previous[] = "model='" . $extended . "'";
 					break;
 				default:
 					$this->type = 'summary';
@@ -1239,34 +1244,24 @@ class Analytics {
 			case 'oses':
 				$title = esc_html__( 'OS', 'device-detector' );
 				break;
-
-
-
-			case 'authorities':
-				$title         = esc_html__( 'Domain Details', 'device-detector' );
-				$breadcrumbs[] = [
-					'title'    => esc_html__( 'Domain Summary', 'device-detector' ),
-					'subtitle' => sprintf( esc_html__( 'Return to %s', 'device-detector' ), $this->domain ),
-					'url'      => $this->get_url(
-						[ 'extra' ],
-						[
-							'type'   => 'domain',
-							'domain' => $this->domain,
-							'id'     => $this->domain,
-						]
-					),
-				];
+			case 'browser':
+				$title = esc_html__( 'Browser Details', 'device-detector' );
 				break;
-			case 'country':
-				$title    = esc_html__( 'Country', 'device-detector' );
-				$subtitle = L10n::get_country_name( $this->id );
+			case 'bot':
+				$title = esc_html__( 'Bot Details', 'device-detector' );
+				break;
+			case 'device':
+				$title = esc_html__( 'Device Details', 'device-detector' );
+				break;
+			case 'os':
+				$title = esc_html__( 'OS Details', 'device-detector' );
 				break;
 
 		}
 		$breadcrumbs[] = [
 			'title'    => esc_html__( 'Main Summary', 'device-detector' ),
 			'subtitle' => sprintf( esc_html__( 'Return to Device Detector main page.', 'device-detector' ) ),
-			'url'      => $this->get_url( [ 'id', 'type' ] ),
+			'url'      => $this->get_url( [ 'id', 'type', 'extended' ] ),
 		];
 		$result        = '<select name="sources" id="sources" class="podd-select sources" placeholder="' . $title . '" style="display:none;">';
 		foreach ( $breadcrumbs as $breadcrumb ) {
@@ -1307,7 +1302,6 @@ class Analytics {
 	 * @since    1.0.0
 	 */
 	public function get_title_bar() {
-		$subtitle = $this->id;
 		switch ( $this->type ) {
 			case 'summary':
 				$title = esc_html__( 'Main Summary', 'device-detector' );
@@ -1323,6 +1317,36 @@ class Analytics {
 			case 'bots':
 			case 'devices':
 			case 'oses':
+				$title = $this->get_title_selector();
+				break;
+			case 'browser':
+				$browsers = Browser::getAvailableBrowsers();
+				if ( array_key_exists( $this->id, $browsers ) ) {
+					$subtitle = $browsers[ $this->id ];
+				} else {
+					$subtitle = __( 'Generic', 'device-detector' );
+				}
+				$title = $this->get_title_selector();
+				break;
+			case 'bot':
+				$subtitle = $this->id;
+				$title    = $this->get_title_selector();
+				break;
+			case 'device':
+				if ( array_key_exists( $this->id, DeviceParserAbstract::$deviceBrands ) ) {
+					$subtitle = DeviceParserAbstract::$deviceBrands[ $this->id ] . ( '-' !== $this->extended ? ' ' . $this->extended : '' );
+				} else {
+					$subtitle = __( 'Generic', 'device-detector' );
+				}
+				$title = $this->get_title_selector();
+				break;
+			case 'os':
+				$os = OperatingSystem::getAvailableOperatingSystems();
+				if ( array_key_exists( $this->id, $os ) ) {
+					$subtitle = $os[ $this->id ];
+				} else {
+					$subtitle = __( 'Generic', 'device-detector' );
+				}
 				$title = $this->get_title_selector();
 				break;
 		}

@@ -70,6 +70,12 @@ class AnalyticsFactory {
 		if ( empty( $id ) ) {
 			$id = '';
 		}
+		if ( ! ( $extended = filter_input( INPUT_GET, 'extended' ) ) ) {
+			$extended = filter_input( INPUT_POST, 'extended' );
+		}
+		if ( empty( $extended ) ) {
+			$extended = '-';
+		}
 		if ( ! ( $site = filter_input( INPUT_GET, 'site' ) ) ) {
 			$site = filter_input( INPUT_POST, 'site' );
 		}
@@ -98,7 +104,7 @@ class AnalyticsFactory {
 			$start = $edatetime->format( 'Y-m-d' );
 			$end   = $sdatetime->format( 'Y-m-d' );
 		}
-		return new Analytics( $type, $id, $site, $start, $end, $reload );
+		return new Analytics( $type, $id, $site, $start, $end, $extended, $reload );
 	}
 
 }
