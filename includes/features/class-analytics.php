@@ -173,31 +173,59 @@ class Analytics {
 		$this->start = $start;
 		$this->end   = $end;
 		$this->type  = $type;
-		if ( '' !== $id ) {
-			switch ( $type ) {
-				case 'browser':
-					$this->filter[]   = "client_id='" . $id . "'";
-					$this->previous[] = "client_id='" . $id . "'";
-					break;
-				case 'bot':
-					$this->filter[]   = "class='bot'";
-					$this->previous[] = "class='bot'";
-					$this->filter[]   = "name='" . $id . "'";
-					$this->previous[] = "name='" . $id . "'";
-					break;
-				case 'os':
-					$this->filter[]   = "os_id='" . $id . "'";
-					$this->previous[] = "os_id='" . $id . "'";
-					break;
-				case 'device':
-					$this->filter[]   = "brand_id='" . $id . "'";
-					$this->previous[] = "brand_id='" . $id . "'";
-					$this->filter[]   = "model='" . $extended . "'";
-					$this->previous[] = "model='" . $extended . "'";
-					break;
-				default:
-					$this->type = 'summary';
-			}
+		switch ( $type ) {
+			case 'browsers':
+				$this->filter[]   = "client='browser'";
+				$this->previous[] = "client='browser'";
+				break;
+			case 'browser':
+				$this->filter[]   = "client_id='" . $id . "'";
+				$this->previous[] = "client_id='" . $id . "'";
+				break;
+			case 'bots':
+				$this->filter[]   = "class='bot'";
+				$this->previous[] = "class='bot'";
+				break;
+			case 'bot':
+				$this->filter[]   = "class='bot'";
+				$this->previous[] = "class='bot'";
+				$this->filter[]   = "name='" . $id . "'";
+				$this->previous[] = "name='" . $id . "'";
+				break;
+			case 'oses':
+				$this->filter[]   = "os_id<>'-'";
+				$this->previous[] = "os_id<>'-'";
+				break;
+			case 'os':
+				$this->filter[]   = "os_id='" . $id . "'";
+				$this->previous[] = "os_id='" . $id . "'";
+				break;
+			case 'devices':
+				$this->filter[]   = "brand_id<>'-'";
+				$this->previous[] = "brand_id<>'-'";
+				break;
+			case 'device':
+				$this->filter[]   = "brand_id='" . $id . "'";
+				$this->previous[] = "brand_id='" . $id . "'";
+				$this->filter[]   = "model='" . $extended . "'";
+				$this->previous[] = "model='" . $extended . "'";
+				break;
+			case 'libraries':
+				$this->filter[]   = "client='library'";
+				$this->previous[] = "client='library'";
+				break;
+			case 'applications':
+				$this->filter[]   = "client='mobile-app'";
+				$this->previous[] = "client='mobile-app'";
+				break;
+			case 'feeds':
+				$this->filter[]   = "client='feed-reader'";
+				$this->previous[] = "client='feed-reader'";
+				break;
+			case 'medias':
+				$this->filter[]   = "client='media-player'";
+				$this->previous[] = "client='media-player'";
+				break;
 		}
 		$this->timezone = Timezone::network_get();
 		$datetime       = new \DateTime( 'now', $this->timezone );
@@ -861,84 +889,91 @@ class Analytics {
 		$call_max   = 0;
 		$hits       = [];
 		$start      = '';
-		foreach ( $data_total as $timestamp => $row ) {
-			if ( '' === $start ) {
-				$start = $timestamp;
+		if ( 0 < count( $data_total ) ) {
+			foreach ( $data_total as $timestamp => $row ) {
+				if ( '' === $start ) {
+					$start = $timestamp;
+				}
+				$ts  = 'new Date(' . (string) strtotime( $timestamp ) . '000)';
+				$val = $row['sum_hit'];
+				if ( $val > $call_max ) {
+					$call_max = $val;
+				}
+				$hits[] = [
+					'x' => $ts,
+					'y' => $val,
+				];
 			}
-			$ts  = 'new Date(' . (string) strtotime( $timestamp ) . '000)';
-			$val = $row['sum_hit'];
-			if ( $val > $call_max ) {
-				$call_max = $val;
-			}
-			$hits[] = [
-				'x' => $ts,
-				'y' => $val,
+			$before = [
+				'x' => 'new Date(' . (string) ( strtotime( $start ) - 86400 ) . '000)',
+				'y' => 'null',
 			];
-		}
-		$before = [
-			'x' => 'new Date(' . (string) ( strtotime( $start ) - 86400 ) . '000)',
-			'y' => 'null',
-		];
-		$after  = [
-			'x' => 'new Date(' . (string) ( strtotime( $timestamp ) + 86400 ) . '000)',
-			'y' => 'null',
-		];
-		// Hits.
-		$short       = Conversion::number_shorten( $call_max, 2, true );
-		$call_max    = 0.5 + floor( $call_max / $short['divisor'] );
-		$call_abbr   = $short['abbreviation'];
-		$series_hits = [];
-		foreach ( $hits as $item ) {
-			$item['y']     = $item['y'] / $short['divisor'];
-			$series_hits[] = $item;
-		}
-		array_unshift( $series_hits, $before );
-		$series_hits[] = $after;
-		$json_call     = wp_json_encode(
-			[
-				'series' => [
-					[
-						'name' => esc_html__( 'Hits', 'device-detector' ),
-						'data' => $series_hits,
-					],
-				],
-			]
-		);
-		$json_call     = str_replace( '"x":"new', '"x":new', $json_call );
-		$json_call     = str_replace( ')","y"', '),"y"', $json_call );
-		$json_call     = str_replace( '"null"', 'null', $json_call );
-
-		// Rendering.
-		if ( 4 < $this->duration ) {
-			if ( 1 === $this->duration % 2 ) {
-				$divisor = 6;
-			} else {
-				$divisor = 5;
+			$after  = [
+				'x' => 'new Date(' . (string) ( strtotime( $timestamp ) + 86400 ) . '000)',
+				'y' => 'null',
+			];
+			// Hits.
+			$short       = Conversion::number_shorten( $call_max, 2, true );
+			$call_max    = 0.5 + floor( $call_max / $short['divisor'] );
+			$call_abbr   = $short['abbreviation'];
+			$series_hits = [];
+			foreach ( $hits as $item ) {
+				$item['y']     = $item['y'] / $short['divisor'];
+				$series_hits[] = $item;
 			}
+			array_unshift( $series_hits, $before );
+			$series_hits[] = $after;
+			$json_call     = wp_json_encode(
+				[
+					'series' => [
+						[
+							'name' => esc_html__( 'Hits', 'device-detector' ),
+							'data' => $series_hits,
+						],
+					],
+				]
+			);
+			$json_call     = str_replace( '"x":"new', '"x":new', $json_call );
+			$json_call     = str_replace( ')","y"', '),"y"', $json_call );
+			$json_call     = str_replace( '"null"', 'null', $json_call );
+
+			// Rendering.
+			if ( 4 < $this->duration ) {
+				if ( 1 === $this->duration % 2 ) {
+					$divisor = 6;
+				} else {
+					$divisor = 5;
+				}
+			} else {
+				$divisor = $this->duration + 1;
+			}
+			$result  = '<div class="podd-multichart-handler">';
+			$result .= '<div class="podd-multichart-item active" id="podd-chart-calls">';
+			$result .= '</div>';
+			$result .= '<script>';
+			$result .= 'jQuery(function ($) {';
+			$result .= ' var call_data' . $uuid . ' = ' . $json_call . ';';
+			$result .= ' var call_tooltip' . $uuid . ' = Chartist.plugins.tooltip({percentage: false, appendToBody: true});';
+			$result .= ' var call_option' . $uuid . ' = {';
+			$result .= '  height: 300,';
+			$result .= '  fullWidth: true,';
+			$result .= '  showArea: true,';
+			$result .= '  showLine: true,';
+			$result .= '  showPoint: false,';
+			$result .= '  plugins: [call_tooltip' . $uuid . '],';
+			$result .= '  axisX: {scaleMinSpace: 100, type: Chartist.FixedScaleAxis, divisor:' . $divisor . ', labelInterpolationFnc: function (value) {return moment(value).format("YYYY-MM-DD");}},';
+			$result .= '  axisY: {type: Chartist.AutoScaleAxis, low: 0, high: ' . $call_max . ', labelInterpolationFnc: function (value) {return value.toString() + " ' . $call_abbr . '";}},';
+			$result .= ' };';
+			$result .= ' new Chartist.Line("#podd-chart-calls", call_data' . $uuid . ', call_option' . $uuid . ');';
+			$result .= '});';
+			$result .= '</script>';
+			$result .= '</div>';
 		} else {
-			$divisor = $this->duration + 1;
+			$result  = '<div class="podd-multichart-handler">';
+			$result .= '<div class="podd-multichart-item active" id="podd-chart-calls">';
+			$result .= $this->get_graph_placeholder_nodata( 274 );
+			$result .= '</div>';
 		}
-		$result  = '<div class="podd-multichart-handler">';
-		$result .= '<div class="podd-multichart-item active" id="podd-chart-calls">';
-		$result .= '</div>';
-		$result .= '<script>';
-		$result .= 'jQuery(function ($) {';
-		$result .= ' var call_data' . $uuid . ' = ' . $json_call . ';';
-		$result .= ' var call_tooltip' . $uuid . ' = Chartist.plugins.tooltip({percentage: false, appendToBody: true});';
-		$result .= ' var call_option' . $uuid . ' = {';
-		$result .= '  height: 300,';
-		$result .= '  fullWidth: true,';
-		$result .= '  showArea: true,';
-		$result .= '  showLine: true,';
-		$result .= '  showPoint: false,';
-		$result .= '  plugins: [call_tooltip' . $uuid . '],';
-		$result .= '  axisX: {scaleMinSpace: 100, type: Chartist.FixedScaleAxis, divisor:' . $divisor . ', labelInterpolationFnc: function (value) {return moment(value).format("YYYY-MM-DD");}},';
-		$result .= '  axisY: {type: Chartist.AutoScaleAxis, low: 0, high: ' . $call_max . ', labelInterpolationFnc: function (value) {return value.toString() + " ' . $call_abbr . '";}},';
-		$result .= ' };';
-		$result .= ' new Chartist.Line("#podd-chart-calls", call_data' . $uuid . ', call_option' . $uuid . ');';
-		$result .= '});';
-		$result .= '</script>';
-		$result .= '</div>';
 		return [ 'podd-main-chart' => $result ];
 	}
 
@@ -1146,6 +1181,7 @@ class Analytics {
 	 * @since    1.0.0
 	 */
 	public function get_title_bar() {
+		$subtitle = '';
 		switch ( $this->type ) {
 			case 'summary':
 				$title = esc_html__( 'Main Summary', 'device-detector' );
@@ -1765,6 +1801,17 @@ class Analytics {
 	 */
 	private function get_graph_placeholder( $height ) {
 		return '<p style="text-align:center;line-height:' . $height . 'px;"><img style="width:40px;vertical-align:middle;" src="' . PODD_ADMIN_URL . 'medias/bars.svg" /></p>';
+	}
+
+	/**
+	 * Get a placeholder for graph with no data.
+	 *
+	 * @param   integer $height The height of the placeholder.
+	 * @return string  The placeholder, ready to print.
+	 * @since    1.0.0
+	 */
+	private function get_graph_placeholder_nodata( $height ) {
+		return '<p style="color:#73879C;text-align:center;line-height:' . $height . 'px;">' . esc_html__( 'No Data', 'device-detector' ) . '</p>';
 	}
 
 	/**
