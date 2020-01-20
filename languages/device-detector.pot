@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Device Detector\n"
-"POT-Creation-Date: 2020-01-20 19:10+0100\n"
+"POT-Creation-Date: 2020-01-20 21:13+0100\n"
 "PO-Revision-Date: 2019-07-08 14:07+0200\n"
 "Last-Translator: Pierre Lannoy <pierre@lannoy.fr>\n"
 "Language-Team: Pierre Lannoy <pierre@lannoy.fr>\n"
@@ -36,7 +36,7 @@ msgstr ""
 
 #: admin/class-device-detector-admin.php:111
 #: admin/class-device-detector-admin.php:128
-#: admin/partials/device-detector-admin-settings-main.php:102
+#: admin/partials/device-detector-admin-settings-main.php:103
 #: includes/features/class-analytics.php:1121
 msgid "Devices"
 msgstr ""
@@ -336,41 +336,20 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
-#: admin/partials/device-detector-admin-settings-main.php:63
+#: admin/partials/device-detector-admin-settings-main.php:64
 msgid "WordPress core"
 msgstr ""
 
-#: admin/partials/device-detector-admin-settings-main.php:76
+#: admin/partials/device-detector-admin-settings-main.php:77
 msgid "CSS"
 msgstr ""
 
-#: admin/partials/device-detector-admin-settings-main.php:89
+#: admin/partials/device-detector-admin-settings-main.php:90
 msgid "About"
 msgstr ""
 
 #: admin/partials/device-detector-admin-settings-options.php:31
 msgid "Reset to Defaults"
-msgstr ""
-
-#: admin/partials/device-detector-admin-tools-lines.php:15
-msgid "Network Warm-Up"
-msgstr ""
-
-#: admin/partials/device-detector-admin-tools-lines.php:17
-msgid "Site Warm-Up"
-msgstr ""
-
-#: admin/partials/device-detector-admin-tools-lines.php:23
-msgid "Number of files to display"
-msgstr ""
-
-#: admin/partials/device-detector-admin-tools-lines.php:29
-#: includes/features/class-analytics.php:1939
-msgid "Apply"
-msgstr ""
-
-#: admin/partials/device-detector-admin-tools-lines.php:33
-msgid "Site Invalidation"
 msgstr ""
 
 #: includes/features/class-analytics.php:397
@@ -640,6 +619,10 @@ msgstr ""
 
 #: includes/features/class-analytics.php:1939
 msgid "Cancel"
+msgstr ""
+
+#: includes/features/class-analytics.php:1939
+msgid "Apply"
 msgstr ""
 
 #: includes/features/class-analytics.php:1941
