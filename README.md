@@ -30,7 +30,7 @@ For a full list of items, characteristics and supported devices, please see the 
 
 __Device Detector__ supports multisite report delegation and per site configuration (see FAQ).
 
-Based on the amazing [Matomo](https://github.com/matomo-org/matomo) UDD, Device Detector is a free and open source plugin for WordPress.  It integrates many other free and open source works (as-is or modified). Please, see 'about' tab in the plugin settings to see the details.
+Based on the amazing [Matomo](https://github.com/matomo-org/matomo) UDD, Device Detector is a free and open source plugin for WordPress. It integrates many other free and open source works (as-is or modified). Please, see 'about' tab in the plugin settings to see the details.
 
 ## Installation
 
