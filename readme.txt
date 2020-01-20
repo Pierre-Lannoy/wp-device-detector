@@ -101,3 +101,14 @@ Please, see [full changelog](https://github.com/Pierre-Lannoy/wp-device-detector
 == Upgrade Notice ==
 
 == Screenshots ==
+
+1. Main Analytics Dashboard
+2. Browsers List
+3. Browser Details
+4. Bots List
+5. Bot Details
+6. Libraries List
+7. OS List
+8. OS Details
+9. Devices List
+10. Device Details
