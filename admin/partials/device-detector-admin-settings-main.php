@@ -33,8 +33,8 @@ $note = sprintf( __( 'Note: analytics reports are available via the <a href="%s"
 
 	<h2><?php echo esc_html( sprintf( esc_html__( '%s Settings', 'device-detector' ), PODD_PRODUCT_NAME ) ); ?></h2>
 	<?php settings_errors(); ?>
-
 	<h2 class="nav-tab-wrapper">
+		<?php if ( Role::SUPER_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() ) { ?>
 		<a href="
 		<?php
 		echo esc_url(
@@ -48,6 +48,7 @@ $note = sprintf( __( 'Note: analytics reports are available via the <a href="%s"
 		);
 		?>
 		" class="nav-tab <?php echo 'misc' === $active_tab ? 'nav-tab-active' : ''; ?>"><?php esc_html_e( 'Options', 'device-detector' ); ?></a>
+        <?php } ?>
 		<a href="
 		<?php
 		echo esc_url(
@@ -101,7 +102,6 @@ $note = sprintf( __( 'Note: analytics reports are available via the <a href="%s"
 		?>
 		" class="nav-tab <?php echo 'devices' === $active_tab ? 'nav-tab-active' : ''; ?>" style="float:right;"><?php esc_html_e( 'Devices', 'device-detector' ); ?></a>
 	</h2>
-    
 	<?php if ( 'misc' === $active_tab && ( Role::SUPER_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() ) ) { ?>
 		<?php include __DIR__ . '/device-detector-admin-settings-options.php'; ?>
 	<?php } ?>
@@ -117,8 +117,6 @@ $note = sprintf( __( 'Note: analytics reports are available via the <a href="%s"
 	<?php if ( 'devices' === $active_tab ) { ?>
 		<?php include __DIR__ . '/device-detector-admin-settings-devices.php'; ?>
 	<?php } ?>
-
-
     <p>&nbsp;</p>
     <em><?php echo $note;?></em>
 
