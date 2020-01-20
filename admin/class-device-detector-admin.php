@@ -347,7 +347,7 @@ class Device_Detector_Admin {
 				'text'        => esc_html__( 'Download and display', 'device-detector' ),
 				'id'          => 'podd_plugin_options_favicons',
 				'checked'     => Option::network_get( 'download_favicons' ),
-				'description' => esc_html__( 'If checked, Traffic will download favicons of websites to display them in reports.', 'device-detector' ) . '<br/>' . esc_html__( 'Note: This feature uses the (free) Google Favicon Service.', 'device-detector' ),
+				'description' => esc_html__( 'If checked, Device Detector will download favicons of websites to display them in reports.', 'device-detector' ) . '<br/>' . esc_html__( 'Note: This feature uses the (free) Google Favicon Service.', 'device-detector' ),
 				'full_width'  => true,
 				'enabled'     => true,
 			]
