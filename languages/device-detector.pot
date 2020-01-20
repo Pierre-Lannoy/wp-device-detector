@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Device Detector\n"
-"POT-Creation-Date: 2020-01-20 21:13+0100\n"
+"POT-Creation-Date: 2020-01-20 23:11+0100\n"
 "PO-Revision-Date: 2019-07-08 14:07+0200\n"
 "Last-Translator: Pierre Lannoy <pierre@lannoy.fr>\n"
 "Language-Team: Pierre Lannoy <pierre@lannoy.fr>\n"
@@ -495,6 +495,7 @@ msgid "View the details of all browsers."
 msgstr ""
 
 #: includes/features/class-analytics.php:1388
+#: includes/features/class-analytics.php:1507
 msgid "Top Browsers"
 msgstr ""
 
@@ -521,10 +522,6 @@ msgstr ""
 #: includes/features/class-analytics.php:1457
 #: includes/features/class-analytics.php:1482
 msgid "Top OS"
-msgstr ""
-
-#: includes/features/class-analytics.php:1507
-msgid "Top Browser"
 msgstr ""
 
 #: includes/features/class-analytics.php:1532
