@@ -1,0 +1,2227 @@
+# Translation of Plugins - Device Detector - Stable (latest release) in French (France)
+# This file is distributed under the same license as the Plugins - DecaLog - Stable (latest release) package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Plugins - Device Detector - Stable (latest release)\n"
+"POT-Creation-Date: 2020-01-20 23:11+0100\n"
+"PO-Revision-Date: 2020-01-20 23:16+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Poedit 2.2.1\n"
+
+#. translators: as in the sentence "Device Detector Settings" or "WordPress Settings"
+#: admin/class-device-detector-admin.php:88
+#: admin/partials/device-detector-admin-settings-main.php:34
+#, php-format
+msgid "%s Settings"
+msgstr "Réglages %s"
+
+#. translators: as in the sentence "Device Detector Viewer"
+#: admin/class-device-detector-admin.php:92
+#, php-format
+msgid "%s Viewer"
+msgstr "Visualiseur %s"
+
+#: admin/class-device-detector-admin.php:111
+#: admin/class-device-detector-admin.php:128
+#: admin/partials/device-detector-admin-settings-main.php:103
+#: includes/features/class-analytics.php:1121
+msgid "Devices"
+msgstr "Appareils"
+
+#: admin/class-device-detector-admin.php:139
+msgid "Plugin Features"
+msgstr "Fonctionnalités de l’extension"
+
+#: admin/class-device-detector-admin.php:140
+msgid "Plugin options"
+msgstr "Options de l’extension"
+
+#: admin/class-device-detector-admin.php:158
+msgid "Settings"
+msgstr "Réglages"
+
+#: admin/class-device-detector-admin.php:159
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: admin/class-device-detector-admin.php:173
+msgid "Support"
+msgstr "Assistance"
+
+#: admin/class-device-detector-admin.php:174
+msgid "GitHub repository"
+msgstr "dépôt GitHub"
+
+#: admin/class-device-detector-admin.php:244
+#: admin/class-device-detector-admin.php:272
+#: admin/class-device-detector-admin.php:298
+msgid "Plugin settings have been saved."
+msgstr "Les réglages ont été mis à jour."
+
+#: admin/class-device-detector-admin.php:249
+#: admin/class-device-detector-admin.php:277
+#: admin/class-device-detector-admin.php:303
+msgid "Plugin settings have not been saved. Please try again."
+msgstr "Les réglages n’ont pas été mis à jour. Veuillez réessayer."
+
+#: admin/class-device-detector-admin.php:320
+msgid "Plugin settings have been reset to defaults."
+msgstr "Le réglages ont été réinitialisées aux valeurs par défaut."
+
+#: admin/class-device-detector-admin.php:325
+msgid "Plugin settings have not been reset to defaults. Please try again."
+msgstr ""
+"Les réglages n’ont pas été réinitialisés à leurs valeurs par défaut. "
+"Veuillez réessayer."
+
+#: admin/class-device-detector-admin.php:342
+msgid "Favicons"
+msgstr "Favicons"
+
+#: admin/class-device-detector-admin.php:347
+msgid "Download and display"
+msgstr "Téléchargement et affichage"
+
+#: admin/class-device-detector-admin.php:350
+msgid ""
+"If checked, Device Detector will download favicons of websites to display "
+"them in reports."
+msgstr ""
+"Si coché, Device Detector téléchargera les favicons des sites Web pour les "
+"afficher dans les rapports."
+
+#: admin/class-device-detector-admin.php:350
+msgid "Note: This feature uses the (free) Google Favicon Service."
+msgstr ""
+"Remarque : cette fonctionnalité utilise le service Google Favicon (gratuit)."
+
+#: admin/class-device-detector-admin.php:358
+#, php-format
+msgid "Your site is currently using %s."
+msgstr "Votre site utilise actuellement %s."
+
+#: admin/class-device-detector-admin.php:361
+#, php-format
+msgid ""
+"Your site does not use any logging plugin. To log all events triggered in "
+"Device Detector, I recommend you to install the excellent (and free) %s. But "
+"it is not mandatory."
+msgstr ""
+"Votre site n’utilise aucune extension de journalisation. Pour enregistrer "
+"tous les évènements déclenchés par Device Detector, je vous recommande "
+"d’installer l’excellent (et gratuit) %s. Mais ce n’est pas obligatoire."
+
+#: admin/class-device-detector-admin.php:365
+msgid "Logging"
+msgstr "Journalisation"
+
+#: admin/class-device-detector-admin.php:376
+msgid "Resources"
+msgstr "Ressources"
+
+#: admin/class-device-detector-admin.php:381
+msgid "Use public CDN"
+msgstr "Utiliser un CDN public"
+
+#: admin/class-device-detector-admin.php:384
+msgid ""
+"If checked, Device Detector will use a public CDN (jsDelivr) to serve "
+"scripts and stylesheets."
+msgstr ""
+"Si coché, Device Detector utilisera un CDN public (jsDelivr) pour la "
+"distribution des scripts et des feuilles de style."
+
+#: admin/class-device-detector-admin.php:392
+msgid "Admin notices"
+msgstr "Avis d’administration"
+
+#: admin/class-device-detector-admin.php:397
+msgid "Display"
+msgstr "Affichage"
+
+#: admin/class-device-detector-admin.php:400
+msgid ""
+"Allows Device Detector to display admin notices throughout the admin "
+"dashboard."
+msgstr ""
+"Autoriser Device Detector à afficher les avis d’administration dans le "
+"Tableau de bord."
+
+#: admin/class-device-detector-admin.php:400
+msgid "Note: Device Detector respects DISABLE_NAG_NOTICES flag."
+msgstr "Note : Device Detector respecte l’indicateur DISABLE_NAG_NOTICES."
+
+#: admin/class-device-detector-admin.php:418
+#, php-format
+msgid "%d month"
+msgid_plural "%d months"
+msgstr[0] "%d mois"
+msgstr[1] "%d mois"
+
+#: admin/class-device-detector-admin.php:422
+#, php-format
+msgid "%d year"
+msgid_plural "%d years"
+msgstr[0] "%d an"
+msgstr[1] "%d ans"
+
+#: admin/class-device-detector-admin.php:436
+msgid "Analytics"
+msgstr "Analyse de données"
+
+#: admin/class-device-detector-admin.php:441
+msgid "Activated"
+msgstr "Activé"
+
+#: admin/class-device-detector-admin.php:444
+msgid ""
+"If checked, Device Detector will store statistics about detected devices."
+msgstr ""
+"Si coché, Device Detector enregistrera les statistiques au sujet des "
+"appareils détectés."
+
+#: admin/class-device-detector-admin.php:452
+msgid "Historical data"
+msgstr "Données d’historiques"
+
+#: admin/class-device-detector-admin.php:460
+msgid "Maximum age of data to keep for statistics."
+msgstr "Âge maximum des données à conserver pour les statistiques."
+
+#: admin/class-device-detector-admin.php:477
+msgid "Improvements"
+msgstr "Améliorations"
+
+#: admin/class-device-detector-admin.php:482
+msgid "Mobile detection"
+msgstr ""
+
+#: admin/class-device-detector-admin.php:485
+#, php-format
+msgid ""
+"If checked, the standard %s function will be improved by Device Detector."
+msgstr ""
+
+#: admin/class-device-detector-admin.php:503
+msgid "Body classes"
+msgstr "Classes pour le corps"
+
+#: admin/class-device-detector-admin.php:524
+#, php-format
+msgid ""
+"Based on these settings, the classes for this current session would be: %s."
+msgstr ""
+"Sur la base de ces réglages, les classes pour la session en cours seraient : "
+"%s."
+
+#: admin/class-device-detector-admin.php:526
+msgid "Based on these settings, no classes will be added to the body."
+msgstr "Sur la base de ces réglages, aucune classe ne sera ajoutée au corps."
+
+#: admin/partials/device-detector-admin-settings-about.php:20
+#, php-format
+msgid ""
+"This version of %s is not production-ready. It is a development preview. Use "
+"it at your own risk!"
+msgstr ""
+"Cette version de %s n’est pas destinée à être mise en production. Il s’agit "
+"d’une « development preview ». Utilisez-la à vos risques et périls !"
+
+#: admin/partials/device-detector-admin-settings-about.php:24
+#, php-format
+msgid ""
+"This version of %s is a release candidate. Although ready for production, "
+"this version is not officially supported in production environments."
+msgstr ""
+"Cette version de %s est une « release candidate ». Bien que prête pour la "
+"production, il n’y a pas d’assistance fournie pour cette version dans des "
+"conditions de production."
+
+#: admin/partials/device-detector-admin-settings-about.php:26
+#, php-format
+msgid ""
+"%1$s is a free and open source plugin for WordPress. It integrates other "
+"free and open source works (as-is or modified) like: %2$s."
+msgstr ""
+"%1$s est une extension libre et open source pour WordPress. Elle intègre de "
+"nombreuses autres œuvres libres et open source (telles quelles ou modifiées) "
+"dont : %2$s."
+
+#: admin/partials/device-detector-admin-settings-about.php:27
+msgid ""
+"All brands, icons and graphic illustrations are registered trademarks of "
+"their respective owners."
+msgstr ""
+"Toutes les marques, icônes et illustrations graphiques sont des marques "
+"déposées par leurs propriétaires respectifs."
+
+#: admin/partials/device-detector-admin-settings-about.php:35
+msgid "Disclaimer"
+msgstr "Avertissement"
+
+#: admin/partials/device-detector-admin-settings-about.php:38
+msgid "Changelog"
+msgstr "Journal des modifications"
+
+#: admin/partials/device-detector-admin-settings-devices.php:15
+#, php-format
+msgid "%1$s (engine version %2$s) allows to detect:"
+msgstr "%1$s (moteur version %2$s) permet de détecter :"
+
+#: admin/partials/device-detector-admin-settings-devices.php:20
+#: includes/features/class-analytics.php:1094
+#: includes/features/class-analytics.php:1560
+msgid "Classes"
+msgstr "Classes"
+
+#: admin/partials/device-detector-admin-settings-devices.php:22
+#: includes/features/class-analytics.php:1097
+#: includes/features/class-analytics.php:1588
+msgid "Device Types"
+msgstr "Types d’appareil"
+
+#: admin/partials/device-detector-admin-settings-devices.php:24
+#: includes/features/class-analytics.php:1100
+#: includes/features/class-analytics.php:1616
+msgid "Client Types"
+msgstr "Types de client"
+
+#: admin/partials/device-detector-admin-settings-devices.php:26
+msgid "Details"
+msgstr "Détails"
+
+#: admin/partials/device-detector-admin-settings-devices.php:27
+msgid "Operating Systems"
+msgstr "Systèmes d’exploitation"
+
+#: admin/partials/device-detector-admin-settings-devices.php:29
+#: includes/features/class-analytics.php:1115
+msgid "Browsers"
+msgstr "Navigateurs"
+
+#: admin/partials/device-detector-admin-settings-devices.php:31
+msgid "Browser Engines"
+msgstr "Moteurs de navigateur"
+
+#: admin/partials/device-detector-admin-settings-devices.php:33
+msgid "Application Libraries"
+msgstr "Bibliothèques d’applications"
+
+#: admin/partials/device-detector-admin-settings-devices.php:35
+#: includes/features/class-analytics.php:1112
+#: includes/features/class-analytics.php:1728
+msgid "Media Players"
+msgstr "Lecteur multimédia"
+
+#: admin/partials/device-detector-admin-settings-devices.php:37
+#: includes/features/class-analytics.php:1106
+#: includes/features/class-analytics.php:1672
+msgid "Mobile Applications"
+msgstr "Applications mobiles"
+
+#: admin/partials/device-detector-admin-settings-devices.php:39
+msgid "PIMs"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-devices.php:41
+#: includes/features/class-analytics.php:1109
+#: includes/features/class-analytics.php:1700
+msgid "Feed Readers"
+msgstr "Lecteurs de flux"
+
+#: admin/partials/device-detector-admin-settings-devices.php:43
+msgid "Brands"
+msgstr "Marques"
+
+#: admin/partials/device-detector-admin-settings-devices.php:45
+#: includes/features/class-analytics.php:1118
+msgid "Bots"
+msgstr ""
+
+#: admin/partials/device-detector-admin-settings-main.php:28
+#, php-format
+msgid ""
+"Note: analytics reports are available via the <a href=\"%s\">tools menu</a>."
+msgstr ""
+"Remarque : les rapports d’analyse sont disponibles via le <a href=\"%s"
+"\">menu outils</a>."
+
+#: admin/partials/device-detector-admin-settings-main.php:50
+msgid "Options"
+msgstr "Options"
+
+#: admin/partials/device-detector-admin-settings-main.php:64
+msgid "WordPress core"
+msgstr "Cœur de WordPress"
+
+#: admin/partials/device-detector-admin-settings-main.php:77
+msgid "CSS"
+msgstr "CSS"
+
+#: admin/partials/device-detector-admin-settings-main.php:90
+msgid "About"
+msgstr "À propos"
+
+#: admin/partials/device-detector-admin-settings-options.php:31
+msgid "Reset to Defaults"
+msgstr "Réinitialiser les paramètres par défaut"
+
+#: includes/features/class-analytics.php:397
+#: includes/features/class-analytics.php:399
+#: includes/features/class-analytics.php:590
+#: includes/features/class-analytics.php:668
+#: includes/features/class-analytics.php:813
+#: includes/features/class-classtypes.php:50
+#: includes/features/class-clienttypes.php:53
+#: includes/features/class-devicetypes.php:57
+msgid "Other"
+msgstr "Autre"
+
+#: includes/features/class-analytics.php:431
+#: includes/features/class-analytics.php:689
+#: includes/features/class-analytics.php:872
+#: includes/features/class-analytics.php:1814
+msgid "No Data"
+msgstr "Aucune donnée"
+
+#: includes/features/class-analytics.php:521
+#: includes/features/class-analytics.php:761
+#: includes/features/class-analytics.php:780
+#: includes/features/class-analytics.php:1207
+#: includes/features/class-analytics.php:1219
+#: includes/features/class-analytics.php:1228
+msgid "Generic"
+msgstr ""
+
+#: includes/features/class-analytics.php:669
+#: includes/features/class-analytics.php:814
+msgid "TOTAL"
+msgstr "TOTAL"
+
+#: includes/features/class-analytics.php:930
+msgid "Hits"
+msgstr ""
+
+#: includes/features/class-analytics.php:1080
+#, php-format
+msgid "%s hits"
+msgstr ""
+
+#: includes/features/class-analytics.php:1103
+#: includes/features/class-analytics.php:1644
+msgid "Libraries"
+msgstr "Bibliothèques"
+
+#: includes/features/class-analytics.php:1124
+msgid "OS"
+msgstr ""
+
+#: includes/features/class-analytics.php:1127
+msgid "Browser Details"
+msgstr "Détails du navigateur"
+
+#: includes/features/class-analytics.php:1130
+#, fuzzy
+#| msgid "Reported details"
+msgid "Bot Details"
+msgstr "Détails consignés"
+
+#: includes/features/class-analytics.php:1133
+msgid "Device Details"
+msgstr "Détails de l’appareil"
+
+#: includes/features/class-analytics.php:1136
+msgid "OS Details"
+msgstr "Détails du SE"
+
+#: includes/features/class-analytics.php:1141
+#: includes/features/class-analytics.php:1187
+msgid "Main Summary"
+msgstr "Résumé principal"
+
+#: includes/features/class-analytics.php:1142
+msgid "Return to Device Detector main page."
+msgstr "Retour à la page principale de Device Detector."
+
+#: includes/features/class-analytics.php:1165
+#: includes/features/class-analytics.php:1365
+msgid "All Sites"
+msgstr "Tous les sites"
+
+#: includes/features/class-analytics.php:1169
+#: includes/features/class-analytics.php:1171
+#, php-format
+msgid "Site ID %s"
+msgstr "Site ID %s"
+
+#: includes/features/class-analytics.php:1253
+msgid "All Classes"
+msgstr "Toutes les classes"
+
+#: includes/features/class-analytics.php:1256
+msgid "All Device Types"
+msgstr "Tous les types d'appareil"
+
+#: includes/features/class-analytics.php:1259
+msgid "All Client Types"
+msgstr "Tous les types de client"
+
+#: includes/features/class-analytics.php:1262
+msgid "All Libraries"
+msgstr "Toutes les bibliothèques"
+
+#: includes/features/class-analytics.php:1265
+msgid "All Mobile Applications"
+msgstr "Toutes les applications mobiles"
+
+#: includes/features/class-analytics.php:1268
+msgid "All Feed Readers"
+msgstr "Tous les lecteurs de flux"
+
+#: includes/features/class-analytics.php:1271
+msgid "All Media Players"
+msgstr "Tous les lecteurs multimédia"
+
+#: includes/features/class-analytics.php:1274
+msgid "All Browsers"
+msgstr "Tous les navigateurs"
+
+#: includes/features/class-analytics.php:1277
+msgid "All Bots"
+msgstr ""
+
+#: includes/features/class-analytics.php:1280
+msgid "All Devices"
+msgstr "Tous les appareils"
+
+#: includes/features/class-analytics.php:1283
+msgid "All OS"
+msgstr ""
+
+#: includes/features/class-analytics.php:1317
+msgid "Hits variation."
+msgstr ""
+
+#: includes/features/class-analytics.php:1321
+msgid "Metrics Variations"
+msgstr "Variations des métriques"
+
+#: includes/features/class-analytics.php:1386
+msgid "View the details of all browsers."
+msgstr "Voir les détails de tous les navigateurs."
+
+#: includes/features/class-analytics.php:1388
+#: includes/features/class-analytics.php:1507
+msgid "Top Browsers"
+msgstr "Top navigateurs"
+
+#: includes/features/class-analytics.php:1409
+msgid "View the details of all bots."
+msgstr ""
+
+#: includes/features/class-analytics.php:1411
+msgid "Top Bots"
+msgstr ""
+
+#: includes/features/class-analytics.php:1432
+msgid "View the details of all devices."
+msgstr "Voir les détails de toutes les appareils."
+
+#: includes/features/class-analytics.php:1434
+msgid "Top Devices"
+msgstr "Top appareils"
+
+#: includes/features/class-analytics.php:1455
+msgid "View the details of all OS."
+msgstr "Voir les détails de tous les OS."
+
+#: includes/features/class-analytics.php:1457
+#: includes/features/class-analytics.php:1482
+msgid "Top OS"
+msgstr "Top S-E"
+
+#: includes/features/class-analytics.php:1532
+msgid "Top Versions"
+msgstr "Top versions"
+
+#: includes/features/class-analytics.php:1558
+msgid "View the details of all classes."
+msgstr "Voir les détails de toutes les classes."
+
+#: includes/features/class-analytics.php:1586
+msgid "View the details of all device types."
+msgstr "Voir les détails de toutes les types d’appareil."
+
+#: includes/features/class-analytics.php:1614
+msgid "View the details of all client types."
+msgstr "Voir les détails de toutes les types de client."
+
+#: includes/features/class-analytics.php:1642
+msgid "View the details of all libraries."
+msgstr "Voir les détails de tous les lecteurs multimédia."
+
+#: includes/features/class-analytics.php:1670
+msgid "View the details of all applications."
+msgstr "Voir les détails de toutes les applications."
+
+#: includes/features/class-analytics.php:1698
+msgid "View the details of all feed-readers."
+msgstr "Voir les détails de tous les lecteurs de flux."
+
+#: includes/features/class-analytics.php:1726
+msgid "View the details of all media players."
+msgstr "Voir le détail de tous les lecteurs multimédia."
+
+#: includes/features/class-analytics.php:1751
+msgctxt "Noun - Number of hits."
+msgid "Hits Number"
+msgstr ""
+
+#: includes/features/class-analytics.php:1752
+#, fuzzy
+#| msgid "Number of lines to display"
+msgid "Number of hits."
+msgstr "Nombre de lignes à afficher"
+
+#: includes/features/class-analytics.php:1756
+msgctxt "Noun - Percentage of mobile hits."
+msgid "Mobile"
+msgstr ""
+
+#: includes/features/class-analytics.php:1757
+msgid "Ratio of hits done by mobiles."
+msgstr ""
+
+#: includes/features/class-analytics.php:1761
+msgctxt "Noun - Percentage of desktop hits"
+msgid "Desktop"
+msgstr ""
+
+#: includes/features/class-analytics.php:1762
+msgid "Ratio of hits done by desktops."
+msgstr ""
+
+#: includes/features/class-analytics.php:1766
+msgctxt "Noun - Percentage of bot hits"
+msgid "Bot"
+msgstr ""
+
+#: includes/features/class-analytics.php:1767
+msgid "Ratio of hits done by bots."
+msgstr ""
+
+#: includes/features/class-analytics.php:1771
+msgctxt "Noun - Number of distinct clients."
+msgid "Clients"
+msgstr "Clients"
+
+#: includes/features/class-analytics.php:1772
+msgid "Number of distinct clients."
+msgstr "Nombre de clients distincts."
+
+#: includes/features/class-analytics.php:1776
+msgctxt "Noun - Number of distinct engines."
+msgid "Engines"
+msgstr "Moteurs"
+
+#: includes/features/class-analytics.php:1777
+msgid "Number of distinct engines."
+msgstr "Nombre de moteurs distincts."
+
+#: includes/features/class-analytics.php:1939
+msgid "Custom Range"
+msgstr "Personnalisé"
+
+#: includes/features/class-analytics.php:1939
+msgid "Cancel"
+msgstr "Annuler"
+
+#: includes/features/class-analytics.php:1939
+msgid "Apply"
+msgstr "Appliquer"
+
+#: includes/features/class-analytics.php:1941
+msgid "Today"
+msgstr "Aujourd’hui"
+
+#: includes/features/class-analytics.php:1942
+msgid "Yesterday"
+msgstr "Hier"
+
+#: includes/features/class-analytics.php:1943
+msgid "This Month"
+msgstr "Mois en cours"
+
+#: includes/features/class-analytics.php:1944
+msgid "Last Month"
+msgstr "Mois dernier"
+
+#: includes/features/class-channeltypes.php:47
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: includes/features/class-channeltypes.php:48
+msgid "Command Line Interface"
+msgstr "Interface de ligne de commande"
+
+#: includes/features/class-channeltypes.php:49
+msgid "Cron Job"
+msgstr "Tâche planifiée"
+
+#: includes/features/class-channeltypes.php:50
+msgid "Ajax Request"
+msgstr "Requête Ajax"
+
+#: includes/features/class-channeltypes.php:51
+msgid "XML-RPC Request"
+msgstr "Requête XML-RPC"
+
+#: includes/features/class-channeltypes.php:52
+msgid "Rest API Request"
+msgstr "Requête API Rest"
+
+#: includes/features/class-channeltypes.php:53
+msgid "Atom/RDF/RSS Feed"
+msgstr "Flux Atom/RDF/RSS"
+
+#: includes/features/class-channeltypes.php:54
+msgid "Site Backend"
+msgstr "Interface d’administration du site"
+
+#: includes/features/class-channeltypes.php:55
+msgid "Site Frontend"
+msgstr "Interface publique du site"
+
+#: includes/features/class-classtypes.php:47
+#: includes/features/class-cssmodifier.php:58
+#: includes/features/class-detector.php:264
+msgid "Bot"
+msgstr ""
+
+#: includes/features/class-classtypes.php:48
+#: includes/features/class-detector.php:264
+msgid "Desktop"
+msgstr ""
+
+#: includes/features/class-classtypes.php:49
+#: includes/features/class-detector.php:264
+msgid "Mobile"
+msgstr "Mobile"
+
+#: includes/features/class-clienttypes.php:47
+#: includes/features/class-detector.php:270
+msgid "Browser"
+msgstr "Navigateur"
+
+#: includes/features/class-clienttypes.php:48
+msgid "Feed reader"
+msgstr "Lecteur de flux"
+
+#: includes/features/class-clienttypes.php:49
+msgid "Library"
+msgstr "Bibliothèque"
+
+#: includes/features/class-clienttypes.php:50
+msgid "Media player"
+msgstr "Lecteur multimédia"
+
+#: includes/features/class-clienttypes.php:51
+msgid "Mobile application"
+msgstr "Application mobile"
+
+#: includes/features/class-clienttypes.php:52
+msgid "Personal information manager"
+msgstr ""
+
+#: includes/features/class-cssmodifier.php:48
+msgid "Class"
+msgstr "Classe"
+
+#: includes/features/class-cssmodifier.php:50
+msgid "Device"
+msgstr "Appareil"
+
+#: includes/features/class-cssmodifier.php:52
+msgid "Client"
+msgstr "Client"
+
+#: includes/features/class-cssmodifier.php:54
+msgid "Operating system"
+msgstr "Système d’exploitation"
+
+#: includes/features/class-cssmodifier.php:56
+msgid "Brand"
+msgstr "Marque"
+
+#: includes/features/class-cssmodifier.php:60
+msgid "Capabilities"
+msgstr "Capacités"
+
+#: includes/features/class-cssmodifier.php:74
+msgid "Adds the class of the device."
+msgstr "Ajoute la classe de l'appareil."
+
+#: includes/features/class-cssmodifier.php:76
+msgid "Adds the type of the device."
+msgstr "Ajoute le type de l’appareil."
+
+#: includes/features/class-cssmodifier.php:78
+msgid "Adds the client type, engine and name used on the device."
+msgstr ""
+
+#: includes/features/class-cssmodifier.php:80
+msgid "Adds the operating system running on the device."
+msgstr "Ajoute le système d'exploitation fonctionnant sur l’appareil."
+
+#: includes/features/class-cssmodifier.php:82
+msgid "Adds the brand and model of the device."
+msgstr "Ajoute la marque et le modèle de l’appareil."
+
+#: includes/features/class-cssmodifier.php:84
+msgid "Adds the bot name."
+msgstr ""
+
+#: includes/features/class-cssmodifier.php:86
+msgid "Adds the device capabilities."
+msgstr "Ajoute les capacités de l’appareil."
+
+#: includes/features/class-cssmodifier.php:110
+#: includes/features/class-cssmodifier.php:148
+#, php-format
+msgid "Available classes: %s. If not detected, the class will be %s."
+msgstr "Classes disponibles : %s. Si non détecté, la classe sera %s."
+
+#: includes/features/class-cssmodifier.php:119
+#, php-format
+msgid "Available type classes: %s. If not detected, the class will be %s."
+msgstr "Classes de type disponibles : %s. Si non détecté, la classe sera %s."
+
+#: includes/features/class-cssmodifier.php:127
+#, php-format
+msgid "Available engine classes: %s. If not detected, the class will be %s."
+msgstr ""
+"Classes de moteur de rendu disponibles : %s. Si non détecté, la classe sera "
+"%s."
+
+#: includes/features/class-cssmodifier.php:138
+#, php-format
+msgid "Available name classes: %s. If not detected, the class will be %s."
+msgstr "Classes de nom disponibles : %s. Si non détecté, la classe sera %s."
+
+#: includes/features/class-cssmodifier.php:149
+#, php-format
+msgid ""
+"If (and only if) model is detected an extra class is added. It may be be "
+"something like %s or %s."
+msgstr ""
+
+#: includes/features/class-cssmodifier.php:157
+#, php-format
+msgid "Available classes: %s."
+msgstr "Classes disponibles : %s."
+
+#: includes/features/class-detector.php:267
+#, fuzzy
+#| msgid "Display"
+msgid "Smart Display"
+msgstr "Affichage"
+
+#: includes/features/class-detector.php:267
+#: includes/features/class-devicetypes.php:53
+msgid "Smartphone"
+msgstr "Ordiphone"
+
+#: includes/features/class-detector.php:267
+#: includes/features/class-devicetypes.php:55
+msgid "Tablet"
+msgstr "Tablette"
+
+#: includes/features/class-detector.php:267
+#: includes/features/class-devicetypes.php:56
+msgid "TV"
+msgstr "TV"
+
+#: includes/features/class-detector.php:267
+msgid "Feature Phone"
+msgstr ""
+
+#: includes/features/class-detector.php:267
+#: includes/features/class-devicetypes.php:51
+msgid "Phablet"
+msgstr ""
+
+#: includes/features/class-detector.php:267
+msgid "Portable Media Player"
+msgstr "Lecteur portable multimédia"
+
+#: includes/features/class-detector.php:267
+#: includes/features/class-devicetypes.php:47
+msgid "Camera"
+msgstr "Appareil photo"
+
+#: includes/features/class-detector.php:267
+msgid "Car Browser"
+msgstr "Navigateur de voiture"
+
+#: includes/features/class-detector.php:267
+msgid "Console"
+msgstr "Console de jeu"
+
+#: includes/features/class-detector.php:270
+msgid "PIM"
+msgstr ""
+
+#: includes/features/class-detector.php:270
+msgid "Application Library"
+msgstr "Bibliothèque d’application"
+
+#: includes/features/class-detector.php:270
+msgid "Media Player"
+msgstr "Lecteur multimédia"
+
+#: includes/features/class-detector.php:270
+msgid "Feed Reader"
+msgstr "Lecteur de flux"
+
+#: includes/features/class-detector.php:270
+msgid "Mobile Application"
+msgstr "Application mobile"
+
+#: includes/features/class-devicetypes.php:48
+msgid "Car browser"
+msgstr "Navigateur de voiture"
+
+#: includes/features/class-devicetypes.php:49
+msgid "Game console"
+msgstr "Console de jeu"
+
+#: includes/features/class-devicetypes.php:50
+msgid "Feature phone"
+msgstr ""
+
+#: includes/features/class-devicetypes.php:52
+msgid "Portable media player"
+msgstr "Lecteur portable multimédia"
+
+#: includes/features/class-devicetypes.php:54
+#, fuzzy
+#| msgid "display"
+msgid "Smart display"
+msgstr "affichage"
+
+#: includes/libraries/class-libraries.php:67
+#: includes/libraries/class-libraries.php:78
+#: includes/libraries/class-libraries.php:101
+#: includes/libraries/class-libraries.php:208
+#: includes/libraries/class-libraries.php:216
+#: includes/libraries/class-libraries.php:223
+#: includes/libraries/class-libraries.php:230
+#, php-format
+msgid "%s & contributors"
+msgstr "%s et contributeurs"
+
+#: includes/libraries/class-libraries.php:112
+#, php-format
+msgid "%s, %s & contributors"
+msgstr "%s, %s et contributeurs"
+
+#: includes/libraries/class-libraries.php:149
+msgid "MIT license"
+msgstr "Licence MIT"
+
+#: includes/libraries/class-libraries.php:152
+msgid "Apache license, version 2.0"
+msgstr "Licence Apache, version 2.0"
+
+#: includes/libraries/class-libraries.php:155
+msgid "GPL-2.0 license"
+msgstr "Licence GPL-2.0"
+
+#: includes/libraries/class-libraries.php:158
+msgid "GPL-3.0 license"
+msgstr "Licence GPL-3.0"
+
+#: includes/libraries/class-libraries.php:161
+msgid "LGPL-3.0 license"
+msgstr "Licence LGPL-3.0"
+
+#: includes/libraries/class-libraries.php:164
+msgid "unknown license"
+msgstr "licence inconnue"
+
+#. translators: as in the sentence "Product W version X by author Y (license Z)"
+#: includes/libraries/class-libraries.php:240
+#, php-format
+msgid "<a href=\"%1$s\">%2$s %3$s</a>%4$s by %5$s (%6$s)"
+msgstr "<a href=\"%1$s\">%2$s %3$s</a>%4$s par %5$s (%6$s)"
+
+#: includes/plugin/class-updater.php:43
+#, php-format
+msgid "%1$s has been correctly installed."
+msgstr "%1$s a été correctement installé."
+
+#: includes/plugin/class-updater.php:47
+#, php-format
+msgid "%1$s has been correctly updated from version %2$s to version %3$s."
+msgstr ""
+"%1$s a été correctement mis à jour de la version %2$s à la version %3$s."
+
+#: includes/plugin/class-updater.php:50
+#, php-format
+msgid "See <a href=\"%s\">what's new</a>."
+msgstr "Voir les <a href=\"%s\">nouveautés</a>."
+
+#: includes/plugin/class-updater.php:97
+msgid "Sorry, unable to find or read changelog file."
+msgstr ""
+"Désolé, il est impossible de trouver ou de lire le journal des modifications."
+
+#: includes/system/class-conversion.php:46
+msgctxt "Abbreviation - Stands for \"thousand\"."
+msgid "K"
+msgstr "K"
+
+#: includes/system/class-conversion.php:47
+msgctxt "Abbreviation - Stands for \"million\"."
+msgid "M"
+msgstr "M"
+
+#: includes/system/class-conversion.php:48
+msgctxt "Abbreviation - Stands for \"billion\"."
+msgid "B"
+msgstr "G"
+
+#: includes/system/class-conversion.php:49
+msgctxt "Abbreviation - Stands for \"trillion\"."
+msgid "T"
+msgstr "T"
+
+#: includes/system/class-conversion.php:50
+msgctxt "Abbreviation - Stands for \"quadrillion\"."
+msgid "Qa"
+msgstr "Qa"
+
+#: includes/system/class-conversion.php:51
+msgctxt "Abbreviation - Stands for \"quintillion\"."
+msgid "Qi"
+msgstr "Qi"
+
+#: includes/system/class-conversion.php:82
+msgctxt "Abbreviation - Stands for \"byte\"."
+msgid "B"
+msgstr "o"
+
+#: includes/system/class-conversion.php:83
+msgctxt "Abbreviation - Stands for \"kilobytes\"."
+msgid "KB"
+msgstr "Ko"
+
+#: includes/system/class-conversion.php:84
+msgctxt "Abbreviation - Stands for \"megabytes\"."
+msgid "MB"
+msgstr "Mo"
+
+#: includes/system/class-conversion.php:85
+msgctxt "Abbreviation - Stands for \"gigabytes\"."
+msgid "GB"
+msgstr "Go"
+
+#: includes/system/class-conversion.php:86
+msgctxt "Abbreviation - Stands for \"terabytes\"."
+msgid "TB"
+msgstr "To"
+
+#: includes/system/class-conversion.php:87
+msgctxt "Abbreviation - Stands for \"petabytes\"."
+msgid "PB"
+msgstr "Po"
+
+#: includes/system/class-conversion.php:88
+msgctxt "Abbreviation - Stands for \"exabytes\"."
+msgid "EB"
+msgstr "Eo"
+
+#: includes/system/class-date.php:70 includes/system/class-date.php:85
+#, php-format
+msgid "%s ago"
+msgstr "il y a %s"
+
+#: includes/system/class-date.php:72
+msgid "currently"
+msgstr "actuellement"
+
+#: includes/system/class-date.php:87
+#, php-format
+msgid "in %s"
+msgstr "dans %s"
+
+#: includes/system/class-date.php:120
+msgctxt "Unit abbreviation - Stands for \"second\"."
+msgid "sec"
+msgstr "sec."
+
+#: includes/system/class-date.php:121
+msgctxt "Unit abbreviation - Stands for \"minute\"."
+msgid "min"
+msgstr "min."
+
+#: includes/system/class-date.php:122
+msgctxt "Unit abbreviation - Stands for \"hour\"."
+msgid "hr"
+msgstr "h"
+
+#: includes/system/class-date.php:126
+msgid "second"
+msgid_plural "seconds"
+msgstr[0] "seconde"
+msgstr[1] "secondes"
+
+#: includes/system/class-date.php:127
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "minute"
+msgstr[1] "minutes"
+
+#: includes/system/class-date.php:128
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "heure"
+msgstr[1] "heures"
+
+#: includes/system/class-environment.php:203
+msgid "log"
+msgstr "journal"
+
+#: includes/system/class-environment.php:208
+msgid "display"
+msgstr "affichage"
+
+#: includes/system/class-environment.php:214
+msgid "Debug enabled"
+msgstr "Débogage activé"
+
+#: includes/system/class-environment.php:214
+msgid "Debug disabled"
+msgstr "Débogage désactivé"
+
+#: includes/system/class-sitehealth.php:122
+msgid "Object cache"
+msgstr "Cache d’objets"
+
+#: includes/system/class-sitehealth.php:130
+msgid "OPcache settings and status"
+msgstr "Réglages et état OPcache"
+
+#: includes/system/class-sitehealth.php:147
+msgid "Plugin diagnostic information"
+msgstr "Informations de diagnostique de l’extension"
+
+#: includes/system/class-sitehealth.php:164
+msgid "Object Cache Test"
+msgstr "Test de cache d’objets"
+
+#: includes/system/class-sitehealth.php:182
+msgid "You should use object caching"
+msgstr "Vous devriez utiliser la mise en cache d’objets"
+
+#: includes/system/class-sitehealth.php:185
+#: includes/system/class-sitehealth.php:197
+#: includes/system/class-sitehealth.php:209
+#: includes/system/class-sitehealth.php:251
+#: includes/system/class-sitehealth.php:263
+msgid "Performance"
+msgstr "Performance"
+
+#: includes/system/class-sitehealth.php:188
+msgid "Your site uses database transient."
+msgstr "Votre site utilise des Transients stockés en base de données."
+
+#: includes/system/class-sitehealth.php:188
+#: includes/system/class-sitehealth.php:200
+msgid ""
+"You should consider using a dedicated object caching mechanism, like "
+"Memcached or Redis, to improve your site's speed."
+msgstr ""
+"Vous devriez envisager d’utiliser un mécanisme dédié de mise en cache "
+"d’objets, comme Memcached ou Redis, pour améliorer la vitesse de votre site."
+
+#: includes/system/class-sitehealth.php:194
+msgid "You should improve object caching"
+msgstr "Vous devriez améliorer la mise en cache d’objets"
+
+#: includes/system/class-sitehealth.php:200
+msgid ""
+"Your site uses APCu, but only a few plugins know how to take advantage of it."
+msgstr ""
+"Votre site utilise APCu, mais seules quelques extensions savent comment en "
+"profiter."
+
+#: includes/system/class-sitehealth.php:206
+msgid "Your site uses object caching"
+msgstr "Votre site utilise la mise en cache d’objets"
+
+#: includes/system/class-sitehealth.php:212
+msgid "Your site uses a dedicated object caching mechanism. That's great."
+msgstr ""
+"Votre site utilise un mécanisme dédié de mise cache d’objets. C'est super."
+
+#: includes/system/class-sitehealth.php:231
+msgid "OPcache Test"
+msgstr "Test OPcache"
+
+#: includes/system/class-sitehealth.php:248
+msgid "Your site uses OPcache"
+msgstr "Votre site utilise OPcache"
+
+#: includes/system/class-sitehealth.php:254
+msgid "Your site uses OPcache to improve PHP performance. That's great."
+msgstr ""
+"Votre site utilise OPcache pour améliorer les performances de PHP. C’est "
+"super."
+
+#: includes/system/class-sitehealth.php:260
+msgid "You should use OPcache"
+msgstr "Vous devriez utiliser OPcache"
+
+#: includes/system/class-sitehealth.php:266
+msgid ""
+"You should consider using OPcache. It would improve PHP performance of your "
+"site."
+msgstr ""
+"Vous devriez envisager d’utiliser OPcache. Cela permettrait d’améliorer les "
+"performances PHP de votre site."
+
+#: includes/system/class-sitehealth.php:285
+msgid "I18n Extension Test"
+msgstr "Test d’extension I18n"
+
+#: includes/system/class-sitehealth.php:302
+msgid "Your site uses Intl extension"
+msgstr "Votre site utilise l’extension Intl"
+
+#: includes/system/class-sitehealth.php:305
+#: includes/system/class-sitehealth.php:317
+msgid "Internationalization"
+msgstr "Internationalisation"
+
+#: includes/system/class-sitehealth.php:308
+msgid ""
+"Your site uses PHP Intl extension to improve localization features. That's "
+"great."
+msgstr ""
+"Votre site utilise l’extension PHP Intl pour améliorer les fonctionnalités "
+"de traduction. C’est super."
+
+#: includes/system/class-sitehealth.php:314
+msgid "You should use Intl extension"
+msgstr "Vous devriez utiliser l’extension Intl"
+
+#: includes/system/class-sitehealth.php:320
+msgid ""
+"You should consider using PHP Intl extension. It would improve localization "
+"features on your site."
+msgstr ""
+"Vous devriez envisager d’utiliser l’extension PHP Intl. Cela permettrait "
+"d’améliorer les fonctionnalités de traduction sur votre site."
+
+#. Plugin Name of the plugin/theme
+msgid "Device Detector"
+msgstr "Device Detector"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/Pierre-Lannoy/wp-device-detector"
+msgstr "https://github.com/Pierre-Lannoy/wp-device-detector"
+
+#. Description of the plugin/theme
+msgid ""
+"Full featured analytics reporting and management tool that detects all "
+"devices accessing your WordPress site."
+msgstr ""
+"Outil complet de rapports statistiques et de détection de tous les appareils "
+"accédant à votre site WordPress."
+
+#. Author of the plugin/theme
+msgid "Pierre Lannoy"
+msgstr "Pierre Lannoy"
+
+#. Author URI of the plugin/theme
+msgid "https://pierre.lannoy.fr"
+msgstr "https://pierre.lannoy.fr"
+
+#, fuzzy
+#~| msgctxt "WordPress multisite"
+#~| msgid "Network Admin"
+#~ msgid "Network Warm-Up"
+#~ msgstr "Administrateur du réseau"
+
+#, fuzzy
+#~| msgid "Number of lines to display"
+#~ msgid "Number of files to display"
+#~ msgstr "Nombre de lignes à afficher"
+
+#~ msgid "Loggers list"
+#~ msgstr "Liste des journaliseurs"
+
+#~ msgid "Deleted user"
+#~ msgstr "Utilisateur supprimé"
+
+#~ msgid "An events log sent to Solawinds Loggly service."
+#~ msgstr "Un journal d’évènements envoyé au service Solawinds Loggly."
+
+#~ msgid "Loggly"
+#~ msgstr "Loggly"
+
+#~ msgid "The token of the Logentries/insightOps log."
+#~ msgstr "Le jeton du journal Logentries/insightOps.."
+
+#~ msgid "Log token"
+#~ msgstr "Jeton du journal"
+
+#~ msgid "USA"
+#~ msgstr "États-Unis"
+
+#~ msgid "Europe"
+#~ msgstr "Europe"
+
+#~ msgid "The region of remote host receiving messages."
+#~ msgstr "La région de l’hôte distant recevant les messages."
+
+#~ msgid "Log endpoint region"
+#~ msgstr "Région du journal"
+
+#~ msgid "An events log sent to Logentries & insightOps service."
+#~ msgstr "Un journal d’évènements envoyé au service Logentries & insightOps."
+
+#~ msgid "Logentries & insightOps"
+#~ msgstr "Logentries & insightOps"
+
+#~ msgid "Event code and message."
+#~ msgstr "Code et message de l’évènement."
+
+#~ msgid "Content"
+#~ msgstr "Contenu"
+
+#~ msgid "Allows to log the full PHP and WordPress call stack."
+#~ msgstr ""
+#~ "Permet d’enregistrer les piles d’appels complètes de PHP et WordPress."
+
+#~ msgid "Events log"
+#~ msgstr "Journal des évènements"
+
+#~ msgid "PSR-3 compliant listeners"
+#~ msgstr "Observateurs conformes PSR-3"
+
+#~ msgid "WordPress MU"
+#~ msgstr "WordPress MU"
+
+#~ msgid ""
+#~ "Test messages have not been sent to logger %s. Please check the logger's "
+#~ "settings."
+#~ msgstr ""
+#~ "Les messages de test n’ont été envoyés correctement au journaliseur %s. "
+#~ "Veuillez vérifier les réglages de ce journaliseur."
+
+#~ msgid "A panic condition. WordPress is unusable."
+#~ msgstr "Un état de panique du système. WordPress est inutilisable."
+
+#~ msgid ""
+#~ "A major operating error that undoubtedly affects the operations. It "
+#~ "requires immediate investigation and corrective treatment."
+#~ msgstr ""
+#~ "Une erreur majeure de fonctionnement qui affecte sans aucun doute les "
+#~ "opérations. Elle nécessite une investigation immédiate et un traitement "
+#~ "correctif."
+
+#~ msgid ""
+#~ "An operating error that undoubtedly affects the operations. It requires "
+#~ "investigation and corrective treatment."
+#~ msgstr ""
+#~ "Une erreur de fonctionnement qui affecte sans aucun doute les opérations. "
+#~ "Elle nécessite une investigation et un traitement correctif."
+
+#~ msgid ""
+#~ "A minor operating error that may affects the operations. It requires "
+#~ "investigation and preventive treatment."
+#~ msgstr ""
+#~ "Une erreur mineure de fonctionnement qui peut affecter les opérations. "
+#~ "Elle nécessite une investigation et un traitement préventif."
+
+#~ msgid ""
+#~ "A significant condition indicating a situation that may lead to an error "
+#~ "if recurring or if no action is taken. Does not usually affect the "
+#~ "operations."
+#~ msgstr ""
+#~ "Un état significatif indiquant une situation pouvant entraîner une erreur "
+#~ "si cet état est récurent ou si aucune action n’est entreprise. N’affecte "
+#~ "généralement pas les opérations."
+
+#~ msgid "A normal but significant condition. Now you know!"
+#~ msgstr ""
+#~ "Un état normal mais significatif. Maintenant, vous êtes au courant !"
+
+#~ msgid "A standard information, just for you to know… and forget!"
+#~ msgstr ""
+#~ "Une information standard, juste pour que vous soyez au courant… et que "
+#~ "vous puissiez l’oublier !"
+
+#~ msgid ""
+#~ "An information for developers and testers. Only used for events related "
+#~ "to application/system debugging."
+#~ msgstr ""
+#~ "Une information pour les développeurs et les testeurs. Utilisée "
+#~ "uniquement pour les évènements liés au débogage applicatif ou du système."
+
+#~ msgid "The event is not typed, this can't be a good news."
+#~ msgstr ""
+#~ "L’évènement n’a pas pas de type, ça ne peut pas être une bonne nouvelle."
+
+#~ msgid "Backtrace"
+#~ msgstr "Trace d’exécution"
+
+#~ msgid "Click the title bar of the box to expand or collapse it."
+#~ msgstr "Cliquez sur la barre de titre d’un bloc pour l’ouvrir ou la fermer."
+
+#~ msgid "Box Controls"
+#~ msgstr "Contrôles des blocs"
+
+#~ msgid ""
+#~ "To rearrange the boxes, drag and drop by clicking on the title bar of the "
+#~ "selected box and releasing when you see a gray dotted-line rectangle "
+#~ "appear in the location you want to place the box."
+#~ msgstr ""
+#~ "Pour réarranger les blocs, glissez/déposez-les en cliquant sur la barre "
+#~ "de titre du bloc sélectionné, et relâchez-la lorsque vous apercevez un "
+#~ "rectangle avec une bordure grise à l’emplacement où vous souhaitez placer "
+#~ "le bloc."
+
+#~ msgid "Drag and Drop"
+#~ msgstr "Glisser/déposer"
+
+#~ msgid "Use the Screen Options tab to choose which boxes to show."
+#~ msgstr ""
+#~ "Utilisez l’onglet Options de l’écran pour choisir les blocs à afficher."
+
+#~ msgid ""
+#~ "Two different views of the same informations: the backtrace of the call "
+#~ "that led to this event."
+#~ msgstr ""
+#~ "Deux points de vue différents de la même information : la trace "
+#~ "d’exécution de l’appel qui a conduit à cet évènement."
+
+#~ msgid "%s backtrace"
+#~ msgstr "Trace d’exécution de %s"
+
+#~ msgid "The code location where this event was generated."
+#~ msgstr "L’emplacement du code où cet évènement a été généré."
+
+#~ msgid "The detail of the request that led to this event."
+#~ msgstr "Le détail de la requête qui a conduit à cet évènement."
+
+#~ msgid "User and site where the event occurs."
+#~ msgstr "Utilisateur et site où l’évènement s’est produit."
+
+#~ msgid "General information about the event."
+#~ msgstr "Informations générales sur l’évènement."
+
+#~ msgid ""
+#~ "It consists of four to six boxes, depending on your settings, which give "
+#~ "specific details of the event:"
+#~ msgstr ""
+#~ "Il se compose de quatre à six blocs, selon vos réglages, qui donnent des "
+#~ "informations spécifiques sur l’évènement :"
+
+#~ msgid "This screen displays the details of a specific event."
+#~ msgstr "Cet écran affiche les détails d’un évènement spécifique."
+
+#~ msgid "Layout"
+#~ msgstr "Disposition"
+
+#~ msgid "Use the Screen Options tab to choose which extra columns to show."
+#~ msgstr ""
+#~ "Utilisez l’onglet Options d’écran pour sélectionner les colonnes "
+#~ "supplémentaires à afficher."
+
+#~ msgid "Screen Options"
+#~ msgstr "Options de l’écran"
+
+#~ msgid ""
+#~ "You can use the following controls to arrange the screen to suit your "
+#~ "usage preferences:"
+#~ msgstr ""
+#~ "Vous pouvez utiliser les contrôles suivants pour organiser l’écran en "
+#~ "fonction de vos préférences d’utilisation :"
+
+#~ msgid ""
+#~ "Note these filters are effective even on pseudonymized or obfuscated "
+#~ "fields."
+#~ msgstr ""
+#~ "Notez que ces filtres sont effectifs même sur les champs pseudonymisés ou "
+#~ "obscurcis."
+
+#~ msgid ""
+#~ "To filter the displayed events, use the small blue funnel next to the "
+#~ "filterable items. These filters are cumulative, you can activate "
+#~ "simultaneously several filters."
+#~ msgstr ""
+#~ "Pour filtrer les évènements affichés, utilisez le petit entonnoir bleu à "
+#~ "côté des éléments filtrables. Ces filtres sont cumulables, vous pouvez "
+#~ "activer simultanément plusieurs filtres."
+
+#~ msgid ""
+#~ "You can change the events log being viewed (if you have set more than one "
+#~ "WordPress logger) with the selector at the top left of the list (don't "
+#~ "forget to click on the \"apply\" button)."
+#~ msgstr ""
+#~ "Vous pouvez sélectionner le journal des évènements affiché (si vous avez "
+#~ "réglé plus d’un journaliseur WordPress) avec le sélecteur en haut à "
+#~ "gauche de la liste (n’oubliez pas de cliquer sur le bouton « Appliquer »)."
+
+#~ msgid ""
+#~ "You can restrict the display of events according to their severity "
+#~ "levels. To do so, use the three links at the top left of the list."
+#~ msgstr ""
+#~ "Vous pouvez restreindre l’affichage des évènements en fonction de leur "
+#~ "niveau de gravité. Pour ce faire, utilisez les trois liens en haut à "
+#~ "gauche de la liste."
+
+#~ msgid ""
+#~ "To move forward or backward in time, use the navigation buttons at the "
+#~ "top or bottom right of this list."
+#~ msgstr ""
+#~ "Pour avancer ou reculer dans le temps, utilisez les boutons de navigation "
+#~ "en haut ou en bas à droite de cette liste."
+
+#~ msgid ""
+#~ "This screen displays the list of events belonging to a specific WordPress "
+#~ "logger. This list is sorted with the most recent event at the top."
+#~ msgstr ""
+#~ "Cet écran affiche la liste des évènements appartenant à un journaliseur "
+#~ "WordPress particulier. Cette liste est triée de telles sorte que "
+#~ "l’évènement le plus récent soit en haut."
+
+#~ msgid "Note these options are global. They are set for all loggers."
+#~ msgstr ""
+#~ "Notez que ces options sont globales. Elles sont réglées pour tous les "
+#~ "journaliseurs."
+
+#~ msgid ""
+#~ "Note these options are global. They are set for all loggers, for all "
+#~ "sites in your network."
+#~ msgstr ""
+#~ "Notez que ces options sont globales. Elles sont réglées pour tous les "
+#~ "journaliseurs, pour tous les sites de votre réseau."
+
+#~ msgid "This screen allows you to set misc options of %s."
+#~ msgstr "Cet écran vous permet de définir les réglages généraux de %s."
+
+#~ msgid ""
+#~ "You can choose to tell %s to activate all the available listeners, or you "
+#~ "can manually select the sources to listen."
+#~ msgstr ""
+#~ "Vous pouvez choisir de demander à %s d’activer tous les observateurs "
+#~ "disponibles, ou vous pouvez sélectionner manuellement les sources à "
+#~ "observer."
+
+#~ msgid ""
+#~ "A listener, as its name suggests, listen to a specific component (a "
+#~ "\"source\") of your WordPress instance."
+#~ msgstr ""
+#~ "Un observateur, comme son nom l’indique, observe un composant particulier "
+#~ "(une « source ») de votre instance WordPress."
+
+#~ msgid "This screen allows you to set the way %s uses listeners."
+#~ msgstr ""
+#~ "Cet écran vous permet de définir la façon dont %s utilise les "
+#~ "observateurs."
+
+#~ msgid "Events levels"
+#~ msgstr "Niveaux des évènements"
+
+#~ msgid "Admin rights"
+#~ msgstr "Droits d’administration"
+
+#~ msgid ""
+#~ "These loggers send events to logging services. It may be local or SaaS, "
+#~ "free or paid services."
+#~ msgstr ""
+#~ "Ces journaliseurs envoient des évènements à des services de "
+#~ "journalisation. Il peut s’agire de services locaux ou SaaS, gratuits ou "
+#~ "payants."
+
+#~ msgid "Debugging"
+#~ msgstr "Débogage"
+
+#~ msgid "These loggers can help you to debug your site:"
+#~ msgstr "Ces journaliseurs peuvent vous aider à déboguer votre site :"
+
+#~ msgid "Alerting"
+#~ msgstr "Alerte"
+
+#~ msgid "These loggers allow you to send alerts:"
+#~ msgstr "Ces journaliseurs vous permettent d’envoyer des alertes :"
+
+#~ msgid "Overview"
+#~ msgstr "Vue d’ensemble"
+
+#~ msgid ""
+#~ "Loggers are classified in three main categories: alerting, debugging and "
+#~ "logging. You can find details on these categories on the corresponding "
+#~ "tabs of this help."
+#~ msgstr ""
+#~ "Les journaliseurs sont classés selon trois catégories principales : "
+#~ "alerte, débogage et journalisation. Vous trouverez des détails sur ces "
+#~ "catégories dans les onglets correspondants de cette aide."
+
+#~ msgid ""
+#~ "You can set as many loggers as you want. All the set loggers will receive "
+#~ "all events and, regarding their own settings, will enrich them and record "
+#~ "them or not."
+#~ msgstr ""
+#~ "Vous pouvez ajouter autant de journaliseurs que vous le souhaitez. Tous "
+#~ "les journaliseurs recevront tous les évènements et, selon leurs réglages "
+#~ "individuels, les enrichiront et les enregistreront ou non."
+
+#~ msgid ""
+#~ "A logger is a recorder of events. It can filter them (accept or refuse to "
+#~ "record the event based on settings) then store them or send them to "
+#~ "logging/alerting services."
+#~ msgstr ""
+#~ "Un journaliseur est un enregistreur d’évènements. Il peut les filtrer "
+#~ "(accepter ou refuser d’enregistrer l’évènement en fonction des réglages) "
+#~ "puis les stocker ou les envoyer à des services de journalisation ou "
+#~ "d’alerte."
+
+#~ msgid "This screen allows you to set the %s loggers."
+#~ msgstr "Cet écran vous permet de régler les journaliseurs de %s."
+
+#~ msgid ""
+#~ "Can't set loggers, can only view events regarding their own sites in all "
+#~ "authorized WordPress events log."
+#~ msgstr ""
+#~ "Ne peut pas régler des journaliseurs, ne peut voir que les évènements de "
+#~ "ses propres sites dans les journaux d’évènements WordPress pour lesquels "
+#~ "une autorisation lui a été accordée."
+
+#~ msgctxt "WordPress multisite"
+#~ msgid "Sites Admin"
+#~ msgstr "Administrateur de site"
+
+#~ msgid "That's your current role."
+#~ msgstr "C’est votre rôle actuel."
+
+#~ msgid "Can set loggers, can view all events in all WordPress events log."
+#~ msgstr ""
+#~ "Peut régler des journaliseurs, peut afficher tous les évènements dans "
+#~ "tous les journaux d’évènements WordPress."
+
+#~ msgid ""
+#~ "Because your site takes part in a sites network, admin ability to view "
+#~ "and configure events logs differ as follows:"
+#~ msgstr ""
+#~ "Étant donné que votre site participe à un réseau de sites, la capacité "
+#~ "d’administrer, visualiser et configurer les journaux d’évènements diffère "
+#~ "comme suit :"
+
+#~ msgid ""
+#~ "The severity of an event is indicated by a \"level\". %s uses the "
+#~ "following levels classification:"
+#~ msgstr ""
+#~ "La gravité d’un évènement est indiquée par un « niveau ». %s utilise la "
+#~ "classification suivante pour les niveaux :"
+
+#~ msgid "See also:"
+#~ msgstr "Voir également :"
+
+#~ msgid "User support"
+#~ msgstr "Assistance utilisateur"
+
+#~ msgid "For more help:"
+#~ msgstr "Plus d’informations :"
+
+#~ msgid "Source"
+#~ msgstr "Source"
+
+#~ msgid "Test messages have been sent to logger %s."
+#~ msgstr "Les messages de test ont été envoyés au journaliseur %s."
+
+#~ msgid "Paused"
+#~ msgstr "En pause"
+
+#~ msgid "Running"
+#~ msgstr "En cours d’exécution"
+
+#~ msgid "Send Test"
+#~ msgstr "Envoyer un test"
+
+#~ msgid "Errors & beyond"
+#~ msgstr "Erreurs & au-delà"
+
+#~ msgid "Notices & beyond"
+#~ msgstr "Notices & au-delà"
+
+#~ msgid "from %s."
+#~ msgstr "à partir de %s."
+
+#~ msgid "obfuscated IP"
+#~ msgstr "IP obscurcie"
+
+#~ msgid "Event: %s"
+#~ msgstr "Évènement : %s"
+
+#~ msgid "Events log: %s"
+#~ msgstr "Journal des évènements : %s"
+
+#~ msgid ""
+#~ "If you think this is an error, please contact the network administrator "
+#~ "with these details:"
+#~ msgstr ""
+#~ "Si vous pensez qu’il s’agit d’une erreur, veuillez contacter "
+#~ "l’administrateur du réseau avec ces informations :"
+
+#~ msgid "The event or events log you tried to access is out of your scope."
+#~ msgstr ""
+#~ "L’évènement ou le journal d’évènements auquel vous avez tenté d’accéder "
+#~ "est hors de votre portée."
+
+#~ msgid "Forbidden"
+#~ msgstr "Interdit"
+
+#~ msgid "Boxes"
+#~ msgstr "Blocs"
+
+#~ msgid "Unnamed logger"
+#~ msgstr "Journal sans nom"
+
+#~ msgid "PHP"
+#~ msgstr "PHP"
+
+#~ msgid "Database"
+#~ msgstr "Base de données"
+
+#~ msgid "Theme"
+#~ msgstr "Thème"
+
+#~ msgid "Plugin"
+#~ msgstr "Extension"
+
+#~ msgid "Core"
+#~ msgstr "Cœur"
+
+#~ msgid "Allows to log site, user and remote IP of the current request."
+#~ msgstr ""
+#~ "Permet de consigner le site, l’utilisateur et l’adresse IP de provenance "
+#~ "de la requête courante."
+
+#~ msgid "WordPress "
+#~ msgstr "WordPress "
+
+#~ msgid ""
+#~ "Allows to log url, method, referrer and remote IP of the current web "
+#~ "request."
+#~ msgstr ""
+#~ "Permet de consigner l’url, la méthode, le référent et l’adresse IP de "
+#~ "provenance de la requête web."
+
+#~ msgid "HTTP request"
+#~ msgstr "Requête HTTP"
+
+#~ msgid "Allows to log line, file, class and function generating the event."
+#~ msgstr ""
+#~ "Permet de journaliser la ligne, le fichier, la classe et la fonction "
+#~ "générant l’évènement."
+
+#~ msgid "PHP introspection"
+#~ msgstr "Introspection PHP"
+
+#~ msgid "Local administrators can view events that relate to their site."
+#~ msgstr ""
+#~ "Les administrateurs locaux peuvent afficher uniquement les évènements "
+#~ "liés à leur site."
+
+#~ msgid "Maximum age of events stored in this events log (0 for no limit)."
+#~ msgstr ""
+#~ "Âge maximal des évènements conservés dans ce journal (0 pour aucune "
+#~ "limite)."
+
+#~ msgid "Days"
+#~ msgstr "Jours"
+
+#~ msgid "Maximum number of events stored in this events log (0 for no limit)."
+#~ msgstr ""
+#~ "Nombre maximal d’évènements conservés dans ce journal (0 pour aucune "
+#~ "limite)."
+
+#~ msgid ""
+#~ "An events log stored in your WordPress database and available right in "
+#~ "your admin dashboard."
+#~ msgstr ""
+#~ "Un journal des évènements stocké dans votre base de données WordPress et "
+#~ "disponible directement dans votre Tableau de bord."
+
+#~ msgid "WordPress events log"
+#~ msgstr "Journal des évènements WordPress"
+
+#~ msgid "The time format standard to use."
+#~ msgstr "Le format horaire à utiliser."
+
+#~ msgid "Time format"
+#~ msgstr "Format de l’heure"
+
+#~ msgid "The program identifier for messages sent by DecaLog."
+#~ msgstr "L’identifiant d’application pour les messages envoyés par DecaLog."
+
+#~ msgid "Identifier"
+#~ msgstr "Identifiant"
+
+#~ msgid "The syslog facility for messages sent by DecaLog."
+#~ msgstr "L’identifiant d’équipement pour les messages envoyés par DecaLog."
+
+#~ msgid "Facility"
+#~ msgstr "Équipement"
+
+#~ msgid "The opened port on remote host to receive syslog messages."
+#~ msgstr ""
+#~ "Le port ouvert sur l’hôte distant permettant de recevoir les messages "
+#~ "syslog."
+
+#~ msgid "Port"
+#~ msgstr "Port"
+
+#~ msgid "The used syslog protocol."
+#~ msgstr "Le protocole utilisé pour syslogd."
+
+#~ msgid "Protocol"
+#~ msgstr "Protocole"
+
+#~ msgid "The remote host receiving syslog messages."
+#~ msgstr "L’hôte distant recevant les messages syslog."
+
+#~ msgid "Host"
+#~ msgstr "Hôte"
+
+#~ msgid "An events log sent to a remote syslogd server."
+#~ msgstr "Un journal d’évènements envoyé à un serveur syslogd."
+
+#~ msgid "Syslog"
+#~ msgstr "Syslog"
+
+#~ msgid "Whether the attachments should include context and extra data."
+#~ msgstr ""
+#~ "Indique si les pièces jointes doivent inclure le contexte et les données "
+#~ "supplémentaires."
+
+#~ msgid "Full data"
+#~ msgstr "Données complètes"
+
+#~ msgid "Use a shortened version for attachments sent in channel."
+#~ msgstr ""
+#~ "Utiliser une version simple pour les pièces jointes envoyées dans le "
+#~ "canal."
+
+#~ msgid "Short attachment"
+#~ msgstr "Pièce jointe simple"
+
+#~ msgid "The Webhook URL set in the Slack application."
+#~ msgstr "L’URL du Webhook fixée dans l’application Slack."
+
+#~ msgid "Webhook URL"
+#~ msgstr "URL Webhook"
+
+#~ msgid "Events alerts sent through Slack Webhooks."
+#~ msgstr ""
+#~ "Alertes d’évènements envoyées par l’intermédiaire de Webhooks Slack."
+
+#~ msgid "Slack"
+#~ msgstr "Slack"
+
+#~ msgid "The maximal number of files to keep (0 means unlimited)."
+#~ msgstr "Le nombre maximum de fichiers à conserver (0 signifie illimité)."
+
+#~ msgid "Maximum"
+#~ msgstr "Maximum"
+
+#~ msgid "The full absolute path and filename, like \"/path/to/file\"."
+#~ msgstr ""
+#~ "Le chemin absolu complet et le nom de fichier, comme « /chemin/complet/du/"
+#~ "fichier »."
+
+#~ msgid "File"
+#~ msgstr "Fichier"
+
+#~ msgid ""
+#~ "An events log sent to files that are rotated every day and a limited "
+#~ "number of files are kept."
+#~ msgstr ""
+#~ "Un journal des évènements envoyé dans des fichiers différents tous les "
+#~ "jours et dont un nombre limité est conservé."
+
+#~ msgid "Rotating files"
+#~ msgstr "Fichiers en rotation"
+
+#~ msgid "The title of the message which will be sent."
+#~ msgstr "Le titre du message qui sera envoyé."
+
+#~ msgid "Message title"
+#~ msgstr "Titre du message"
+
+#~ msgid "The recipient key. It can be a \"user key\" or a \"group key\"."
+#~ msgstr ""
+#~ "La clé du destinataire. Il peut s’agir d’une « clé d’utilisateur » ou "
+#~ "d’une « clé de groupe »."
+
+#~ msgid "Recipient"
+#~ msgstr "Destinataire"
+
+#~ msgid "The token of the Pushover application."
+#~ msgstr "Le jeton d’application Pushover."
+
+#~ msgid "Events alerts sent via Pushover service."
+#~ msgstr "Alertes d’évènements envoyées via le service Pushover."
+
+#~ msgid "Pushover"
+#~ msgstr "Pushover"
+
+#~ msgid ""
+#~ "An events log stored in the standard PHP error log, as with the "
+#~ "error_log() function."
+#~ msgstr ""
+#~ "Un journal des évènements stocké dans le journal d’erreurs PHP standard, "
+#~ "comme avec la fonction error_log() ."
+
+#~ msgid "PHP error log"
+#~ msgstr "Journal d’erreur PHP"
+
+#~ msgid "The recipients mail address, in coma separated list."
+#~ msgstr ""
+#~ "Les adresse e-mail des destinataires, dans une liste séparée par des "
+#~ "virgules."
+
+#~ msgid "Recipients"
+#~ msgstr "Destinataires"
+
+#~ msgid "Events alerts sent by WordPress via mail."
+#~ msgstr "Alertes d’évènements envoyées par WordPress sous forme d’e-mail."
+
+#~ msgid "Mail"
+#~ msgstr "E-mail"
+
+#~ msgid "Max number of milliseconds to wait for the socket."
+#~ msgstr "Nombre maximal de millisecondes que le socket doit attendre."
+
+#~ msgid "Socket timeout"
+#~ msgstr "Délai d’attente du socket"
+
+#~ msgid ""
+#~ "Connection string to Fluentd. Can be something like "
+#~ "\"tcp://127.0.0.1:24224\" or something like \"unix:///var/run/td-agent/td-"
+#~ "agent.sock\"."
+#~ msgstr ""
+#~ "Chaîne de connexion à Fluentd. Peut être quelque chose comme "
+#~ "« tcp://127.0.0.1:24224 » ou « unix:///var/run/td-agent/td-agent.sock »."
+
+#~ msgid "Connection string"
+#~ msgstr "Chaîne de connexion"
+
+#~ msgid "An events log sent to a Fluentd collector."
+#~ msgstr "Un journal d’évènements envoyé à un collecteur Fluentd."
+
+#~ msgid "Fluentd"
+#~ msgstr "Fluentd"
+
+#~ msgid ""
+#~ "An events log sent to the ChromePHP extension (http://www.chromephp.com/)."
+#~ msgstr ""
+#~ "Un journal des évènements envoyé à l’extension ChromePHP (http://www."
+#~ "chromephp.com/)."
+
+#~ msgid "ChromePHP"
+#~ msgstr "ChromePHP"
+
+#~ msgid ""
+#~ "An events log sent to browser's javascript console with no browser "
+#~ "extension required."
+#~ msgstr ""
+#~ "Un journal d’évènements envoyé à la console javascript du navigateur, ne "
+#~ "nécessite pas d’extension de navigateur."
+
+#~ msgid "Any record it can handle will be thrown away."
+#~ msgstr "Tout enregistrement qu’il peut gérer sera oublié aussitôt."
+
+#~ msgid "Blackhole"
+#~ msgstr "Trou noir"
+
+#~ msgid "Remote IP"
+#~ msgstr "IP distante"
+
+#~ msgid "User"
+#~ msgstr "Utilisateur"
+
+#~ msgid "Message"
+#~ msgstr "Message"
+
+#~ msgid "Time"
+#~ msgstr "Moment"
+
+#~ msgid "Event"
+#~ msgstr "Évènement"
+
+#~ msgid "Extra columns"
+#~ msgstr "Colonnes supplémentaires"
+
+#~ msgid "Show %d lines per page"
+#~ msgstr "Afficher %d lignes par page"
+
+#~ msgid "All"
+#~ msgstr "Tout"
+
+#~ msgid "Add as filter"
+#~ msgstr "Ajouter comme filtre"
+
+#~ msgid "Remove this filter"
+#~ msgstr "Supprimer ce filtre"
+
+#~ msgid "Obfuscated"
+#~ msgstr "Obscurcis"
+
+#~ msgid "User ID %s"
+#~ msgstr "ID d’utilisateur %s"
+
+#~ msgid "Pseudonymized user"
+#~ msgstr "Utilisateur pseudonymisé"
+
+#~ msgid "Anonymous user"
+#~ msgstr "Utilisateur anonyme"
+
+#~ msgid "%1$s code %2$s"
+#~ msgstr "%1$s code %2$s"
+
+#~ msgid "Logger"
+#~ msgstr "Journaliseur"
+
+#~ msgid "View"
+#~ msgstr "Voir"
+
+#~ msgid "Start"
+#~ msgstr "Démarrer"
+
+#~ msgid "Pause"
+#~ msgstr "Mettre en pause"
+
+#~ msgid "Remove"
+#~ msgstr "Supprimer"
+
+#~ msgid "Edit"
+#~ msgstr "Modifier"
+
+#~ msgid "Remove Permanently"
+#~ msgstr "Supprimer définitivement"
+
+#~ msgid "Abort"
+#~ msgstr "Abandonner"
+
+#~ msgid "Are you sure you want to permanently remove this logger?"
+#~ msgstr ""
+#~ "Êtes-vous certain de vouloir supprimer définitivement ce journaliseur ?"
+
+#~ msgid "Add a Logger"
+#~ msgstr "Ajouter un journaliseur"
+
+#~ msgid ""
+#~ "This plugin is not an official software from %s and, as such, is not "
+#~ "endorsed or supported by these companies."
+#~ msgstr ""
+#~ "Cette extension n’est pas un logiciel officiel de %s et, en tant que tel, "
+#~ "n’est pas approuvé ou pris en charge par ces sociétés."
+
+#~ msgid "Please, select the type of logger you want to add"
+#~ msgstr ""
+#~ "Veuillez sélectionner le type de journaliseur que vous souhaitez ajouter"
+
+#~ msgid "Listeners"
+#~ msgstr "Observateurs"
+
+#~ msgid "Loggers"
+#~ msgstr "Journaliseurs"
+
+#~ msgid "paused"
+#~ msgstr "en pause"
+
+#~ msgid "running"
+#~ msgstr "en fonctionnement"
+
+#~ msgid "Choose events log to display"
+#~ msgstr "Choisissez le journal des évènements à afficher"
+
+#~ msgid "Allows to log standard DecaLog information."
+#~ msgstr ""
+#~ "Permet de consigner les informations standards fournies par DecaLog."
+
+#~ msgid "Included"
+#~ msgstr "Inclus"
+
+#~ msgid "Standard"
+#~ msgstr "Standard"
+
+#~ msgid ""
+#~ "If checked, log fields will contain hashes instead of user IDs & names."
+#~ msgstr ""
+#~ "Si coché, les champs du journal vont contenir des clés de hachage à la "
+#~ "place des noms et ID d’utilisateurs."
+
+#~ msgid "Pseudonymisation"
+#~ msgstr "Pseudonymisation"
+
+#~ msgid "Users"
+#~ msgstr "Utilisateurs"
+
+#~ msgid "Note: it concerns all fields except events messages."
+#~ msgstr ""
+#~ "Remarque : cela concerne tous les champs sauf le message en lui-même."
+
+#~ msgid "If checked, log fields will contain hashes instead of real IPs."
+#~ msgstr ""
+#~ "Si coché, les champs du journal vont contenir des clés de hachage à la "
+#~ "place des IPs réelles."
+
+#~ msgid "Obfuscation"
+#~ msgstr "Obscurcissement"
+
+#~ msgid "Remote IPs"
+#~ msgstr "IPs distantes"
+
+#~ msgid "Value set in php.ini file."
+#~ msgstr "Valeur fixée dans le fichier php.ini."
+
+#~ msgid "Log file"
+#~ msgstr "Fichier journal"
+
+#~ msgid ""
+#~ "Minimal reported level. May be overridden by the \"respect WP_DEBUG "
+#~ "directive\" option."
+#~ msgstr ""
+#~ "Niveau minimal de consigne. Peut être surchargé par l’option « respecter "
+#~ "la directive WP-DEBUG »."
+
+#~ msgid "Minimal level"
+#~ msgstr "Niveau minimal"
+
+#~ msgid "Used only in admin dashboard."
+#~ msgstr "Utilisé uniquement dans le Tableau de bord d’administration."
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid ""
+#~ "If checked, the value of WP_DEBUG will override each logger's settings "
+#~ "for minimal level of logging."
+#~ msgstr ""
+#~ "Si coché, la valeur de WP-DEBUG remplacera les paramètres de chaque "
+#~ "journaliseur concernant le niveau minimal de consigne."
+
+#~ msgid "Respect WP_DEBUG"
+#~ msgstr "Respecter WP-DEBUG"
+
+#~ msgid "Rules"
+#~ msgstr "Règles"
+
+#~ msgid ""
+#~ "If checked, DecaLog will try to obfuscate personal information in events "
+#~ "messages."
+#~ msgstr ""
+#~ "Si coché, DecaLog va essayer d’obscurcir les informations personnelles "
+#~ "dans les messages d’évènements."
+
+#~ msgid "Respect privacy"
+#~ msgstr "Respect de la confidentialité"
+
+#~ msgid "Events messages"
+#~ msgstr "Messages d’évènements"
+
+#~ msgid "If checked, when a new logger is added it automatically starts."
+#~ msgstr ""
+#~ "Si coché, lorsqu’un nouveau journaliseur est ajouté, il démarre "
+#~ "automatiquement."
+
+#~ msgid "Auto-start"
+#~ msgstr "Démarrage automatique"
+
+#~ msgid "Theme listeners"
+#~ msgstr "Observateurs de thèmes"
+
+#~ msgid "Standard listeners"
+#~ msgstr "Observateurs standards"
+
+#~ msgid "Automatically or selectively choose which sources to listen."
+#~ msgstr "Choisissez automatiquement ou sélectivement les sources à observer."
+
+#~ msgid "All available listeners (recommended)"
+#~ msgstr "Tous les observateurs disponibles (recommandé)"
+
+#~ msgid "Selected listeners"
+#~ msgstr "Observateurs sélectionnés"
+
+#~ msgid "Logger %s has not been removed. Please try again."
+#~ msgstr "Le journaliseur %s n’a pas été supprimé. Veuillez réessayer."
+
+#~ msgid "Logger %s has been removed."
+#~ msgstr "Le journaliseur %s a été supprimé."
+
+#~ msgid "Logger %s has not been saved. Please try again."
+#~ msgstr "Le journaliseur %s n’a pas été mis à jour. Veuillez réessayer."
+
+#~ msgid "Logger %s has been saved."
+#~ msgstr "Le journaliseur %s a été mis à jour."
+
+#~ msgid ""
+#~ "Listeners settings have not been reset to defaults. Please try again."
+#~ msgstr ""
+#~ "Les réglages des observateurs n’ont pas été réinitialisés à leurs valeurs "
+#~ "par défaut. Veuillez réessayer."
+
+#~ msgid "Listeners settings have been reset to defaults."
+#~ msgstr ""
+#~ "Les réglages des observateurs ont été réinitialisés à leurs valeurs par "
+#~ "défaut."
+
+#~ msgid "Listeners settings have not been saved. Please try again."
+#~ msgstr ""
+#~ "Les réglages des observateurs n’ont pas été mis à jour. Veuillez "
+#~ "réessayer."
+
+#~ msgid "Listeners settings have been saved."
+#~ msgstr "Les réglages des observateurs ont été mis à jour."
+
+#~ msgid "Logger %s has been paused."
+#~ msgstr "Le journaliseur %s a été mis en pause."
+
+#~ msgid "Logger %s has started."
+#~ msgstr "Le journaliseur %s a démarré."
+
+#~ msgid "New logger"
+#~ msgstr "Nouveau journaliseur"
+
+#~ msgid "Events Logs"
+#~ msgstr "Journaux d’évènements"
+
+#~ msgid "Privacy options"
+#~ msgstr "Options de confidentialité"
+
+#~ msgid "Loggers options"
+#~ msgstr "Options de journalisation"
+
+#~ msgid ""
+#~ "Capture and log events on your site. View them in your dashboard and send "
+#~ "them to logging services."
+#~ msgstr ""
+#~ "Capturez et journalisez les évènements qui surviennent sur votre site. "
+#~ "Affichez-les dans votre Tableau de bord et envoyez-les à des services de "
+#~ "journalisation."
+
+#~ msgid "DecaLog"
+#~ msgstr "DecaLog"
