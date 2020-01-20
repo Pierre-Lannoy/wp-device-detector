@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plugins - Device Detector - Stable (latest release)\n"
-"POT-Creation-Date: 2020-01-20 23:11+0100\n"
-"PO-Revision-Date: 2020-01-20 23:16+0100\n"
+"POT-Creation-Date: 2020-01-20 23:36+0100\n"
+"PO-Revision-Date: 2020-01-21 00:01+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -200,13 +200,13 @@ msgstr "Améliorations"
 
 #: admin/class-device-detector-admin.php:482
 msgid "Mobile detection"
-msgstr ""
+msgstr "Détection de mobile"
 
 #: admin/class-device-detector-admin.php:485
 #, php-format
 msgid ""
 "If checked, the standard %s function will be improved by Device Detector."
-msgstr ""
+msgstr "Si coché, la fonction standard %s sera améliorée par Device Detector."
 
 #: admin/class-device-detector-admin.php:503
 msgid "Body classes"
@@ -297,6 +297,7 @@ msgid "Details"
 msgstr "Détails"
 
 #: admin/partials/device-detector-admin-settings-devices.php:27
+#: includes/features/class-analytics.php:1124
 msgid "Operating Systems"
 msgstr "Systèmes d’exploitation"
 
@@ -327,7 +328,7 @@ msgstr "Applications mobiles"
 
 #: admin/partials/device-detector-admin-settings-devices.php:39
 msgid "PIMs"
-msgstr ""
+msgstr "PIMs"
 
 #: admin/partials/device-detector-admin-settings-devices.php:41
 #: includes/features/class-analytics.php:1109
@@ -342,7 +343,7 @@ msgstr "Marques"
 #: admin/partials/device-detector-admin-settings-devices.php:45
 #: includes/features/class-analytics.php:1118
 msgid "Bots"
-msgstr ""
+msgstr "Robots"
 
 #: admin/partials/device-detector-admin-settings-main.php:28
 #, php-format
@@ -397,7 +398,7 @@ msgstr "Aucune donnée"
 #: includes/features/class-analytics.php:1219
 #: includes/features/class-analytics.php:1228
 msgid "Generic"
-msgstr ""
+msgstr "Générique"
 
 #: includes/features/class-analytics.php:669
 #: includes/features/class-analytics.php:814
@@ -406,39 +407,33 @@ msgstr "TOTAL"
 
 #: includes/features/class-analytics.php:930
 msgid "Hits"
-msgstr ""
+msgstr "Occurrences"
 
 #: includes/features/class-analytics.php:1080
 #, php-format
 msgid "%s hits"
-msgstr ""
+msgstr "%s occurrences"
 
 #: includes/features/class-analytics.php:1103
 #: includes/features/class-analytics.php:1644
 msgid "Libraries"
 msgstr "Bibliothèques"
 
-#: includes/features/class-analytics.php:1124
-msgid "OS"
-msgstr ""
-
 #: includes/features/class-analytics.php:1127
 msgid "Browser Details"
 msgstr "Détails du navigateur"
 
 #: includes/features/class-analytics.php:1130
-#, fuzzy
-#| msgid "Reported details"
 msgid "Bot Details"
-msgstr "Détails consignés"
+msgstr "Détails du robot"
 
 #: includes/features/class-analytics.php:1133
 msgid "Device Details"
 msgstr "Détails de l’appareil"
 
 #: includes/features/class-analytics.php:1136
-msgid "OS Details"
-msgstr "Détails du SE"
+msgid "Operating System Details"
+msgstr "Détails du système d’exploitation"
 
 #: includes/features/class-analytics.php:1141
 #: includes/features/class-analytics.php:1187
@@ -466,7 +461,7 @@ msgstr "Toutes les classes"
 
 #: includes/features/class-analytics.php:1256
 msgid "All Device Types"
-msgstr "Tous les types d'appareil"
+msgstr "Tous les types d’appareil"
 
 #: includes/features/class-analytics.php:1259
 msgid "All Client Types"
@@ -494,19 +489,19 @@ msgstr "Tous les navigateurs"
 
 #: includes/features/class-analytics.php:1277
 msgid "All Bots"
-msgstr ""
+msgstr "Tous les robots"
 
 #: includes/features/class-analytics.php:1280
 msgid "All Devices"
 msgstr "Tous les appareils"
 
 #: includes/features/class-analytics.php:1283
-msgid "All OS"
-msgstr ""
+msgid "All Operating Systems"
+msgstr "Tous les systèmes d’exploitation"
 
 #: includes/features/class-analytics.php:1317
 msgid "Hits variation."
-msgstr ""
+msgstr "Variations d’occurrences."
 
 #: includes/features/class-analytics.php:1321
 msgid "Metrics Variations"
@@ -519,15 +514,15 @@ msgstr "Voir les détails de tous les navigateurs."
 #: includes/features/class-analytics.php:1388
 #: includes/features/class-analytics.php:1507
 msgid "Top Browsers"
-msgstr "Top navigateurs"
+msgstr "Top des navigateurs"
 
 #: includes/features/class-analytics.php:1409
 msgid "View the details of all bots."
-msgstr ""
+msgstr "Voir les détails de tous les robots."
 
 #: includes/features/class-analytics.php:1411
 msgid "Top Bots"
-msgstr ""
+msgstr "Top des robots"
 
 #: includes/features/class-analytics.php:1432
 msgid "View the details of all devices."
@@ -535,20 +530,20 @@ msgstr "Voir les détails de toutes les appareils."
 
 #: includes/features/class-analytics.php:1434
 msgid "Top Devices"
-msgstr "Top appareils"
+msgstr "Top des appareils"
 
 #: includes/features/class-analytics.php:1455
-msgid "View the details of all OS."
-msgstr "Voir les détails de tous les OS."
+msgid "View the details of all operating systems."
+msgstr "Voir les détails de tous les systèmes d’exploitation."
 
 #: includes/features/class-analytics.php:1457
 #: includes/features/class-analytics.php:1482
-msgid "Top OS"
-msgstr "Top S-E"
+msgid "Top Operating Systems"
+msgstr "Top des systèmes d’exploitation"
 
 #: includes/features/class-analytics.php:1532
 msgid "Top Versions"
-msgstr "Top versions"
+msgstr "Top des versions"
 
 #: includes/features/class-analytics.php:1558
 msgid "View the details of all classes."
@@ -576,45 +571,43 @@ msgstr "Voir les détails de tous les lecteurs de flux."
 
 #: includes/features/class-analytics.php:1726
 msgid "View the details of all media players."
-msgstr "Voir le détail de tous les lecteurs multimédia."
+msgstr "Voir les détails de tous les lecteurs multimédia."
 
 #: includes/features/class-analytics.php:1751
 msgctxt "Noun - Number of hits."
 msgid "Hits Number"
-msgstr ""
+msgstr "Nombre d’occurrences."
 
 #: includes/features/class-analytics.php:1752
-#, fuzzy
-#| msgid "Number of lines to display"
 msgid "Number of hits."
-msgstr "Nombre de lignes à afficher"
+msgstr "Nombre d’occurrences."
 
 #: includes/features/class-analytics.php:1756
 msgctxt "Noun - Percentage of mobile hits."
 msgid "Mobile"
-msgstr ""
+msgstr "Mobile"
 
 #: includes/features/class-analytics.php:1757
 msgid "Ratio of hits done by mobiles."
-msgstr ""
+msgstr "Ratio d’occurrences correspondantes à des mobiles."
 
 #: includes/features/class-analytics.php:1761
 msgctxt "Noun - Percentage of desktop hits"
 msgid "Desktop"
-msgstr ""
+msgstr "Ordinateur de bureau"
 
 #: includes/features/class-analytics.php:1762
 msgid "Ratio of hits done by desktops."
-msgstr ""
+msgstr "Ratio d’occurrences correspondantes à des ordinateurs de bureau."
 
 #: includes/features/class-analytics.php:1766
 msgctxt "Noun - Percentage of bot hits"
 msgid "Bot"
-msgstr ""
+msgstr "Robot"
 
 #: includes/features/class-analytics.php:1767
 msgid "Ratio of hits done by bots."
-msgstr ""
+msgstr "Ratio d’occurrences correspondantes à des robots."
 
 #: includes/features/class-analytics.php:1771
 msgctxt "Noun - Number of distinct clients."
@@ -702,12 +695,12 @@ msgstr "Interface publique du site"
 #: includes/features/class-cssmodifier.php:58
 #: includes/features/class-detector.php:264
 msgid "Bot"
-msgstr ""
+msgstr "Robot"
 
 #: includes/features/class-classtypes.php:48
 #: includes/features/class-detector.php:264
 msgid "Desktop"
-msgstr ""
+msgstr "Ordinateur de bureau"
 
 #: includes/features/class-classtypes.php:49
 #: includes/features/class-detector.php:264
@@ -737,7 +730,7 @@ msgstr "Application mobile"
 
 #: includes/features/class-clienttypes.php:52
 msgid "Personal information manager"
-msgstr ""
+msgstr "Gestionnaire de données personnelles (PIM)"
 
 #: includes/features/class-cssmodifier.php:48
 msgid "Class"
@@ -765,7 +758,7 @@ msgstr "Capacités"
 
 #: includes/features/class-cssmodifier.php:74
 msgid "Adds the class of the device."
-msgstr "Ajoute la classe de l'appareil."
+msgstr "Ajoute la classe de l’appareil."
 
 #: includes/features/class-cssmodifier.php:76
 msgid "Adds the type of the device."
@@ -773,11 +766,11 @@ msgstr "Ajoute le type de l’appareil."
 
 #: includes/features/class-cssmodifier.php:78
 msgid "Adds the client type, engine and name used on the device."
-msgstr ""
+msgstr "Ajoute le type, le moteur et le nom du client utilisé sur l’appareil."
 
 #: includes/features/class-cssmodifier.php:80
 msgid "Adds the operating system running on the device."
-msgstr "Ajoute le système d'exploitation fonctionnant sur l’appareil."
+msgstr "Ajoute le système d’exploitation fonctionnant sur l’appareil."
 
 #: includes/features/class-cssmodifier.php:82
 msgid "Adds the brand and model of the device."
@@ -785,7 +778,7 @@ msgstr "Ajoute la marque et le modèle de l’appareil."
 
 #: includes/features/class-cssmodifier.php:84
 msgid "Adds the bot name."
-msgstr ""
+msgstr "Ajoute le nom du robot."
 
 #: includes/features/class-cssmodifier.php:86
 msgid "Adds the device capabilities."
@@ -795,24 +788,22 @@ msgstr "Ajoute les capacités de l’appareil."
 #: includes/features/class-cssmodifier.php:148
 #, php-format
 msgid "Available classes: %s. If not detected, the class will be %s."
-msgstr "Classes disponibles : %s. Si non détecté, la classe sera %s."
+msgstr "Classes disponibles : %s. Si non détecté, la classe sera %s."
 
 #: includes/features/class-cssmodifier.php:119
 #, php-format
 msgid "Available type classes: %s. If not detected, the class will be %s."
-msgstr "Classes de type disponibles : %s. Si non détecté, la classe sera %s."
+msgstr "Classes de type disponibles : %s. Si non détecté, la classe sera %s."
 
 #: includes/features/class-cssmodifier.php:127
 #, php-format
 msgid "Available engine classes: %s. If not detected, the class will be %s."
-msgstr ""
-"Classes de moteur de rendu disponibles : %s. Si non détecté, la classe sera "
-"%s."
+msgstr "Classes de moteur disponibles : %s. Si non détecté, la classe sera %s."
 
 #: includes/features/class-cssmodifier.php:138
 #, php-format
 msgid "Available name classes: %s. If not detected, the class will be %s."
-msgstr "Classes de nom disponibles : %s. Si non détecté, la classe sera %s."
+msgstr "Classes de nom disponibles : %s. Si non détecté, la classe sera %s."
 
 #: includes/features/class-cssmodifier.php:149
 #, php-format
@@ -820,17 +811,17 @@ msgid ""
 "If (and only if) model is detected an extra class is added. It may be be "
 "something like %s or %s."
 msgstr ""
+"Si (et seulement si) le modèle est détecté, une classe supplémentaire est "
+"ajoutée. Il peut être quelque chose comme %s ou %s."
 
 #: includes/features/class-cssmodifier.php:157
 #, php-format
 msgid "Available classes: %s."
-msgstr "Classes disponibles : %s."
+msgstr "Classes disponibles : %s."
 
 #: includes/features/class-detector.php:267
-#, fuzzy
-#| msgid "Display"
 msgid "Smart Display"
-msgstr "Affichage"
+msgstr "Afficheur intelligent"
 
 #: includes/features/class-detector.php:267
 #: includes/features/class-devicetypes.php:53
@@ -849,12 +840,12 @@ msgstr "TV"
 
 #: includes/features/class-detector.php:267
 msgid "Feature Phone"
-msgstr ""
+msgstr "Téléphone"
 
 #: includes/features/class-detector.php:267
 #: includes/features/class-devicetypes.php:51
 msgid "Phablet"
-msgstr ""
+msgstr "Phablette"
 
 #: includes/features/class-detector.php:267
 msgid "Portable Media Player"
@@ -875,7 +866,7 @@ msgstr "Console de jeu"
 
 #: includes/features/class-detector.php:270
 msgid "PIM"
-msgstr ""
+msgstr "PIM"
 
 #: includes/features/class-detector.php:270
 msgid "Application Library"
@@ -903,17 +894,15 @@ msgstr "Console de jeu"
 
 #: includes/features/class-devicetypes.php:50
 msgid "Feature phone"
-msgstr ""
+msgstr "Téléphone"
 
 #: includes/features/class-devicetypes.php:52
 msgid "Portable media player"
 msgstr "Lecteur portable multimédia"
 
 #: includes/features/class-devicetypes.php:54
-#, fuzzy
-#| msgid "display"
 msgid "Smart display"
-msgstr "affichage"
+msgstr "Afficheur intelligent"
 
 #: includes/libraries/class-libraries.php:67
 #: includes/libraries/class-libraries.php:78
@@ -1169,7 +1158,7 @@ msgstr "Votre site utilise la mise en cache d’objets"
 #: includes/system/class-sitehealth.php:212
 msgid "Your site uses a dedicated object caching mechanism. That's great."
 msgstr ""
-"Votre site utilise un mécanisme dédié de mise cache d’objets. C'est super."
+"Votre site utilise un mécanisme dédié de mise cache d’objets. C’est super."
 
 #: includes/system/class-sitehealth.php:231
 msgid "OPcache Test"
@@ -1253,6 +1242,15 @@ msgstr "Pierre Lannoy"
 #. Author URI of the plugin/theme
 msgid "https://pierre.lannoy.fr"
 msgstr "https://pierre.lannoy.fr"
+
+#~ msgid "OS Details"
+#~ msgstr "Détails du SE"
+
+#~ msgid "View the details of all OS."
+#~ msgstr "Voir les détails de tous les OS."
+
+#~ msgid "Top OS"
+#~ msgstr "Top S-E"
 
 #, fuzzy
 #~| msgctxt "WordPress multisite"
