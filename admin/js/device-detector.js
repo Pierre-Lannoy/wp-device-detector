@@ -47,11 +47,11 @@ jQuery(document).ready( function($) {
 			$(location).attr("href", $( this ).data( "value" ));
 		}
 	);
-	$( "#traffic-chart-button-calls" ).on(
+	$( "#podd-chart-button-calls" ).on(
 		"click",
 		function() {
-			$( "#traffic-chart-calls" ).addClass( "active" );
-			$( "#traffic-chart-button-calls" ).addClass( "active" );
+			$( "#podd-chart-calls" ).addClass( "active" );
+			$( "#podd-chart-button-calls" ).addClass( "active" );
 		}
 	);
 
