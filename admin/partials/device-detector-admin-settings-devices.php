@@ -19,9 +19,9 @@ $intro = sprintf( esc_html__( '%1$s (engine version %2$s) allows to detect:', 'd
 
 <h3><?php esc_html_e( 'Classes', 'device-detector' ); ?></h3>
 <p><?php echo Detector::get_definition( 'class' ) ?></p>
-<h3><?php esc_html_e( 'Types', 'device-detector' ); ?></h3>
+<h3><?php esc_html_e( 'Device Types', 'device-detector' ); ?></h3>
 <p><?php echo Detector::get_definition( 'device' ) ?></p>
-<h3><?php esc_html_e( 'Clients', 'device-detector' ); ?></h3>
+<h3><?php esc_html_e( 'Client Types', 'device-detector' ); ?></h3>
 <p><?php echo Detector::get_definition( 'client' ) ?></p>
 <h3><?php esc_html_e( 'Details', 'device-detector' ); ?></h3>
 <h4><?php esc_html_e( 'Operating Systems', 'device-detector' ); ?></h4>
