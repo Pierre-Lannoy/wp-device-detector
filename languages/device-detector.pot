@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Device Detector\n"
-"POT-Creation-Date: 2020-01-20 23:11+0100\n"
+"POT-Creation-Date: 2020-01-20 23:36+0100\n"
 "PO-Revision-Date: 2019-07-08 14:07+0200\n"
 "Last-Translator: Pierre Lannoy <pierre@lannoy.fr>\n"
 "Language-Team: Pierre Lannoy <pierre@lannoy.fr>\n"
@@ -278,6 +278,7 @@ msgid "Details"
 msgstr ""
 
 #: admin/partials/device-detector-admin-settings-devices.php:27
+#: includes/features/class-analytics.php:1124
 msgid "Operating Systems"
 msgstr ""
 
@@ -398,10 +399,6 @@ msgstr ""
 msgid "Libraries"
 msgstr ""
 
-#: includes/features/class-analytics.php:1124
-msgid "OS"
-msgstr ""
-
 #: includes/features/class-analytics.php:1127
 msgid "Browser Details"
 msgstr ""
@@ -415,7 +412,7 @@ msgid "Device Details"
 msgstr ""
 
 #: includes/features/class-analytics.php:1136
-msgid "OS Details"
+msgid "Operating System Details"
 msgstr ""
 
 #: includes/features/class-analytics.php:1141
@@ -479,7 +476,7 @@ msgid "All Devices"
 msgstr ""
 
 #: includes/features/class-analytics.php:1283
-msgid "All OS"
+msgid "All Operating Systems"
 msgstr ""
 
 #: includes/features/class-analytics.php:1317
@@ -516,12 +513,12 @@ msgid "Top Devices"
 msgstr ""
 
 #: includes/features/class-analytics.php:1455
-msgid "View the details of all OS."
+msgid "View the details of all operating systems."
 msgstr ""
 
 #: includes/features/class-analytics.php:1457
 #: includes/features/class-analytics.php:1482
-msgid "Top OS"
+msgid "Top Operating Systems"
 msgstr ""
 
 #: includes/features/class-analytics.php:1532
