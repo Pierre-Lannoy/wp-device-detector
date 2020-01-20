@@ -207,8 +207,8 @@ class Analytics {
 			case 'device':
 				$this->filter[]   = "brand_id='" . $id . "'";
 				$this->previous[] = "brand_id='" . $id . "'";
-				$this->filter[]   = "model='" . $extended . "'";
-				$this->previous[] = "model='" . $extended . "'";
+				$this->filter[]   = "model='" . str_replace( '\'', '\\' . '\'', $extended ) . "'";
+				$this->previous[] = "model='" . str_replace( '\'', '\\' . '\'', $extended ) . "'";
 				break;
 			case 'libraries':
 				$this->filter[]   = "client='library'";
@@ -565,7 +565,7 @@ class Analytics {
 					break;
 			}
 			if ( '' !== $url ) {
-				$url = '<a href="' . esc_url( $url ) . '">' . $text . '</a>';
+				$url = '<a href="' . $url . '">' . $text . '</a>';
 			} else {
 				$url = $text;
 			}
@@ -829,7 +829,7 @@ class Analytics {
 				if ( '' !== $elink ) {
 					$name = $item['name'];
 				} else {
-					$name = '<a href="' . esc_url( $this->get_url( [], $l ) ) . '">' . $item['name'] . '</a>';
+					$name = '<a href="' . $this->get_url( [], $l ) . '">' . $item['name'] . '</a>';
 				}
 				$row_str  = '<tr style="' . ( '' !== $sub ? 'font-weight: 600;' : '' ) . '">';
 				$row_str .= '<td data-th="name"><img style="width:16px;vertical-align:bottom;" src="' . $icon . '" />&nbsp;&nbsp;<span class="podd-list-text">' . $name . '</span></td>';
@@ -847,7 +847,7 @@ class Analytics {
 							'id'       => $item[ 'id' ],
 							'extended' => $datum[ 'id' ],
 						];
-						$name = '<a href="' . esc_url( $this->get_url( [], $l ) ) . '">' . $datum['name'] . '</a>';
+						$name = '<a href="' . $this->get_url( [], $l ) . '">' . $datum['name'] . '</a>';
 					} else {
 						$name = $datum['name'];
 					}
@@ -1165,7 +1165,7 @@ class Analytics {
 			$result = '<span class="podd-site-text">' . esc_html__( 'All Sites', 'device-detector' ) . '</span>';
 		} else {
 			if ( Role::SUPER_ADMIN === Role::admin_type() ) {
-				$quit   = '<a href="' . esc_url( $this->get_url( [ 'site' ] ) ) . '"><img style="width:12px;vertical-align:text-top;" src="' . Feather\Icons::get_base64( 'x-circle', 'none', '#FFFFFF' ) . '" /></a>';
+				$quit   = '<a href="' . $this->get_url( [ 'site' ] ) . '"><img style="width:12px;vertical-align:text-top;" src="' . Feather\Icons::get_base64( 'x-circle', 'none', '#FFFFFF' ) . '" /></a>';
 				$result = '<span class="podd-site-button">' . sprintf( esc_html__( 'Site ID %s', 'device-detector' ), $this->site ) . $quit . '</span>';
 			} else {
 				$result = '<span class="podd-site-text">' . sprintf( esc_html__( 'Site ID %s', 'device-detector' ), $this->site ) . '</span>';
@@ -1314,15 +1314,15 @@ class Analytics {
 	 */
 	public function get_main_chart() {
 		if ( 1 < $this->duration ) {
-			$help_calls  = esc_html__( 'Hits variation.', 'device-detector' );
-			$detail      = '<span class="podd-chart-button not-ready left" id="podd-chart-button-calls" data-position="left" data-tooltip="' . $help_calls . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'hash', 'none', '#73879C' ) . '" /></span>';
-			$result      = '<div class="podd-row">';
-			$result     .= '<div class="podd-box podd-box-full-line">';
-			$result     .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Metrics Variations', 'device-detector' ) . '<span class="podd-module-more">' . $detail . '</span></span></div>';
-			$result     .= '<div class="podd-module-content" id="podd-main-chart">' . $this->get_graph_placeholder( 274 ) . '</div>';
-			$result     .= '</div>';
-			$result     .= '</div>';
-			$result     .= $this->get_refresh_script(
+			$help_calls = esc_html__( 'Hits variation.', 'device-detector' );
+			$detail     = '<span class="podd-chart-button not-ready left" id="podd-chart-button-calls" data-position="left" data-tooltip="' . $help_calls . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'hash', 'none', '#73879C' ) . '" /></span>';
+			$result     = '<div class="podd-row">';
+			$result    .= '<div class="podd-box podd-box-full-line">';
+			$result    .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Metrics Variations', 'device-detector' ) . '<span class="podd-module-more">' . $detail . '</span></span></div>';
+			$result    .= '<div class="podd-module-content" id="podd-main-chart">' . $this->get_graph_placeholder( 274 ) . '</div>';
+			$result    .= '</div>';
+			$result    .= '</div>';
+			$result    .= $this->get_refresh_script(
 				[
 					'query'   => 'main-chart',
 					'queried' => 0,
@@ -1382,7 +1382,7 @@ class Analytics {
 	 */
 	public function get_top_browser_box() {
 		$url     = $this->get_url( [ 'browser' ], [ 'type' => 'browsers' ] );
-		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$detail  = '<a href="' . $url . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
 		$help    = esc_html__( 'View the details of all browsers.', 'device-detector' );
 		$result  = '<div class="podd-50-module-left">';
 		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Browsers', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
@@ -1405,7 +1405,7 @@ class Analytics {
 	 */
 	public function get_top_bot_box() {
 		$url     = $this->get_url( [ 'bot' ], [ 'type' => 'bots' ] );
-		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$detail  = '<a href="' . $url . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
 		$help    = esc_html__( 'View the details of all bots.', 'device-detector' );
 		$result  = '<div class="podd-50-module-right">';
 		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Bots', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
@@ -1428,7 +1428,7 @@ class Analytics {
 	 */
 	public function get_top_device_box() {
 		$url     = $this->get_url( [ 'device' ], [ 'type' => 'devices' ] );
-		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$detail  = '<a href="' . $url . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
 		$help    = esc_html__( 'View the details of all devices.', 'device-detector' );
 		$result  = '<div class="podd-50-module-left">';
 		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Devices', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
@@ -1451,7 +1451,7 @@ class Analytics {
 	 */
 	public function get_top_os_box() {
 		$url     = $this->get_url( [ 'os' ], [ 'type' => 'oses' ] );
-		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$detail  = '<a href="' . $url . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
 		$help    = esc_html__( 'View the details of all OS.', 'device-detector' );
 		$result  = '<div class="podd-50-module-right">';
 		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top OS', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
@@ -1554,7 +1554,7 @@ class Analytics {
 				'type' => 'classes',
 			]
 		);
-		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$detail  = '<a href="' . $url . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
 		$help    = esc_html__( 'View the details of all classes.', 'device-detector' );
 		$result  = '<div class="podd-33-module podd-33-left-module">';
 		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Classes', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
@@ -1582,7 +1582,7 @@ class Analytics {
 				'type' => 'types',
 			]
 		);
-		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$detail  = '<a href="' . $url . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
 		$help    = esc_html__( 'View the details of all device types.', 'device-detector' );
 		$result  = '<div class="podd-33-module podd-33-center-module">';
 		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Device Types', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
@@ -1610,7 +1610,7 @@ class Analytics {
 				'type' => 'clients',
 			]
 		);
-		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$detail  = '<a href="' . $url . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
 		$help    = esc_html__( 'View the details of all client types.', 'device-detector' );
 		$result  = '<div class="podd-33-module podd-33-right-module">';
 		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Client Types', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
@@ -1638,7 +1638,7 @@ class Analytics {
 				'type' => 'libraries',
 			]
 		);
-		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$detail  = '<a href="' . $url . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
 		$help    = esc_html__( 'View the details of all libraries.', 'device-detector' );
 		$result  = '<div class="podd-25-module podd-25-left-module">';
 		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Libraries', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
@@ -1666,7 +1666,7 @@ class Analytics {
 				'type' => 'applications',
 			]
 		);
-		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$detail  = '<a href="' . $url . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
 		$help    = esc_html__( 'View the details of all applications.', 'device-detector' );
 		$result  = '<div class="podd-25-module podd-25-center-left-module">';
 		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Mobile Applications', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
@@ -1694,7 +1694,7 @@ class Analytics {
 				'type' => 'feeds',
 			]
 		);
-		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$detail  = '<a href="' . $url . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
 		$help    = esc_html__( 'View the details of all feed-readers.', 'device-detector' );
 		$result  = '<div class="podd-25-module podd-25-center-right-module">';
 		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Feed Readers', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
@@ -1722,7 +1722,7 @@ class Analytics {
 				'type' => 'medias',
 			]
 		);
-		$detail  = '<a href="' . esc_url( $url ) . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
+		$detail  = '<a href="' . $url . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
 		$help    = esc_html__( 'View the details of all media players.', 'device-detector' );
 		$result  = '<div class="podd-25-module podd-25-right-module">';
 		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Media Players', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
@@ -1851,10 +1851,10 @@ class Analytics {
 		if ( '' !== $this->id ) {
 			$result .= '  id:"' . $this->id . '",';
 		}
-		$result .= '  type:"' . $this->type . '",';
-		if ( '' !== $this->context ) {
-			$result .= '  context:"' . $this->context . '",';
+		if ( '' !== $this->extended ) {
+			$result .= '  extended:"' . rawurlencode( $this->extended ) . '",';
 		}
+		$result .= '  type:"' . $this->type . '",';
 		$result .= '  site:"' . $this->site . '",';
 		$result .= '  start:"' . $this->start . '",';
 		$result .= '  end:"' . $this->end . '",';
@@ -1875,17 +1875,21 @@ class Analytics {
 	/**
 	 * Get the url.
 	 *
-	 * @param   array $exclude Optional. The args to exclude.
-	 * @param   array $replace Optional. The args to replace or add.
+	 * @param   array   $exclude Optional. The args to exclude.
+	 * @param   array   $replace Optional. The args to replace or add.
+	 * @param   boolean $escape  Optional. Forces url escaping.
 	 * @return string  The url.
 	 * @since    1.0.0
 	 */
-	private function get_url( $exclude = [], $replace = [] ) {
+	private function get_url( $exclude = [], $replace = [], $escape = true ) {
 		$params         = [];
 		$params['type'] = $this->type;
 		$params['site'] = $this->site;
 		if ( '' !== $this->id ) {
 			$params['id'] = $this->id;
+		}
+		if ( '' !== $this->extended ) {
+			$params['extended'] = rawurlencode( $this->extended );
 		}
 		$params['start'] = $this->start;
 		$params['end']   = $this->end;
@@ -1898,8 +1902,12 @@ class Analytics {
 		$url = admin_url( 'tools.php?page=podd-viewer' );
 		foreach ( $params as $key => $arg ) {
 			if ( '' !== $arg ) {
-				$url .= '&' . $key . '=' . $arg;
+				$url .= '&' . $key . '=' . rawurlencode( $arg );
 			}
+		}
+		$url = str_replace( '"', '\'\'', $url );
+		if ( $escape ) {
+			$url = esc_url( $url );
 		}
 		return $url;
 	}
@@ -1938,7 +1946,7 @@ class Analytics {
 		$result .= ' }, changeDate);';
 		$result .= ' changeDate(start, end);';
 		$result .= ' $(".podd-datepicker").on("apply.daterangepicker", function(ev, picker) {';
-		$result .= '  var url = "' . $this->get_url( [ 'start', 'end' ], [ 'domain' => $this->domain ] ) . '" + "&start=" + picker.startDate.format("YYYY-MM-DD") + "&end=" + picker.endDate.format("YYYY-MM-DD");';
+		$result .= '  var url = "' . $this->get_url( [ 'start', 'end' ], ( '' !== $this->extended ? [ 'extended' => $this->extended ] : [] ), false ) . '" + "&start=" + picker.startDate.format("YYYY-MM-DD") + "&end=" + picker.endDate.format("YYYY-MM-DD");';
 		$result .= '  $(location).attr("href", url);';
 		$result .= ' });';
 		$result .= '});';
