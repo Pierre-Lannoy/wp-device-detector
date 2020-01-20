@@ -1121,7 +1121,7 @@ class Analytics {
 				$title = esc_html__( 'Devices', 'device-detector' );
 				break;
 			case 'oses':
-				$title = esc_html__( 'OS', 'device-detector' );
+				$title = esc_html__( 'Operating Systems', 'device-detector' );
 				break;
 			case 'browser':
 				$title = esc_html__( 'Browser Details', 'device-detector' );
@@ -1133,7 +1133,7 @@ class Analytics {
 				$title = esc_html__( 'Device Details', 'device-detector' );
 				break;
 			case 'os':
-				$title = esc_html__( 'OS Details', 'device-detector' );
+				$title = esc_html__( 'Operating System Details', 'device-detector' );
 				break;
 
 		}
@@ -1280,7 +1280,7 @@ class Analytics {
 				$result = esc_html__( 'All Devices', 'device-detector' );
 				break;
 			case 'oses-list':
-				$result = esc_html__( 'All OS', 'device-detector' );
+				$result = esc_html__( 'All Operating Systems', 'device-detector' );
 				break;
 		}
 		return $result;
@@ -1452,9 +1452,9 @@ class Analytics {
 	public function get_top_os_box() {
 		$url     = $this->get_url( [ 'os' ], [ 'type' => 'oses' ] );
 		$detail  = '<a href="' . $url . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'zoom-in', 'none', '#73879C' ) . '" /></a>';
-		$help    = esc_html__( 'View the details of all OS.', 'device-detector' );
+		$help    = esc_html__( 'View the details of all operating systems.', 'device-detector' );
 		$result  = '<div class="podd-50-module-right">';
-		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top OS', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Operating Systems', 'device-detector' ) . '</span><span class="podd-module-more left" data-position="left" data-tooltip="' . $help . '">' . $detail . '</span></div>';
 		$result .= '<div class="podd-module-content" id="podd-top-oses">' . $this->get_graph_placeholder( 200 ) . '</div>';
 		$result .= '</div>';
 		$result .= $this->get_refresh_script(
@@ -1479,7 +1479,7 @@ class Analytics {
 			$position = 'left';
 		}
 		$result  = '<div class="podd-50-module-' . $position . '">';
-		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top OS', 'device-detector' ) . '</span></div>';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Operating Systems', 'device-detector' ) . '</span></div>';
 		$result .= '<div class="podd-module-content" id="podd-top-oses">' . $this->get_graph_placeholder( 200 ) . '</div>';
 		$result .= '</div>';
 		$result .= $this->get_refresh_script(
@@ -1504,7 +1504,7 @@ class Analytics {
 			$position = 'left';
 		}
 		$result  = '<div class="podd-50-module-' . $position . '">';
-		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Browser', 'device-detector' ) . '</span></div>';
+		$result .= '<div class="podd-module-title-bar"><span class="podd-module-title">' . esc_html__( 'Top Browsers', 'device-detector' ) . '</span></div>';
 		$result .= '<div class="podd-module-content" id="podd-top-browsers">' . $this->get_graph_placeholder( 200 ) . '</div>';
 		$result .= '</div>';
 		$result .= $this->get_refresh_script(
