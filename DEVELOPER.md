@@ -2,9 +2,6 @@
 
 Before starting to explain how to use Device Detector from a developer point of view, I would like to thank you to take the time to invest your knowledge and skills in making Device Detector better and more useful. I'll only have one word: you rock! (OK, that's two words)
 
-> ⚠️ This documentation is currently being written. Please, don't use it now. 
-
-
 Now, what's the menu today?
 
 1. [What is Device Detector?](#what-is-device-detector)
