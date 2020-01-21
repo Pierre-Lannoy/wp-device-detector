@@ -8,10 +8,11 @@ Before starting to explain how to use Device Detector from a developer point of 
 Now, what's the menu today?
 
 1. [What is Device Detector?](#what-is-device-detector)
-2. [Definitions](#definitions)
-3. [Anatomy of an event](#anatomy-of-an-event)
-5. [Contribution Guidelines](/CONTRIBUTING.md)
-6. [Code of Conduct](/CODE_OF_CONDUCT.md)
+2. [Device Detector API](#device-detector-api)
+    - [Querying characteristics](#querying-characteristics)
+    - [Getting medias](#getting-medias)
+3. [Contribution Guidelines](/CONTRIBUTING.md)
+4. [Code of Conduct](/CODE_OF_CONDUCT.md)
 
 ## What is Device Detector?
 
@@ -41,6 +42,7 @@ To query characteristics, you have one class to know: `\PODeviceDetector\API\Dev
     $os    = PODeviceDetector\API\Device::get()->os_name;
 
 ```
+
 The following properties are available:
 
 ```php
@@ -272,6 +274,89 @@ The following properties are available:
      * @since   1.0.0
      */
     public $bot_producer_url = '';
+
+```
+
+### Getting medias
+
+To query corresponding medias (icons for brand, OS, browser and bot), you can use the same class (`\PODeviceDetector\API\Device`) like this:
+
+```php
+    
+    // Display the brand name with its icon.
+    echo PODeviceDetector\API\Device::get()->brand_icon_image();
+    echo '&nbsp;&nbsp;';
+    echo PODeviceDetector\API\Device::get()->brand_name;
+
+```
+
+The following methods are available:
+
+```php
+    
+    /**
+     * Get the brand icon base64 encoded.
+     *
+     * @return string  The icon base64 encoded.
+     * @since    1.0.0
+     */
+    public function brand_icon_base64() {...}
+
+    /**
+     * Get the brand icon html image tag.
+     *
+     * @return string  The icon, as html image, ready to print.
+     * @since    1.0.0
+     */
+    public function brand_icon_image() {...}
+
+    /**
+     * Get the os icon base64 encoded.
+     *
+     * @return string  The icon base64 encoded.
+     * @since    1.0.0
+     */
+    public function os_icon_base64() {...}
+
+    /**
+     * Get the os icon html image tag.
+     *
+     * @return string  The icon, as html image, ready to print.
+     * @since    1.0.0
+     */
+    public function os_icon_image() {...}
+
+    /**
+     * Get the browser icon base64 encoded.
+     *
+     * @return string  The icon base64 encoded.
+     * @since    1.0.0
+     */
+    public function browser_icon_base64() {...}
+
+    /**
+     * Get the browser icon html image tag.
+     *
+     * @return string  The icon, as html image, ready to print.
+     * @since    1.0.0
+     */
+    public function browser_icon_image() {...}
+
+    /**
+     * Get the bot icon base64 encoded.
+     *
+     * @return string  The icon base64 encoded.
+     * @since    1.0.0
+     */
+    public function bot_icon_base64() {...}
+
+    /**
+     * Get the bot icon html image tag.
+     *
+     * @return string  The icon, as html image, ready to print.
+     * @since    1.0.0
+     */
+    public function bot_icon_image() {...}
 
 ```
 
