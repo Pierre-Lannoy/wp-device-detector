@@ -12,6 +12,8 @@
 namespace PODeviceDetector\API;
 
 use PODeviceDetector\Plugin\Feature\Detector;
+use Morpheus;
+use PODeviceDetector\System\Favicon;
 
 /**
  * Define the detected device.
@@ -86,6 +88,87 @@ class Device {
 	 */
 	public static function get( $ua = '' ) {
 		return Detector::new( $ua );
+	}
+
+	/**
+	 * Get the brand icon base64 encoded.
+	 *
+	 * @return string  The icon base64 encoded.
+	 * @since    1.0.0
+	 */
+	public function brand_icon_base64() {
+		return Morpheus\Icons::get_brand_base64( $this->brand_name );
+	}
+
+	/**
+	 * Get the brand icon html image tag.
+	 *
+	 * @return string  The icon, as html image, ready to print.
+	 * @since    1.0.0
+	 */
+	public function brand_icon_image() {
+		return '<img class="podd-brand-icon podd-brand-icon-' . $this->brand_short_name . '" style="width:16px;vertical-align:top;" src="' . $this->brand_icon_base64() . '" />';
+	}
+
+	/**
+	 * Get the os icon base64 encoded.
+	 *
+	 * @return string  The icon base64 encoded.
+	 * @since    1.0.0
+	 */
+	public function os_icon_base64() {
+		return Morpheus\Icons::get_os_base64( $this->os_short_name );
+	}
+
+	/**
+	 * Get the os icon html image tag.
+	 *
+	 * @return string  The icon, as html image, ready to print.
+	 * @since    1.0.0
+	 */
+	public function os_icon_image() {
+		return '<img class="podd-os-icon podd-os-icon-' . $this->os_short_name . '" style="width:16px;vertical-align:top;" src="' . $this->os_icon_base64() . '" />';
+	}
+
+	/**
+	 * Get the browser icon base64 encoded.
+	 *
+	 * @return string  The icon base64 encoded.
+	 * @since    1.0.0
+	 */
+	public function browser_icon_base64() {
+		return Morpheus\Icons::get_browser_base64( $this->client_short_name );
+	}
+
+	/**
+	 * Get the browser icon html image tag.
+	 *
+	 * @return string  The icon, as html image, ready to print.
+	 * @since    1.0.0
+	 */
+	public function browser_icon_image() {
+		return '<img class="podd-browser-icon podd-browser-icon-' . $this->client_short_name . '" style="width:16px;vertical-align:top;" src="' . $this->browser_icon_base64() . '" />';
+	}
+
+	/**
+	 * Get the bot icon base64 encoded.
+	 *
+	 * @return string  The icon base64 encoded.
+	 * @since    1.0.0
+	 */
+	public function bot_icon_base64() {
+		return Favicon::get_base64( $this->bot_url );
+	}
+
+	/**
+	 * Get the bot icon html image tag.
+	 *
+	 * @return string  The icon, as html image, ready to print.
+	 * @since    1.0.0
+	 */
+	public function bot_icon_image() {
+		$id = str_replace( [ '-', ' ', '/', '.', '_', '!', '^', '&' ], '', strtolower( $this->client_short_name ) );
+		return '<img class="podd-bot-icon podd-bot-icon-' . $id . '" style="width:16px;vertical-align:top;" src="' . $this->bot_icon_base64() . '" />';
 	}
 
 	/**
