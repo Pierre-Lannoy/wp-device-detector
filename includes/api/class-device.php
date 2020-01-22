@@ -17,6 +17,7 @@ use PODeviceDetector\System\Favicon;
 use PODeviceDetector\Plugin\Feature\ClassTypes;
 use PODeviceDetector\Plugin\Feature\ClientTypes;
 use PODeviceDetector\Plugin\Feature\DeviceTypes;
+use PODeviceDetector\System\Logger;
 
 /**
  * Define the detected device.
@@ -66,6 +67,7 @@ class Device {
 				$bot                     = $detector->getBot();
 				$this->bot_name          = $bot['name'];
 				$this->bot_category      = $bot['category'];
+				$this->bot_full_category = $this->get_bot_full_category();
 				$this->bot_url           = $bot['url'];
 				$this->bot_producer_name = $bot['producer']['name'];
 				$this->bot_producer_url  = $bot['producer']['url'];
@@ -261,7 +263,45 @@ class Device {
 		if ( $this->client_is_media_player ) {
 			return ClientTypes::$client_names['media-payer'];
 		}
-		return ClassTypes::$class_names['other'];
+		return ClientTypes::$client_names['other'];
+	}
+
+	/**
+	 * Get the full bot category.
+	 *
+	 * @return string  The full class type.
+	 * @since    1.0.0
+	 */
+	private function get_bot_full_category() {
+		switch ( strtoupper( $this->bot_category ) ) {
+			case 'SEARCH BOT':
+				return esc_html__( 'Search bot', 'device-detector' );
+			case 'SEARCH TOOLS':
+				return esc_html__( 'Search tool', 'device-detector' );
+			case 'SECURITY SEARCH BOT':
+				return esc_html__( 'Security search bot', 'device-detector' );
+			case 'SECURITY CHECKER':
+				return esc_html__( 'Security checker', 'device-detector' );
+			case 'SOCIAL MEDIA AGENT':
+				return esc_html__( 'Social media agent', 'device-detector' );
+			case 'CRAWLER':
+			case 'READ-IT-LATER SERVICE':
+				return esc_html__( 'Crawler', 'device-detector' );
+			case 'SITE MONITOR':
+				return esc_html__( 'Site monitor', 'device-detector' );
+			case 'SERVICE AGENT':
+				return esc_html__( 'Service agent', 'device-detector' );
+			case 'BENCHMARK':
+				return esc_html__( 'Benchmark tool', 'device-detector' );
+			case 'VALIDATOR':
+				return esc_html__( 'Validator tool', 'device-detector' );
+			case 'FEED FETCHER':
+			case 'FEED READER':
+				return esc_html__( 'Feed fetcher', 'device-detector' );
+			case '':
+				return '';
+		}
+		return esc_html__( 'Unknown', 'device-detector' );
 	}
 
 	/**
@@ -491,6 +531,12 @@ class Device {
 	 * @since   1.0.0
 	 */
 	public $bot_category = '';
+
+	/**
+	 * @var string  The bot category translated if translation exists, else in english.
+	 * @since   1.0.0
+	 */
+	public $bot_full_category = '';
 
 	/**
 	 * @var string  The bot url.
