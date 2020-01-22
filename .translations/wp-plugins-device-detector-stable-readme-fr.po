@@ -1,0 +1,255 @@
+# Translation of Plugins - Device Detector - Stable Readme (latest release) in French (France)
+# This file is distributed under the same license as the Plugins - Device Detector - Stable Readme (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-01-23 00:46+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Poedit 2.2.1\n"
+"Language: fr\n"
+"Project-Id-Version: Plugins - Device Detector - Stable Readme (latest release)\n"
+"POT-Creation-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+
+#. Short description.
+msgid "Full featured analytics reporting and management tool that detects all devices accessing your WordPress site."
+msgstr "Outil complet de rapports statistiques et de détection de tous les appareils accédant à votre site WordPress."
+
+#. Plugin name.
+msgid "Device Detector"
+msgstr "Device Detector"
+
+#. Found in faq paragraph.
+msgid "You can report bugs and suggest ideas via the <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector/issues\">GitHub issue tracker</a> of the plugin."
+msgstr "Vous pouvez signaler des bogues et suggérer des améliorations via le <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector/issues\">suivi d’incidents GitHub</a> de l’extension."
+
+#. Found in faq paragraph.
+msgid "Developer's documentation can be found in the <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector\">GitHub repository</a> of the plugin."
+msgstr "Vous trouverez la documentation du développeur sur le <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector>dépôt GitHub</a> de l’extension."
+
+#. Found in faq paragraph.
+msgid "Support is provided via the official <a href=\"https://wordpress.org/support/plugin/device-detector/\">WordPress page</a>."
+msgstr "L’assistance est proposée via la page officielle <a href=\"https://wordpress.org/support/plugin/device-detector/« >d’assistance</a>."
+
+#. Found in faq paragraph.
+msgid "Yes. It is designed to work on multisite too. Network Admins can configure the plugin and have access to all analytics. Sites Admins have access to the analytics of their site(s) and can configure options for their own site(s)."
+msgstr "Oui. Cette extension est conçue pour fonctionner sur un multisite aussi. Les administrateurs du réseau peuvent configurer l’extension et avoir accès à tous les statistiques. Les administrateurs de sites ont juste accès aux statistiques de leurs sites et peuvent configurer l’extension pour leurs propres sites."
+
+#. Found in faq paragraph.
+msgid "You need at least <strong>WordPress 5.2</strong> and <strong>PHP 7.2</strong>."
+msgstr "Vous avez besoin d’au moins <strong>WordPress 5.2</strong> et <strong>PHP 7.2</strong>."
+
+#. Found in faq header.
+msgid "Where can I report a bug?"
+msgstr "Où puis-je signaler un bogue ?"
+
+#. Found in faq header.
+msgid "Where can I find documentation?"
+msgstr "Où puis-je trouver la documentation ?"
+
+#. Found in faq header.
+msgid "Where can I get support?"
+msgstr "Où puis-je obtenir de l’aide ?"
+
+#. Found in faq header.
+msgid "Can this plugin work on multisite?"
+msgstr "Cette extension fonctionne-t’elle sur un multisite ?"
+
+#. Found in faq header.
+msgid "What are the requirements for this plugin to work?"
+msgstr "Quels sont les prérequis pour que cette extension fonctionne ?"
+
+#. Found in installation list item.
+msgid "Enjoy!"
+msgstr "Profitez !"
+
+#. Found in installation list item.
+msgid "Visit 'Settings &gt; Device Detector' in the left-hand menu of your WP Admin to adjust settings."
+msgstr "Visitez « Réglages &gt; Device Detector » dans le menu gauche de votre panneau d’administration pour ajuster les paramètres."
+
+#. Found in installation list item.
+msgid "Activate Device Detector from your Plugins page."
+msgstr "Activez Device Detector depuis votre page Extensions."
+
+#. Found in installation list item.
+msgid "Upload the <code>device-detector</code> directory to your <code>/wp-content/plugins/</code> directory, using your favorite method (ftp, sftp, scp, etc...)."
+msgstr "Téléversez le dossier <code>Device-detector</code> dans votre dossier <code>/wp-content/plugins/</code>, en utilisant votre méthode préférée (ftp, sftp, scp, etc.)."
+
+#. Found in installation list item.
+msgid "Download Device Detector."
+msgstr "Téléchargez Device Detector."
+
+#. Found in installation list item.
+msgid "Activate Device Detector."
+msgstr "Activez Device Detector."
+
+#. Found in installation list item.
+msgid "Click on the 'Install Now' button."
+msgstr "Cliquez sur le bouton « Installer maintenant »."
+
+#. Found in installation list item.
+msgid "Search for 'Device Detector'."
+msgstr "Recherchez 'Device Detector'."
+
+#. Found in installation list item.
+msgid "Visit 'Plugins &gt; Add New'."
+msgstr "Visitez « Extensions &gt; Ajouter »."
+
+#. Found in installation header.
+msgid "Once Activated"
+msgstr "Une fois activé"
+
+#. Found in installation header.
+msgid "From WordPress.org"
+msgstr "Depuis WordPress.org"
+
+#. Found in installation header.
+msgid "From your WordPress dashboard"
+msgstr "Depuis votre Tableau de bord WordPress"
+
+#. Found in description paragraph.
+msgid "If you like this plugin or find it useful and want to thank me for the work done, please consider making a donation to <a href=\"https://www.laquadrature.net/en\">La Quadrature Du Net</a> or the <a href=\"https://www.eff.org/\">Electronic Frontier Foundation</a> which are advocacy groups defending the rights and freedoms of citizens on the Internet. By supporting them, you help the daily actions they perform to defend our fundamental freedoms!"
+msgstr "Si vous aimez cette extension ou la trouvez utile et que vous voulez me remercier pour le travail accompli, vous pouvez faire un don à <a href=\"https://www.laquadrature.net/en\">La Quadrature Du Net</a> ou l’<a href=\"https://www.eff.org/\">Electronic Frontier Foundation</a> qui sont des associations de défense des droits et libertés des citoyens sur Internet. En les soutenant, vous aidez les actions quotidiennes qu’ils accomplissent pour défendre nos libertés fondamentales !"
+
+#. Found in description paragraph.
+msgid "Anyway, I'll be glad to help you if you encounter issues when using this plugin. Just use the support section of this plugin page."
+msgstr "Dans tous les cas, je serai heureux de vous apporter mon assistance si vous rencontrez des problèmes lors de l’utilisation de cette extension. Merci de me contacter via la page support de ce site."
+
+#. Found in description paragraph.
+msgid "This plugin is free and provided without warranty of any kind. Use it at your own risk, I'm not responsible for any improper use of this plugin, nor for any damage it might cause to your site. Always backup all your data before installing a new plugin."
+msgstr "Cette extension est gratuite et distribuée sans aucune garantie d’aucune sorte. Son utilisation se fait à vos risques et périls, je ne saurais être tenu responsable d’aucun dommage que son utilisation pourrait causer à votre site. Pensez à toujours sauvegarder vos données avant d’installer une nouvelle extension."
+
+#. Found in description paragraph.
+msgid "If you're a plugins / themes developer and want to take advantage of the detection features of Device Detector, visit the <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector\">GitHub repository</a> of the plugin to learn how to use it."
+msgstr "Si vous êtes un développeur d’extensions ou thèmes et que vous souhaitez profiter des fonctionnalités de détection de Device Detector, visitez le <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector\">dépôt GitHub</a> de l’extension pour découvrir comment l’utiliser."
+
+#. Found in description paragraph.
+msgid "Based on the amazing <a href=\"https://github.com/matomo-org/matomo\">Matomo</a> UDD, Device Detector is a free and open source plugin for WordPress. It integrates many other free and open source works (as-is or modified). Please, see 'about' tab in the plugin settings to see the details."
+msgstr "Basé sur le fantastique UDD de <a href=\"https://github.com/matomo-org/matomo\">Matomo</a>, Device Detector est une extension libre et open source pour WordPress. Elle intègre de nombreuses autres œuvres libres et open source (telles quelles ou modifiées). Consultez l’onglet « à propos » dans l’extension pour obtenir des détails."
+
+#. Found in description paragraph.
+msgid "<strong>Device Detector</strong> supports multisite report delegation and per site configuration (see FAQ)."
+msgstr "<strong>Device Detector</strong> prend en charge la délégation de rapports multisites et le réglages différencié par site (voir FAQ)."
+
+#. Found in description paragraph.
+msgid "For a full list of items, characteristics and supported devices, please see the 'devices' tab in the plugin settings."
+msgstr "Pour une liste complète des éléments, des caractéristiques et des périphériques pris en charge, veuillez consulter l’onglet « appareils » dans les paramètres de l’extension."
+
+#. Found in description paragraph.
+msgid "<strong>Device Detector</strong> can report the following main items and characteristics:"
+msgstr "<strong>Device Detector</strong> peut rendre compte des caractéristiques et éléments principaux suivants :"
+
+#. Found in description paragraph.
+msgid "For each call made to your site, <strong>Device Detector</strong> analyzes the sent header, detects the device doing the call (and its characteristics) and can:"
+msgstr "Pour chaque appel effectué sur votre site, <strong>Device Detector</strong> analyse l’en-tête envoyé, détecte l’appareil effectuant l’appel (et ses caractéristiques) et peut :"
+
+#. Found in description paragraph.
+msgid "<strong>Device Detector</strong> is a full featured analytics reporting and management tool that detects all devices accessing your WordPress site."
+msgstr "<strong>Device Detector</strong> est un outil complet de rapports statistiques et de détection de tous les appareils accédant à votre site WordPress."
+
+#. Found in description list item.
+msgid "Calling channel: site backend, site frontend, cron job, Ajax request, XML-RPC request, Rest API request, Atom/RDF/RSS feed;"
+msgstr "Canaux : interface d’administration du site, interface publique du site, tâches planifiées, requêtes Ajax, requêtes XML-RPC, requêtes API, flux Atom/RDF/RSS ;"
+
+#. Found in description list item.
+msgid "OS identification: name, version, etc.;"
+msgstr "Identification du système d’exploitation : nom, version, etc. ;"
+
+#. Found in description list item.
+msgid "Device identification: brand, model, etc.;"
+msgstr "Identification de l’appareil : marque, modèle, etc. ;"
+
+#. Found in description list item.
+msgid "Technical characteristics and versions of all browsers;"
+msgstr "Caractéristiques techniques et versions de tous les navigateurs ;"
+
+#. Found in description list item.
+msgid "Client types: Application Library, Browser, Feed Reader, Media Player, Mobile Application, PIM."
+msgstr "Types de clients : bibliothèque d’applications, navigateur, lecteur de flux, lecteur multimédia, application mobile, PIM."
+
+#. Found in description list item.
+msgid "Devices types: Camera, Car Browser, Console, Feature Phone, Phablet, Portable Media Player, Smart Display, Smartphone, Tablet, TV;"
+msgstr "Types d’appareils : appareil photo, navigateur de voiture, console, téléphone , phablet, lecteur multimédia portable, afficheur intelligent, smartphone, tablette, TV ;"
+
+#. Found in description list item.
+msgid "Classes: Bot, Desktop, Mobile and Other;"
+msgstr "Classes : robot, ordinateur de bureau, mobile et autre ;"
+
+#. Found in description list item.
+msgid "KPIs: number of hits, class breakdown, clients types and engines;"
+msgstr "KPiIs : nombre d’occurrences, répartition par classe, types et moteur des clients ;"
+
+#. Found in description list item.
+msgid "record detected characteristics for reporting."
+msgstr "enregistrer les caractéristiques détectées dans des rapports."
+
+#. Found in description list item.
+msgid "let you use the result of the detection in your own developments;"
+msgstr "vous laisser utiliser le résultat de la détection dans vos propres développements ;"
+
+#. Found in description list item.
+msgid "add some CSS classes to the <code>body</code> tag of your site (many classes to choose from);"
+msgstr "ajouter quelques classes CSS au tag <code>body</code> de votre site (grand choix de classes) ;"
+
+#. Found in description list item.
+msgid "modify the <code>is_mobile()</code> WordPress core function to be more precise and reliable;"
+msgstr "modifier la fonction WordPress <code>is_mobile()</code> pour la rendre plus précise et fiable ;"
+
+#. Found in description header.
+msgid "Donation"
+msgstr "Don"
+
+#. Found in description header.
+msgid "Support"
+msgstr "Assistance"
+
+#. Found in description header.
+msgid "Developers"
+msgstr "Développeurs"
+
+#. Screenshot description.
+msgid "Device Details"
+msgstr "Détails de l’appareil"
+
+#. Screenshot description.
+msgid "Devices List"
+msgstr "Liste des appareils"
+
+#. Screenshot description.
+msgid "OS Details"
+msgstr "Détails de l’OS"
+
+#. Screenshot description.
+msgid "OS List"
+msgstr "Liste des OS"
+
+#. Screenshot description.
+msgid "Libraries List"
+msgstr "Liste des bibliothèques"
+
+#. Screenshot description.
+msgid "Bot Details"
+msgstr "Détails du robot"
+
+#. Screenshot description.
+msgid "Bots List"
+msgstr "Liste des robots"
+
+#. Screenshot description.
+msgid "Browser Details"
+msgstr "Détails du navigateur"
+
+#. Screenshot description.
+msgid "Browsers List"
+msgstr "Liste des navigateurs"
+
+#. Screenshot description.
+msgid "Main Analytics Dashboard"
+msgstr "Tableau de bord principal"
+
+#. Found in changelog paragraph.
+msgid "Please, see <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/CHANGELOG.md\">full changelog</a> on GitHub."
+msgstr "Merci de consulter le <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/CHANGELOG.md\">journal des modifications</a> sur GitHub."
