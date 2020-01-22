@@ -14,6 +14,9 @@ namespace PODeviceDetector\API;
 use PODeviceDetector\Plugin\Feature\Detector;
 use Morpheus;
 use PODeviceDetector\System\Favicon;
+use PODeviceDetector\Plugin\Feature\ClassTypes;
+use PODeviceDetector\Plugin\Feature\ClientTypes;
+use PODeviceDetector\Plugin\Feature\DeviceTypes;
 
 /**
  * Define the detected device.
@@ -37,6 +40,7 @@ class Device {
 			$this->class_is_bot                    = $detector->isBot();
 			$this->class_is_desktop                = $detector->isDesktop();
 			$this->class_is_mobile                 = $detector->isMobile();
+			$this->class_full_type                 = $this->get_class_full_type();
 			$this->device_is_smartphone            = $detector->isSmartphone();
 			$this->device_is_featurephone          = $detector->isFeaturePhone();
 			$this->device_is_tablet                = $detector->isTablet();
@@ -47,6 +51,7 @@ class Device {
 			$this->device_is_tv                    = $detector->isTV();
 			$this->device_is_smart_display         = $detector->isSmartDisplay();
 			$this->device_is_camera                = $detector->isCamera();
+			$this->device_full_type                = $this->get_device_full_type();
 			$this->client_is_browser               = $detector->isBrowser();
 			$this->client_is_feed_reader           = $detector->isFeedReader();
 			$this->client_is_mobile_app            = $detector->isMobileApp();
@@ -70,6 +75,7 @@ class Device {
 				$this->os_version            = $detector->getOs( 'version' );
 				$this->os_platform           = $detector->getOs( 'platform' );
 				$this->client_type           = $detector->getClient( 'type' );
+				$this->client_full_type      = $this->get_client_full_type();
 				$this->client_name           = $detector->getClient( 'name' );
 				$this->client_short_name     = $detector->getClient( 'short_name' );
 				$this->client_version        = $detector->getClient( 'version' );
@@ -172,6 +178,93 @@ class Device {
 	}
 
 	/**
+	 * Get the full class type.
+	 *
+	 * @return string  The full class type.
+	 * @since    1.0.0
+	 */
+	private function get_class_full_type() {
+		if ( $this->class_is_bot ) {
+			return ClassTypes::$class_names['bot'];
+		}
+		if ( $this->class_is_mobile ) {
+			return ClassTypes::$class_names['mobile'];
+		}
+		if ( $this->class_is_desktop ) {
+			return ClassTypes::$class_names['desktop'];
+		}
+		return ClassTypes::$class_names['other'];
+	}
+
+	/**
+	 * Get the full device type.
+	 *
+	 * @return string  The full device type.
+	 * @since    1.0.0
+	 */
+	private function get_device_full_type() {
+		if ( $this->device_is_smartphone ) {
+			return DeviceTypes::$device_names['smartphone'];
+		}
+		if ( $this->device_is_featurephone ) {
+			return DeviceTypes::$device_names['featurephone'];
+		}
+		if ( $this->device_is_tablet ) {
+			return DeviceTypes::$device_names['tablet'];
+		}
+		if ( $this->device_is_phablet ) {
+			return DeviceTypes::$device_names['phablet'];
+		}
+		if ( $this->device_is_console ) {
+			return DeviceTypes::$device_names['console'];
+		}
+		if ( $this->device_is_portable_media_player ) {
+			return DeviceTypes::$device_names['portable-media-player'];
+		}
+		if ( $this->device_is_car_browser ) {
+			return DeviceTypes::$device_names['car-browser'];
+		}
+		if ( $this->device_is_tv ) {
+			return DeviceTypes::$device_names['tv'];
+		}
+		if ( $this->device_is_smart_display ) {
+			return DeviceTypes::$device_names['smart-display'];
+		}
+		if ( $this->device_is_camera ) {
+			return DeviceTypes::$device_names['camera'];
+		}
+		return DeviceTypes::$device_names['other'];
+	}
+
+	/**
+	 * Get the full client type.
+	 *
+	 * @return string  The full class type.
+	 * @since    1.0.0
+	 */
+	private function get_client_full_type() {
+		if ( $this->client_is_browser ) {
+			return ClientTypes::$client_names['browser'];
+		}
+		if ( $this->client_is_feed_reader ) {
+			return ClientTypes::$client_names['feed-reader'];
+		}
+		if ( $this->client_is_mobile_app ) {
+			return ClientTypes::$client_names['mobile-app'];
+		}
+		if ( $this->client_is_pim ) {
+			return ClientTypes::$client_names['pim'];
+		}
+		if ( $this->client_is_library ) {
+			return ClientTypes::$client_names['library'];
+		}
+		if ( $this->client_is_media_player ) {
+			return ClientTypes::$client_names['media-payer'];
+		}
+		return ClassTypes::$class_names['other'];
+	}
+
+	/**
 	 * @var boolean  True if it's a bot, false otherwise.
 	 * @since   1.0.0
 	 */
@@ -188,6 +281,12 @@ class Device {
 	 * @since   1.0.0
 	 */
 	public $class_is_mobile = false;
+
+	/**
+	 * @var string  The name of the class translated if translation exists, else in english.
+	 * @since   1.0.0
+	 */
+	public $class_full_type = '';
 
 	/**
 	 * @var boolean  True if it's a smartphone, false otherwise.
@@ -250,6 +349,12 @@ class Device {
 	public $device_is_camera = false;
 
 	/**
+	 * @var string  The name of the device type translated if translation exists, else in english.
+	 * @since   1.0.0
+	 */
+	public $device_full_type = '';
+
+	/**
 	 * @var boolean  True if it's a browser, false otherwise.
 	 * @since   1.0.0
 	 */
@@ -284,6 +389,12 @@ class Device {
 	 * @since   1.0.0
 	 */
 	public $client_is_media_player = false;
+
+	/**
+	 * @var string  The name of the client type translated if translation exists, else in english.
+	 * @since   1.0.0
+	 */
+	public $client_full_type = '';
 
 	/**
 	 * @var boolean  True if device has touch enabled, false otherwise.
