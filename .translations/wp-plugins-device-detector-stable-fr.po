@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plugins - Device Detector - Stable (latest release)\n"
-"POT-Creation-Date: 2020-01-20 23:36+0100\n"
-"PO-Revision-Date: 2020-01-21 00:01+0100\n"
+"POT-Creation-Date: 2020-01-22 13:58+0100\n"
+"PO-Revision-Date: 2020-01-22 20:59+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -373,6 +373,55 @@ msgstr "À propos"
 msgid "Reset to Defaults"
 msgstr "Réinitialiser les paramètres par défaut"
 
+#: includes/api/class-device.php:278
+msgid "Search bot"
+msgstr "Moteur de recherche"
+
+#: includes/api/class-device.php:280
+msgid "Search tool"
+msgstr "Outil de recherche"
+
+#: includes/api/class-device.php:282
+msgid "Security search bot"
+msgstr "Moteur de recherche (sécurité)"
+
+#: includes/api/class-device.php:284
+msgid "Security checker"
+msgstr "Vérificateur de sécurité"
+
+#: includes/api/class-device.php:286
+msgid "Social media agent"
+msgstr "Agent de médias sociaux"
+
+#: includes/api/class-device.php:289
+msgid "Crawler"
+msgstr "Robot d’indexation"
+
+#: includes/api/class-device.php:291
+msgid "Site monitor"
+msgstr "Moniteur de site"
+
+#: includes/api/class-device.php:293
+msgid "Service agent"
+msgstr "Agent de service"
+
+#: includes/api/class-device.php:295
+msgid "Benchmark tool"
+msgstr "Outil de référence"
+
+#: includes/api/class-device.php:297
+msgid "Validator tool"
+msgstr "Outil de validation"
+
+#: includes/api/class-device.php:300
+msgid "Feed fetcher"
+msgstr "Récupérateur de flux"
+
+#: includes/api/class-device.php:304
+#: includes/features/class-channeltypes.php:47
+msgid "Unknown"
+msgstr "Inconnu"
+
 #: includes/features/class-analytics.php:397
 #: includes/features/class-analytics.php:399
 #: includes/features/class-analytics.php:590
@@ -654,10 +703,6 @@ msgstr "Mois en cours"
 #: includes/features/class-analytics.php:1944
 msgid "Last Month"
 msgstr "Mois dernier"
-
-#: includes/features/class-channeltypes.php:47
-msgid "Unknown"
-msgstr "Inconnu"
 
 #: includes/features/class-channeltypes.php:48
 msgid "Command Line Interface"
