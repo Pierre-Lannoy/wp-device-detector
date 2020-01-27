@@ -34,21 +34,6 @@ $note = sprintf( __( 'Note: analytics reports are available via the <a href="%s"
 	<h2><?php echo esc_html( sprintf( esc_html__( '%s Settings', 'device-detector' ), PODD_PRODUCT_NAME ) ); ?></h2>
 	<?php settings_errors(); ?>
 	<h2 class="nav-tab-wrapper">
-		<?php if ( Role::SUPER_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() ) { ?>
-		<a href="
-		<?php
-		echo esc_url(
-			add_query_arg(
-				array(
-					'page' => 'podd-settings',
-					'tab'  => 'misc',
-				),
-				admin_url( 'options-general.php' )
-			)
-		);
-		?>
-		" class="nav-tab <?php echo 'misc' === $active_tab ? 'nav-tab-active' : ''; ?>"><?php esc_html_e( 'Options', 'device-detector' ); ?></a>
-        <?php } ?>
 		<a href="
 		<?php
 		echo esc_url(
@@ -75,6 +60,21 @@ $note = sprintf( __( 'Note: analytics reports are available via the <a href="%s"
 		);
 		?>
 		" class="nav-tab <?php echo 'css' === $active_tab ? 'nav-tab-active' : ''; ?>"><?php esc_html_e( 'CSS', 'device-detector' ); ?></a>
+		<?php if ( Role::SUPER_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() ) { ?>
+            <a href="
+		<?php
+			echo esc_url(
+				add_query_arg(
+					array(
+						'page' => 'podd-settings',
+						'tab'  => 'misc',
+					),
+					admin_url( 'options-general.php' )
+				)
+			);
+			?>
+		" class="nav-tab <?php echo 'misc' === $active_tab ? 'nav-tab-active' : ''; ?>"><?php esc_html_e( 'Options', 'device-detector' ); ?></a>
+		<?php } ?>
         <a href="
 		<?php
 		echo esc_url(
