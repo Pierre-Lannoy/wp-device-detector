@@ -3,9 +3,14 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 1.0.1]
+## [1.1.0] - 2020-02-04
+### Added
+- Full compatibility with [APCu Manager](https://wordpress.org/plugins/apcu-manager/).
+- Full compatibility with [DecaLog](https://wordpress.org/plugins/decalog/).
 ### Changed
 - The position of the "options" tab (in settings screen) is now consistent with other PO plugins. 
+### Fixed
+- Name collision with some non-maintained plugins. 
 
 ## [1.0.0] - 2020-01-22
 ### Initial release

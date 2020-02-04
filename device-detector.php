@@ -4,7 +4,7 @@
  *
  * @package Bootstrap
  * @author  Pierre Lannoy <https://pierre.lannoy.fr/>.
- * @since   1.0.0
+ * @since   1.1.0
  *
  * @wordpress-plugin
  * Plugin Name:       Device Detector
