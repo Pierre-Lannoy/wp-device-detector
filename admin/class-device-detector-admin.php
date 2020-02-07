@@ -88,9 +88,8 @@ class Device_Detector_Admin {
 			$settings = add_submenu_page( 'options-general.php', sprintf( esc_html__( '%s Settings', 'device-detector' ), PODD_PRODUCT_NAME ), PODD_PRODUCT_NAME, 'manage_options', 'podd-settings', [ $this, 'get_settings_page' ] );
 			$name     = add_submenu_page(
 				'tools.php',
-				/* translators: as in the sentence "Device Detector Viewer" */
-				sprintf( esc_html__( '%s Viewer', 'device-detector' ), PODD_PRODUCT_NAME ),
-				PODD_PRODUCT_NAME,
+				esc_html__( 'Devices Analytics', 'device-detector' ),
+				esc_html__( 'Devices Analytics', 'device-detector' ),
 				'manage_options',
 				'podd-viewer',
 				[ $this, 'get_viewer_page' ]
