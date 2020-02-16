@@ -3,9 +3,11 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 1.1.1]
+## [1.1.1] - 2020-02-16
 ### Changed
-- The name of the the menu item is now "Devices Analytics". 
+- The name of the the menu item is now "Devices Analytics".
+### Fixed
+- Displayed version is not the good one.
 
 ## [1.1.0] - 2020-02-04
 ### Added
