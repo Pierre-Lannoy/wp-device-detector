@@ -15,8 +15,5 @@ define( 'PODD_SLUG', 'device-detector' );
 define( 'PODD_VERSION', '1.1.2-dev0' );
 define( 'PODD_CODENAME', '"-"' );
 
-define( 'PODD_MINIMUM_WP_VERSION', '4.9' );
-define( 'PODD_MINIMUM_PHP_VERSION', '7.2' );
-
 define( 'PODD_CDN_AVAILABLE', true );
 
