@@ -47,7 +47,7 @@ class Updater {
 				$message  = sprintf( esc_html__( '%1$s has been correctly updated from version %2$s to version %3$s.', 'device-detector' ), PODD_PRODUCT_NAME, $old, PODD_VERSION );
 				Logger::notice( $message );
 				// phpcs:ignore
-				$message .= ' ' . sprintf( __( 'See <a href="%s">what\'s new</a>.', 'device-detector' ), admin_url( 'options-general.php?page=podd-settings&tab=about' ) );
+				$message .= ' ' . sprintf( __( 'See <a href="%s">what\'s new</a>.', 'device-detector' ), admin_url( 'admin.php?page=podd-settings&tab=about' ) );
 			}
 			Nag::add( 'update', 'info', $message );
 			Option::network_set( 'version', PODD_VERSION );

@@ -22,7 +22,7 @@ $url  = esc_url(
 		[
 			'page' => 'podd-viewer',
 		],
-		admin_url( 'tools.php' )
+		admin_url( 'admin.php' )
 	)
 );
 $note = sprintf( __( 'Note: analytics reports are available via the <a href="%s">tools menu</a>.', 'device-detector' ), $url );
@@ -42,7 +42,7 @@ $note = sprintf( __( 'Note: analytics reports are available via the <a href="%s"
 					'page' => 'podd-settings',
 					'tab'  => 'core',
 				),
-				admin_url( 'options-general.php' )
+				admin_url( 'admin.php' )
 			)
 		);
 		?>
@@ -55,7 +55,7 @@ $note = sprintf( __( 'Note: analytics reports are available via the <a href="%s"
 					'page' => 'podd-settings',
 					'tab'  => 'css',
 				),
-				admin_url( 'options-general.php' )
+				admin_url( 'admin.php' )
 			)
 		);
 		?>
@@ -69,7 +69,7 @@ $note = sprintf( __( 'Note: analytics reports are available via the <a href="%s"
 						'page' => 'podd-settings',
 						'tab'  => 'misc',
 					),
-					admin_url( 'options-general.php' )
+					admin_url( 'admin.php' )
 				)
 			);
 			?>
@@ -83,7 +83,7 @@ $note = sprintf( __( 'Note: analytics reports are available via the <a href="%s"
 					'page' => 'podd-settings',
 					'tab'  => 'about',
 				),
-				admin_url( 'options-general.php' )
+				admin_url( 'admin.php' )
 			)
 		);
 		?>
@@ -96,7 +96,7 @@ $note = sprintf( __( 'Note: analytics reports are available via the <a href="%s"
 					'page' => 'podd-settings',
 					'tab'  => 'devices',
 				),
-				admin_url( 'options-general.php' )
+				admin_url( 'admin.php' )
 			)
 		);
 		?>

@@ -21,6 +21,7 @@ use PODeviceDetector\System\Blog;
 use PODeviceDetector\System\Date;
 use PODeviceDetector\System\Timezone;
 use PODeviceDetector\Plugin\Feature\CSSModifier;
+use PerfOpsOne\AdminMenus;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -78,23 +79,58 @@ class Device_Detector_Admin {
 	}
 
 	/**
+	 * Init PerfOps admin menus.
+	 *
+	 * @param array $perfops    The already declared menus.
+	 * @return array    The completed menus array.
+	 * @since 1.0.0
+	 */
+	public function init_perfops_admin_menus( $perfops ) {
+		if ( Role::SUPER_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() ) {
+			$perfops['settings'][] = [
+				'name'          => PODD_PRODUCT_NAME,
+				'description'   => '',
+				'icon_callback' => [ \PODeviceDetector\Plugin\Core::class, 'get_base64_logo' ],
+				'slug'          => 'podd-settings',
+				/* translators: as in the sentence "Device Detector Settings" or "WordPress Settings" */
+				'page_title'    => sprintf( esc_html__( '%s Settings', 'device-detector' ), PODD_PRODUCT_NAME ),
+				'menu_title'    => PODD_PRODUCT_NAME,
+				'capability'    => 'manage_options',
+				'callback'      => [ $this, 'get_settings_page' ],
+				'position'      => 50,
+				'plugin'        => PODD_SLUG,
+				'activated'     => true,
+				'remedy'        => '',
+				'statistics'    => [ '\PODeviceDetector\System\Statistics', 'sc_get_raw' ],
+			];
+			$perfops['analytics'][] = [
+				'name'          => esc_html__( 'Devices', 'device-detector' ),
+				/* translators: as in the sentence "Find out the detail of devices accessing your network." or "Find out the detail of devices accessing your website." */
+				'description'   => sprintf( esc_html__( 'Find out the detail of devices accessing your %s.', 'device-detector' ), Environment::is_wordpress_multisite() ? esc_html__( 'network', 'device-detector' ) : esc_html__( 'website', 'device-detector' ) ),
+				'icon_callback' => [ \PODeviceDetector\Plugin\Core::class, 'get_base64_logo' ],
+				'slug'          => 'podd-viewer',
+				/* translators: as in the sentence "DecaLog Viewer" */
+				'page_title'    => sprintf( esc_html__( 'Devices Analytics', 'device-detector' ), PODD_PRODUCT_NAME ),
+				'menu_title'    => esc_html__( 'Devices', 'device-detector' ),
+				'capability'    => 'manage_options',
+				'callback'      => [ $this, 'get_viewer_page' ],
+				'position'      => 50,
+				'plugin'        => POSE_SLUG,
+				'activated'     => true,
+				'remedy'        => '',
+			];
+		}
+		return $perfops;
+	}
+
+	/**
 	 * Set the items in the settings menu.
 	 *
 	 * @since 1.0.0
 	 */
 	public function init_admin_menus() {
-		if ( Role::SUPER_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() ) {
-			/* translators: as in the sentence "Device Detector Settings" or "WordPress Settings" */
-			$settings = add_submenu_page( 'options-general.php', sprintf( esc_html__( '%s Settings', 'device-detector' ), PODD_PRODUCT_NAME ), PODD_PRODUCT_NAME, 'manage_options', 'podd-settings', [ $this, 'get_settings_page' ] );
-			$name     = add_submenu_page(
-				'tools.php',
-				esc_html__( 'Devices Analytics', 'device-detector' ),
-				esc_html__( 'Devices Analytics', 'device-detector' ),
-				'manage_options',
-				'podd-viewer',
-				[ $this, 'get_viewer_page' ]
-			);
-		}
+		add_filter( 'init_perfops_admin_menus', [ $this, 'init_perfops_admin_menus' ] );
+		AdminMenus::initialize();
 	}
 
 	/**
@@ -107,7 +143,7 @@ class Device_Detector_Admin {
 	 */
 	public function blog_action( $actions, $user_blog ) {
 		if ( Role::SUPER_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() ) {
-			$actions .= " | <a href='" . esc_url( admin_url( 'tools.php?page=podd-viewer&site=' . $user_blog->userblog_id ) ) . "'>" . __( 'Devices', 'device-detector' ) . '</a>';
+			$actions .= " | <a href='" . esc_url( admin_url( 'admin.php?page=podd-viewer&site=' . $user_blog->userblog_id ) ) . "'>" . __( 'Devices', 'device-detector' ) . '</a>';
 		}
 		return $actions;
 	}
@@ -124,7 +160,7 @@ class Device_Detector_Admin {
 	 */
 	public function site_action( $actions, $blog_id, $blogname ) {
 		if ( Role::SUPER_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() ) {
-			$actions['devices'] = "<a href='" . esc_url( admin_url( 'tools.php?page=podd-viewer&site=' . $blog_id ) ) . "' rel='bookmark'>" . __( 'Devices', 'device-detector' ) . '</a>';
+			$actions['devices'] = "<a href='" . esc_url( admin_url( 'admin.php?page=podd-viewer&site=' . $blog_id ) ) . "' rel='bookmark'>" . __( 'Devices', 'device-detector' ) . '</a>';
 		}
 		return $actions;
 	}
@@ -154,8 +190,8 @@ class Device_Detector_Admin {
 	 * @since 1.0.0
 	 */
 	public function add_actions_links( $actions, $plugin_file, $plugin_data, $context ) {
-		$actions[] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'options-general.php?page=podd-settings' ) ), esc_html__( 'Settings', 'device-detector' ) );
-		$actions[] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'tools.php?page=podd-viewer' ) ), esc_html__( 'Statistics', 'device-detector' ) );
+		$actions[] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=podd-settings' ) ), esc_html__( 'Settings', 'device-detector' ) );
+		$actions[] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=podd-viewer' ) ), esc_html__( 'Statistics', 'device-detector' ) );
 		return $actions;
 	}
 

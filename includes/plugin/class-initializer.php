@@ -42,4 +42,13 @@ class Initializer {
 		\PODeviceDetector\System\APCu::init();
 	}
 
+	/**
+	 * Initialize the plugin.
+	 *
+	 * @since 1.0.0
+	 */
+	public function late_initialize() {
+		require_once PODD_PLUGIN_DIR . 'perfopsone/init.php';
+	}
+
 }
