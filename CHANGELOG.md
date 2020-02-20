@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 - Compatibility with PerfOps.One suite.
 ### Changed
-- New menus (in the left admin bar) for accessing features: "PerfOps Analytics", "PerfOps Tools" and "PerfOps Settings".
+- New menus (in the left admin bar) for accessing features: "PerfOps Analytics" and "PerfOps Settings".
 ### Removed
 - Compatibility with WordPress versions prior to 5.2.
 
