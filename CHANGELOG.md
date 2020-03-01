@@ -3,13 +3,15 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 1.2.0]
+## [1.2.0] - 2020-03-01
 ### Added
 - Full integration with PerfOps.One suite.
+- Compatibility with WordPress 5.4.
 ### Changed
 - New menus (in the left admin bar) for accessing features: "PerfOps Analytics" and "PerfOps Settings".
 ### Removed
 - Compatibility with WordPress versions prior to 5.2.
+- Old menus entries, due to PerfOps integration.
 
 ## [1.1.1] - 2020-02-16
 ### Changed

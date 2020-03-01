@@ -116,7 +116,7 @@ class Device_Detector_Admin {
 				'capability'    => 'manage_options',
 				'callback'      => [ $this, 'get_viewer_page' ],
 				'position'      => 50,
-				'plugin'        => POSE_SLUG,
+				'plugin'        => PODD_SLUG,
 				'activated'     => true,
 				'remedy'        => '',
 			];
