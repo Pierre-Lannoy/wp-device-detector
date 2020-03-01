@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased - will be 1.2.0]
 ### Added
-- Compatibility with PerfOps.One suite.
+- Full integration with PerfOps.One suite.
 ### Changed
 - New menus (in the left admin bar) for accessing features: "PerfOps Analytics" and "PerfOps Settings".
 ### Removed
