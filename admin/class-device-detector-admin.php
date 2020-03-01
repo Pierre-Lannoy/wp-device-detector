@@ -99,7 +99,7 @@ class Device_Detector_Admin {
 				'callback'      => [ $this, 'get_settings_page' ],
 				'position'      => 50,
 				'plugin'        => PODD_SLUG,
-				'version'       => POSE_VERSION,
+				'version'       => PODD_VERSION,
 				'activated'     => true,
 				'remedy'        => '',
 				'statistics'    => [ '\PODeviceDetector\System\Statistics', 'sc_get_raw' ],
