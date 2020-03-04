@@ -25,7 +25,6 @@ $url  = esc_url(
 		admin_url( 'admin.php' )
 	)
 );
-$note = sprintf( __( 'Note: analytics reports are available via the <a href="%s">tools menu</a>.', 'device-detector' ), $url );
 
 ?>
 
@@ -117,7 +116,4 @@ $note = sprintf( __( 'Note: analytics reports are available via the <a href="%s"
 	<?php if ( 'devices' === $active_tab ) { ?>
 		<?php include __DIR__ . '/device-detector-admin-settings-devices.php'; ?>
 	<?php } ?>
-    <p>&nbsp;</p>
-    <em><?php echo $note;?></em>
-
 </div>
