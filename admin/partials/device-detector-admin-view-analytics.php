@@ -91,14 +91,6 @@ $extended_list = [ 'browsers', 'bots', 'devices', 'oses' ];
 		<?php if ( 'browser' === $analytics->type || 'os' === $analytics->type || 'device' === $analytics->type || 'bot' === $analytics->type ) { ?>
 			<?php echo $analytics->get_main_chart() ?>
 		<?php } ?>
-
-
-
-
-
-
-
-
 		<?php if ( in_array( (string) $analytics->type, array_merge( $simple_list, $extended_list ), true ) ) { ?>
             <div class="podd-row">
 				<?php echo $analytics->get_list() ?>

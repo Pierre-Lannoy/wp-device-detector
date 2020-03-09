@@ -3,7 +3,10 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 1.2.1]
+## [1.3.0] - 2020-03-09
+### Added
+- [MultiSite] New box in summary displaying all sites to network admins.
+- [MultiSite] There's now a way to navigate between sites sub-reports.
 ### Changed
 - Better styling in "PerfOps Settings" page.
 ### Removed

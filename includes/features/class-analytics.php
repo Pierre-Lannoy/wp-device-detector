@@ -284,6 +284,7 @@ class Analytics {
 			case 'applications-list':
 			case 'feeds-list':
 			case 'medias-list':
+			case 'sites':
 				return $this->query_list( $query );
 			case 'browsers-list':
 			case 'bots-list':
@@ -634,6 +635,10 @@ class Analytics {
 				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'media-player' ], false, 'ORDER BY name DESC' );
 				$selector = 'name';
 				break;
+			case 'sites':
+				$data     = Schema::get_grouped_list( $this->filter, 'site, channel', ! $this->is_today, '', [], false, 'ORDER BY site DESC' );
+				$selector = 'site';
+				break;
 		}
 		if ( 0 < count( $data ) ) {
 			$columns = [ 'wfront', 'wback', 'api', 'cron' ];
@@ -669,7 +674,17 @@ class Analytics {
 			$result .= '<th>' . __( 'TOTAL', 'device-detector' ) . '</th>';
 			$result .= '</tr>';
 			foreach ( $d as $name => $item ) {
-				$row_str  = '<tr>';
+				$row_str = '<tr>';
+				if ( 'sites' === $type ) {
+					$url  = $this->get_url(
+						[],
+						[
+							'site' => $name,
+						]
+					);
+					$site = Blog::get_blog_url( $name );
+					$name = '<img style="width:16px;vertical-align:bottom;" src="' . Favicon::get_base64( $site ) . '" />&nbsp;&nbsp;<span class="podd-table-text"><a href="' . esc_url( $url ) . '">' . $site . '</a></span>';
+				}
 				$row_str .= '<td data-th="name">' . $name . '</td>';
 				foreach ( $columns as $column ) {
 					$row_str .= '<td data-th="' . $column . '">' . Conversion::number_shorten( $item[ $column ], 2, false, '&nbsp;' ) . '</td>';
