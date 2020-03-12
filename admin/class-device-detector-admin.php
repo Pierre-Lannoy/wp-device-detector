@@ -384,7 +384,7 @@ class Device_Detector_Admin {
 				'id'          => 'podd_plugin_options_favicons',
 				'checked'     => Option::network_get( 'download_favicons' ),
 				'description' => esc_html__( 'If checked, Device Detector will download favicons of websites to display them in reports.', 'device-detector' ) . '<br/>' . esc_html__( 'Note: This feature uses the (free) Google Favicon Service.', 'device-detector' ),
-				'full_width'  => true,
+				'full_width'  => false,
 				'enabled'     => true,
 			]
 		);
@@ -418,7 +418,7 @@ class Device_Detector_Admin {
 				'id'          => 'podd_plugin_options_usecdn',
 				'checked'     => Option::network_get( 'use_cdn' ),
 				'description' => esc_html__( 'If checked, Device Detector will use a public CDN (jsDelivr) to serve scripts and stylesheets.', 'device-detector' ),
-				'full_width'  => true,
+				'full_width'  => false,
 				'enabled'     => true,
 			]
 		);
@@ -434,7 +434,7 @@ class Device_Detector_Admin {
 				'id'          => 'podd_plugin_options_nag',
 				'checked'     => Option::network_get( 'display_nag' ),
 				'description' => esc_html__( 'Allows Device Detector to display admin notices throughout the admin dashboard.', 'device-detector' ) . '<br/>' . esc_html__( 'Note: Device Detector respects DISABLE_NAG_NOTICES flag.', 'device-detector' ),
-				'full_width'  => true,
+				'full_width'  => false,
 				'enabled'     => true,
 			]
 		);
@@ -478,7 +478,7 @@ class Device_Detector_Admin {
 				'id'          => 'podd_plugin_features_analytics',
 				'checked'     => Option::network_get( 'analytics' ),
 				'description' => esc_html__( 'If checked, Device Detector will store statistics about detected devices.', 'device-detector' ),
-				'full_width'  => true,
+				'full_width'  => false,
 				'enabled'     => true,
 			]
 		);
@@ -494,7 +494,7 @@ class Device_Detector_Admin {
 				'id'          => 'podd_plugin_features_history',
 				'value'       => Option::network_get( 'history' ),
 				'description' => esc_html__( 'Maximum age of data to keep for statistics.', 'device-detector' ),
-				'full_width'  => true,
+				'full_width'  => false,
 				'enabled'     => true,
 			]
 		);
@@ -519,7 +519,7 @@ class Device_Detector_Admin {
 				'id'          => 'podd_plugin_core_wp_is_mobile',
 				'checked'     => Option::site_get( 'wp_is_mobile' ),
 				'description' => sprintf( esc_html__( 'If checked, the standard %s function will be improved by Device Detector.', 'device-detector' ), '<code>wp_is_mobile()</code>' ),
-				'full_width'  => true,
+				'full_width'  => false,
 				'enabled'     => true,
 			]
 		);
@@ -546,7 +546,7 @@ class Device_Detector_Admin {
 					'checked'     => Option::site_get( 'css_' . $spec ),
 					'description' => CSSModifier::get_description( $spec ),
 					'more'        => CSSModifier::get_example( $spec ),
-					'full_width'  => true,
+					'full_width'  => false,
 					'enabled'     => true,
 				]
 			);
