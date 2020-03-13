@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased - will be 1.3.1]
 ### Changed
 - The settings page have now the standard WordPress style.
+- Better styling in "PerfOps Settings" page.
 
 ## [1.3.0] - 2020-03-09
 ### Added
