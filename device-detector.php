@@ -67,6 +67,7 @@ function podd_uninstall() {
  * @since 1.0.0
  */
 function podd_run() {
+	\PODeviceDetector\System\Logger::init();
 	$plugin = new PODeviceDetector\Plugin\Core();
 	$plugin->run();
 }
