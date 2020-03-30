@@ -107,7 +107,7 @@ class CSSModifier {
 					$ex[] = '<code style="font-size: x-small">' . self::get_cssid( $spec, $item ) . '</code>';
 				}
 				$uk = '<code style="font-size: x-small">' . self::get_cssid( $spec, 'other' ) . '</code>';
-				return sprintf( esc_html__( 'Available classes: %s. If not detected, the class will be %s.'), implode( ' ', $ex ), $uk );
+				return sprintf( esc_html__( 'Available classes: %s. If not detected, the class will be %s.', 'device-detector'), implode( ' ', $ex ), $uk );
 			case 'client':
 				$c  = Detector::get_identifier_array( $spec );
 				$ex = [];
@@ -116,7 +116,7 @@ class CSSModifier {
 					$ex[] = '<code style="font-size: x-small">' . self::get_cssid( $spec, $item ) . '</code>';
 				}
 				$uk = '<code style="font-size: x-small">' . self::get_cssid( $spec, 'other' ) . '</code>';
-				$t  = sprintf( esc_html__( 'Available type classes: %s. If not detected, the class will be %s.'), implode( ' ', $ex ), $uk );
+				$t  = sprintf( esc_html__( 'Available type classes: %s. If not detected, the class will be %s.', 'device-detector'), implode( ' ', $ex ), $uk );
 				$c  = Detector::get_identifier_array( 'engine' );
 				$ex = [];
 				natcasesort( $c );
@@ -124,7 +124,7 @@ class CSSModifier {
 					$ex[] = '<code style="font-size: x-small">' . self::get_cssid( 'client-engine', $item ) . '</code>';
 				}
 				$uk = '<code style="font-size: x-small">' . self::get_cssid( 'client-engine', 'other' ) . '</code>';
-				$e  = sprintf( esc_html__( 'Available engine classes: %s. If not detected, the class will be %s.'), implode( ' ', $ex ), $uk );
+				$e  = sprintf( esc_html__( 'Available engine classes: %s. If not detected, the class will be %s.', 'device-detector'), implode( ' ', $ex ), $uk );
 				$de = [];
 				foreach ( [ 'browser', 'library', 'player', 'app', 'pim', 'reader', ] as $items ) {
 					$de = array_merge( $de, Detector::get_identifier_array( $items ) );
@@ -135,7 +135,7 @@ class CSSModifier {
 					$ex[] = '<code style="font-size: x-small">' . self::get_cssid( 'client-name', $item ) . '</code>';
 				}
 				$uk = '<code style="font-size: x-small">' . self::get_cssid( 'client-name', 'other' ) . '</code>';
-				$d  = sprintf( esc_html__( 'Available name classes: %s. If not detected, the class will be %s.'), implode( ' ', $ex ), $uk );
+				$d  = sprintf( esc_html__( 'Available name classes: %s. If not detected, the class will be %s.', 'device-detector'), implode( ' ', $ex ), $uk );
 				return $t . '<br/>' . '<br/>' . $e . '<br/>' . '<br/>' . $d;
 			case 'brand':
 				$c  = Detector::get_identifier_array( $spec );
@@ -145,7 +145,7 @@ class CSSModifier {
 					$ex[] = '<code style="font-size: x-small">' . self::get_cssid( $spec, $item ) . '</code>';
 				}
 				$uk = '<code style="font-size: x-small">' . self::get_cssid( $spec, 'other' ) . '</code>';
-				$ex = sprintf( esc_html__( 'Available classes: %s. If not detected, the class will be %s.'), implode( ' ', $ex ), $uk );
+				$ex = sprintf( esc_html__( 'Available classes: %s. If not detected, the class will be %s.', 'device-detector'), implode( ' ', $ex ), $uk );
 				return $ex . '<br/>' . sprintf( esc_html__( 'If (and only if) model is detected an extra class is added. It may be be something like %s or %s.'), '<code style="font-size: x-small">class-model-ipad</code>', '<code style="font-size: x-small">class-model-iphone</code>' );
 			case 'capability':
 				$c  = [ 'touch-enabled', 'touch-disabled' ];
@@ -154,7 +154,7 @@ class CSSModifier {
 				foreach ( $c as $item ) {
 					$ex[] = '<code style="font-size: x-small">' . self::get_cssid( $spec, $item, false ) . '</code>';
 				}
-				return sprintf( esc_html__( 'Available classes: %s.'), implode( ' ', $ex ) );
+				return sprintf( esc_html__( 'Available classes: %s.', 'device-detector'), implode( ' ', $ex ) );
 		}
 	}
 
