@@ -69,8 +69,14 @@ class Device {
 				$this->bot_category      = $bot['category'];
 				$this->bot_full_category = $this->get_bot_full_category();
 				$this->bot_url           = $bot['url'];
-				$this->bot_producer_name = $bot['producer']['name'];
-				$this->bot_producer_url  = $bot['producer']['url'];
+				if ( array_key_exists( 'producer', $bot ) ) {
+					if ( array_key_exists( 'name', $bot['producer'] ) ) {
+						$this->bot_producer_name = $bot['producer']['name'];
+					}
+					if ( array_key_exists( 'url', $bot['producer'] ) ) {
+						$this->bot_producer_url = $bot['producer']['url'];
+					}
+				}
 			} else {
 				$this->os_name               = $detector->getOs( 'name' );
 				$this->os_short_name         = $detector->getOs( 'short_name' );
