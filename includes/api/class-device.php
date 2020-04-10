@@ -64,9 +64,11 @@ class Device {
 			$this->brand_short_name                = $detector->getBrand();
 			$this->model_name                      = $detector->getModel();
 			if ( $this->class_is_bot ) {
-				$bot                     = $detector->getBot();
-				$this->bot_name          = $bot['name'];
-				$this->bot_category      = $bot['category'];
+				$bot            = $detector->getBot();
+				$this->bot_name = $bot['name'];
+				if ( array_key_exists( 'category', $bot ) ) {
+					$this->bot_category = $bot['category'];
+				}
 				$this->bot_full_category = $this->get_bot_full_category();
 				$this->bot_url           = $bot['url'];
 				if ( array_key_exists( 'producer', $bot ) ) {

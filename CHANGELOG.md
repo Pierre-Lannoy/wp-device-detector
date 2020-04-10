@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Better styling in "PerfOps Settings" page.
 - In site health "info" tab, the boolean are now clearly displayed.
 - [API] Improves the way bot producers are rendered. 
+- [API] Improves the way bot categories are rendered. 
 ### Fixed
 - Some strings are not translatable. 
 
