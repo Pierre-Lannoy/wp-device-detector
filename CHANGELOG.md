@@ -3,7 +3,7 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 1.4.0]
+## [1.4.0] - 2020-04-12
 ### Added
 - Compatibility with [DecaLog](https://wordpress.org/plugins/decalog/) early loading feature.
 ### Changed
@@ -11,9 +11,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Better styling in "PerfOps Settings" page.
 - In site health "info" tab, the boolean are now clearly displayed.
 - [API] Improves the way bot producers are rendered. 
-- [API] Improves the way bot categories are rendered. 
+- [API] Improves the way bot categories are rendered.
+- Updated UDD from version 3.12.3 to version 3.12.4.
 ### Fixed
-- Some strings are not translatable. 
+- Some strings are not translatable.
 
 ## [1.3.0] - 2020-03-09
 ### Added
