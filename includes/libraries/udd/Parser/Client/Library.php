@@ -5,14 +5,14 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace UDD\Parser\Client;
+namespace DeviceDetector\Parser\Client;
 
 /**
  * Class Library
  *
  * Client parser for tool & software detection
  *
- * @package UDD\Parser\Client
+ * @package DeviceDetector\Parser\Client
  */
 class Library extends ClientParserAbstract
 {

@@ -6,16 +6,16 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace UDD\Parser\Client\Browser\Engine;
+namespace DeviceDetector\Parser\Client\Browser\Engine;
 
-use UDD\Parser\Client\ClientParserAbstract;
+use DeviceDetector\Parser\Client\ClientParserAbstract;
 
 /**
  * Class Version
  *
  * Client parser for browser engine version detection
  *
- * @package UDD\Parser\Client\Browser\Engine
+ * @package DeviceDetector\Parser\Client\Browser\Engine
  */
 class Version extends ClientParserAbstract
 {

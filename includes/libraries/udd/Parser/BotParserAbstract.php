@@ -5,14 +5,14 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace UDD\Parser;
+namespace DeviceDetector\Parser;
 
 /**
  * Class BotParserAbstract
  *
  * Abstract class for all bot parsers
  *
- * @package UDD\Parser
+ * @package DeviceDetector\Parser
  */
 abstract class BotParserAbstract extends ParserAbstract
 {

@@ -5,16 +5,16 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace UDD\Parser;
+namespace DeviceDetector\Parser;
 
-use UDD\Parser\Device\DeviceParserAbstract;
+use DeviceDetector\Parser\Device\DeviceParserAbstract;
 
 /**
  * Class VendorFragments
  *
  * Device parser for vendor fragment detection
  *
- * @package UDD\Parser\Device
+ * @package DeviceDetector\Parser\Device
  */
 class VendorFragment extends ParserAbstract
 {

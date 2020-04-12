@@ -5,7 +5,7 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace UDD\Parser;
+namespace DeviceDetector\Parser;
 
 /**
  * Class OperatingSystem
@@ -15,7 +15,7 @@ namespace UDD\Parser;
  * Detected operating systems can be found in self::$operatingSystems and /regexes/oss.yml
  * This class also defined some operating system families and methods to get the family for a specific os
  *
- * @package UDD\Parser
+ * @package DeviceDetector\Parser
  */
 class OperatingSystem extends ParserAbstract
 {

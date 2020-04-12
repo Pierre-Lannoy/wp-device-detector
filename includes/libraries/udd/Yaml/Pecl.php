@@ -5,7 +5,7 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace UDD\Yaml;
+namespace DeviceDetector\Yaml;
 
 use Exception;
 
@@ -14,7 +14,7 @@ use Exception;
  * 
  * Parses a YAML file with LibYAML library
  * 
- * @package UDD\Yaml
+ * @package DeviceDetector\Yaml
  * @see http://php.net/manual/en/function.yaml-parse-file.php
  */
 class Pecl implements Parser

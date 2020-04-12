@@ -5,14 +5,14 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace UDD\Parser\Device;
+namespace DeviceDetector\Parser\Device;
 
 /**
  * Class Mobile
  *
  * Device parser for mobile detection
  *
- * @package UDD\Parser\Device
+ * @package DeviceDetector\Parser\Device
  */
 class Mobile extends DeviceParserAbstract
 {

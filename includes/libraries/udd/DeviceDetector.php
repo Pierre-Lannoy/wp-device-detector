@@ -6,19 +6,19 @@
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
 
-namespace UDD;
+namespace DeviceDetector;
 
-use UDD\Cache\StaticCache;
-use UDD\Cache\Cache;
-use UDD\Parser\Bot;
-use UDD\Parser\BotParserAbstract;
-use UDD\Parser\Client\Browser;
-use UDD\Parser\OperatingSystem;
-use UDD\Parser\Client\ClientParserAbstract;
-use UDD\Parser\Device\DeviceParserAbstract;
-use UDD\Parser\VendorFragment;
-use UDD\Yaml\Parser AS YamlParser;
-use UDD\Yaml\Spyc;
+use DeviceDetector\Cache\StaticCache;
+use DeviceDetector\Cache\Cache;
+use DeviceDetector\Parser\Bot;
+use DeviceDetector\Parser\BotParserAbstract;
+use DeviceDetector\Parser\Client\Browser;
+use DeviceDetector\Parser\OperatingSystem;
+use DeviceDetector\Parser\Client\ClientParserAbstract;
+use DeviceDetector\Parser\Device\DeviceParserAbstract;
+use DeviceDetector\Parser\VendorFragment;
+use DeviceDetector\Yaml\Parser AS YamlParser;
+use DeviceDetector\Yaml\Spyc;
 
 /**
  * Class DeviceDetector
@@ -50,7 +50,7 @@ class DeviceDetector
     /**
      * Current version number of DeviceDetector
      */
-    const VERSION = '3.12.3';
+    const VERSION = '3.12.4';
 
     /**
      * Holds all registered client types
@@ -132,13 +132,13 @@ class DeviceDetector
 
     /**
      * Holds the cache class used for caching the parsed yml-Files
-     * @var \UDD\Cache\Cache|\Doctrine\Common\Cache\CacheProvider
+     * @var \DeviceDetector\Cache\Cache|\Doctrine\Common\Cache\CacheProvider
      */
     protected $cache = null;
 
     /**
      * Holds the parser class used for parsing yml-Files
-     * @var \UDD\Yaml\Parser
+     * @var \DeviceDetector\Yaml\Parser
      */
     protected $yamlParser = null;
 
@@ -237,8 +237,8 @@ class DeviceDetector
      */
     public function addClientParser($parser)
     {
-        if (is_string($parser) && class_exists('UDD\\Parser\\Client\\' . $parser)) {
-            $className = 'UDD\\Parser\\Client\\' . $parser;
+        if (is_string($parser) && class_exists('DeviceDetector\\Parser\\Client\\' . $parser)) {
+            $className = 'DeviceDetector\\Parser\\Client\\' . $parser;
             $parser = new $className();
         }
 
@@ -262,8 +262,8 @@ class DeviceDetector
      */
     public function addDeviceParser($parser)
     {
-        if (is_string($parser) && class_exists('UDD\\Parser\\Device\\' . $parser)) {
-            $className = 'UDD\\Parser\\Device\\' . $parser;
+        if (is_string($parser) && class_exists('DeviceDetector\\Parser\\Device\\' . $parser)) {
+            $className = 'DeviceDetector\\Parser\\Device\\' . $parser;
             $parser = new $className();
         }
 
@@ -814,7 +814,7 @@ class DeviceDetector
         }
 
         $osFamily = OperatingSystem::getOsFamily($deviceDetector->getOs('short_name'));
-        $browserFamily = \UDD\Parser\Client\Browser::getBrowserFamily($deviceDetector->getClient('short_name'));
+        $browserFamily = \DeviceDetector\Parser\Client\Browser::getBrowserFamily($deviceDetector->getClient('short_name'));
 
         $processed = array(
             'user_agent' => $deviceDetector->getUserAgent(),

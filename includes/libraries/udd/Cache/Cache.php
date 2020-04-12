@@ -6,7 +6,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
 
-namespace UDD\Cache;
+namespace DeviceDetector\Cache;
 
 interface Cache
 {
