@@ -1,6 +1,6 @@
 <?php
 
-namespace DeviceDetector\Cache;
+namespace UDD\Cache;
 
 use Psr\SimpleCache\CacheInterface;
 

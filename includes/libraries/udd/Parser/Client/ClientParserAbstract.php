@@ -5,9 +5,9 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace DeviceDetector\Parser\Client;
+namespace UDD\Parser\Client;
 
-use DeviceDetector\Parser\ParserAbstract;
+use UDD\Parser\ParserAbstract;
 
 abstract class ClientParserAbstract extends ParserAbstract
 {

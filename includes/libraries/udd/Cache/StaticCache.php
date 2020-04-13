@@ -5,7 +5,7 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace DeviceDetector\Cache;
+namespace UDD\Cache;
 
 /**
  * Class StaticCache
@@ -13,7 +13,7 @@ namespace DeviceDetector\Cache;
  * Simple Cache that caches in a static property
  * (Speeds up multiple detections in one request)
  *
- * @package DeviceDetector\Cache
+ * @package UDD\Cache
  */
 class StaticCache implements Cache
 {

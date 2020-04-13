@@ -5,14 +5,14 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace DeviceDetector\Parser\Client;
+namespace UDD\Parser\Client;
 
 /**
  * Class MediaPlayer
  *
  * Client parser for mediaplayer detection
  *
- * @package DeviceDetector\Parser\Client
+ * @package UDD\Parser\Client
  */
 class MediaPlayer extends ClientParserAbstract
 {

@@ -5,14 +5,14 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace DeviceDetector\Parser\Client;
+namespace UDD\Parser\Client;
 
 /**
  * Class FeedReader
  *
  * Client parser for feed reader detection
  *
- * @package DeviceDetector\Parser\Client
+ * @package UDD\Parser\Client
  */
 class FeedReader extends ClientParserAbstract
 {

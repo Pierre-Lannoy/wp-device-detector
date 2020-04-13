@@ -5,16 +5,16 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace DeviceDetector\Parser\Client;
+namespace UDD\Parser\Client;
 
-use DeviceDetector\Parser\Client\Browser\Engine;
+use UDD\Parser\Client\Browser\Engine;
 
 /**
  * Class Browser
  *
  * Client parser for browser detection
  *
- * @package DeviceDetector\Parser\Client
+ * @package UDD\Parser\Client
  */
 class Browser extends ClientParserAbstract
 {

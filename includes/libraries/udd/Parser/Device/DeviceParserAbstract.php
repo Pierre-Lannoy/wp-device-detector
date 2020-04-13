@@ -5,16 +5,16 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace DeviceDetector\Parser\Device;
+namespace UDD\Parser\Device;
 
-use DeviceDetector\Parser\ParserAbstract;
+use UDD\Parser\ParserAbstract;
 
 /**
  * Class DeviceParserAbstract
  *
  * Abstract class for all device parsers
  *
- * @package DeviceDetector\Parser\Device
+ * @package UDD\Parser\Device
  */
 abstract class DeviceParserAbstract extends ParserAbstract
 {

@@ -5,7 +5,7 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace DeviceDetector\Parser;
+namespace UDD\Parser;
 
 /**
  * Class Bot
@@ -14,7 +14,7 @@ namespace DeviceDetector\Parser;
  *
  * Detected bots are defined in regexes/bots.yml
  *
- * @package DeviceDetector\Parser
+ * @package UDD\Parser
  */
 class Bot extends BotParserAbstract
 {

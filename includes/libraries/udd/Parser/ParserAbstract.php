@@ -5,18 +5,18 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
-namespace DeviceDetector\Parser;
+namespace UDD\Parser;
 
-use DeviceDetector\Cache\StaticCache;
-use DeviceDetector\DeviceDetector;
-use DeviceDetector\Cache\Cache;
-use DeviceDetector\Yaml\Parser AS YamlParser;
-use DeviceDetector\Yaml\Spyc;
+use UDD\Cache\StaticCache;
+use UDD\DeviceDetector;
+use UDD\Cache\Cache;
+use UDD\Yaml\Parser AS YamlParser;
+use UDD\Yaml\Spyc;
 
 /**
  * Class ParserAbstract
  *
- * @package DeviceDetector\Parser
+ * @package UDD\Parser
  */
 abstract class ParserAbstract
 {
