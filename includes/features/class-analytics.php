@@ -675,15 +675,14 @@ class Analytics {
 			$result .= '</tr>';
 			foreach ( $d as $name => $item ) {
 				$row_str = '<tr>';
-				if ( 'sites' === $type ) {
-					$url  = $this->get_url(
-						[],
-						[
-							'site' => $name,
-						]
-					);
-					$site = Blog::get_blog_url( $name );
-					$name = '<img style="width:16px;vertical-align:bottom;" src="' . Favicon::get_base64( $site ) . '" />&nbsp;&nbsp;<span class="podd-table-text"><a href="' . esc_url( $url ) . '">' . $site . '</a></span>';
+				if ( 'classes-list' === $type ) {
+					$name = ClassTypes::$class_names[ $name ];
+				}
+				if ( 'types-list' === $type ) {
+					$name = DeviceTypes::$device_names[ $name ];
+				}
+				if ( 'clients-list' === $type ) {
+					$name = ClientTypes::$client_names[ $name ];
 				}
 				$row_str .= '<td data-th="name">' . $name . '</td>';
 				foreach ( $columns as $column ) {
