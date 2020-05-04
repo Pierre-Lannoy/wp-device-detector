@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased - will be 1.4.2]
 ### Fixed
 - There's an error while activating the plugin when the server is Microsoft IIS with Windows 10.
+- With Microsoft Edge, some layouts may be ugly.
 ### Changed
 - The lists for classes, device types and client types display now the translated name (it was previously the identifier).
 
