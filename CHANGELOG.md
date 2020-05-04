@@ -3,7 +3,7 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 1.4.2]
+## [1.4.2] - 2020-05-04
 ### Fixed
 - There's an error while activating the plugin when the server is Microsoft IIS with Windows 10.
 - With Microsoft Edge, some layouts may be ugly.
