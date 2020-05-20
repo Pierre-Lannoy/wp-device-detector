@@ -26,6 +26,7 @@ Device Detector, once activated, systematically analyzes the user-agent fields o
 To query characteristics, you have one class to know: `\PODeviceDetector\API\Device`. Just call the static method `get()` without parameter to analyze the current user-agent string or with a string as parameter to force the user-agent string. It will return an instance of an object having all the right properties filed.
 
 ```php
+<?php
     // Get the brand of the current user-agent string.
     $brand = PODeviceDetector\API\Device::get()->brand_name;
     
@@ -42,6 +43,7 @@ To query characteristics, you have one class to know: `\PODeviceDetector\API\Dev
 The following properties are available:
 
 ```php
+<?php
     /**
      * @var boolean  True if it's a bot, false otherwise.
      * @since   1.0.0
@@ -301,6 +303,7 @@ The following properties are available:
 To query corresponding medias (icons for brand, OS, browser and bot), you can use the same class (`\PODeviceDetector\API\Device`) like this:
 
 ```php
+<?php
     // Display the brand name with its icon.
     echo PODeviceDetector\API\Device::get()->brand_icon_image();
     echo '&nbsp;&nbsp;';
@@ -311,6 +314,7 @@ To query corresponding medias (icons for brand, OS, browser and bot), you can us
 The following methods are available:
 
 ```php
+<?php
     /**
      * Get the brand icon base64 encoded.
      *
