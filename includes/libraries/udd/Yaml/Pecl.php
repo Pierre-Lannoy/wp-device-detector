@@ -2,7 +2,7 @@
 /**
  * Device Detector - The Universal Device Detection library for parsing User Agents
  *
- * @link http://piwik.org
+ * @link https://matomo.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
 namespace UDD\Yaml;
@@ -14,7 +14,7 @@ use Exception;
  * 
  * Parses a YAML file with LibYAML library
  * 
- * @package UDD\Yaml
+ * @package DeviceDetector\Yaml
  * @see http://php.net/manual/en/function.yaml-parse-file.php
  */
 class Pecl implements Parser

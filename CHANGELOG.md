@@ -3,10 +3,11 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 1.4.3]
+## [1.4.3] - 2020-06-29
 ### Changed
 - Full compatibility with PHP 7.4.
 - Automatic switching between memory and transient when a cache plugin is installed without a properly configured Redis / Memcached.
+- Updated UDD from version 3.12.4 to version 3.12.6.
 ### Fixed
 - When used for the first time, settings checkboxes may remain checked after being unchecked.
 

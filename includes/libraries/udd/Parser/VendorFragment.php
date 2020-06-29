@@ -2,7 +2,7 @@
 /**
  * Device Detector - The Universal Device Detection library for parsing User Agents
  *
- * @link http://piwik.org
+ * @link https://matomo.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
 namespace UDD\Parser;
@@ -14,7 +14,7 @@ use UDD\Parser\Device\DeviceParserAbstract;
  *
  * Device parser for vendor fragment detection
  *
- * @package UDD\Parser\Device
+ * @package DeviceDetector\Parser\Device
  */
 class VendorFragment extends ParserAbstract
 {

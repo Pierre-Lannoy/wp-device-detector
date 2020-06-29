@@ -2,7 +2,7 @@
 /**
  * Device Detector - The Universal Device Detection library for parsing User Agents
  *
- * @link http://piwik.org
+ * @link https://matomo.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
 namespace UDD\Cache;
@@ -13,7 +13,7 @@ namespace UDD\Cache;
  * Simple Cache that caches in a static property
  * (Speeds up multiple detections in one request)
  *
- * @package UDD\Cache
+ * @package DeviceDetector\Cache
  */
 class StaticCache implements Cache
 {

@@ -2,7 +2,7 @@
 /**
  * Device Detector - The Universal Device Detection library for parsing User Agents
  *
- * @link http://piwik.org
+ * @link https://matomo.org
  * @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
  */
 namespace UDD\Parser;
@@ -14,7 +14,7 @@ namespace UDD\Parser;
  *
  * Detected bots are defined in regexes/bots.yml
  *
- * @package UDD\Parser
+ * @package DeviceDetector\Parser
  */
 class Bot extends BotParserAbstract
 {
@@ -52,15 +52,15 @@ class Bot extends BotParserAbstract
 
         if ($this->preMatchOverall()) {
             if ($this->discardDetails) {
-                $result = true;
-            } else {
-                foreach ($this->getRegexes() as $regex) {
-                    $matches = $this->matchUserAgent($regex['regex']);
-                    if ($matches) {
-                        unset($regex['regex']);
-                        $result = $regex;
-                        break;
-                    }
+                return true;
+            }
+
+            foreach ($this->getRegexes() as $regex) {
+                $matches = $this->matchUserAgent($regex['regex']);
+                if ($matches) {
+                    unset($regex['regex']);
+                    $result = $regex;
+                    break;
                 }
             }
         }
