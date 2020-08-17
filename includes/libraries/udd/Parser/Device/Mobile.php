@@ -12,7 +12,7 @@ namespace UDD\Parser\Device;
  *
  * Device parser for mobile detection
  *
- * @package DeviceDetector\Parser\Device
+ * @package UDD\Parser\Device
  */
 class Mobile extends DeviceParserAbstract
 {

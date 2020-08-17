@@ -12,7 +12,7 @@ namespace UDD\Parser\Client;
  *
  * Client parser for mediaplayer detection
  *
- * @package DeviceDetector\Parser\Client
+ * @package UDD\Parser\Client
  */
 class MediaPlayer extends ClientParserAbstract
 {

@@ -72,7 +72,7 @@ class Updater {
 	private function update( $from ) {
 		$schema = new Schema();
 		$schema->update();
-		Cache::delete_global( 'data/*' );
+		Cache::delete_pool();
 		Logger::notice( 'Cache purged.' );
 	}
 

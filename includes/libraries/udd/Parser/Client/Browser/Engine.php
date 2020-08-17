@@ -14,7 +14,7 @@ use UDD\Parser\Client\ClientParserAbstract;
  *
  * Client parser for browser engine detection
  *
- * @package DeviceDetector\Parser\Client\Browser
+ * @package UDD\Parser\Client\Browser
  */
 class Engine extends ClientParserAbstract
 {

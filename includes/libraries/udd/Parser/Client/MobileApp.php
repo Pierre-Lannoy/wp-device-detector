@@ -12,7 +12,7 @@ namespace UDD\Parser\Client;
  *
  * Client parser for mobile app detection
  *
- * @package DeviceDetector\Parser\Client
+ * @package UDD\Parser\Client
  */
 class MobileApp extends ClientParserAbstract
 {

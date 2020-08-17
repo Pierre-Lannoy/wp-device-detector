@@ -3,9 +3,14 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 1.5.0]
+## [1.5.0] - 2020-08-17
 ### Added
 - Compatibility with WordPress 5.5.
+### Changed
+- Updating the plugin now deletes the cache pool.
+- Detection sequence has been improved.
+- Many icons for brands, browsers ans os have been added.
+- Upgraded UDD from version 3.12.6 to version 3.13.0.
 
 ## [1.4.3] - 2020-06-29
 ### Changed

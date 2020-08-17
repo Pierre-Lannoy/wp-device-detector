@@ -12,7 +12,7 @@ namespace UDD\Parser\Device;
  *
  * Device parser for hbbtv detection
  *
- * @package DeviceDetector\Parser\Device
+ * @package UDD\Parser\Device
  */
 class HbbTv extends DeviceParserAbstract
 {

@@ -13,7 +13,7 @@ namespace UDD\Cache;
  * Simple Cache that caches in a static property
  * (Speeds up multiple detections in one request)
  *
- * @package DeviceDetector\Cache
+ * @package UDD\Cache
  */
 class StaticCache implements Cache
 {

@@ -12,7 +12,7 @@ namespace UDD\Parser\Device;
  *
  * Device parser for car browser detection
  *
- * @package DeviceDetector\Parser\Device
+ * @package UDD\Parser\Device
  */
 class CarBrowser extends DeviceParserAbstract
 {

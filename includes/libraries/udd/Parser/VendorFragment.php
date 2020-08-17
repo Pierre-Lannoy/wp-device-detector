@@ -14,7 +14,7 @@ use UDD\Parser\Device\DeviceParserAbstract;
  *
  * Device parser for vendor fragment detection
  *
- * @package DeviceDetector\Parser\Device
+ * @package UDD\Parser\Device
  */
 class VendorFragment extends ParserAbstract
 {

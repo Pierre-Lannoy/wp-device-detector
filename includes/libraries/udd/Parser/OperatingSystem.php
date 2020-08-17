@@ -15,7 +15,7 @@ namespace UDD\Parser;
  * Detected operating systems can be found in self::$operatingSystems and /regexes/oss.yml
  * This class also defined some operating system families and methods to get the family for a specific os
  *
- * @package DeviceDetector\Parser
+ * @package UDD\Parser
  */
 class OperatingSystem extends ParserAbstract
 {

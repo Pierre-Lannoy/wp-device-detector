@@ -12,7 +12,7 @@ namespace UDD\Parser\Client;
  *
  * Client parser for pim (personal information manager) detection
  *
- * @package DeviceDetector\Parser\Client
+ * @package UDD\Parser\Client
  */
 class PIM extends ClientParserAbstract
 {

@@ -12,7 +12,7 @@ namespace UDD\Parser\Device;
  *
  * Device parser for camera detection
  *
- * @package DeviceDetector\Parser\Device
+ * @package UDD\Parser\Device
  */
 class Camera extends DeviceParserAbstract
 {

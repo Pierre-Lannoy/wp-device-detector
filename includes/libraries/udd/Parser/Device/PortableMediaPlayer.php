@@ -12,7 +12,7 @@ namespace UDD\Parser\Device;
  *
  * Device parser for portable media player detection
  *
- * @package DeviceDetector\Parser\Device
+ * @package UDD\Parser\Device
  */
 class PortableMediaPlayer extends DeviceParserAbstract
 {

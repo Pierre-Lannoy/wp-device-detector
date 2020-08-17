@@ -14,7 +14,7 @@ use Exception;
  * 
  * Parses a YAML file with LibYAML library
  * 
- * @package DeviceDetector\Yaml
+ * @package UDD\Yaml
  * @see http://php.net/manual/en/function.yaml-parse-file.php
  */
 class Pecl implements Parser

@@ -12,7 +12,7 @@ namespace UDD\Parser;
  *
  * Abstract class for all bot parsers
  *
- * @package DeviceDetector\Parser
+ * @package UDD\Parser
  */
 abstract class BotParserAbstract extends ParserAbstract
 {

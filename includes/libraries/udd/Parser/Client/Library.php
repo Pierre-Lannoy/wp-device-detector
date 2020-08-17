@@ -12,7 +12,7 @@ namespace UDD\Parser\Client;
  *
  * Client parser for tool & software detection
  *
- * @package DeviceDetector\Parser\Client
+ * @package UDD\Parser\Client
  */
 class Library extends ClientParserAbstract
 {

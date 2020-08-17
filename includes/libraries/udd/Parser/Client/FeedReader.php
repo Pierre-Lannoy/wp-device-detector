@@ -12,7 +12,7 @@ namespace UDD\Parser\Client;
  *
  * Client parser for feed reader detection
  *
- * @package DeviceDetector\Parser\Client
+ * @package UDD\Parser\Client
  */
 class FeedReader extends ClientParserAbstract
 {

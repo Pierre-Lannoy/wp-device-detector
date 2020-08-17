@@ -14,7 +14,7 @@ namespace UDD\Parser;
  *
  * Detected bots are defined in regexes/bots.yml
  *
- * @package DeviceDetector\Parser
+ * @package UDD\Parser
  */
 class Bot extends BotParserAbstract
 {
