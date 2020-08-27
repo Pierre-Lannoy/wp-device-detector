@@ -4,6 +4,8 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased - will be 1.5.1]
+### Changed
+- The positions of PerfOps menus are pushed lower to avoid collision with other plugins (thanks to [Loïc Antignac](https://github.com/webaxones)).
 
 ## [1.5.0] - 2020-08-17
 ### Added
