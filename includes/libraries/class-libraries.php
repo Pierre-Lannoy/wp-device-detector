@@ -91,18 +91,18 @@ class Libraries {
 			'license' => 'lgpl3',
 			'langs'   => 'en',
 		];
-		self::$mono_libraries              = [];
-		self::$mono_libraries['parsedown'] = [
-			'name'    => 'Parsedown',
-			'detect'  => 'Parsedown',
-			'base'    => PODD_VENDOR_DIR . 'parsedown/',
-			'version' => '1.8.0-beta-7',
+		self::$psr4_libraries['markdown'] = [
+			'name'    => 'Markdown Parser',
+			'prefix'  => 'cebe\markdownparser',
+			'base'    => PODD_VENDOR_DIR . 'markdown/',
+			'version' => '1.2.1',
 			// phpcs:ignore
-			'author'  => sprintf( esc_html__( '%s & contributors', 'device-detector' ), 'Emanuil Rusev' ),
-			'url'     => 'https://parsedown.org',
+			'author'  => sprintf( esc_html__( '%s & contributors', 'device-detector' ), 'Carsten Brandt' ),
+			'url'     => 'https://github.com/cebe/markdown',
 			'license' => 'mit',
 			'langs'   => 'en',
 		];
+		self::$mono_libraries             = [];
 		self::$mono_libraries['spyc']      = [
 			'name'    => 'Spyc',
 			'detect'  => 'Spyc',

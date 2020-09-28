@@ -9,7 +9,6 @@
 
 namespace PODeviceDetector\Plugin;
 
-use Parsedown;
 use PODeviceDetector\System\Nag;
 use PODeviceDetector\System\Option;
 use Exception;
