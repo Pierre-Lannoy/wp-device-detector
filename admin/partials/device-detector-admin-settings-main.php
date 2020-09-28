@@ -87,6 +87,21 @@ $url  = esc_url(
 		);
 		?>
 		" class="nav-tab <?php echo 'about' === $active_tab ? 'nav-tab-active' : ''; ?>" style="float:right;"><?php esc_html_e( 'About', 'device-detector' ); ?></a>
+		<?php if ( class_exists( 'PODeviceDetector\Plugin\Feature\Wpcli' ) ) { ?>
+            <a href="
+            <?php
+			echo esc_url(
+				add_query_arg(
+					array(
+						'page' => 'podd-settings',
+						'tab'  => 'wpcli',
+					),
+					admin_url( 'admin.php' )
+				)
+			);
+			?>
+            " class="nav-tab <?php echo 'wpcli' === $active_tab ? 'nav-tab-active' : ''; ?>" style="float:right;">WP-CLI</a>
+		<?php } ?>
         <a href="
 		<?php
 		echo esc_url(
@@ -112,6 +127,10 @@ $url  = esc_url(
 	<?php } ?>
 	<?php if ( 'about' === $active_tab ) { ?>
 		<?php include __DIR__ . '/device-detector-admin-settings-about.php'; ?>
+	<?php } ?>
+	<?php if ( 'wpcli' === $active_tab ) { ?>
+		<?php wp_enqueue_style( PODD_ASSETS_ID ); ?>
+		<?php echo do_shortcode( '[podd-wpcli]' ); ?>
 	<?php } ?>
 	<?php if ( 'devices' === $active_tab ) { ?>
 		<?php include __DIR__ . '/device-detector-admin-settings-devices.php'; ?>
