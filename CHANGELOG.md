@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Improved layout for language indicator.
 - Admin notices are now set to "don't display" by default.
 - Improved changelog readability.
+- Improved IP detection  (thanks to [Ludovic Riaudel](https://github.com/lriaudel)).
 - The integrated markdown parser is now [Markdown](https://github.com/cebe/markdown) from Carsten Brandt.
 
 ### Fixed
