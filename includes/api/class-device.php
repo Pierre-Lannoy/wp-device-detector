@@ -313,6 +313,22 @@ class Device {
 	}
 
 	/**
+	 * Get the full device details.
+	 *
+	 * @return  array   The details of the device
+	 * @since    2.0.0
+	 */
+	public function get_as_array() {
+		$result          = [];
+		$result['class'] = $this->class_full_type;
+		$result['type']  = $this->device_full_type;
+		$result['client']  = $this->client_full_type;
+
+
+		return $result;
+	}
+
+	/**
 	 * @var boolean  True if it's a bot, false otherwise.
 	 * @since   1.0.0
 	 */
