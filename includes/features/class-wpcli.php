@@ -274,13 +274,13 @@ class Wpcli {
 	 *
 	 * ## EXAMPLES
 	 *
-	 * wp device get 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko)'
+	 * wp device describe 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko)'
 	 *
 	 *
 	 *    === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
 	 *
 	 */
-	public static function get( $args, $assoc_args ) {
+	public static function describe( $args, $assoc_args ) {
 		$stdout = \WP_CLI\Utils\get_flag_value( $assoc_args, 'stdout', false );
 		$ua     = isset( $args[0] ) ? (string) $args[0] : '';
 		$format = \WP_CLI\Utils\get_flag_value( $assoc_args, 'format', 'table' );
@@ -444,7 +444,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	\WP_CLI::add_command( 'device status', [ Wpcli::class, 'status' ] );
 	\WP_CLI::add_command( 'device settings', [ Wpcli::class, 'settings' ] );
 	\WP_CLI::add_command( 'device exitcode', [ Wpcli::class, 'exitcode' ] );
-	\WP_CLI::add_command( 'device get', [ Wpcli::class, 'get' ] );
+	\WP_CLI::add_command( 'device describe', [ Wpcli::class, 'describe' ] );
 
 	\WP_CLI::add_command( 'device analytics', [ Wpcli::class, 'analytics' ] );
 

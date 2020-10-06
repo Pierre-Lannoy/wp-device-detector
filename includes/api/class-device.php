@@ -346,11 +346,11 @@ class Device {
 	 * @since    2.0.0
 	 */
 	public function get_as_full_array() {
-		$result                  = [];
-		$result['class']['id']   = Detector::get_element( 'class', $this );
-		$result['class']['name'] = $this->class_full_type;
-		$result['type']['id']    = Detector::get_element( 'device', $this );
-		$result['type']['name']  = $this->device_full_type;
+		$result                   = [];
+		$result['class']['id']    = Detector::get_element( 'class', $this );
+		$result['class']['name']  = $this->class_full_type;
+		$result['device']['id']   = Detector::get_element( 'device', $this );
+		$result['device']['name'] = $this->device_full_type;
 		if ( $this->class_is_bot ) {
 			$result['bot']['name']             = $this->bot_name;
 			$result['bot']['category']         = $this->bot_full_category;

@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased - will be 2.0.0]
 
 ### Added
-- [WP-CLI] New command to get a device detail: see `wp help device get` for details.
+- [WP-CLI] New command to get a device detail: see `wp help device describe` for details.
 - [WP-CLI] New command to display Device Detector status: see `wp help device status` for details.
 - [WP-CLI] New command to toggle on/off main settings: see `wp help device settings` for details.
 - New Site Health "info" section about shared memory.
