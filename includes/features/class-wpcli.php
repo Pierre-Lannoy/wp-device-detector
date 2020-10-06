@@ -41,6 +41,7 @@ class Wpcli {
 		1   => 'unrecognized setting.',
 		2   => 'unrecognized action.',
 		3   => 'analytics are disabled.',
+		4   => 'unknown item.',
 		255 => 'unknown error.',
 	];
 
@@ -201,6 +202,8 @@ class Wpcli {
 	/**
 	 * Modify Device Detector main settings.
 	 *
+	 * ## OPTIONS
+	 *
 	 * <enable|disable>
 	 * : The action to take.
 	 *
@@ -314,7 +317,85 @@ class Wpcli {
 	}
 
 	/**
+	 * Get detection engine details.
+	 *
+	 * ## OPTIONS
+	 *
+	 * <version|info|class|device|client|os|browser|engine|library|player|app|pim|reader|brand|bot>
+	 * : The item to get information about.
+	 *
+	 * [--format=<format>]
+	 * : Set the output format. Note if json or yaml is chosen: full metadata is outputted too.
+	 * ---
+	 * default: table
+	 * options:
+	 *  - table
+	 *  - json
+	 *  - yaml
+	 *  - count
+	 *  - ids
+	 * ---
+	 *
+	 * [--stdout]
+	 * : Use clean STDOUT output to use results in scripts. Unnecessary when piping commands because piping is detected by Device Detector.
+	 *
+	 * ## EXAMPLES
+	 *
+	 * wp device db list browser
+	 *
+	 *
+	 *    === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
+	 *
+	 */
+	public static function engine( $args, $assoc_args ) {
+		$stdout = \WP_CLI\Utils\get_flag_value( $assoc_args, 'stdout', false );
+		$format = \WP_CLI\Utils\get_flag_value( $assoc_args, 'format', 'table' );
+		$item   = isset( $args[0] ) ? (string) $args[0] : '';
+		if ( in_array( $item, [ 'version', 'info', 'class', 'device', 'client', 'os', 'browser', 'engine', 'library', 'player', 'app', 'pim', 'reader', 'brand', 'bot' ], true ) ) {
+			switch ( $item ) {
+				case 'info':
+					$line = 'UDD - Universal Device Detector - is a free OSS from Matomo. https://matomo.org';
+					self::line( $line, $line, $stdout );
+					break;
+				case 'version':
+					$version = sprintf( 'UDD engine v%s', DeviceDetector::VERSION );
+					self::line( $version, $version, $stdout );
+					break;
+				default:
+					$detail = Detector::get_identifier_array( $item );
+					if ( 'yaml' === $format ) {
+						$details = Spyc::YAMLDump( $detail, true, true, true );
+						self::line( $details, $details, $stdout );
+					} elseif ( 'json' === $format ) {
+						$details = wp_json_encode( $detail );
+						self::line( $details, $details, $stdout );
+					} else {
+						$details = [];
+						foreach ( $detail as $d ) {
+							$a = [];
+							if ( 'ids' === $format ) {
+								$a[ $item ] = '"' . $d . '"';
+							} else {
+								$a[ $item ] = $d;
+							}
+							$details[] = $a;
+						}
+						if ( 'ids' === $format ) {
+							self::write_ids( $details, $item );
+						} else {
+							\WP_CLI\Utils\format_items( $assoc_args['format'], $details, [ $item ] );
+						}
+					}
+			}
+		} else {
+			self::error( 4, $stdout );
+		}
+	}
+
+	/**
 	 * Get devices analytics for today.
+	 *
+	 * ## OPTIONS
 	 *
 	 * [--format=<format>]
 	 * : Set the output format. Note if json is chosen: full metadata is outputted too.
@@ -445,6 +526,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	\WP_CLI::add_command( 'device settings', [ Wpcli::class, 'settings' ] );
 	\WP_CLI::add_command( 'device exitcode', [ Wpcli::class, 'exitcode' ] );
 	\WP_CLI::add_command( 'device describe', [ Wpcli::class, 'describe' ] );
+	\WP_CLI::add_command( 'device engine', [ Wpcli::class, 'engine' ] );
 
 	\WP_CLI::add_command( 'device analytics', [ Wpcli::class, 'analytics' ] );
 
