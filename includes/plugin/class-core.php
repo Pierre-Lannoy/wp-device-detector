@@ -19,6 +19,7 @@ use PODeviceDetector\Library\Libraries;
 use PODeviceDetector\System\Nag;
 use PODeviceDetector\Plugin\Feature\CoreModifier;
 use PODeviceDetector\Plugin\Feature\CSSModifier;
+use PODeviceDetector\API\DeviceRoute;
 
 /**
  * The core plugin class.
@@ -92,6 +93,9 @@ class Core {
 		add_shortcode( 'podd-statistics', [ 'PODeviceDetector\System\Statistics', 'sc_get_raw' ] );
 		CoreModifier::init();
 		CSSModifier::init();
+		// REST API
+		$routes = new DeviceRoute();
+		$this->loader->add_action( 'rest_api_init', $routes, 'register_routes' );
 	}
 
 	/**

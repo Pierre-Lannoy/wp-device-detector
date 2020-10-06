@@ -17,6 +17,7 @@ use PODeviceDetector\Plugin\Feature\Analytics;
 use PODeviceDetector\System\Markdown;
 use UDD\DeviceDetector;
 use PODeviceDetector\API\Device;
+use Spyc;
 
 /**
  * WP-CLI for Device Detector.
@@ -258,7 +259,7 @@ class Wpcli {
 	 * : The user-agent.
 	 *
 	 * [--format=<format>]
-	 * : Set the output format. Note if json is chosen: full metadata is outputted too.
+	 * : Set the output format. Note if json or yaml is chosen: full metadata is outputted too.
 	 * ---
 	 * default: table
 	 * options:
@@ -280,28 +281,36 @@ class Wpcli {
 	 *
 	 */
 	public static function get( $args, $assoc_args ) {
-		$stdout  = \WP_CLI\Utils\get_flag_value( $assoc_args, 'stdout', false );
-		$ua      = isset( $args[0] ) ? (string) $args[0] : '';
-		$format  = \WP_CLI\Utils\get_flag_value( $assoc_args, 'format', 'table' );
-		$device  = Device::get( $ua );
-		$details = $device->get_as_array();
-		if ( 'table' === $format ) {
-			$result = [];
-			foreach ( $details as $key => $d ) {
-				$item          = [];
-				$item['key']   = $key;
-				$item['value'] = $d;
-				$result[]      = $item;
+		$stdout = \WP_CLI\Utils\get_flag_value( $assoc_args, 'stdout', false );
+		$ua     = isset( $args[0] ) ? (string) $args[0] : '';
+		$format = \WP_CLI\Utils\get_flag_value( $assoc_args, 'format', 'table' );
+		$device = Device::get( $ua );
+		if ( 'yaml' === $format ) {
+			$details = Spyc::YAMLDump( $device->get_as_full_array(), true, true, true );
+			self::line( $details, $details, $stdout );
+		} elseif ( 'json' === $format ) {
+			$details = wp_json_encode( $device->get_as_full_array() );
+			self::line( $details, $details, $stdout );
+		} else {
+			$details = $device->get_as_array();
+			if ( 'table' === $format ) {
+				$result = [];
+				foreach ( $details as $key => $d ) {
+					$item          = [];
+					$item['key']   = $key;
+					$item['value'] = $d;
+					$result[]      = $item;
+				}
+				$detail  = [ 'key', 'value' ];
+				$details = $result;
+			} elseif ( 'csv' === $format ) {
+				$result   = [];
+				$result[] = $details;
+				$detail   = array_keys( $details );
+				$details  = $result;
 			}
-			$detail  = [ 'key', 'value' ];
-			$details = $result;
+			\WP_CLI\Utils\format_items( $assoc_args['format'], $details, $detail );
 		}
-
-
-
-
-
-		\WP_CLI\Utils\format_items( $assoc_args['format'], $details, $detail );
 	}
 
 	/**

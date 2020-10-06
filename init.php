@@ -13,6 +13,7 @@ define( 'PODD_PRODUCT_SHORTNAME', 'Device Detector' );
 define( 'PODD_PRODUCT_ABBREVIATION', 'podd' );
 define( 'PODD_SLUG', 'device-detector' );
 define( 'PODD_VERSION', '2.0.0-dev0' );
+define( 'PODD_API_VERSION', '1' );
 define( 'PODD_CODENAME', '"-"' );
 
 define( 'PODD_CDN_AVAILABLE', true );

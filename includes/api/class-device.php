@@ -313,7 +313,7 @@ class Device {
 	}
 
 	/**
-	 * Get the full device details.
+	 * Get the human readable device details.
 	 *
 	 * @return  array   The details of the device
 	 * @since    2.0.0
@@ -322,9 +322,65 @@ class Device {
 		$result          = [];
 		$result['class'] = $this->class_full_type;
 		$result['type']  = $this->device_full_type;
-		$result['client']  = $this->client_full_type;
+		if ( $this->class_is_bot ) {
+			$result['name']     = $this->bot_name;
+			$result['category'] = $this->bot_full_category;
+			$result['url']      = $this->bot_url;
+			$result['producer'] = $this->bot_producer_name;
+		} else {
+			$result['brand']    = $this->brand_name;
+			$result['model']    = $this->model_name;
+			$result['client']   = $this->client_full_type;
+			$result['name']     = $this->client_name . ' ' . $this->client_version;
+			$result['engine']   = $this->client_engine . ' ' . $this->client_engine_version;
+			$result['os']       = $this->os_name . ' ' . $this->os_version;
+			$result['platform'] = $this->os_platform;
+		}
+		return $result;
+	}
 
-
+	/**
+	 * Get the full device details.
+	 *
+	 * @return  array   The details of the device
+	 * @since    2.0.0
+	 */
+	public function get_as_full_array() {
+		$result                  = [];
+		$result['class']['id']   = Detector::get_element( 'class', $this );
+		$result['class']['name'] = $this->class_full_type;
+		$result['type']['id']    = Detector::get_element( 'device', $this );
+		$result['type']['name']  = $this->device_full_type;
+		if ( $this->class_is_bot ) {
+			$result['bot']['name']             = $this->bot_name;
+			$result['bot']['category']         = $this->bot_full_category;
+			$result['bot']['url']              = $this->bot_url;
+			$result['bot']['icon']             = $this->bot_icon_base64();
+			$result['bot']['producer']['name'] = $this->bot_producer_name;
+			$result['bot']['producer']['url']  = $this->bot_producer_url;
+		} else {
+			$result['brand']['id']                        = $this->brand_short_name;
+			$result['brand']['name']                      = $this->brand_name;
+			$result['brand']['icon']                      = $this->brand_icon_base64();
+			$result['brand']['model']                     = $this->model_name;
+			$result['client']['id']                       = Detector::get_element( 'client', $this );
+			$result['client']['name']                     = $this->client_full_type;
+			$result[ $result['client']['id'] ]['id']      = $this->client_short_name;
+			$result[ $result['client']['id'] ]['name']    = $this->client_name;
+			$result[ $result['client']['id'] ]['version'] = $this->client_version;
+			$result['os']['id']                           = $this->os_short_name;
+			$result['os']['name']                         = $this->os_name;
+			$result['os']['version']                      = $this->os_version;
+			$result['os']['platform']                     = $this->os_platform;
+			$result['os']['icon']                         = $this->os_icon_base64();
+			if ( 'browser' === $result['client']['id'] ) {
+				$result[ $result['client']['id'] ]['icon'] = $this->browser_icon_base64();
+			}
+			if ( '' !== $this->client_engine ) {
+				$result[ $result['client']['id'] ]['engine']['name']    = $this->client_engine;
+				$result[ $result['client']['id'] ]['engine']['version'] = $this->client_engine_version;
+			}
+		}
 		return $result;
 	}
 

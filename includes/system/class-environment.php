@@ -53,6 +53,7 @@ class Environment {
 		define( 'PODD_PLUGIN_SIGNATURE', PODD_PRODUCT_NAME . ' v' . PODD_VERSION );
 		define( 'PODD_PLUGIN_AGENT', PODD_PRODUCT_NAME . ' (' . self::wordpress_version_id() . '; ' . self::plugin_version_id() . '; +' . PODD_PRODUCT_URL . ')' );
 		define( 'PODD_ASSETS_ID', PODD_PRODUCT_ABBREVIATION . '-assets' );
+		define( 'PODD_REST_NAMESPACE', PODD_SLUG . '/v' . PODD_API_VERSION );
 	}
 
 	/**
