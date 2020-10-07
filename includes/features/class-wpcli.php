@@ -397,6 +397,12 @@ class Wpcli {
 	 *
 	 * ## OPTIONS
 	 *
+	 * [--site=<site_id>]
+	 * : The site for which to display analytics. May be 0 (all network) or an integer site id. Only useful with multisite environments.
+	 * ---
+	 * default: 0
+	 * ---
+	 *
 	 * [--format=<format>]
 	 * : Set the output format. Note if json is chosen: full metadata is outputted too.
 	 * ---
@@ -422,10 +428,12 @@ class Wpcli {
 	 */
 	public static function analytics( $args, $assoc_args ) {
 		$stdout = \WP_CLI\Utils\get_flag_value( $assoc_args, 'stdout', false );
+		$site   = (int) \WP_CLI\Utils\get_flag_value( $assoc_args, 'site', 0 );
+		$format = \WP_CLI\Utils\get_flag_value( $assoc_args, 'format', 'table' );
 		if ( ! Option::network_get( 'analytics' ) ) {
 			self::error( 3, $stdout );
 		}
-		$analytics = Analytics::get_status_kpi_collection();
+		$analytics = Analytics::get_status_kpi_collection( [ 'site_id' => $site ] );
 		$result    = [];
 		if ( array_key_exists( 'data', $analytics ) ) {
 			foreach ( $analytics['data'] as $kpi ) {
@@ -442,9 +450,13 @@ class Wpcli {
 				$result[]          = $item;
 			}
 		}
-		$format = \WP_CLI\Utils\get_flag_value( $assoc_args, 'format', 'table' );
 		if ( 'json' === $format ) {
-			self::line( wp_json_encode( $analytics ), wp_json_encode( $analytics ), $stdout );
+			$detail = wp_json_encode( $analytics );
+			self::line( $detail, $detail, $stdout );
+		} elseif ( 'yaml' === $format ) {
+			unset( $analytics['assets'] );
+			$detail = Spyc::YAMLDump( $analytics, true, true, true );
+			self::line( $detail, $detail, $stdout );
 		} else {
 			\WP_CLI\Utils\format_items( $assoc_args['format'], $result, [ 'kpi', 'description', 'value', 'ratio', 'variation' ] );
 		}
@@ -527,7 +539,6 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	\WP_CLI::add_command( 'device exitcode', [ Wpcli::class, 'exitcode' ] );
 	\WP_CLI::add_command( 'device describe', [ Wpcli::class, 'describe' ] );
 	\WP_CLI::add_command( 'device engine', [ Wpcli::class, 'engine' ] );
-
 	\WP_CLI::add_command( 'device analytics', [ Wpcli::class, 'analytics' ] );
 
 }

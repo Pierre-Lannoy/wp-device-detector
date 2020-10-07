@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [WP-CLI] New command to display Device Detector status: see `wp help device status` for details.
 - [WP-CLI] New command to toggle on/off main settings: see `wp help device settings` for details.
 - [WP-CLI] New command to describe engine capacities: see `wp help device engine` for details.
+- [WP-CLI] New command to display devices statistics: see `wp help device analytics` for details.
 - New Site Health "info" section about shared memory.
 - [API] New `/wp-json/device-detector/v1/describe` endpoint to analyze a user-agent string. Available to all authenticated users.
 

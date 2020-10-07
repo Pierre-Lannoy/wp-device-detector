@@ -16,6 +16,7 @@ use PODeviceDetector\System\Blog;
 use PODeviceDetector\System\Cache;
 use PODeviceDetector\System\Date;
 use PODeviceDetector\System\Conversion;
+use PODeviceDetector\System\Environment;
 use PODeviceDetector\System\Role;
 use PODeviceDetector\System\Logger;
 use PODeviceDetector\System\L10n;
@@ -27,6 +28,7 @@ use PODeviceDetector\Plugin\Feature\ClassTypes;
 use PODeviceDetector\Plugin\Feature\DeviceTypes;
 use PODeviceDetector\Plugin\Feature\ClientTypes;
 use PODeviceDetector\Plugin\Feature\ChannelTypes;
+use UDD\DeviceDetector;
 use UDD\Parser\Client\Browser;
 use UDD\Parser\OperatingSystem;
 use UDD\Parser\Device\DeviceParserAbstract;
@@ -992,13 +994,177 @@ class Analytics {
 	}
 
 	/**
+	 * Query all kpis in statistics table.
+	 *
+	 * @param   array   $args   Optional. The needed args.
+	 * @return array  The KPIs ready to send.
+	 * @since    1.0.0
+	 */
+	public static function get_status_kpi_collection( $args = [] ) {
+		$result['meta'] = [
+			'plugin' => PODD_PRODUCT_NAME . ' ' . PODD_VERSION,
+			'engine' => sprintf( 'UDD engine v%s', DeviceDetector::VERSION ),
+			'period' => date( 'Y-m-d' ),
+		];
+		if ( Environment::is_wordpress_multisite() ) {
+			if ( 0 === $args['site_id'] ) {
+				$result['meta']['scope'] = 'Network';
+			} else {
+				$result['meta']['scope'] = Blog::get_full_blog_name( $args['site_id'] );
+			}
+		} else {
+			$result['meta']['scope'] = Blog::get_full_blog_name( 1 );
+		}
+		if ( 0 === $args['site_id'] ) {
+			$args['site_id'] = 'all';
+		}
+		$result['data'] = [];
+		$kpi            = new static( '', '', $args['site_id'], date( 'Y-m-d' ), date( 'Y-m-d' ), false, false );
+		foreach ( [ 'hit', 'mobile', 'desktop', 'bot', 'client', 'engine' ] as $query ) {
+			$data = $kpi->query_kpi( $query, false );
+			switch ( $query ) {
+				case 'hit':
+					$val                    = Conversion::number_shorten( $data['kpi-main-' . $query ], 1, true );
+					$result['data'][$query] = [
+						'name'        => esc_html_x( 'Hits Number', 'Noun - Number of hits.', 'device-manager' ),
+						'short'       => esc_html_x( 'Hits', 'Noun - Short (max 4 char) - Number of hits.', 'device-manager' ),
+						'description' => esc_html__( 'Number of hits.', 'device-manager' ),
+						'dimension'   => 'none',
+						'ratio'       => null,
+						'variation'   => [
+							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
+							'percent'  => round( $data['kpi-index-' . $query], 2 ),
+							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
+						],
+						'value'       => [
+							'raw'   => $data['kpi-main-' . $query],
+							'human' => $val['value'] . $val['abbreviation'],
+						],
+					];
+					break;
+				case 'client':
+					$val                    = Conversion::number_shorten( $data['kpi-main-' . $query ], 0, true );
+					$result['data'][$query] = [
+						'name'        => esc_html_x( 'Clients', 'Noun - Number of distinct clients.', 'device-manager' ),
+						'short'       => esc_html_x( 'Clt.', 'Noun - Short (max 4 char) - Number of distinct clients.', 'device-manager' ),
+						'description' => esc_html__( 'Number of distinct clients.', 'device-manager' ),
+						'dimension'   => 'none',
+						'ratio'       => null,
+						'variation'   => [
+							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
+							'percent'  => round( $data['kpi-index-' . $query], 2 ),
+							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
+						],
+						'value'       => [
+							'raw'   => $data['kpi-main-' . $query],
+							'human' => $val['value'] . $val['abbreviation'],
+						],
+					];
+					break;
+				case 'engine':
+					$val                    = Conversion::number_shorten( $data['kpi-main-' . $query ], 0, true );
+					$result['data'][$query] = [
+						'name'        => esc_html_x( 'Engines', 'Noun - Number of distinct engines.', 'device-manager' ),
+						'short'       => esc_html_x( 'Eng.', 'Noun - Short (max 4 char) - Number of distinct engines.', 'device-manager' ),
+						'description' => esc_html__( 'Number of distinct engines.', 'device-manager' ),
+						'dimension'   => 'none',
+						'ratio'       => null,
+						'variation'   => [
+							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
+							'percent'  => round( $data['kpi-index-' . $query], 2 ),
+							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
+						],
+						'value'       => [
+							'raw'   => $data['kpi-main-' . $query],
+							'human' => $val['value'] . $val['abbreviation'],
+						],
+					];
+					break;
+				case 'mobile':
+					$val                    = Conversion::number_shorten( $data['kpi-bottom-' . $query], 0, true );
+					$result['data'][$query] = [
+						'name'        => esc_html_x( 'Mobile', 'Noun - Hits done by mobiles.', 'device-manager' ),
+						'short'       => esc_html_x( 'Mob.', 'Noun - Short (max 4 char) - Hits done by mobiles.', 'device-manager' ),
+						'description' => esc_html__( 'Hits done by mobiles.', 'device-manager' ),
+						'dimension'   => 'none',
+						'ratio'       => [
+							'raw'      => round( $data['kpi-main-' . $query] / 100, 6 ),
+							'percent'  => round( $data['kpi-main-' . $query], 2 ),
+							'permille' => round( $data['kpi-main-' . $query] * 10, 2 ),
+						],
+						'variation'   => [
+							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
+							'percent'  => round( $data['kpi-index-' . $query], 2 ),
+							'permille' => round( $data['kpi-index--' . $query] * 10, 2 ),
+						],
+						'value'       => [
+							'raw'   => $data['kpi-bottom-' . $query],
+							'human' => $val['value'] . $val['abbreviation'],
+						],
+					];
+					break;
+				case 'desktop':
+					$val                    = Conversion::number_shorten( $data['kpi-bottom-' . $query], 0, true );
+					$result['data'][$query] = [
+						'name'        => esc_html_x( 'Desktop', 'Noun - Hits done by desktops.', 'device-manager' ),
+						'short'       => esc_html_x( 'Dsk.', 'Noun - Short (max 4 char) - Hits done by desktops.', 'device-manager' ),
+						'description' => esc_html__( 'Hits done by desktops.', 'device-manager' ),
+						'dimension'   => 'none',
+						'ratio'       => [
+							'raw'      => round( $data['kpi-main-' . $query] / 100, 6 ),
+							'percent'  => round( $data['kpi-main-' . $query], 2 ),
+							'permille' => round( $data['kpi-main-' . $query] * 10, 2 ),
+						],
+						'variation'   => [
+							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
+							'percent'  => round( $data['kpi-index-' . $query], 2 ),
+							'permille' => round( $data['kpi-index--' . $query] * 10, 2 ),
+						],
+						'value'       => [
+							'raw'   => $data['kpi-bottom-' . $query],
+							'human' => $val['value'] . $val['abbreviation'],
+						],
+					];
+					break;
+				case 'bot':
+					$val                    = Conversion::number_shorten( $data['kpi-bottom-' . $query], 0, true );
+					$result['data'][$query] = [
+						'name'        => esc_html_x( 'Bot', 'Noun - Hits done by bots.', 'device-manager' ),
+						'short'       => esc_html_x( 'Bot', 'Noun - Short (max 4 char) - Hits done by bots.', 'device-manager' ),
+						'description' => esc_html__( 'Hits done by bots.', 'device-manager' ),
+						'dimension'   => 'none',
+						'ratio'       => [
+							'raw'      => round( $data['kpi-main-' . $query] / 100, 6 ),
+							'percent'  => round( $data['kpi-main-' . $query], 2 ),
+							'permille' => round( $data['kpi-main-' . $query] * 10, 2 ),
+						],
+						'variation'   => [
+							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
+							'percent'  => round( $data['kpi-index-' . $query], 2 ),
+							'permille' => round( $data['kpi-index--' . $query] * 10, 2 ),
+						],
+						'value'       => [
+							'raw'   => $data['kpi-bottom-' . $query],
+							'human' => $val['value'] . $val['abbreviation'],
+						],
+					];
+					break;
+
+			}
+		}
+		$result['assets'] = [];
+		return $result;
+	}
+
+	/**
 	 * Query statistics table.
 	 *
-	 * @param   mixed $queried The query params.
+	 * @param   mixed       $queried The query params.
+	 * @param   boolean     $chart   Optional, return the chart if true, only the data if false;
 	 * @return array  The result of the query, ready to encode.
 	 * @since    1.0.0
 	 */
-	private function query_kpi( $queried ) {
+	public function query_kpi( $queried, $chart = true ) {
 		$result = [];
 		switch ( $queried ) {
 			case 'hit':
@@ -1028,6 +1194,16 @@ class Analytics {
 			}
 			if ( 0 < count( $pdata ) && 'hit' === $queried ) {
 				$previous = (int) $pdata[0]['sum_hit'];
+			}
+			$result[ 'kpi-main-' . $queried ] = (int) round( $current, 0 );
+			if ( ! $chart ) {
+				if ( 0.0 !== $current && 0.0 !== $previous ) {
+					$result[ 'kpi-index-' . $queried ] = round( 100 * ( $current - $previous ) / $previous, 4 );
+				} else {
+					$result[ 'kpi-index-' . $queried ] = null;
+				}
+				$result[ 'kpi-bottom-' . $queried ] = null;
+				return $result;
 			}
 			$result[ 'kpi-main-' . $queried ] = Conversion::number_shorten( (int) $current, 1, false, '&nbsp;' );
 			if ( 0 !== $current && 0 !== $previous ) {
@@ -1063,14 +1239,14 @@ class Analytics {
 			}
 			if ( 0.0 !== $base_value && 0.0 !== $data_value ) {
 				$current                          = 100 * $data_value / $base_value;
-				$result[ 'kpi-main-' . $queried ] = round( $current, 1 ) . '&nbsp;%';
+				$result[ 'kpi-main-' . $queried ] = round( $current, $chart ? 1 : 4 );
 			} else {
 				if ( 0.0 !== $data_value ) {
-					$result[ 'kpi-main-' . $queried ] = '100&nbsp;%';
+					$result[ 'kpi-main-' . $queried ] = 100;
 				} elseif ( 0.0 !== $base_value ) {
-					$result[ 'kpi-main-' . $queried ] = '0&nbsp;%';
+					$result[ 'kpi-main-' . $queried ] = 0;
 				} else {
-					$result[ 'kpi-main-' . $queried ] = '-';
+					$result[ 'kpi-main-' . $queried ] = null;
 				}
 			}
 			if ( 0.0 !== $pbase_value && 0.0 !== $pdata_value ) {
@@ -1079,6 +1255,20 @@ class Analytics {
 				if ( 0.0 !== $pdata_value ) {
 					$previous = 100.0;
 				}
+			}
+			if ( 0.0 !== $current && 0.0 !== $previous ) {
+				$result[ 'kpi-index-' . $queried ] = round( 100 * ( $current - $previous ) / $previous, 4 );
+			} else {
+				$result[ 'kpi-index-' . $queried ] = null;
+			}
+			if ( ! $chart ) {
+				$result[ 'kpi-bottom-' . $queried ] = round( $data_value, 0 );
+				return $result;
+			}
+			if ( isset( $result[ 'kpi-main-' . $queried ] ) ) {
+				$result[ 'kpi-main-' . $queried ] = $result[ 'kpi-main-' . $queried ] . '&nbsp;%';
+			} else {
+				$result[ 'kpi-main-' . $queried ] = '-';
 			}
 			if ( 0.0 !== $current && 0.0 !== $previous ) {
 				$percent = round( 100 * ( $current - $previous ) / $previous, 1 );
