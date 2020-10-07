@@ -2,9 +2,10 @@ APCu Manager is fully usable from command-line, thanks to [WP-CLI](https://wp-cl
 
 1. [Obtaining statistics about devices](#obtaining-statistics-about-device-usage) - `wp device analytics`
 2. [Describing a device](#describing-a-device) - `wp device describe`
-2. [Getting APCu Manager status](#getting-device-detector-status) - `wp device status`
-3. [Managing main settings](#managing-main-settings) - `wp device settings`
-4. [Misc flags](#misc-flags)
+3. [Getting informations about the detector engine](#getting-informations-about-the-detector-engine) - `wp device engine`
+4. [Getting Device Detector status](#getting-device-detector-status) - `wp device status`
+5. [Managing main settings](#managing-main-settings) - `wp device settings`
+6. [Misc flags](#misc-flags)
 
 ## Obtaining statistics about devices
 
@@ -33,7 +34,7 @@ pierre@dev:~$ wp device analytics --site=5
 
 ## Describing a device
 
-You can obtain the detail of a device, based on its _user-agent_ string, use the `wp device describe <ua>` command, where `<ua>` is the _user-agent_ string.
+To obtain the detail of a device, based on its _user-agent_ string, use the `wp device describe <ua>` command, where `<ua>` is the _user-agent_ string.
 
 By default, the outputted format is a simple table. If you want to customize the format, just use `--format=<format>`. Note if you choose `json` or `yaml` as format, the output will contain full data and metadata regarding the device.
 
@@ -55,6 +56,44 @@ pierre@dev:~$ wp device describe 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_3_1 like
 | os       | iOS 11.3.1      |
 | platform |                 |
 +----------+-----------------+
+```
+
+## Getting informations about the detector engine
+
+As you know, Device Detector is based on the Matomo UDD engine. To obtain informations about this engine, you can use the `wp device engine <version|info|class|device|client|os|browser|engine|library|player|app|pim|reader|brand|bot>` command.
+
+The main informations you can display are:
+
+- `version`: version of integrated UDD.
+- `info`: details about engine.
+- `class|device|client|os|browser|engine|library|player|app|pim|reader|brand|bot`: detectable items.
+
+### Examples
+
+To display all the detectable bots, type the following command:
+```console
+pierre@dev:~$ wp device engine bot
++-------------------------------------+
+| bot                                 |
++-------------------------------------+
+| 360Spider                           |
+| Aboundexbot                         |
+| Acoon                               |
+| AddThis.com                         |
+| aHrefs Bot                          |
+| Alexa Crawler                       |
+| Alexa Site Audit                    |
+| Amazon Route53 Health Check         |
+| Amorank Spider                      |
+| ApacheBench                         |
+| Applebot                            |
+| Arachni                             |
+...
+| GTmetrix                            |
+| Nutch-based Bot                     |
+| Seobility                           |
+| Generic Bot                         |
++-------------------------------------+
 ```
 
 ## Getting Device Detector status
