@@ -32,6 +32,18 @@ __Device Detector__ supports multisite report delegation and per site configurat
 
 Based on the amazing [Matomo](https://github.com/matomo-org/matomo) UDD, Device Detector is a free and open source plugin for WordPress. It integrates many other free and open source works (as-is or modified). Please, see 'about' tab in the plugin settings to see the details.
 
+## WP-CLI
+
+__Device Detector__ supports an extensive set of WP-CLI commands to:
+
+* get a device detail: see `wp help device describe` for details;
+* display Device Detector status: see `wp help device status` for details;
+* toggle on/off main settings: see `wp help device settings` for details;
+* describe engine capacities: see `wp help device engine` for details;
+* display devices statistics: see `wp help device analytics` for details.
+
+For a full help on WP-CLI commands in Device Detector, please [read this guide](WP-CLI.md).
+
 ## Installation
 
 1. From your WordPress dashboard, visit _Plugins | Add New_.
