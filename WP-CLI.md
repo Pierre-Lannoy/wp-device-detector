@@ -126,5 +126,5 @@ For most commands, APCu Manager lets you use the following flags:
 
 > It's not mandatory to use `--stdout` when using `--format=count` or `--format=ids`: in such cases `--stdout` is assumed.
 
-> Note APCu Manager sets exit code so you can use `$?` to write scripts.
-> To know the meaning of Traffic exit codes, just use the command `wp apcu exitcode list`.
+> Note Device Detector sets exit code so you can use `$?` to write scripts.
+> To know the meaning of Device Detector exit codes, just use the command `wp device exitcode list`.

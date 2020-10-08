@@ -32,6 +32,41 @@
     transition: opacity 1.4s ease-in;
 }
 
+.podd_test_ua_container {
+    padding: 8px;
+}
+
+#podd_test_ua_cdescriber {
+    display: flex;
+    justify-content: center;
+}
+
+#podd_test_ua_describer {
+    padding: 2px 20px 2px 20px;
+    background-color: #FFF;
+    width: max-content;
+    margin-top: 40px;
+    border-radius: 4px;
+    border: 1px solid #DDD;
+}
+
+#podd_test_ua_action {
+    margin: 8px;
+    width: 160px;
+}
+
+#podd_test_ua_value {
+    width: 78%;
+    margin: 8px;
+
+}
+
+@media only screen and (max-width: 780px) {
+    #podd_test_ua_value {
+        width: 98%;
+    }
+}
+
 .markdown ul{
     list-style: disc;
     margin-left: 20px;
@@ -47,7 +82,8 @@
     margin-left: 20px;
 }
 
-.markdown blockquote p {
+.markdown blockquote p,
+.markdown blockquote code {
     font-size: smaller !important;
 }
 

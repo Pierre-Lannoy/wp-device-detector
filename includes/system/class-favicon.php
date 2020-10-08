@@ -145,7 +145,7 @@ class Favicon {
 	 * @since 1.0.0
 	 */
 	public static function get_base64( $name = 'wordpress.org' ) {
-		$source = self::get_raw( $name );
+		$source = self::get_raw( $name, true );
 		if ( 0 === strpos( $source, 'data:image/png;base64,' ) ) {
 			return $source;
 		} else {

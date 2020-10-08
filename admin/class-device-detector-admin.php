@@ -111,7 +111,7 @@ class Device_Detector_Admin {
 				'icon_callback' => [ \PODeviceDetector\Plugin\Core::class, 'get_base64_logo' ],
 				'slug'          => 'podd-viewer',
 				/* translators: as in the sentence "DecaLog Viewer" */
-				'page_title'    => sprintf( esc_html__( 'Devices Analytics', 'device-detector' ), PODD_PRODUCT_NAME ),
+				'page_title'    => esc_html__( 'Devices Analytics', 'device-detector' ),
 				'menu_title'    => esc_html__( 'Devices', 'device-detector' ),
 				'capability'    => 'manage_options',
 				'callback'      => [ $this, 'get_viewer_page' ],
@@ -121,6 +121,20 @@ class Device_Detector_Admin {
 				'remedy'        => '',
 			];
 		}
+		$perfops['tools'][] = [
+			'name'          => esc_html__( 'Devices', 'device-detector' ),
+			'description'   => esc_html__( 'Test user-agent strings to see devices details.', 'device-detector' ),
+			'icon_callback' => [ \PODeviceDetector\Plugin\Core::class, 'get_base64_logo' ],
+			'slug'          => 'podd-viewer',
+			'page_title'    => esc_html__( 'Devices Test', 'device-detector' ),
+			'menu_title'    => esc_html__( 'Devices', 'device-detector' ),
+			'capability'    => 'manage_options',
+			'callback'      => [ $this, 'get_tools_page' ],
+			'position'      => 50,
+			'plugin'        => PODD_SLUG,
+			'activated'     => true,
+			'remedy'        => '',
+		];
 		return $perfops;
 	}
 
@@ -220,6 +234,15 @@ class Device_Detector_Admin {
 	public function get_viewer_page() {
 		$analytics = AnalyticsFactory::get_analytics();
 		include PODD_ADMIN_DIR . 'partials/device-detector-admin-view-analytics.php';
+	}
+
+	/**
+	 * Get the content of the viewer page.
+	 *
+	 * @since 1.0.0
+	 */
+	public function get_tools_page() {
+		include PODD_ADMIN_DIR . 'partials/device-detector-admin-tools.php';
 	}
 
 	/**

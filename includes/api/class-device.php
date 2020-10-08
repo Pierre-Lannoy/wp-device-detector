@@ -173,7 +173,8 @@ class Device {
 	 * @since    1.0.0
 	 */
 	public function bot_icon_base64() {
-		return Favicon::get_base64( $this->bot_url );
+		$url_parts = wp_parse_url( $this->bot_url );
+		return Favicon::get_base64( $url_parts['host'] );
 	}
 
 	/**
@@ -306,8 +307,8 @@ class Device {
 			case 'FEED FETCHER':
 			case 'FEED READER':
 				return esc_html__( 'Feed fetcher', 'device-detector' );
-			case '':
-				return '';
+			default:
+				return esc_html__( 'Bot', 'device-detector' );
 		}
 		return esc_html__( 'Unknown', 'device-detector' );
 	}
