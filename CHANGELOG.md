@@ -3,7 +3,7 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 2.0.0]
+## [2.0.0] - 2020-10-08
 
 ### Added
 - New tool (in PerfOps Tools menu) to analyze a user-agent string with the Device Detector engine.
@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - The integrated markdown parser is now [Markdown](https://github.com/cebe/markdown) from Carsten Brandt.
 
 ### Fixed
+- Some bots icons may be not displayed when it should be.
 - With Firefox, some links are unclickable in the Control Center (thanks to [Emil1](https://wordpress.org/support/users/milouze/)).
 
 ### Removed

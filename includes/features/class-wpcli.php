@@ -494,7 +494,7 @@ class Wpcli {
 	 * + wp device exitcode list --format=json
 	 *
 	 *
-	 *   === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-traffic/blob/master/WP-CLI.md ===
+	 *   === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
 	 *
 	 */
 	public static function exitcode( $args, $assoc_args ) {
