@@ -125,7 +125,7 @@ class Device_Detector_Admin {
 			'name'          => esc_html__( 'Devices', 'device-detector' ),
 			'description'   => esc_html__( 'Test user-agent strings to see devices details.', 'device-detector' ),
 			'icon_callback' => [ \PODeviceDetector\Plugin\Core::class, 'get_base64_logo' ],
-			'slug'          => 'podd-viewer',
+			'slug'          => 'podd-tools',
 			'page_title'    => esc_html__( 'Devices Test', 'device-detector' ),
 			'menu_title'    => esc_html__( 'Devices', 'device-detector' ),
 			'capability'    => 'manage_options',
