@@ -237,7 +237,7 @@ class Device_Detector_Admin {
 	}
 
 	/**
-	 * Get the content of the viewer page.
+	 * Get the content of the tools page.
 	 *
 	 * @since 1.0.0
 	 */
