@@ -31,7 +31,7 @@ class DeviceRoute extends \WP_REST_Controller {
 	 * @since  2.0.0
 	 */
 	public function register_routes() {
-		$this->register_route_livelog();
+		$this->register_route_describe();
 	}
 
 	/**
@@ -39,7 +39,7 @@ class DeviceRoute extends \WP_REST_Controller {
 	 *
 	 * @since  2.0.0
 	 */
-	public function register_route_livelog() {
+	public function register_route_describe() {
 		register_rest_route(
 			PODD_REST_NAMESPACE,
 			'describe',
