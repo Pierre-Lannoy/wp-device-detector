@@ -35,7 +35,7 @@ class DeviceRoute extends \WP_REST_Controller {
 	}
 
 	/**
-	 * Register the routes for livelog.
+	 * Register the routes for description.
 	 *
 	 * @since  2.0.0
 	 */
@@ -56,7 +56,7 @@ class DeviceRoute extends \WP_REST_Controller {
 	}
 
 	/**
-	 * Get the query params for livelog.
+	 * Get the query params for description.
 	 *
 	 * @return array    The schema fragment.
 	 * @since  2.0.0
@@ -74,7 +74,7 @@ class DeviceRoute extends \WP_REST_Controller {
 	}
 
 	/**
-	 * Check if a given request has access to get livelogs
+	 * Check if a given request has access to get description
 	 *
 	 * @param \WP_REST_Request $request Full data about the request.
 	 * @return \WP_Error|bool
