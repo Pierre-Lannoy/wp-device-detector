@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 - The remote IP can be wrongly detected when behind some types of reverse-proxies.
+- In admin dashboard, the statistics link is visible even if analytics features are not activated.
 - [WP-CLI] Typos in documentation.
 
 ## [2.0.0] - 2020-10-08

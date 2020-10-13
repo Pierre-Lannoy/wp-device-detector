@@ -157,7 +157,7 @@ class Device_Detector_Admin {
 	 * @since 1.2.0
 	 */
 	public function blog_action( $actions, $user_blog ) {
-		if ( Role::SUPER_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() ) {
+		if ( ( Role::SUPER_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() ) && Option::network_get( 'analytics' ) ) {
 			$actions .= " | <a href='" . esc_url( admin_url( 'admin.php?page=podd-viewer&site=' . $user_blog->userblog_id ) ) . "'>" . __( 'Devices', 'device-detector' ) . '</a>';
 		}
 		return $actions;
@@ -174,7 +174,7 @@ class Device_Detector_Admin {
 	 * @since 1.2.0
 	 */
 	public function site_action( $actions, $blog_id, $blogname ) {
-		if ( Role::SUPER_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() ) {
+		if ( ( Role::SUPER_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() ) && Option::network_get( 'analytics' ) ) {
 			$actions['devices'] = "<a href='" . esc_url( admin_url( 'admin.php?page=podd-viewer&site=' . $blog_id ) ) . "' rel='bookmark'>" . __( 'Devices', 'device-detector' ) . '</a>';
 		}
 		return $actions;
@@ -206,7 +206,10 @@ class Device_Detector_Admin {
 	 */
 	public function add_actions_links( $actions, $plugin_file, $plugin_data, $context ) {
 		$actions[] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=podd-settings' ) ), esc_html__( 'Settings', 'device-detector' ) );
-		$actions[] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=podd-viewer' ) ), esc_html__( 'Statistics', 'device-detector' ) );
+		$actions[] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=podd-tools' ) ), esc_html__( 'Tools', 'device-detector' ) );
+		if ( Option::network_get( 'analytics' ) ) {
+			$actions[] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=podd-viewer' ) ), esc_html__( 'Statistics', 'device-detector' ) );
+		}
 		return $actions;
 	}
 
