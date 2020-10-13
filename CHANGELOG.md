@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - [WP-CLI] Improved documentation.
 - The analytics dashboard now displays a warning if analytics features are not activated.
+- Prepares PerfOps menus to future 5.6 version of WordPress.
 
 ### Fixed
 - The remote IP can be wrongly detected when behind some types of reverse-proxies.
