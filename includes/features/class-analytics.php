@@ -1095,7 +1095,7 @@ class Analytics {
 						'variation'   => [
 							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
 							'percent'  => round( $data['kpi-index-' . $query], 2 ),
-							'permille' => round( $data['kpi-index--' . $query] * 10, 2 ),
+							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
 						],
 						'value'       => [
 							'raw'   => $data['kpi-bottom-' . $query],
@@ -1118,7 +1118,7 @@ class Analytics {
 						'variation'   => [
 							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
 							'percent'  => round( $data['kpi-index-' . $query], 2 ),
-							'permille' => round( $data['kpi-index--' . $query] * 10, 2 ),
+							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
 						],
 						'value'       => [
 							'raw'   => $data['kpi-bottom-' . $query],
@@ -1141,7 +1141,7 @@ class Analytics {
 						'variation'   => [
 							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
 							'percent'  => round( $data['kpi-index-' . $query], 2 ),
-							'permille' => round( $data['kpi-index--' . $query] * 10, 2 ),
+							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
 						],
 						'value'       => [
 							'raw'   => $data['kpi-bottom-' . $query],
@@ -1197,7 +1197,7 @@ class Analytics {
 			}
 			$result[ 'kpi-main-' . $queried ] = (int) round( $current, 0 );
 			if ( ! $chart ) {
-				if ( 0.0 !== $current && 0.0 !== $previous ) {
+				if ( 0 !== $current && 0 !== $previous ) {
 					$result[ 'kpi-index-' . $queried ] = round( 100 * ( $current - $previous ) / $previous, 4 );
 				} else {
 					$result[ 'kpi-index-' . $queried ] = null;
