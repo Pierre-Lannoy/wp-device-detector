@@ -85,6 +85,7 @@ class Core {
 		$updater   = new Updater();
 		$libraries = new Libraries();
 		$this->loader->add_filter( 'perfopsone_plugin_info', self::class, 'perfopsone_plugin_info' );
+		$this->loader->add_action( 'init', 'PODeviceDetector\Plugin\Integration\Databeam', 'init' );
 		$this->loader->add_action( 'init', $bootstrap, 'initialize' );
 		$this->loader->add_action( 'init', $bootstrap, 'late_initialize', PHP_INT_MAX );
 		$this->loader->add_action( 'wp_head', $assets, 'prefetch' );

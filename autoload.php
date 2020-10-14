@@ -21,6 +21,8 @@ spl_autoload_register(
 			}
 			if ( strpos( $class, 'PODeviceDetector\Plugin\Feature\\' ) === 0 ) {
 				$filepath = PODD_INCLUDES_DIR . 'features/';
+			} elseif ( strpos( $class, 'PODeviceDetector\Plugin\Integration\\' ) === 0 ) {
+				$filepath = PODD_INCLUDES_DIR . 'integrations/';
 			} elseif ( strpos( $class, 'PODeviceDetector\Plugin\\' ) === 0 ) {
 				$filepath = PODD_INCLUDES_DIR . 'plugin/';
 			} elseif ( strpos( $class, 'PODeviceDetector\API\\' ) === 0 ) {

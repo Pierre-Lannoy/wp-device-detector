@@ -3,12 +3,18 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 2.0.2]
+## [Unreleased - will be 2.1.0]
 
-## [2.0.1] - 2020-10-13
+### Added
+- Support for data feeds - reserved for future use.
+
+### Changed
+- [MultiSite] Improved default site detection.
 
 ### Fixed
 - [WP-CLI] Generating statistics may produce PHP warnings.
+
+## [2.0.1] - 2020-10-13
 
 ### Changed
 - [WP-CLI] Improved documentation.
