@@ -1011,15 +1011,15 @@ class Analytics {
 				$args['site_id'] = 0;
 			}
 			if ( 0 === $args['site_id'] ) {
-				$result['meta']['scope'] = 'Network';
+				$result['meta']['scope']['site'] = 'Network';
 			} else {
-				$result['meta']['scope'] = Blog::get_full_blog_name( $args['site_id'] );
+				$result['meta']['scope']['site'] = Blog::get_full_blog_name( $args['site_id'] );
 			}
 		} else {
 			if ( ! isset( $args['site_id'] ) ) {
 				$args['site_id'] = 1;
 			}
-			$result['meta']['scope'] = Blog::get_full_blog_name( 1 );
+			$result['meta']['scope']['site'] = Blog::get_full_blog_name( 1 );
 		}
 		if ( 0 === $args['site_id'] ) {
 			$args['site_id'] = 'all';
