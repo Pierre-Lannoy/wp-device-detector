@@ -2,17 +2,123 @@
 # This file is distributed under the same license as the Plugins - Device Detector - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-03-01 20:41+0100\n"
+"PO-Revision-Date: 2020-10-18 18:59+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.2.4\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Poedit 2.4.1\n"
 "Language: fr_BE\n"
 "Project-Id-Version: Plugins - Device Detector - Stable (latest release)\n"
 "POT-Creation-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+
+#: admin/class-device-detector-admin.php:209
+msgid "Tools"
+msgstr "Outils"
+
+#: includes/features/class-analytics.php:1134
+msgid "Hits done by bots."
+msgstr "Accès effectués par des robots."
+
+#: includes/features/class-analytics.php:1133
+msgctxt "Noun - Short (max 4 char) - Hits done by bots."
+msgid "Bot"
+msgstr "Rbt."
+
+#: includes/features/class-analytics.php:1132
+msgctxt "Noun - Hits done by bots."
+msgid "Bot"
+msgstr "Robot"
+
+#: includes/features/class-analytics.php:1111
+msgid "Hits done by desktops."
+msgstr "Accès effectués par des ordinateurs de bureau."
+
+#: includes/features/class-analytics.php:1110
+msgctxt "Noun - Short (max 4 char) - Hits done by desktops."
+msgid "Dsk."
+msgstr "Bur."
+
+#: includes/features/class-analytics.php:1109
+msgctxt "Noun - Hits done by desktops."
+msgid "Desktop"
+msgstr "Ordinateur de bureau"
+
+#: includes/features/class-analytics.php:1088
+msgid "Hits done by mobiles."
+msgstr "Accès effectués par des mobiles."
+
+#: includes/features/class-analytics.php:1087
+msgctxt "Noun - Short (max 4 char) - Hits done by mobiles."
+msgid "Mob."
+msgstr "Mob."
+
+#: includes/features/class-analytics.php:1086
+msgctxt "Noun - Hits done by mobiles."
+msgid "Mobile"
+msgstr "Mobile"
+
+#: includes/features/class-analytics.php:1068
+msgctxt "Noun - Short (max 4 char) - Number of distinct engines."
+msgid "Eng."
+msgstr "Mot."
+
+#: includes/features/class-analytics.php:1049
+msgctxt "Noun - Short (max 4 char) - Number of distinct clients."
+msgid "Clt."
+msgstr "Clt."
+
+#: includes/features/class-analytics.php:1030
+msgctxt "Noun - Short (max 4 char) - Number of hits."
+msgid "Hits"
+msgstr "Accès"
+
+#: includes/system/class-markdown.php:46
+msgid "Sorry, unable to find or read the specified file."
+msgstr "Désolé, il est impossible de trouver ou de lire le fichier spécifié."
+
+#: includes/system/class-sitehealth.php:321
+msgid "You should consider using shared memory (PHP shmop) to allow inter-process communication."
+msgstr "Vous devriez envisager d’utiliser la mémoire partagée (PHP shmop) pour permettre la communication inter-processus."
+
+#: includes/system/class-sitehealth.php:315
+msgid "You should allow inter-process communication"
+msgstr "Vous devriez autoriser la communication inter-processus"
+
+#: includes/system/class-sitehealth.php:309
+msgid "Your site can use shared memory to allow inter-process communication. That's great."
+msgstr "Votre site peut utiliser la mémoire partagée pour permettre la communication inter-processus. C’est super."
+
+#: includes/system/class-sitehealth.php:303
+msgid "Your site can use shared memory"
+msgstr "Votre site peut utiliser la mémoire partagée"
+
+#: includes/system/class-sitehealth.php:286
+msgid "Shared Memory Test"
+msgstr "Test de mémoire partagée"
+
+#: perfopsone/class-adminmenus.php:74
+msgid "%s Consoles"
+msgstr "Consoles %s"
+
+#: perfopsone/class-adminmenus.php:74 perfopsone/class-adminmenus.php:75
+msgid "Available Consoles"
+msgstr "Consoles disponibles"
+
+#: admin/partials/device-detector-admin-tools.php:33
+msgid "Test Now"
+msgstr "Tester maintenant"
+
+#: admin/partials/device-detector-admin-tools.php:30
+#: admin/class-device-detector-admin.php:129
+msgid "Devices Test"
+msgstr "Test de périphériques"
+
+#: admin/class-device-detector-admin.php:126
+msgid "Test user-agent strings to see devices details."
+msgstr "Testez des chaînes user-agent pour afficher les détails des périphériques."
 
 #. translators: as in the sentence "Find out the detail of devices accessing
 #. your network." or "Find out the detail of devices accessing your website."
@@ -32,55 +138,55 @@ msgstr "réseau"
 msgid "Find out the detail of devices accessing your %s."
 msgstr "Découvrez les détails des appareils accédant à votre %s."
 
-#: perfopsone/class-adminmenus.php:378
+#: perfopsone/class-adminmenus.php:406
 msgid "Requires at least PHP %1$s%2$s and WordPress %3$s%4$s."
 msgstr "Nécessite au moins PHP %1$s%2$s et WordPress %3$s%4$s."
 
-#: perfopsone/class-adminmenus.php:369
+#: perfopsone/class-adminmenus.php:397
 msgid "contribution"
 msgstr "contribution"
 
-#: perfopsone/class-adminmenus.php:368
+#: perfopsone/class-adminmenus.php:396
 msgid "support"
 msgstr "assistance"
 
-#: perfopsone/class-adminmenus.php:367
+#: perfopsone/class-adminmenus.php:395
 msgid "about"
 msgstr "à propos"
 
-#: perfopsone/class-adminmenus.php:366
+#: perfopsone/class-adminmenus.php:394
 msgid "settings"
 msgstr "réglages"
 
-#: perfopsone/class-adminmenus.php:241
+#: perfopsone/class-adminmenus.php:268
 msgid "No review yet."
 msgstr "Pas encore d’avis."
 
-#: perfopsone/class-adminmenus.php:238
+#: perfopsone/class-adminmenus.php:265
 msgid "%s reviews."
 msgstr "%s avis."
 
-#: perfopsone/class-adminmenus.php:233
+#: perfopsone/class-adminmenus.php:260
 msgid "%s downloads."
 msgstr "%s téléchargements."
 
-#: perfopsone/class-adminmenus.php:228
+#: perfopsone/class-adminmenus.php:255
 msgid "%s+ installs."
 msgstr "%s+ installations."
 
-#: perfopsone/class-adminmenus.php:211 perfopsone/class-adminmenus.php:218
+#: perfopsone/class-adminmenus.php:238 perfopsone/class-adminmenus.php:245
 msgid "need update"
 msgstr "nécessite une mise à jour"
 
-#: perfopsone/class-adminmenus.php:209 perfopsone/class-adminmenus.php:216
+#: perfopsone/class-adminmenus.php:236 perfopsone/class-adminmenus.php:243
 msgid "OK"
 msgstr "OK"
 
-#: perfopsone/class-adminmenus.php:203
+#: perfopsone/class-adminmenus.php:230
 msgid "Need to be updated to %s."
 msgstr "Nécessite d’être mis à jour vers %s."
 
-#: perfopsone/class-adminmenus.php:108
+#: perfopsone/class-adminmenus.php:112
 msgid "This analytics feature is currently disabled. Click here to activate it."
 msgstr "Cette fonctionnalité d’analyse est actuellement désactivée. Cliquez ici pour l’activer."
 
@@ -177,186 +283,182 @@ msgstr "Cette version de %s est une « release candidate ». Bien que prête p
 msgid "This version of %s is not production-ready. It is a development preview. Use it at your own risk!"
 msgstr "Cette version de %s n’est pas destinée à être mise en production. Il s’agit d’une « development preview ». Utilisez-la à vos risques et périls !"
 
-#: admin/partials/device-detector-admin-settings-main.php:90
+#: admin/partials/device-detector-admin-settings-main.php:89
 msgid "About"
 msgstr "À propos"
 
-#: admin/partials/device-detector-admin-settings-main.php:62
+#: admin/partials/device-detector-admin-settings-main.php:61
 msgid "CSS"
 msgstr "CSS"
 
-#: admin/partials/device-detector-admin-settings-main.php:49
+#: admin/partials/device-detector-admin-settings-main.php:48
 msgid "WordPress core"
 msgstr "Cœur de WordPress"
 
-#: admin/partials/device-detector-admin-settings-main.php:76
+#: admin/partials/device-detector-admin-settings-main.php:75
 msgid "Options"
 msgstr "Options"
 
-#: admin/partials/device-detector-admin-settings-main.php:28
-msgid "Note: analytics reports are available via the <a href=\"%s\">tools menu</a>."
-msgstr "Remarque : les rapports d’analyse sont disponibles via le <a href=\"%s\">menu outils</a>."
-
-#: admin/class-device-detector-admin.php:562
+#: admin/class-device-detector-admin.php:588
 msgid "Based on these settings, no classes will be added to the body."
 msgstr "Sur la base de ces réglages, aucune classe ne sera ajoutée au corps."
 
-#: admin/class-device-detector-admin.php:560
+#: admin/class-device-detector-admin.php:586
 msgid "Based on these settings, the classes for this current session would be: %s."
 msgstr "Sur la base de ces réglages, les classes pour la session en cours seraient : %s."
 
-#: admin/class-device-detector-admin.php:539
+#: admin/class-device-detector-admin.php:565
 msgid "Body classes"
 msgstr "Classes pour le corps"
 
-#: admin/class-device-detector-admin.php:521
+#: admin/class-device-detector-admin.php:547
 msgid "If checked, the standard %s function will be improved by Device Detector."
 msgstr "Si coché, la fonction standard %s sera améliorée par Device Detector."
 
-#: admin/class-device-detector-admin.php:518
+#: admin/class-device-detector-admin.php:544
 msgid "Mobile detection"
 msgstr "Détection de mobile"
 
-#: admin/class-device-detector-admin.php:513
+#: admin/class-device-detector-admin.php:539
 msgid "Improvements"
 msgstr "Améliorations"
 
-#: admin/class-device-detector-admin.php:496
+#: admin/class-device-detector-admin.php:522
 msgid "Maximum age of data to keep for statistics."
 msgstr "Âge maximum des données à conserver pour les statistiques."
 
-#: admin/class-device-detector-admin.php:488
+#: admin/class-device-detector-admin.php:514
 msgid "Historical data"
 msgstr "Données d’historiques"
 
-#: admin/class-device-detector-admin.php:480
+#: admin/class-device-detector-admin.php:506
 msgid "If checked, Device Detector will store statistics about detected devices."
 msgstr "Si coché, Device Detector enregistrera les statistiques au sujet des appareils détectés."
 
-#: admin/class-device-detector-admin.php:477
+#: admin/class-device-detector-admin.php:503
 msgid "Activated"
 msgstr "Activé"
 
-#: admin/class-device-detector-admin.php:472
+#: admin/class-device-detector-admin.php:498
 msgid "Analytics"
 msgstr "Analyse de données"
 
-#: admin/class-device-detector-admin.php:458
+#: admin/class-device-detector-admin.php:484
 msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] "%d an"
 msgstr[1] "%d ans"
 
-#: admin/class-device-detector-admin.php:454
+#: admin/class-device-detector-admin.php:480
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
 
-#: admin/class-device-detector-admin.php:436
+#: admin/class-device-detector-admin.php:462
 msgid "Note: Device Detector respects DISABLE_NAG_NOTICES flag."
 msgstr "Note : Device Detector respecte l’indicateur DISABLE_NAG_NOTICES."
 
-#: admin/class-device-detector-admin.php:436
+#: admin/class-device-detector-admin.php:462
 msgid "Allows Device Detector to display admin notices throughout the admin dashboard."
 msgstr "Autoriser Device Detector à afficher les avis d’administration dans le Tableau de bord."
 
-#: admin/class-device-detector-admin.php:433
+#: admin/class-device-detector-admin.php:459
 msgid "Display"
 msgstr "Affichage"
 
-#: admin/class-device-detector-admin.php:428
+#: admin/class-device-detector-admin.php:454
 msgid "Admin notices"
 msgstr "Avis d’administration"
 
-#: admin/class-device-detector-admin.php:420
+#: admin/class-device-detector-admin.php:446
 msgid "If checked, Device Detector will use a public CDN (jsDelivr) to serve scripts and stylesheets."
 msgstr "Si coché, Device Detector utilisera un CDN public (jsDelivr) pour la distribution des scripts et des feuilles de style."
 
-#: admin/class-device-detector-admin.php:417
+#: admin/class-device-detector-admin.php:443
 msgid "Use public CDN"
 msgstr "Utiliser un CDN public"
 
-#: admin/class-device-detector-admin.php:412
+#: admin/class-device-detector-admin.php:438
 msgid "Resources"
 msgstr "Ressources"
 
-#: admin/class-device-detector-admin.php:401
+#: admin/class-device-detector-admin.php:427
 msgid "Logging"
 msgstr "Enregistrement"
 
-#: admin/class-device-detector-admin.php:397
+#: admin/class-device-detector-admin.php:423
 msgid "Your site does not use any logging plugin. To log all events triggered in Device Detector, I recommend you to install the excellent (and free) %s. But it is not mandatory."
 msgstr "Votre site n’utilise aucune extension d’enregistrement. Pour enregistrer tous les évènements déclenchés par Device Detector, je vous recommande d’installer l’excellent (et gratuit) %s. Mais ce n’est pas obligatoire."
 
-#: admin/class-device-detector-admin.php:394
+#: admin/class-device-detector-admin.php:420
 msgid "Your site is currently using %s."
 msgstr "Votre site utilise actuellement %s."
 
-#: admin/class-device-detector-admin.php:386
+#: admin/class-device-detector-admin.php:412
 msgid "Note: This feature uses the (free) Google Favicon Service."
 msgstr "Remarque : cette fonctionnalité utilise le service Google Favicon (gratuit)."
 
-#: admin/class-device-detector-admin.php:386
+#: admin/class-device-detector-admin.php:412
 msgid "If checked, Device Detector will download favicons of websites to display them in reports."
 msgstr "Si coché, Device Detector téléchargera les favicons des sites Web pour les afficher dans les rapports."
 
-#: admin/class-device-detector-admin.php:383
+#: admin/class-device-detector-admin.php:409
 msgid "Download and display"
 msgstr "Téléchargement et affichage"
 
-#: admin/class-device-detector-admin.php:378
+#: admin/class-device-detector-admin.php:404
 msgid "Favicons"
 msgstr "Favicons"
 
-#: admin/class-device-detector-admin.php:361
+#: admin/class-device-detector-admin.php:387
 msgid "Plugin settings have not been reset to defaults. Please try again."
 msgstr "Les réglages n’ont pas été réinitialisés à leurs valeurs par défaut. Veuillez réessayer."
 
-#: admin/class-device-detector-admin.php:356
+#: admin/class-device-detector-admin.php:382
 msgid "Plugin settings have been reset to defaults."
 msgstr "Le réglages ont été réinitialisées aux valeurs par défaut."
 
-#: admin/class-device-detector-admin.php:285
-#: admin/class-device-detector-admin.php:313
+#: admin/class-device-detector-admin.php:311
 #: admin/class-device-detector-admin.php:339
+#: admin/class-device-detector-admin.php:365
 msgid "Plugin settings have not been saved. Please try again."
 msgstr "Les réglages n’ont pas été mis à jour. Veuillez réessayer."
 
-#: admin/class-device-detector-admin.php:280
-#: admin/class-device-detector-admin.php:308
+#: admin/class-device-detector-admin.php:306
 #: admin/class-device-detector-admin.php:334
+#: admin/class-device-detector-admin.php:360
 msgid "Plugin settings have been saved."
 msgstr "Les réglages ont été mis à jour."
 
-#: admin/class-device-detector-admin.php:210
+#: admin/class-device-detector-admin.php:227
 msgid "GitHub repository"
 msgstr "Dépôt GitHub"
 
-#: admin/class-device-detector-admin.php:209
+#: admin/class-device-detector-admin.php:226
 msgid "Support"
 msgstr "Assistance"
 
-#: admin/class-device-detector-admin.php:195
+#: admin/class-device-detector-admin.php:211
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: admin/class-device-detector-admin.php:194
+#: admin/class-device-detector-admin.php:208
 msgid "Settings"
 msgstr "Réglages"
 
-#: admin/class-device-detector-admin.php:176
+#: admin/class-device-detector-admin.php:190
 msgid "Plugin options"
 msgstr "Options de l’extension"
 
-#: admin/class-device-detector-admin.php:175
+#: admin/class-device-detector-admin.php:189
 msgid "Plugin Features"
 msgstr "Fonctionnalités de l’extension"
 
 #. translators: as in the sentence "Device Detector Settings" or "WordPress
 #. Settings"
 #: perfopsone/class-adminmenus.php:70
-#: admin/partials/device-detector-admin-settings-main.php:34
+#: admin/partials/device-detector-admin-settings-main.php:33
 #: admin/class-device-detector-admin.php:96
 msgid "%s Settings"
 msgstr "Réglages %s"
@@ -397,17 +499,13 @@ msgstr "%s, %s et contributeurs"
 
 #: includes/libraries/class-libraries.php:67
 #: includes/libraries/class-libraries.php:78
-#: includes/libraries/class-libraries.php:101
+#: includes/libraries/class-libraries.php:100
 #: includes/libraries/class-libraries.php:208
 #: includes/libraries/class-libraries.php:216
 #: includes/libraries/class-libraries.php:223
 #: includes/libraries/class-libraries.php:230
 msgid "%s & contributors"
 msgstr "%s et contributeurs"
-
-#: includes/plugin/class-updater.php:97
-msgid "Sorry, unable to find or read changelog file."
-msgstr "Désolé, il est impossible de trouver ou de lire le registre des modifications."
 
 #: includes/plugin/class-updater.php:50
 msgid "See <a href=\"%s\">what's new</a>."
@@ -421,63 +519,63 @@ msgstr "%1$s a été correctement mis à jour de la version %2$s à la version %
 msgid "%1$s has been correctly installed."
 msgstr "%1$s a été correctement installé."
 
-#: includes/api/class-device.php:300
+#: includes/api/class-device.php:309
 msgid "Feed fetcher"
 msgstr "Récupérateur de flux"
 
-#: includes/api/class-device.php:297
+#: includes/api/class-device.php:306
 msgid "Validator tool"
 msgstr "Outil de validation"
 
-#: includes/api/class-device.php:295
+#: includes/api/class-device.php:304
 msgid "Benchmark tool"
 msgstr "Outil de référence"
 
-#: includes/api/class-device.php:293
+#: includes/api/class-device.php:302
 msgid "Service agent"
 msgstr "Agent de service"
 
-#: includes/api/class-device.php:291
+#: includes/api/class-device.php:300
 msgid "Site monitor"
 msgstr "Moniteur de site"
 
-#: includes/api/class-device.php:289
+#: includes/api/class-device.php:298
 msgid "Crawler"
 msgstr "Robot d’indexation"
 
-#: includes/api/class-device.php:286
+#: includes/api/class-device.php:295
 msgid "Social media agent"
 msgstr "Agent de médias sociaux"
 
-#: includes/api/class-device.php:284
+#: includes/api/class-device.php:293
 msgid "Security checker"
 msgstr "Vérificateur de sécurité"
 
-#: includes/api/class-device.php:282
+#: includes/api/class-device.php:291
 msgid "Security search bot"
 msgstr "Moteur de recherche (sécurité)"
 
-#: includes/api/class-device.php:280
+#: includes/api/class-device.php:289
 msgid "Search tool"
 msgstr "Outil de recherche"
 
-#: includes/api/class-device.php:278
+#: includes/api/class-device.php:287
 msgid "Search bot"
 msgstr "Moteur de recherche"
 
-#: includes/system/class-environment.php:203
+#: includes/system/class-environment.php:205
 msgid "Debug disabled"
 msgstr "Débogage désactivé"
 
-#: includes/system/class-environment.php:203
+#: includes/system/class-environment.php:205
 msgid "Debug enabled"
 msgstr "Débogage activé"
 
-#: includes/system/class-environment.php:197
+#: includes/system/class-environment.php:199
 msgid "display"
 msgstr "affichage"
 
-#: includes/system/class-environment.php:192
+#: includes/system/class-environment.php:194
 msgid "log"
 msgstr "registre"
 
@@ -546,101 +644,103 @@ msgctxt "Abbreviation - Stands for \"thousand\"."
 msgid "K"
 msgstr "K"
 
-#: includes/system/class-sitehealth.php:320
+#: includes/system/class-sitehealth.php:375
 msgid "You should consider using PHP Intl extension. It would improve localization features on your site."
 msgstr "Vous devriez envisager d’utiliser l’extension PHP Intl. Cela permettrait d’améliorer les fonctionnalités de traduction sur votre site."
 
-#: includes/system/class-sitehealth.php:314
+#: includes/system/class-sitehealth.php:369
 msgid "You should use Intl extension"
 msgstr "Vous devriez utiliser l’extension Intl"
 
-#: includes/system/class-sitehealth.php:308
+#: includes/system/class-sitehealth.php:363
 msgid "Your site uses PHP Intl extension to improve localization features. That's great."
 msgstr "Votre site utilise l’extension PHP Intl pour améliorer les fonctionnalités de traduction. C’est super."
 
-#: includes/system/class-sitehealth.php:305
-#: includes/system/class-sitehealth.php:317
+#: includes/system/class-sitehealth.php:360
+#: includes/system/class-sitehealth.php:372
 msgid "Internationalization"
 msgstr "Internationalisation"
 
-#: includes/system/class-sitehealth.php:302
+#: includes/system/class-sitehealth.php:357
 msgid "Your site uses Intl extension"
 msgstr "Votre site utilise l’extension Intl"
 
-#: includes/system/class-sitehealth.php:285
+#: includes/system/class-sitehealth.php:340
 msgid "I18n Extension Test"
 msgstr "Test d’extension I18n"
 
-#: includes/system/class-sitehealth.php:266
+#: includes/system/class-sitehealth.php:267
 msgid "You should consider using OPcache. It would improve PHP performance of your site."
 msgstr "Vous devriez envisager d’utiliser OPcache. Cela permettrait d’améliorer les performances PHP de votre site."
 
-#: includes/system/class-sitehealth.php:260
+#: includes/system/class-sitehealth.php:261
 msgid "You should use OPcache"
 msgstr "Vous devriez utiliser OPcache"
 
-#: includes/system/class-sitehealth.php:254
+#: includes/system/class-sitehealth.php:255
 msgid "Your site uses OPcache to improve PHP performance. That's great."
 msgstr "Votre site utilise OPcache pour améliorer les performances de PHP. C’est super."
 
-#: includes/system/class-sitehealth.php:248
+#: includes/system/class-sitehealth.php:249
 msgid "Your site uses OPcache"
 msgstr "Votre site utilise OPcache"
 
-#: includes/system/class-sitehealth.php:231
+#: includes/system/class-sitehealth.php:232
 msgid "OPcache Test"
 msgstr "Test OPcache"
 
-#: includes/system/class-sitehealth.php:212
+#: includes/system/class-sitehealth.php:213
 msgid "Your site uses a dedicated object caching mechanism. That's great."
 msgstr "Votre site utilise un mécanisme dédié de mise cache d’objets. C’est super."
 
-#: includes/system/class-sitehealth.php:206
+#: includes/system/class-sitehealth.php:207
 msgid "Your site uses object caching"
 msgstr "Votre site utilise la mise en cache d’objets"
 
-#: includes/system/class-sitehealth.php:200
+#: includes/system/class-sitehealth.php:201
 msgid "Your site uses APCu, but only a few plugins know how to take advantage of it."
 msgstr "Votre site utilise APCu, mais seules quelques extensions savent comment en profiter."
 
-#: includes/system/class-sitehealth.php:194
+#: includes/system/class-sitehealth.php:195
 msgid "You should improve object caching"
 msgstr "Vous devriez améliorer la mise en cache d’objets"
 
-#: includes/system/class-sitehealth.php:188
-#: includes/system/class-sitehealth.php:200
+#: includes/system/class-sitehealth.php:189
+#: includes/system/class-sitehealth.php:201
 msgid "You should consider using a dedicated object caching mechanism, like Memcached or Redis, to improve your site's speed."
 msgstr "Vous devriez envisager d’utiliser un mécanisme dédié de mise en cache d’objets, comme Memcached ou Redis, pour améliorer la vitesse de votre site."
 
-#: includes/system/class-sitehealth.php:188
+#: includes/system/class-sitehealth.php:189
 msgid "Your site uses database transient."
 msgstr "Votre site utilise des Transients stockés en base de données."
 
-#: includes/system/class-sitehealth.php:185
-#: includes/system/class-sitehealth.php:197
-#: includes/system/class-sitehealth.php:209
-#: includes/system/class-sitehealth.php:251
-#: includes/system/class-sitehealth.php:263
+#: includes/system/class-sitehealth.php:186
+#: includes/system/class-sitehealth.php:198
+#: includes/system/class-sitehealth.php:210
+#: includes/system/class-sitehealth.php:252
+#: includes/system/class-sitehealth.php:264
+#: includes/system/class-sitehealth.php:306
+#: includes/system/class-sitehealth.php:318
 msgid "Performance"
 msgstr "Performance"
 
-#: includes/system/class-sitehealth.php:182
+#: includes/system/class-sitehealth.php:183
 msgid "You should use object caching"
 msgstr "Vous devriez utiliser la mise en cache d’objets"
 
-#: includes/system/class-sitehealth.php:164
+#: includes/system/class-sitehealth.php:165
 msgid "Object Cache Test"
 msgstr "Test de cache d’objets"
 
-#: includes/system/class-sitehealth.php:147
+#: includes/system/class-sitehealth.php:148
 msgid "Plugin diagnostic information"
 msgstr "Informations de diagnostique de l’extension"
 
-#: includes/system/class-sitehealth.php:130
+#: includes/system/class-sitehealth.php:131
 msgid "OPcache settings and status"
 msgstr "Réglages et état OPcache"
 
-#: includes/system/class-sitehealth.php:122
+#: includes/system/class-sitehealth.php:123
 msgid "Object cache"
 msgstr "Cache d’objets"
 
@@ -709,332 +809,341 @@ msgstr "Bibliothèque"
 msgid "Feed reader"
 msgstr "Lecteur de flux"
 
-#: includes/features/class-analytics.php:1944
+#: includes/features/class-analytics.php:2148
 msgid "Last Month"
 msgstr "Mois dernier"
 
-#: includes/features/class-analytics.php:1943
+#: includes/features/class-analytics.php:2147
 msgid "This Month"
 msgstr "Mois en cours"
 
-#: includes/features/class-analytics.php:1942
+#: includes/features/class-analytics.php:2146
 msgid "Yesterday"
 msgstr "Hier"
 
-#: includes/features/class-analytics.php:1941
+#: includes/features/class-analytics.php:2145
 msgid "Today"
 msgstr "Aujourd’hui"
 
-#: includes/features/class-analytics.php:1939
+#: includes/features/class-analytics.php:2143
 msgid "Apply"
 msgstr "Appliquer"
 
-#: includes/features/class-analytics.php:1939
+#: includes/features/class-analytics.php:2143
 msgid "Cancel"
 msgstr "Annuler"
 
-#: includes/features/class-analytics.php:1939
+#: includes/features/class-analytics.php:2143
 msgid "Custom Range"
 msgstr "Personnalisé"
 
-#: includes/features/class-analytics.php:1777
+#: includes/features/class-analytics.php:1069
+#: includes/features/class-analytics.php:1981
 msgid "Number of distinct engines."
 msgstr "Nombre de moteurs distincts."
 
-#: includes/features/class-analytics.php:1776
+#: includes/features/class-analytics.php:1067
+#: includes/features/class-analytics.php:1980
 msgctxt "Noun - Number of distinct engines."
 msgid "Engines"
 msgstr "Moteurs"
 
-#: includes/features/class-analytics.php:1772
+#: includes/features/class-analytics.php:1050
+#: includes/features/class-analytics.php:1976
 msgid "Number of distinct clients."
 msgstr "Nombre de clients distincts."
 
-#: includes/features/class-analytics.php:1771
+#: includes/features/class-analytics.php:1048
+#: includes/features/class-analytics.php:1975
 msgctxt "Noun - Number of distinct clients."
 msgid "Clients"
 msgstr "Clients"
 
-#: includes/features/class-analytics.php:1767
+#: includes/features/class-analytics.php:1971
 msgid "Ratio of hits done by bots."
 msgstr "Ratio d’occurrences correspondantes à des robots."
 
-#: includes/features/class-analytics.php:1766
+#: includes/features/class-analytics.php:1970
 msgctxt "Noun - Percentage of bot hits"
 msgid "Bot"
 msgstr "Robot"
 
-#: includes/features/class-analytics.php:1762
+#: includes/features/class-analytics.php:1966
 msgid "Ratio of hits done by desktops."
 msgstr "Ratio d’occurrences correspondantes à des ordinateurs de bureau."
 
-#: includes/features/class-analytics.php:1761
+#: includes/features/class-analytics.php:1965
 msgctxt "Noun - Percentage of desktop hits"
 msgid "Desktop"
 msgstr "Ordinateur de bureau"
 
-#: includes/features/class-analytics.php:1757
+#: includes/features/class-analytics.php:1961
 msgid "Ratio of hits done by mobiles."
 msgstr "Ratio d’occurrences correspondantes à des mobiles."
 
-#: includes/features/class-analytics.php:1756
+#: includes/features/class-analytics.php:1960
 msgctxt "Noun - Percentage of mobile hits."
 msgid "Mobile"
 msgstr "Mobile"
 
-#: includes/features/class-analytics.php:1752
+#: includes/features/class-analytics.php:1031
+#: includes/features/class-analytics.php:1956
 msgid "Number of hits."
 msgstr "Nombre d’occurrences."
 
-#: includes/features/class-analytics.php:1751
+#: includes/features/class-analytics.php:1029
+#: includes/features/class-analytics.php:1955
 msgctxt "Noun - Number of hits."
 msgid "Hits Number"
 msgstr "Nombre d’occurrences."
 
-#: includes/features/class-analytics.php:1726
+#: includes/features/class-analytics.php:1930
 msgid "View the details of all media players."
 msgstr "Voir les détails de tous les lecteurs multimédia."
 
-#: includes/features/class-analytics.php:1698
+#: includes/features/class-analytics.php:1902
 msgid "View the details of all feed-readers."
 msgstr "Voir les détails de tous les lecteurs de flux."
 
-#: includes/features/class-analytics.php:1670
+#: includes/features/class-analytics.php:1874
 msgid "View the details of all applications."
 msgstr "Voir les détails de toutes les applications."
 
-#: includes/features/class-analytics.php:1642
+#: includes/features/class-analytics.php:1846
 msgid "View the details of all libraries."
 msgstr "Voir les détails de tous les lecteurs multimédia."
 
-#: includes/features/class-analytics.php:1614
+#: includes/features/class-analytics.php:1818
 msgid "View the details of all client types."
 msgstr "Voir les détails de toutes les types de client."
 
-#: includes/features/class-analytics.php:1586
+#: includes/features/class-analytics.php:1790
 msgid "View the details of all device types."
 msgstr "Voir les détails de toutes les types d’appareil."
 
-#: includes/features/class-analytics.php:1558
+#: includes/features/class-analytics.php:1762
 msgid "View the details of all classes."
 msgstr "Voir les détails de toutes les classes."
 
-#: includes/features/class-analytics.php:1532
+#: includes/features/class-analytics.php:1736
 msgid "Top Versions"
 msgstr "Top des versions"
 
-#: includes/features/class-analytics.php:1457
-#: includes/features/class-analytics.php:1482
+#: includes/features/class-analytics.php:1661
+#: includes/features/class-analytics.php:1686
 msgid "Top Operating Systems"
 msgstr "Top des systèmes d’exploitation"
 
-#: includes/features/class-analytics.php:1455
+#: includes/features/class-analytics.php:1659
 msgid "View the details of all operating systems."
 msgstr "Voir les détails de tous les systèmes d’exploitation."
 
-#: includes/features/class-analytics.php:1434
+#: includes/features/class-analytics.php:1638
 msgid "Top Devices"
 msgstr "Top des appareils"
 
-#: includes/features/class-analytics.php:1432
+#: includes/features/class-analytics.php:1636
 msgid "View the details of all devices."
 msgstr "Voir les détails de toutes les appareils."
 
-#: includes/features/class-analytics.php:1411
+#: includes/features/class-analytics.php:1615
 msgid "Top Bots"
 msgstr "Top des robots"
 
-#: includes/features/class-analytics.php:1409
+#: includes/features/class-analytics.php:1613
 msgid "View the details of all bots."
 msgstr "Voir les détails de tous les robots."
 
-#: includes/features/class-analytics.php:1388
-#: includes/features/class-analytics.php:1507
+#: includes/features/class-analytics.php:1592
+#: includes/features/class-analytics.php:1711
 msgid "Top Browsers"
 msgstr "Top des navigateurs"
 
-#: includes/features/class-analytics.php:1386
+#: includes/features/class-analytics.php:1590
 msgid "View the details of all browsers."
 msgstr "Voir les détails de tous les navigateurs."
 
-#: includes/features/class-analytics.php:1321
+#: includes/features/class-analytics.php:1525
 msgid "Metrics Variations"
 msgstr "Variations des métriques"
 
-#: includes/features/class-analytics.php:1317
+#: includes/features/class-analytics.php:1521
 msgid "Hits variation."
 msgstr "Variations d’occurrences."
 
-#: includes/features/class-analytics.php:1283
+#: includes/features/class-analytics.php:1487
 msgid "All Operating Systems"
 msgstr "Tous les systèmes d’exploitation"
 
-#: includes/features/class-analytics.php:1280
+#: includes/features/class-analytics.php:1484
 msgid "All Devices"
 msgstr "Tous les appareils"
 
-#: includes/features/class-analytics.php:1277
+#: includes/features/class-analytics.php:1481
 msgid "All Bots"
 msgstr "Tous les robots"
 
-#: includes/features/class-analytics.php:1274
+#: includes/features/class-analytics.php:1478
 msgid "All Browsers"
 msgstr "Tous les navigateurs"
 
-#: includes/features/class-analytics.php:1271
+#: includes/features/class-analytics.php:1475
 msgid "All Media Players"
 msgstr "Tous les lecteurs multimédia"
 
-#: includes/features/class-analytics.php:1268
+#: includes/features/class-analytics.php:1472
 msgid "All Feed Readers"
 msgstr "Tous les lecteurs de flux"
 
-#: includes/features/class-analytics.php:1265
+#: includes/features/class-analytics.php:1469
 msgid "All Mobile Applications"
 msgstr "Toutes les applications mobiles"
 
-#: includes/features/class-analytics.php:1262
+#: includes/features/class-analytics.php:1466
 msgid "All Libraries"
 msgstr "Toutes les bibliothèques"
 
-#: includes/features/class-analytics.php:1259
+#: includes/features/class-analytics.php:1463
 msgid "All Client Types"
 msgstr "Tous les types de client"
 
-#: includes/features/class-analytics.php:1256
+#: includes/features/class-analytics.php:1460
 msgid "All Device Types"
 msgstr "Tous les types d’appareil"
 
-#: includes/features/class-analytics.php:1253
+#: includes/features/class-analytics.php:1457
 msgid "All Classes"
 msgstr "Toutes les classes"
 
-#: includes/features/class-analytics.php:1169
-#: includes/features/class-analytics.php:1171
+#: includes/features/class-analytics.php:1373
+#: includes/features/class-analytics.php:1375
 msgid "Site ID %s"
 msgstr "Site ID %s"
 
-#: includes/features/class-analytics.php:1165
-#: includes/features/class-analytics.php:1365
+#: includes/features/class-analytics.php:1369
+#: includes/features/class-analytics.php:1569
 msgid "All Sites"
 msgstr "Tous les sites"
 
-#: includes/features/class-analytics.php:1142
+#: includes/features/class-analytics.php:1346
 msgid "Return to Device Detector main page."
 msgstr "Retour à la page principale de Device Detector."
 
-#: includes/features/class-analytics.php:1141
-#: includes/features/class-analytics.php:1187
+#: includes/features/class-analytics.php:1345
+#: includes/features/class-analytics.php:1391
 msgid "Main Summary"
 msgstr "Résumé principal"
 
-#: includes/features/class-analytics.php:1136
+#: includes/features/class-analytics.php:1340
 msgid "Operating System Details"
 msgstr "Détails du système d’exploitation"
 
-#: includes/features/class-analytics.php:1133
+#: includes/features/class-analytics.php:1337
 msgid "Device Details"
 msgstr "Détails de l’appareil"
 
-#: includes/features/class-analytics.php:1130
+#: includes/features/class-analytics.php:1334
 msgid "Bot Details"
 msgstr "Détails du robot"
 
-#: includes/features/class-analytics.php:1127
+#: includes/features/class-analytics.php:1331
 msgid "Browser Details"
 msgstr "Détails du navigateur"
 
-#: includes/features/class-analytics.php:1124
+#: includes/features/class-analytics.php:1328
 #: admin/partials/device-detector-admin-settings-devices.php:27
 msgid "Operating Systems"
 msgstr "Systèmes d’exploitation"
 
-#: includes/features/class-analytics.php:1121
-#: admin/partials/device-detector-admin-settings-main.php:103
+#: includes/features/class-analytics.php:1325
+#: admin/partials/device-detector-admin-settings-main.php:117
 #: admin/class-device-detector-admin.php:108
 #: admin/class-device-detector-admin.php:115
-#: admin/class-device-detector-admin.php:147
-#: admin/class-device-detector-admin.php:164
+#: admin/class-device-detector-admin.php:125
+#: admin/class-device-detector-admin.php:130
+#: admin/class-device-detector-admin.php:161
+#: admin/class-device-detector-admin.php:178
 msgid "Devices"
 msgstr "Appareils"
 
-#: includes/features/class-analytics.php:1118
+#: includes/features/class-analytics.php:1322
 #: admin/partials/device-detector-admin-settings-devices.php:45
 msgid "Bots"
 msgstr "Robots"
 
-#: includes/features/class-analytics.php:1115
+#: includes/features/class-analytics.php:1319
 #: admin/partials/device-detector-admin-settings-devices.php:29
 msgid "Browsers"
 msgstr "Navigateurs"
 
-#: includes/features/class-analytics.php:1112
-#: includes/features/class-analytics.php:1728
+#: includes/features/class-analytics.php:1316
+#: includes/features/class-analytics.php:1932
 #: admin/partials/device-detector-admin-settings-devices.php:35
 msgid "Media Players"
 msgstr "Lecteur multimédia"
 
-#: includes/features/class-analytics.php:1109
-#: includes/features/class-analytics.php:1700
+#: includes/features/class-analytics.php:1313
+#: includes/features/class-analytics.php:1904
 #: admin/partials/device-detector-admin-settings-devices.php:41
 msgid "Feed Readers"
 msgstr "Lecteurs de flux"
 
-#: includes/features/class-analytics.php:1106
-#: includes/features/class-analytics.php:1672
+#: includes/features/class-analytics.php:1310
+#: includes/features/class-analytics.php:1876
 #: admin/partials/device-detector-admin-settings-devices.php:37
 msgid "Mobile Applications"
 msgstr "Applications mobiles"
 
-#: includes/features/class-analytics.php:1103
-#: includes/features/class-analytics.php:1644
+#: includes/features/class-analytics.php:1307
+#: includes/features/class-analytics.php:1848
 msgid "Libraries"
 msgstr "Bibliothèques"
 
-#: includes/features/class-analytics.php:1100
-#: includes/features/class-analytics.php:1616
+#: includes/features/class-analytics.php:1304
+#: includes/features/class-analytics.php:1820
 #: admin/partials/device-detector-admin-settings-devices.php:24
 msgid "Client Types"
 msgstr "Types de client"
 
-#: includes/features/class-analytics.php:1097
-#: includes/features/class-analytics.php:1588
+#: includes/features/class-analytics.php:1301
+#: includes/features/class-analytics.php:1792
 #: admin/partials/device-detector-admin-settings-devices.php:22
 msgid "Device Types"
 msgstr "Types d’appareil"
 
-#: includes/features/class-analytics.php:1094
-#: includes/features/class-analytics.php:1560
+#: includes/features/class-analytics.php:1298
+#: includes/features/class-analytics.php:1764
 #: admin/partials/device-detector-admin-settings-devices.php:20
 msgid "Classes"
 msgstr "Classes"
 
-#: includes/features/class-analytics.php:1080
+#: includes/features/class-analytics.php:1284
 msgid "%s hits"
 msgstr "%s occurrences"
 
-#: includes/features/class-analytics.php:930
+#: includes/features/class-analytics.php:946
 msgid "Hits"
 msgstr "Occurrences"
 
-#: includes/features/class-analytics.php:669
-#: includes/features/class-analytics.php:814
+#: includes/features/class-analytics.php:676
+#: includes/features/class-analytics.php:830
 msgid "TOTAL"
 msgstr "TOTAL"
 
-#: includes/features/class-analytics.php:521
-#: includes/features/class-analytics.php:761
-#: includes/features/class-analytics.php:780
-#: includes/features/class-analytics.php:1207
-#: includes/features/class-analytics.php:1219
-#: includes/features/class-analytics.php:1228
+#: includes/features/class-analytics.php:524
+#: includes/features/class-analytics.php:777
+#: includes/features/class-analytics.php:796
+#: includes/features/class-analytics.php:1411
+#: includes/features/class-analytics.php:1423
+#: includes/features/class-analytics.php:1432
+#: admin/partials/device-detector-admin-tools.php:18
 msgid "Generic"
 msgstr "Générique"
 
-#: includes/features/class-analytics.php:431
-#: includes/features/class-analytics.php:689
-#: includes/features/class-analytics.php:872
-#: includes/features/class-analytics.php:1814
+#: includes/features/class-analytics.php:434
+#: includes/features/class-analytics.php:705
+#: includes/features/class-analytics.php:888
+#: includes/features/class-analytics.php:2018
 msgid "No Data"
 msgstr "Aucune donnée"
 
@@ -1170,17 +1279,17 @@ msgstr "Mobile"
 msgid "Desktop"
 msgstr "Ordinateur de bureau"
 
-#: includes/features/class-classtypes.php:47
+#: includes/api/class-device.php:311 includes/features/class-classtypes.php:47
 #: includes/features/class-cssmodifier.php:58
 #: includes/features/class-detector.php:264
 msgid "Bot"
 msgstr "Robot"
 
-#: includes/features/class-analytics.php:397
-#: includes/features/class-analytics.php:399
-#: includes/features/class-analytics.php:590
-#: includes/features/class-analytics.php:668
-#: includes/features/class-analytics.php:813
+#: includes/features/class-analytics.php:400
+#: includes/features/class-analytics.php:402
+#: includes/features/class-analytics.php:593
+#: includes/features/class-analytics.php:675
+#: includes/features/class-analytics.php:829
 #: includes/features/class-devicetypes.php:57
 #: includes/features/class-classtypes.php:50
 #: includes/features/class-clienttypes.php:53
@@ -1264,7 +1373,7 @@ msgstr "Tâche planifiée"
 msgid "Command Line Interface"
 msgstr "Interface de ligne de commande"
 
-#: includes/api/class-device.php:304
+#: includes/api/class-device.php:313
 #: includes/features/class-channeltypes.php:47
 msgid "Unknown"
 msgstr "Inconnu"

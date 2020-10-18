@@ -1,14 +1,14 @@
-# Translation of Plugins - Device Detector - Stable Readme (latest release) in French (France)
+# Translation of Plugins - Device Detector - Stable Readme (latest release) in French (Belgium)
 # This file is distributed under the same license as the Plugins - Device Detector - Stable Readme (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-01-23 00:50+0100\n"
+"PO-Revision-Date: 2020-10-18 19:06+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Poedit 2.2.1\n"
-"Language: fr\n"
+"X-Generator: Poedit 2.4.1\n"
+"Language: fr_BE\n"
 "Project-Id-Version: Plugins - Device Detector - Stable Readme (latest release)\n"
 "POT-Creation-Date: \n"
 "Last-Translator: \n"
@@ -22,13 +22,57 @@ msgstr "Outil complet de rapports statistiques et de détection de tous les appa
 msgid "Device Detector"
 msgstr "Device Detector"
 
+#. Found in description paragraph.
+msgid "For a full help on WP-CLI commands in Device Detector, please <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md\">read this guide</a>."
+msgstr "Pour obtenir une aide complète sur les commandes WP-CLI dans Device Detector, veuillez <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md\">lire ce guide</a>."
+
+#. Found in description paragraph.
+msgid "<strong>Device Detector</strong> supports an extensive set of WP-CLI commands to:"
+msgstr "<strong>Device Detector</strong> prend en charge un vaste ensemble de commandes WP-CLI pour :"
+
+#. Found in description list item.
+msgid "display devices statistics: see <code>wp help device analytics</code> for details."
+msgstr "afficher les statistiques relatives aux périphériques : voir <code>wp help device analytics</code> pour plus de détails."
+
+#. Found in description list item.
+msgid "describe engine capacities: see <code>wp help device engine</code> for details;"
+msgstr "décrire les capacités du moteur : voir <code>wp help device engine</code> pour plus de détails ;"
+
+#. Found in description list item.
+msgid "toggle on/off main settings: see <code>wp help device settings</code> for details;"
+msgstr "activer ou désactiver le réglages principaux - voir <code>wp help device settings</code> pour plus de détails ;"
+
+#. Found in description list item.
+msgid "display Device Detector status: see <code>wp help device status</code> for details;"
+msgstr "afficher l’état de Device Detector : voir <code>wp help device status</code> pour plus de détails ;"
+
+#. Found in description list item.
+msgid "get a device detail: see <code>wp help device describe</code> for details;"
+msgstr "obtenir des informations relatives à un périphérique : voir <code>wp help device describe</code> pour plus de détails ;"
+
+#. Found in description paragraph.
+msgid "This plugin may handle personally identifiable information (PII). If the GDPR or CCPA or similar regulation applies to your case, you must adapt your processes (consent management, security measure, treatment register, etc.)."
+msgstr "Cette extension peut traiter des données à caractère personnel (DCP). Si le RGPD ou le CCPA ou un règlement similaire s’applique à votre cas, vous devez adapter vos processus (gestion du consentement, mesure de sécurité, registre des traitements, etc.)."
+
+#. Found in description paragraph.
+msgid "This plugin doesn't set any cookie in the user's browser."
+msgstr "Cette extension ne dépose pas de cookie dans le navigateur de l’utilisateur."
+
+#. Found in description paragraph.
+msgid "This plugin, as any piece of software, is neither compliant nor non-compliant with privacy laws and regulations. It is your responsibility to use it - by activating the corresponding options or services - with respect for the personal data of your users and applicable laws."
+msgstr "Cette extension, comme tout autre logiciel, n’est ni conforme ni non conforme aux lois et règlements sur la protection de la vie privée. Il est de votre responsabilité de l’utiliser - en activant les options ou services correspondants - dans le respect des données personnelles de vos utilisateurs et des lois applicables."
+
+#. Found in description header.
+msgid "Privacy"
+msgstr "Confidentialité"
+
 #. Found in faq paragraph.
 msgid "You can report bugs and suggest ideas via the <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector/issues\">GitHub issue tracker</a> of the plugin."
 msgstr "Vous pouvez signaler des bogues et suggérer des améliorations via le <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector/issues\">suivi d’incidents GitHub</a> de l’extension."
 
 #. Found in faq paragraph.
 msgid "Developer's documentation can be found in the <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector\">GitHub repository</a> of the plugin."
-msgstr "Vous trouverez la documentation du développeur sur le <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector>dépôt GitHub</a> de l’extension."
+msgstr "Vous trouverez la documentation du développeur sur le <a href=\"https://github.com/Pierre-Lannoy/wp-device-detector\">dépôt GitHub</a> de l’extension."
 
 #. Found in faq paragraph.
 msgid "Support is provided via the official <a href=\"https://wordpress.org/support/plugin/device-detector/\">WordPress page</a>."
