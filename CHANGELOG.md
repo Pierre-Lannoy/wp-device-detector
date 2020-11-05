@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [MultiSite] Improved default site detection.
 
 ### Fixed
+- [SEC001] User must be wrongly detected in XML-RPC or Rest API calls.
 - [WP-CLI] Generating statistics may produce PHP warnings.
 
 ## [2.0.1] - 2020-10-13
