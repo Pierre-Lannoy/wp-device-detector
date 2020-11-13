@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [MultiSite] Improved default site detection.
 
 ### Fixed
-- [SEC001] User must be wrongly detected in XML-RPC or Rest API calls.
+- [SEC001] User may be wrongly detected in XML-RPC or Rest API calls.
 - [WP-CLI] Generating statistics may produce PHP warnings.
 - When site is in english and a user choose another language for herself/himself, menu may be stuck in english.
 
