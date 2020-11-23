@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - Improvement in the way roles are detected.
 - [MultiSite] Improved default site detection.
+- Upgraded UDD from version 3.13.0 to version 4.0.1.
 
 ### Fixed
 - [SEC001] User may be wrongly detected in XML-RPC or Rest API calls.
