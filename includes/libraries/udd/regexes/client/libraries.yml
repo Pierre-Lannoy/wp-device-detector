@@ -114,5 +114,5 @@
 
 - regex: 'PostmanRuntime(?:/(\d+[\.\d]+))?'
   name: 'Postman Desktop'
-  version: '$1'
+  version: $1
   url: 'https://github.com/postmanlabs/postman-runtime'

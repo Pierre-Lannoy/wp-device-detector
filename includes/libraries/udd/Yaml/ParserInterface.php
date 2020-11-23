@@ -10,19 +10,14 @@
 
 namespace UDD\Yaml;
 
-use Symfony\Component\Yaml\Yaml;
-
-class Symfony implements ParserInterface
+interface ParserInterface
 {
     /**
-     * Parses the file with the given filename using Symfony Yaml parser and returns the converted content
+     * Parses the file with the given filename and returns the converted content
      *
      * @param string $file
      *
      * @return mixed
      */
-    public function parseFile(string $file)
-    {
-        return Yaml::parseFile($file);
-    }
+    public function parseFile(string $file);
 }
