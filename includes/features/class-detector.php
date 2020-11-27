@@ -47,6 +47,9 @@ class Detector {
 		if ( '' === $ua ) {
 			$ua = filter_input( INPUT_SERVER, 'HTTP_USER_AGENT', FILTER_SANITIZE_STRING );
 		}
+		if ( ! isset( $ua ) ) {
+			$ua = 'unknown';
+		}
 		$id = Cache::id( $ua, 'fingerprint/' );
 		if ( array_key_exists( $id, self::$cache ) ) {
 			return self::$cache[ $id ];

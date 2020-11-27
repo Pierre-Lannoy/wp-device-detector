@@ -101,7 +101,7 @@ class Schema {
 	 * @since    1.0.0
 	 */
 	private static function write_current_to_database() {
-		if ( ! Option::site_get( 'analytics') || wp_doing_ajax() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
+		if ( ! Option::site_get( 'analytics' ) || 3 === Environment::exec_mode() || 1 === Environment::exec_mode() ) {
 			return;
 		}
 		$device              = Detector::new();
