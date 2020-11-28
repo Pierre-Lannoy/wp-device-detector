@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Device Detector\n"
-"POT-Creation-Date: 2020-11-05 18:14+0100\n"
+"POT-Creation-Date: 2020-11-28 14:58+0100\n"
 "PO-Revision-Date: 2019-07-08 14:07+0200\n"
 "Last-Translator: Pierre Lannoy <pierre@lannoy.fr>\n"
 "Language-Team: Pierre Lannoy <pierre@lannoy.fr>\n"
@@ -438,7 +438,7 @@ msgstr ""
 #: includes/api/class-device.php:311
 #: includes/features/class-classtypes.php:47
 #: includes/features/class-cssmodifier.php:58
-#: includes/features/class-detector.php:264
+#: includes/features/class-detector.php:267
 msgid "Bot"
 msgstr ""
 
@@ -816,17 +816,17 @@ msgid "Site Frontend"
 msgstr ""
 
 #: includes/features/class-classtypes.php:48
-#: includes/features/class-detector.php:264
+#: includes/features/class-detector.php:267
 msgid "Desktop"
 msgstr ""
 
 #: includes/features/class-classtypes.php:49
-#: includes/features/class-detector.php:264
+#: includes/features/class-detector.php:267
 msgid "Mobile"
 msgstr ""
 
 #: includes/features/class-clienttypes.php:47
-#: includes/features/class-detector.php:270
+#: includes/features/class-detector.php:273
 msgid "Browser"
 msgstr ""
 
@@ -935,68 +935,68 @@ msgstr ""
 msgid "Available classes: %s."
 msgstr ""
 
-#: includes/features/class-detector.php:267
+#: includes/features/class-detector.php:270
 msgid "Smart Display"
 msgstr ""
 
-#: includes/features/class-detector.php:267
+#: includes/features/class-detector.php:270
 #: includes/features/class-devicetypes.php:53
 msgid "Smartphone"
 msgstr ""
 
-#: includes/features/class-detector.php:267
+#: includes/features/class-detector.php:270
 #: includes/features/class-devicetypes.php:55
 msgid "Tablet"
 msgstr ""
 
-#: includes/features/class-detector.php:267
+#: includes/features/class-detector.php:270
 #: includes/features/class-devicetypes.php:56
 msgid "TV"
 msgstr ""
 
-#: includes/features/class-detector.php:267
+#: includes/features/class-detector.php:270
 msgid "Feature Phone"
 msgstr ""
 
-#: includes/features/class-detector.php:267
+#: includes/features/class-detector.php:270
 #: includes/features/class-devicetypes.php:51
 msgid "Phablet"
 msgstr ""
 
-#: includes/features/class-detector.php:267
+#: includes/features/class-detector.php:270
 msgid "Portable Media Player"
 msgstr ""
 
-#: includes/features/class-detector.php:267
+#: includes/features/class-detector.php:270
 #: includes/features/class-devicetypes.php:47
 msgid "Camera"
 msgstr ""
 
-#: includes/features/class-detector.php:267
+#: includes/features/class-detector.php:270
 msgid "Car Browser"
 msgstr ""
 
-#: includes/features/class-detector.php:267
+#: includes/features/class-detector.php:270
 msgid "Console"
 msgstr ""
 
-#: includes/features/class-detector.php:270
+#: includes/features/class-detector.php:273
 msgid "PIM"
 msgstr ""
 
-#: includes/features/class-detector.php:270
+#: includes/features/class-detector.php:273
 msgid "Application Library"
 msgstr ""
 
-#: includes/features/class-detector.php:270
+#: includes/features/class-detector.php:273
 msgid "Media Player"
 msgstr ""
 
-#: includes/features/class-detector.php:270
+#: includes/features/class-detector.php:273
 msgid "Feed Reader"
 msgstr ""
 
-#: includes/features/class-detector.php:270
+#: includes/features/class-detector.php:273
 msgid "Mobile Application"
 msgstr ""
 
@@ -1219,19 +1219,19 @@ msgid_plural "hours"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/system/class-environment.php:194
+#: includes/system/class-environment.php:193
 msgid "log"
 msgstr ""
 
-#: includes/system/class-environment.php:199
+#: includes/system/class-environment.php:198
 msgid "display"
 msgstr ""
 
-#: includes/system/class-environment.php:205
+#: includes/system/class-environment.php:204
 msgid "Debug enabled"
 msgstr ""
 
-#: includes/system/class-environment.php:205
+#: includes/system/class-environment.php:204
 msgid "Debug disabled"
 msgstr ""
 
