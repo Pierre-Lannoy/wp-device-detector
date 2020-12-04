@@ -10,7 +10,6 @@
 
 namespace PODeviceDetector\System;
 
-use Decalog\Plugin\Feature\Log;
 use PODeviceDetector\System\Conversion;
 
 /**
