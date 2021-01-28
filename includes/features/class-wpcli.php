@@ -20,7 +20,7 @@ use PODeviceDetector\API\Device;
 use Spyc;
 
 /**
- * WP-CLI for Device Detector.
+ * Manages Device Detector, get details on its engine and get analytics about devices accessing your site.
  *
  * Defines methods and properties for WP-CLI commands.
  *
@@ -36,7 +36,7 @@ class Wpcli {
 	 * @since    2.0.0
 	 * @var array $exit_codes Exit codes.
 	 */
-	private static $exit_codes = [
+	private $exit_codes = [
 		0   => 'operation successful.',
 		1   => 'unrecognized setting.',
 		2   => 'unrecognized action.',
@@ -52,7 +52,7 @@ class Wpcli {
 	 * @param   string  $field  Optional. The field to output.
 	 * @since   2.0.0
 	 */
-	private static function write_ids( $ids, $field = '' ) {
+	private function write_ids( $ids, $field = '' ) {
 		$result = '';
 		$last   = end( $ids );
 		foreach ( $ids as $key => $id ) {
@@ -76,7 +76,7 @@ class Wpcli {
 	 * @param   boolean  $stdout    Optional. Clean stdout output.
 	 * @since   2.0.0
 	 */
-	private static function error( $code = 255, $stdout = false ) {
+	private function error( $code = 255, $stdout = false ) {
 		if ( \WP_CLI\Utils\isPiped() ) {
 			// phpcs:ignore
 			fwrite( STDOUT, '' );
@@ -84,11 +84,11 @@ class Wpcli {
 			exit( $code );
 		} elseif ( $stdout ) {
 			// phpcs:ignore
-			fwrite( STDERR, ucfirst( self::$exit_codes[ $code ] ) );
+			fwrite( STDERR, ucfirst( $this->exit_codes[ $code ] ) );
 			// phpcs:ignore
 			exit( $code );
 		} else {
-			\WP_CLI::error( self::$exit_codes[ $code ] );
+			\WP_CLI::error( $this->exit_codes[ $code ] );
 		}
 	}
 
@@ -100,7 +100,7 @@ class Wpcli {
 	 * @param   boolean  $stdout    Optional. Clean stdout output.
 	 * @since   2.0.0
 	 */
-	private static function warning( $msg, $result = '', $stdout = false ) {
+	private function warning( $msg, $result = '', $stdout = false ) {
 		if ( \WP_CLI\Utils\isPiped() || $stdout ) {
 			// phpcs:ignore
 			fwrite( STDOUT, $result );
@@ -117,7 +117,7 @@ class Wpcli {
 	 * @param   boolean  $stdout    Optional. Clean stdout output.
 	 * @since   2.0.0
 	 */
-	private static function success( $msg, $result = '', $stdout = false ) {
+	private function success( $msg, $result = '', $stdout = false ) {
 		if ( \WP_CLI\Utils\isPiped() || $stdout ) {
 			// phpcs:ignore
 			fwrite( STDOUT, $result );
@@ -134,7 +134,7 @@ class Wpcli {
 	 * @param   boolean  $stdout    Optional. Clean stdout output.
 	 * @since   2.0.0
 	 */
-	private static function line( $msg, $result = '', $stdout = false ) {
+	private function line( $msg, $result = '', $stdout = false ) {
 		if ( \WP_CLI\Utils\isPiped() || $stdout ) {
 			// phpcs:ignore
 			fwrite( STDOUT, $result );
@@ -150,7 +150,7 @@ class Wpcli {
 	 * @param   boolean  $stdout    Optional. Clean stdout output.
 	 * @since   2.0.0
 	 */
-	private static function log( $msg, $stdout = false ) {
+	private function log( $msg, $stdout = false ) {
 		if ( ! \WP_CLI\Utils\isPiped() && ! $stdout ) {
 			\WP_CLI::log( $msg );
 		}
@@ -163,7 +163,7 @@ class Wpcli {
 	 * @return  array The true parameters.
 	 * @since   2.0.0
 	 */
-	private static function get_params( $args ) {
+	private function get_params( $args ) {
 		$result = '';
 		if ( array_key_exists( 'settings', $args ) ) {
 			$result = \json_decode( $args['settings'], true );
@@ -185,7 +185,7 @@ class Wpcli {
 	 *     === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
 	 *
 	 */
-	public static function status( $args, $assoc_args ) {
+	public function status( $args, $assoc_args ) {
 		\WP_CLI::line( sprintf( '%s is running with UDD engine v%s.', Environment::plugin_version_text(), DeviceDetector::VERSION ) );
 		if ( Option::network_get( 'analytics' ) ) {
 			\WP_CLI::line( 'Analytics: enabled.' );
@@ -224,7 +224,7 @@ class Wpcli {
 	 *     === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
 	 *
 	 */
-	public static function settings( $args, $assoc_args ) {
+	public function settings( $args, $assoc_args ) {
 		$stdout  = \WP_CLI\Utils\get_flag_value( $assoc_args, 'stdout', false );
 		$action  = isset( $args[0] ) ? (string) $args[0] : '';
 		$setting = isset( $args[1] ) ? (string) $args[1] : '';
@@ -233,10 +233,10 @@ class Wpcli {
 				switch ( $setting ) {
 					case 'analytics':
 						Option::network_set( 'analytics', true );
-						self::success( 'analytics are now activated.', '', $stdout );
+						$this->success( 'analytics are now activated.', '', $stdout );
 						break;
 					default:
-						self::error( 1, $stdout );
+						$this->error( 1, $stdout );
 				}
 				break;
 			case 'disable':
@@ -244,14 +244,14 @@ class Wpcli {
 					case 'analytics':
 						\WP_CLI::confirm( 'Are you sure you want to deactivate analytics?', $assoc_args );
 						Option::network_set( 'analytics', false );
-						self::success( 'analytics are now deactivated.', '', $stdout );
+						$this->success( 'analytics are now deactivated.', '', $stdout );
 						break;
 					default:
-						self::error( 1, $stdout );
+						$this->error( 1, $stdout );
 				}
 				break;
 			default:
-				self::error( 2, $stdout );
+				$this->error( 2, $stdout );
 		}
 	}
 
@@ -283,17 +283,17 @@ class Wpcli {
 	 *    === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
 	 *
 	 */
-	public static function describe( $args, $assoc_args ) {
+	public function describe( $args, $assoc_args ) {
 		$stdout = \WP_CLI\Utils\get_flag_value( $assoc_args, 'stdout', false );
 		$ua     = isset( $args[0] ) ? (string) $args[0] : '';
 		$format = \WP_CLI\Utils\get_flag_value( $assoc_args, 'format', 'table' );
 		$device = Device::get( $ua );
 		if ( 'yaml' === $format ) {
 			$details = Spyc::YAMLDump( $device->get_as_full_array(), true, true, true );
-			self::line( $details, $details, $stdout );
+			$this->line( $details, $details, $stdout );
 		} elseif ( 'json' === $format ) {
 			$details = wp_json_encode( $device->get_as_full_array() );
-			self::line( $details, $details, $stdout );
+			$this->line( $details, $details, $stdout );
 		} else {
 			$details = $device->get_as_array();
 			if ( 'table' === $format ) {
@@ -347,7 +347,7 @@ class Wpcli {
 	 *    === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
 	 *
 	 */
-	public static function engine( $args, $assoc_args ) {
+	public function engine( $args, $assoc_args ) {
 		$stdout = \WP_CLI\Utils\get_flag_value( $assoc_args, 'stdout', false );
 		$format = \WP_CLI\Utils\get_flag_value( $assoc_args, 'format', 'table' );
 		$item   = isset( $args[0] ) ? (string) $args[0] : '';
@@ -355,20 +355,20 @@ class Wpcli {
 			switch ( $item ) {
 				case 'info':
 					$line = 'UDD - Universal Device Detector - is a free OSS from Matomo. https://matomo.org';
-					self::line( $line, $line, $stdout );
+					$this->line( $line, $line, $stdout );
 					break;
 				case 'version':
 					$version = sprintf( 'UDD engine v%s', DeviceDetector::VERSION );
-					self::line( $version, $version, $stdout );
+					$this->line( $version, $version, $stdout );
 					break;
 				default:
 					$detail = Detector::get_identifier_array( $item );
 					if ( 'yaml' === $format ) {
 						$details = Spyc::YAMLDump( $detail, true, true, true );
-						self::line( $details, $details, $stdout );
+						$this->line( $details, $details, $stdout );
 					} elseif ( 'json' === $format ) {
 						$details = wp_json_encode( $detail );
-						self::line( $details, $details, $stdout );
+						$this->line( $details, $details, $stdout );
 					} else {
 						$details = [];
 						foreach ( $detail as $d ) {
@@ -381,14 +381,14 @@ class Wpcli {
 							$details[] = $a;
 						}
 						if ( 'ids' === $format ) {
-							self::write_ids( $details, $item );
+							$this->write_ids( $details, $item );
 						} else {
 							\WP_CLI\Utils\format_items( $assoc_args['format'], $details, [ $item ] );
 						}
 					}
 			}
 		} else {
-			self::error( 4, $stdout );
+			$this->error( 4, $stdout );
 		}
 	}
 
@@ -426,12 +426,12 @@ class Wpcli {
 	 *    === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
 	 *
 	 */
-	public static function analytics( $args, $assoc_args ) {
+	public function analytics( $args, $assoc_args ) {
 		$stdout = \WP_CLI\Utils\get_flag_value( $assoc_args, 'stdout', false );
 		$site   = (int) \WP_CLI\Utils\get_flag_value( $assoc_args, 'site', 0 );
 		$format = \WP_CLI\Utils\get_flag_value( $assoc_args, 'format', 'table' );
 		if ( ! Option::network_get( 'analytics' ) ) {
-			self::error( 3, $stdout );
+			$this->error( 3, $stdout );
 		}
 		$analytics = Analytics::get_status_kpi_collection( [ 'site_id' => $site ] );
 		$result    = [];
@@ -452,11 +452,11 @@ class Wpcli {
 		}
 		if ( 'json' === $format ) {
 			$detail = wp_json_encode( $analytics );
-			self::line( $detail, $detail, $stdout );
+			$this->line( $detail, $detail, $stdout );
 		} elseif ( 'yaml' === $format ) {
 			unset( $analytics['assets'] );
 			$detail = Spyc::YAMLDump( $analytics, true, true, true );
-			self::line( $detail, $detail, $stdout );
+			$this->line( $detail, $detail, $stdout );
 		} else {
 			\WP_CLI\Utils\format_items( $assoc_args['format'], $result, [ 'kpi', 'description', 'value', 'ratio', 'variation' ] );
 		}
@@ -497,18 +497,18 @@ class Wpcli {
 	 *   === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
 	 *
 	 */
-	public static function exitcode( $args, $assoc_args ) {
+	public function exitcode( $args, $assoc_args ) {
 		$stdout = \WP_CLI\Utils\get_flag_value( $assoc_args, 'stdout', false );
 		$format = \WP_CLI\Utils\get_flag_value( $assoc_args, 'format', 'table' );
 		$action = isset( $args[0] ) ? $args[0] : 'list';
 		$codes  = [];
-		foreach ( self::$exit_codes as $key => $msg ) {
+		foreach ( $this->exit_codes as $key => $msg ) {
 			$codes[ $key ] = [ 'code' => $key, 'meaning' => ucfirst( $msg ) ];
 		}
 		switch ( $action ) {
 			case 'list':
 				if ( 'ids' === $format ) {
-					self::write_ids( $codes );
+					$this->write_ids( $codes );
 				} else {
 					\WP_CLI\Utils\format_items( $format, $codes, [ 'code', 'meaning' ] );
 				}
@@ -534,11 +534,6 @@ class Wpcli {
 add_shortcode( 'podd-wpcli', [ 'PODeviceDetector\Plugin\Feature\Wpcli', 'sc_get_helpfile' ] );
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
-	\WP_CLI::add_command( 'device status', [ Wpcli::class, 'status' ] );
-	\WP_CLI::add_command( 'device settings', [ Wpcli::class, 'settings' ] );
-	\WP_CLI::add_command( 'device exitcode', [ Wpcli::class, 'exitcode' ] );
-	\WP_CLI::add_command( 'device describe', [ Wpcli::class, 'describe' ] );
-	\WP_CLI::add_command( 'device engine', [ Wpcli::class, 'engine' ] );
-	\WP_CLI::add_command( 'device analytics', [ Wpcli::class, 'analytics' ] );
+	\WP_CLI::add_command( 'device', 'PODeviceDetector\Plugin\Feature\Wpcli' );
 
 }
