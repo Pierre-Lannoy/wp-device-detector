@@ -22,8 +22,6 @@ use Spyc;
 /**
  * Manages Device Detector, get details on its engine and get analytics about devices accessing your site.
  *
- * Defines methods and properties for WP-CLI commands.
- *
  * @package Features
  * @author  Pierre Lannoy <https://pierre.lannoy.fr/>.
  * @since   2.0.0
