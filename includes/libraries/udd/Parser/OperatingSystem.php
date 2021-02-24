@@ -51,11 +51,14 @@ class OperatingSystem extends AbstractParser
         'COS' => 'Chrome OS',
         'CYN' => 'CyanogenMod',
         'DEB' => 'Debian',
+        'DEE' => 'Deepin',
         'DFB' => 'DragonFly',
         'FED' => 'Fedora',
         'FOS' => 'Firefox OS',
         'FIR' => 'Fire OS',
+        'FRE' => 'Freebox',
         'BSD' => 'FreeBSD',
+        'FYD' => 'FydeOS',
         'GNT' => 'Gentoo',
         'GTV' => 'Google TV',
         'HPX' => 'HP-UX',
@@ -78,6 +81,7 @@ class OperatingSystem extends AbstractParser
         'MOR' => 'MorphOS',
         'NBS' => 'NetBSD',
         'MTK' => 'MTK / Nucleus',
+        'MRE' => 'MRE',
         'WII' => 'Nintendo',
         'NDS' => 'Nintendo Mobile',
         'OS2' => 'OS/2',
@@ -88,11 +92,13 @@ class OperatingSystem extends AbstractParser
         'PS3' => 'PlayStation',
         'RHT' => 'Red Hat',
         'ROS' => 'RISC OS',
+        'RSO' => 'Rosa',
         'REM' => 'Remix OS',
         'RZD' => 'RazoDroiD',
         'SAB' => 'Sabayon',
         'SSE' => 'SUSE',
         'SAF' => 'Sailfish OS',
+        'SEE' => 'SeewoOS',
         'SLW' => 'Slackware',
         'SOS' => 'Solaris',
         'SYL' => 'Syllable',
@@ -105,7 +111,9 @@ class OperatingSystem extends AbstractParser
         'TIZ' => 'Tizen',
         'TOS' => 'TmaxOS',
         'UBT' => 'Ubuntu',
+        'WAS' => 'watchOS',
         'WTV' => 'WebTV',
+        'WHS' => 'Whale OS',
         'WIN' => 'Windows',
         'WCE' => 'Windows CE',
         'WIO' => 'Windows IoT',
@@ -132,27 +140,28 @@ class OperatingSystem extends AbstractParser
         'BlackBerry'            => ['BLB', 'QNX'],
         'Brew'                  => ['BMP'],
         'BeOS'                  => ['BEO', 'HAI'],
-        'Chrome OS'             => ['COS'],
+        'Chrome OS'             => ['COS', 'FYD', 'SEE'],
         'Firefox OS'            => ['FOS', 'KOS'],
         'Gaming Console'        => ['WII', 'PS3'],
         'Google TV'             => ['GTV'],
         'IBM'                   => ['OS2'],
-        'iOS'                   => ['IOS'],
+        'iOS'                   => ['IOS', 'WAS'],
         'RISC OS'               => ['ROS'],
         'GNU/Linux'             => [
             'LIN', 'ARL', 'DEB', 'KNO', 'MIN', 'UBT', 'KBT', 'XBT', 'LBT', 'FED',
             'RHT', 'VLN', 'MDR', 'GNT', 'SAB', 'SLW', 'SSE', 'CES', 'BTR', 'SAF',
-            'ORD', 'TOS',
+            'ORD', 'TOS', 'RSO', 'DEE', 'FRE',
         ],
         'Mac'                   => ['MAC'],
         'Mobile Gaming Console' => ['PSP', 'NDS', 'XBX'],
-        'Real-time OS'          => ['MTK', 'TDX'],
+        'Real-time OS'          => ['MTK', 'TDX', 'MRE'],
         'Other Mobile'          => ['WOS', 'POS', 'SBA', 'TIZ', 'SMG', 'MAE'],
         'Symbian'               => ['SYM', 'SYS', 'SY3', 'S60', 'S40'],
         'Unix'                  => ['SOS', 'AIX', 'HPX', 'BSD', 'NBS', 'OBS', 'DFB', 'SYL', 'IRI', 'T64', 'INF'],
         'WebTV'                 => ['WTV'],
         'Windows'               => ['WIN'],
         'Windows Mobile'        => ['WPH', 'WMO', 'WCE', 'WRT', 'WIO'],
+        'Other Smart TV'        => ['WHS'],
     ];
 
     /**
@@ -266,8 +275,16 @@ class OperatingSystem extends AbstractParser
      */
     protected function parsePlatform(): string
     {
-        if ($this->matchUserAgent('arm')) {
+        if ($this->matchUserAgent('arm|aarch64|Watch ?OS|Watch1,[12]')) {
             return 'ARM';
+        }
+
+        if ($this->matchUserAgent('mips')) {
+            return 'MIPS';
+        }
+
+        if ($this->matchUserAgent('sh4')) {
+            return 'SuperH';
         }
 
         if ($this->matchUserAgent('WOW64|x64|win64|amd64|x86_64')) {

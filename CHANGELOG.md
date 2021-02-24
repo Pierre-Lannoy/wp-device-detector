@@ -11,7 +11,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - Consistent reset for settings.
 - Improved translation loading.
+- Many icons for brands, browsers and OSes have been updated or added.
 - [WP_CLI] `device` command have now a definition and all synopsis are up to date.
+- Upgraded UDD from version 4.0.1 to version 4.1.0.
 
 ### Fixed
 - In Site Health section, Opcache status may be wrong (or generates PHP warnings) if OPcache API usage is restricted.
