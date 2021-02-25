@@ -3,6 +3,11 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.1] - 2021-02-25
+
+### Changed
+- Upgraded UDD from version 4.1.0 to version 4.2.0: dozens of added and improved detections.
+
 ## [2.2.0] - 2021-02-25
 
 ### Added
