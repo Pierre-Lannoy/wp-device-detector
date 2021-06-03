@@ -12,7 +12,7 @@ namespace PODeviceDetector\Plugin;
 use PODeviceDetector\System\Nag;
 use PODeviceDetector\System\Option;
 use Exception;
-use PODeviceDetector\System\Logger;
+
 use PODeviceDetector\System\Cache;
 use PODeviceDetector\Plugin\Feature\Schema;
 use PODeviceDetector\System\Markdown;
@@ -45,7 +45,7 @@ class Updater {
 				$this->update( $old );
 				// phpcs:ignore
 				$message  = sprintf( esc_html__( '%1$s has been correctly updated from version %2$s to version %3$s.', 'device-detector' ), PODD_PRODUCT_NAME, $old, PODD_VERSION );
-				Logger::notice( $message );
+				\DecaLog\Engine::eventsLogger( PODD_SLUG )->notice( $message );
 				// phpcs:ignore
 				$message .= ' ' . sprintf( __( 'See <a href="%s">what\'s new</a>.', 'device-detector' ), admin_url( 'admin.php?page=podd-settings&tab=about' ) );
 			}
@@ -73,7 +73,7 @@ class Updater {
 		$schema = new Schema();
 		$schema->update();
 		Cache::delete_pool();
-		Logger::notice( 'Cache purged.' );
+		\DecaLog\Engine::eventsLogger( PODD_SLUG )->notice( 'Cache purged.' );
 	}
 
 	/**

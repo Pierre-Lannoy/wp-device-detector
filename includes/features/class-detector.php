@@ -14,7 +14,7 @@ namespace PODeviceDetector\Plugin\Feature;
 use UDD\DeviceDetector;
 use UDD\Parser\Device\DeviceParserAbstract;
 use PODeviceDetector\System\Cache;
-use PODeviceDetector\System\Logger;
+
 use PODeviceDetector\API\Device;
 
 /**
@@ -59,7 +59,7 @@ class Detector {
 			self::$cache[ $id ] = $device;
 			return self::$cache[ $id ];
 		}
-		Logger::debug( 'Cache miss.' );
+		\DecaLog\Engine::eventsLogger( PODD_SLUG )->debug( 'Cache miss.' );
 		DeviceParserAbstract::setVersionTruncation( \UDD\Parser\Device\DeviceParserAbstract::VERSION_TRUNCATION_NONE );
 		$parser = new \UDD\DeviceDetector( $ua );
 		$parser->parse();

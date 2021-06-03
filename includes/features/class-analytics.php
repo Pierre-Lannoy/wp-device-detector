@@ -18,7 +18,7 @@ use PODeviceDetector\System\Date;
 use PODeviceDetector\System\Conversion;
 use PODeviceDetector\System\Environment;
 use PODeviceDetector\System\Role;
-use PODeviceDetector\System\Logger;
+
 use PODeviceDetector\System\L10n;
 use PODeviceDetector\System\Http;
 use PODeviceDetector\System\Favicon;

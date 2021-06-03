@@ -12,7 +12,7 @@
 namespace PODeviceDetector\Plugin\Feature;
 
 use PODeviceDetector\System\Option;
-use PODeviceDetector\System\Logger;
+
 use PODeviceDetector\API\Device;
 use PODeviceDetector\Plugin\Feature\Detector;
 
@@ -308,9 +308,9 @@ class CSSModifier {
 	public static function init() {
 		if ( Option::site_get( 'css_class' ) || Option::site_get( 'css_device' ) || Option::site_get( 'css_client' ) || Option::site_get( 'css_os' ) || Option::site_get( 'css_brand' ) || Option::site_get( 'css_bot' ) || Option::site_get( 'css_capability' ) ) {
 			add_filter( 'body_class', [ 'PODeviceDetector\Plugin\Feature\CSSModifier', 'body_class' ] );
-			Logger::debug( 'Filter hooked: body_class.');
+			\DecaLog\Engine::eventsLogger( PODD_SLUG )->debug( 'Filter hooked: body_class.');
 			add_filter( 'admin_body_class', [ 'PODeviceDetector\Plugin\Feature\CSSModifier', 'admin_body_class' ] );
-			Logger::debug( 'Filter hooked: admin_body_class.');
+			\DecaLog\Engine::eventsLogger( PODD_SLUG )->debug( 'Filter hooked: admin_body_class.');
 		}
 	}
 

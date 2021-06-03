@@ -14,7 +14,7 @@ namespace PODeviceDetector\Plugin\Feature;
 use PODeviceDetector\Plugin\Feature\Analytics;
 use PODeviceDetector\System\Blog;
 use PODeviceDetector\System\Date;
-use PODeviceDetector\System\Logger;
+
 use PODeviceDetector\System\Timezone;
 
 /**

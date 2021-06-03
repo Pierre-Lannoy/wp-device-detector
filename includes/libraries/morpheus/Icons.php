@@ -12,7 +12,7 @@
 namespace Morpheus;
 
 use PODeviceDetector\System\Cache;
-use PODeviceDetector\System\Logger;
+
 use Feather;
 
 /**

@@ -17,7 +17,7 @@ use PODeviceDetector\System\Favicon;
 use PODeviceDetector\Plugin\Feature\ClassTypes;
 use PODeviceDetector\Plugin\Feature\ClientTypes;
 use PODeviceDetector\Plugin\Feature\DeviceTypes;
-use PODeviceDetector\System\Logger;
+
 
 /**
  * Define the detected device.

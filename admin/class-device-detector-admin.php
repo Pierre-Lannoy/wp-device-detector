@@ -13,7 +13,7 @@ use PODeviceDetector\Plugin\Feature\Analytics;
 use PODeviceDetector\Plugin\Feature\AnalyticsFactory;
 use PODeviceDetector\System\Assets;
 use PODeviceDetector\System\Environment;
-use PODeviceDetector\System\Logger;
+
 use PODeviceDetector\System\Role;
 use PODeviceDetector\System\Option;
 use PODeviceDetector\System\Form;
@@ -306,12 +306,12 @@ class Device_Detector_Admin {
 				$message = esc_html__( 'Plugin settings have been saved.', 'device-detector' );
 				$code    = 0;
 				add_settings_error( 'podd_no_error', $code, $message, 'updated' );
-				Logger::info( 'Plugin settings updated.', $code );
+				\DecaLog\Engine::eventsLogger( PODD_SLUG )->info( 'Plugin settings updated.', [ 'code' => $code ] );
 			} else {
 				$message = esc_html__( 'Plugin settings have not been saved. Please try again.', 'device-detector' );
 				$code    = 2;
 				add_settings_error( 'podd_nonce_error', $code, $message, 'error' );
-				Logger::warning( 'Plugin settings not updated.', $code );
+				\DecaLog\Engine::eventsLogger( PODD_SLUG )->warning( 'Plugin settings not updated.', [ 'code' => $code ] );
 			}
 		}
 	}
@@ -334,12 +334,12 @@ class Device_Detector_Admin {
 				$message = esc_html__( 'Plugin settings have been saved.', 'device-detector' );
 				$code    = 0;
 				add_settings_error( 'podd_no_error', $code, $message, 'updated' );
-				Logger::info( 'Plugin settings updated.', $code );
+				\DecaLog\Engine::eventsLogger( PODD_SLUG )->info( 'Plugin settings updated.', [ 'code' => $code ] );
 			} else {
 				$message = esc_html__( 'Plugin settings have not been saved. Please try again.', 'device-detector' );
 				$code    = 2;
 				add_settings_error( 'podd_nonce_error', $code, $message, 'error' );
-				Logger::warning( 'Plugin settings not updated.', $code );
+				\DecaLog\Engine::eventsLogger( PODD_SLUG )->warning( 'Plugin settings not updated.', [ 'code' => $code ] );
 			}
 		}
 	}
@@ -360,12 +360,12 @@ class Device_Detector_Admin {
 				$message = esc_html__( 'Plugin settings have been saved.', 'device-detector' );
 				$code    = 0;
 				add_settings_error( 'podd_no_error', $code, $message, 'updated' );
-				Logger::info( 'Plugin settings updated.', $code );
+				\DecaLog\Engine::eventsLogger( PODD_SLUG )->info( 'Plugin settings updated.', [ 'code' => $code ] );
 			} else {
 				$message = esc_html__( 'Plugin settings have not been saved. Please try again.', 'device-detector' );
 				$code    = 2;
 				add_settings_error( 'podd_nonce_error', $code, $message, 'error' );
-				Logger::warning( 'Plugin settings not updated.', $code );
+				\DecaLog\Engine::eventsLogger( PODD_SLUG )->warning( 'Plugin settings not updated.', [ 'code' => $code ] );
 			}
 		}
 	}
@@ -382,12 +382,12 @@ class Device_Detector_Admin {
 				$message = esc_html__( 'Plugin settings have been reset to defaults.', 'device-detector' );
 				$code    = 0;
 				add_settings_error( 'podd_no_error', $code, $message, 'updated' );
-				Logger::info( 'Plugin settings reset to defaults.', $code );
+				\DecaLog\Engine::eventsLogger( PODD_SLUG )->info( 'Plugin settings reset to defaults.', [ 'code' => $code ] );
 			} else {
 				$message = esc_html__( 'Plugin settings have not been reset to defaults. Please try again.', 'device-detector' );
 				$code    = 2;
 				add_settings_error( 'podd_nonce_error', $code, $message, 'error' );
-				Logger::warning( 'Plugin settings not reset to defaults.', $code );
+				\DecaLog\Engine::eventsLogger( PODD_SLUG )->warning( 'Plugin settings not reset to defaults.', [ 'code' => $code ] );
 			}
 		}
 	}

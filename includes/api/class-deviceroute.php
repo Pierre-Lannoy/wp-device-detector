@@ -11,7 +11,7 @@
 
 namespace PODeviceDetector\API;
 
-use PODeviceDetector\System\Logger;
+
 use PODeviceDetector\Plugin\Feature\Detector;
 
 /**
@@ -81,7 +81,7 @@ class DeviceRoute extends \WP_REST_Controller {
 	 */
 	public function get_describe_permissions_check( $request ) {
 		if ( ! is_user_logged_in() ) {
-			Logger::warning( 'Unauthenticated API call.', 401 );
+			\DecaLog\Engine::eventsLogger( PODD_SLUG )->warning( 'Unauthenticated API call.', [ 'code' => 401 ] );
 			return new \WP_Error( 'rest_not_logged_in', 'You must be logged in to access live logs.', [ 'status' => 401 ] );
 		}
 		return true;
@@ -97,7 +97,7 @@ class DeviceRoute extends \WP_REST_Controller {
 		try {
 			$device = Detector::new( $request['ua'] );
 		} catch ( \Throwable $t ) {
-			Logger::error( sprintf( 'Unable to analyze user-agent "%s".', $request['ua'] ), 500 );
+			\DecaLog\Engine::eventsLogger( PODD_SLUG )->error( sprintf( 'Unable to analyze user-agent "%s".', $request['ua'] ), [ 'code' => 500 ] );
 			return new \WP_Error( 'rest_internal_server_error', 'Unable to analyze this User-Agent.', [ 'status' => 500 ] );
 		}
 		return new \WP_REST_Response( $device->get_as_full_array(), 200 );

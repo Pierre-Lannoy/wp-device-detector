@@ -12,7 +12,7 @@
 namespace PODeviceDetector\Plugin\Feature;
 
 use PODeviceDetector\System\Option;
-use PODeviceDetector\System\Logger;
+
 use PODeviceDetector\API\Device;
 
 /**
@@ -41,7 +41,7 @@ class CoreModifier {
 	public static function init() {
 		if ( Option::site_get( 'wp_is_mobile' ) ) {
 			add_filter( 'wp_is_mobile', [ 'PODeviceDetector\Plugin\Feature\CoreModifier', 'wp_is_mobile' ] );
-			Logger::debug( 'Filter hooked: wp_is_mobile.');
+			\DecaLog\Engine::eventsLogger( PODD_SLUG )->debug( 'Filter hooked: wp_is_mobile.');
 		}
 	}
 

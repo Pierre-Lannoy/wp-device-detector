@@ -11,7 +11,7 @@
 
 namespace PODeviceDetector\System;
 
-use PODeviceDetector\System\Logger;
+
 use PODeviceDetector\System\Option;
 use PODeviceDetector\System\File;
 
@@ -99,7 +99,7 @@ class APCu {
 					$cpt++;
 				}
 			}
-			Logger::info( sprintf( '%d object(s) deleted.', $cpt ) );
+			\DecaLog\Engine::eventsLogger( PODD_SLUG )->info( sprintf( '%d object(s) deleted.', $cpt ) );
 		}
 		return $cpt;
 	}
@@ -112,7 +112,7 @@ class APCu {
 	public static function reset() {
 		if ( function_exists( 'apcu_clear_cache' ) ) {
 			apcu_clear_cache();
-			Logger::notice( 'Cache cleared.' );
+			\DecaLog\Engine::eventsLogger( PODD_SLUG )->notice( 'Cache cleared.' );
 		}
 	}
 
