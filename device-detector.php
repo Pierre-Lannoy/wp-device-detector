@@ -68,7 +68,7 @@ function podd_uninstall() {
  * @since 1.0.0
  */
 function podd_run() {
-	\DecaLog\Engine::initPlugin( PODD_SLUG, PODD_PRODUCT_NAME, PODD_VERSION );
+	\DecaLog\Engine::initPlugin( PODD_SLUG, PODD_PRODUCT_NAME, PODD_VERSION, \PODeviceDetector\Plugin\Core::get_base64_logo() );
 	\PODeviceDetector\System\Cache::init();
 	$plugin = new PODeviceDetector\Plugin\Core();
 	$plugin->run();
