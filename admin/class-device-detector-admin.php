@@ -416,9 +416,9 @@ class Device_Detector_Admin {
 			]
 		);
 		register_setting( 'podd_plugin_options_section', 'podd_plugin_options_favicons' );
-		if ( defined( 'DECALOG_VERSION' ) ) {
+		if ( \DecaLog\Engine::isDecalogActivated() ) {
 			$help  = '<img style="width:16px;vertical-align:text-bottom;" src="' . \Feather\Icons::get_base64( 'thumbs-up', 'none', '#00C800' ) . '" />&nbsp;';
-			$help .= sprintf( esc_html__('Your site is currently using %s.', 'device-detector' ), '<em>DecaLog v' . DECALOG_VERSION .'</em>' );
+			$help .= sprintf( esc_html__('Your site is currently using %s.', 'device-detector' ), '<em>' . \DecaLog\Engine::getVersionString() .'</em>' );
 		} else {
 			$help  = '<img style="width:16px;vertical-align:text-bottom;" src="' . \Feather\Icons::get_base64( 'alert-triangle', 'none', '#FF8C00' ) . '" />&nbsp;';
 			$help .= sprintf( esc_html__('Your site does not use any logging plugin. To log all events triggered in Device Detector, I recommend you to install the excellent (and free) %s. But it is not mandatory.', 'device-detector' ), '<a href="https://wordpress.org/plugins/decalog/">DecaLog</a>' );
