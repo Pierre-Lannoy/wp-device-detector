@@ -356,6 +356,7 @@ class Device_Detector_Admin {
 				Option::network_set( 'download_favicons', array_key_exists( 'podd_plugin_options_favicons', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_options_favicons' ) : false );
 				Option::network_set( 'display_nag', array_key_exists( 'podd_plugin_options_nag', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_options_nag' ) : false );
 				Option::network_set( 'analytics', array_key_exists( 'podd_plugin_features_analytics', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_features_analytics' ) : false );
+				Option::network_set( 'metrics', array_key_exists( 'podd_plugin_features_metrics', $_POST ) ? (bool) filter_input( INPUT_POST, 'podd_plugin_features_metrics' ) : false );
 				Option::network_set( 'history', array_key_exists( 'podd_plugin_features_history', $_POST ) ? (string) filter_input( INPUT_POST, 'podd_plugin_features_history', FILTER_SANITIZE_NUMBER_INT ) : Option::network_get( 'history' ) );
 				$message = esc_html__( 'Plugin settings have been saved.', 'device-detector' );
 				$code    = 0;

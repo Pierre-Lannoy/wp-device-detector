@@ -73,7 +73,8 @@ class Option {
 		self::$defaults['version']           = '0.0.0';
 		self::$defaults['history']           = 30;
 		self::$defaults['analytics']         = true;
-		self::$network                       = [ 'version', 'use_cdn', 'download_favicons', 'script_in_footer', 'display_nag', 'analytics', 'history' ];
+		self::$defaults['metrics']           = true;
+		self::$network                       = [ 'version', 'use_cdn', 'download_favicons', 'script_in_footer', 'display_nag', 'analytics', 'history', 'metrics' ];
 		// Per site options.
 		self::$defaults['wp_is_mobile']   = true;
 		self::$defaults['css_class']      = true;

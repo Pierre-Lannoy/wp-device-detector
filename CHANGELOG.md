@@ -3,6 +3,16 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased - will be 2.3.0] - 2021-06-xx
+
+### Added
+- Compatibility with WordPress 5.8.
+- Integration with DecaLog SDK.
+- Traces and metrics collation and publication.
+
+### Changed
+- Upgraded UDD from version 4.2.0 to version 4.2.3: dozens of added and improved detections.
+
 ## [2.2.1] - 2021-02-25
 
 ### Changed

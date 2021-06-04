@@ -44,6 +44,7 @@ class Detector {
 	 * @since    1.0.0
 	 */
 	public static function new( $ua = '' ) {
+		$span = \DecaLog\Engine::tracesLogger( PODD_SLUG )->start_span( 'Detection' );
 		if ( '' === $ua ) {
 			$ua = filter_input( INPUT_SERVER, 'HTTP_USER_AGENT', FILTER_SANITIZE_STRING );
 		}
@@ -52,11 +53,13 @@ class Detector {
 		}
 		$id = Cache::id( $ua, 'fingerprint/' );
 		if ( array_key_exists( $id, self::$cache ) ) {
+			\DecaLog\Engine::tracesLogger( PODD_SLUG )->end_span( $span );
 			return self::$cache[ $id ];
 		}
 		$device = Cache::get_global( $id );
 		if ( isset( $device ) && is_object( $device ) && $device instanceof \PODeviceDetector\API\Device ) {
 			self::$cache[ $id ] = $device;
+			\DecaLog\Engine::tracesLogger( PODD_SLUG )->end_span( $span );
 			return self::$cache[ $id ];
 		}
 		\DecaLog\Engine::eventsLogger( PODD_SLUG )->debug( 'Cache miss.' );
@@ -66,6 +69,7 @@ class Detector {
 		$device = new Device( $parser );
 		Cache::set_global( $id, $device, 'infinite' );
 		self::$cache[ $id ] = $device;
+		\DecaLog\Engine::tracesLogger( PODD_SLUG )->end_span( $span );
 		return self::$cache[ $id ];
 	}
 
