@@ -10,7 +10,7 @@
  * Plugin Name:       Device Detector
  * Plugin URI:        https://github.com/Pierre-Lannoy/wp-device-detector
  * Description:       Full featured analytics reporting and management tool that detects all devices accessing your WordPress site.
- * Version:           2.2.1
+ * Version:           2.3.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Pierre Lannoy
