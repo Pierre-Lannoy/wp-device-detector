@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 - Compatibility with WordPress 5.8.
 - Integration with DecaLog SDK.
-- Traces and metrics collation and publication.
+- Traces publication.
 
 ### Changed
 - Upgraded UDD from version 4.2.0 to version 4.2.3: dozens of added and improved detections.

@@ -13,7 +13,6 @@ use PODeviceDetector\Plugin\Feature\Analytics;
 use PODeviceDetector\Plugin\Feature\AnalyticsFactory;
 use PODeviceDetector\System\Assets;
 use PODeviceDetector\System\Environment;
-
 use PODeviceDetector\System\Role;
 use PODeviceDetector\System\Option;
 use PODeviceDetector\System\Form;
