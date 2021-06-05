@@ -190,8 +190,8 @@ class Wpcli {
 		} else {
 			\WP_CLI::line( 'Analytics: disabled.' );
 		}
-		if ( defined( 'DECALOG_VERSION' ) ) {
-			\WP_CLI::line( 'Logging support: yes (DecaLog v' . DECALOG_VERSION . ').');
+		if ( \DecaLog\Engine::isDecalogActivated() ) {
+			\WP_CLI::line( 'Logging support: ' . \DecaLog\Engine::getVersionString() . '.');
 		} else {
 			\WP_CLI::line( 'Logging support: no.' );
 		}
@@ -205,7 +205,7 @@ class Wpcli {
 	 * <enable|disable>
 	 * : The action to take.
 	 *
-	 * <analytics>
+	 * <analytics|metrics>
 	 * : The setting to change.
 	 *
 	 * [--yes]
