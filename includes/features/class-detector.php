@@ -37,6 +37,14 @@ class Detector {
 	public static $cache = [];
 
 	/**
+	 * The list of allowed definitions.
+	 *
+	 * @since  2.3.0
+	 * @var    array    $definitions    Maintains the allowed definitions id.
+	 */
+	public static $definitions = [ 'class', 'device', 'client', 'os', 'browser', 'engine', 'library', 'player', 'app', 'pim', 'reader', 'brand', 'bot' ];
+
+	/**
 	 * Initialize a device and return it.
 	 *
 	 * @param string $ua    Optional. The user-agent string.
@@ -93,7 +101,7 @@ class Detector {
 					} else {
 						return 'other';
 					}
-				break;
+					break;
 				case 'device':
 					if ( $value->device_is_camera ) {
 						return 'camera';
@@ -284,13 +292,28 @@ class Detector {
 	 * Get the definitions for a type as string.
 	 *
 	 * @param string $type    Optional. The type to get.
-	 * @return string The requested definition as printable le string.
+	 * @return string The requested definition as printable string.
 	 * @since    1.0.0
 	 */
 	public static function get_definition( $type = 'class' ) {
 		$definition = self::get_definition_array( $type );
 		natcasesort( $definition );
 		return implode( ', ', $definition ) . '.';
+	}
+
+	/**
+	 * Get the definitions, via shortcode, for a type as string.
+	 *
+	 * @param array $attributes The attributes of the shortcode.
+	 * @return string The requested definition as printable string.
+	 * @since    2.3.0
+	 */
+	public static function sc_get_definition( $attributes ) {
+		$_attributes = shortcode_atts( [ 'define' => '' ], $attributes );
+		if ( in_array( $_attributes['define'], self::$definitions, true ) ) {
+			return self::get_definition( $_attributes['define'] );
+		}
+		return '';
 	}
 
 }

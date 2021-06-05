@@ -21,6 +21,7 @@ use PODeviceDetector\Plugin\Feature\CoreModifier;
 use PODeviceDetector\Plugin\Feature\CSSModifier;
 use PODeviceDetector\API\DeviceRoute;
 
+
 /**
  * The core plugin class.
  *
@@ -78,6 +79,7 @@ class Core {
 		add_shortcode( 'podd-changelog', [ $updater, 'sc_get_changelog' ] );
 		add_shortcode( 'podd-libraries', [ $libraries, 'sc_get_list' ] );
 		add_shortcode( 'podd-statistics', [ 'PODeviceDetector\System\Statistics', 'sc_get_raw' ] );
+		add_shortcode( 'podd-definition', [ 'PODeviceDetector\Plugin\Feature\Detector', 'sc_get_definition' ] );
 		CoreModifier::init();
 		CSSModifier::init();
 		// REST API

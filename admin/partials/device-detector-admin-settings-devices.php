@@ -18,29 +18,29 @@ $intro = sprintf( esc_html__( '%1$s (engine version %2$s) allows to detect:', 'd
 <p><?php echo $intro; ?></p>
 
 <h3><?php esc_html_e( 'Classes', 'device-detector' ); ?></h3>
-<p><?php echo Detector::get_definition( 'class' ) ?></p>
+<p><?php echo do_shortcode( '[podd-definition define="class"]' ) ?></p>
 <h3><?php esc_html_e( 'Device Types', 'device-detector' ); ?></h3>
-<p><?php echo Detector::get_definition( 'device' ) ?></p>
+<p><?php echo do_shortcode( '[podd-definition define="device"]' ) ?></p>
 <h3><?php esc_html_e( 'Client Types', 'device-detector' ); ?></h3>
-<p><?php echo Detector::get_definition( 'client' ) ?></p>
+<p><?php echo do_shortcode( '[podd-definition define="client"]' ) ?></p>
 <h3><?php esc_html_e( 'Details', 'device-detector' ); ?></h3>
 <h4><?php esc_html_e( 'Operating Systems', 'device-detector' ); ?></h4>
-<p><?php echo Detector::get_definition( 'os' ) ?></p>
+<p><?php echo do_shortcode( '[podd-definition define="os"]' ) ?></p>
 <h4><?php esc_html_e( 'Browsers', 'device-detector' ); ?></h4>
-<p><?php echo Detector::get_definition( 'browser' ) ?></p>
+<p><?php echo do_shortcode( '[podd-definition define="browser"]' ) ?></p>
 <h4><?php esc_html_e( 'Browser Engines', 'device-detector' ); ?></h4>
-<p><?php echo Detector::get_definition( 'engine' ) ?></p>
+<p><?php echo do_shortcode( '[podd-definition define="engine"]' ) ?></p>
 <h4><?php esc_html_e( 'Application Libraries', 'device-detector' ); ?></h4>
-<p><?php echo Detector::get_definition( 'library' ) ?></p>
+<p><?php echo do_shortcode( '[podd-definition define="library"]' ) ?></p>
 <h4><?php esc_html_e( 'Media Players', 'device-detector' ); ?></h4>
-<p><?php echo Detector::get_definition( 'player' ) ?></p>
+<p><?php echo do_shortcode( '[podd-definition define="player"]' ) ?></p>
 <h4><?php esc_html_e( 'Mobile Applications', 'device-detector' ); ?></h4>
-<p><?php echo Detector::get_definition( 'app' ) ?></p>
+<p><?php echo do_shortcode( '[podd-definition define="app"]' ) ?></p>
 <h4><?php esc_html_e( 'PIMs', 'device-detector' ); ?></h4>
-<p><?php echo Detector::get_definition( 'pim' ) ?></p>
+<p><?php echo do_shortcode( '[podd-definition define="pim"]' ) ?></p>
 <h4><?php esc_html_e( 'Feed Readers', 'device-detector' ); ?></h4>
-<p><?php echo Detector::get_definition( 'reader' ) ?></p>
+<p><?php echo do_shortcode( '[podd-definition define="reader"]' ) ?></p>
 <h4><?php esc_html_e( 'Brands', 'device-detector' ); ?></h4>
-<p><?php echo Detector::get_definition( 'brand' ) ?></p>
+<p><?php echo do_shortcode( '[podd-definition define="brand"]' ) ?></p>
 <h4><?php esc_html_e( 'Bots', 'device-detector' ); ?></h4>
-<p><?php echo Detector::get_definition( 'bot' ) ?></p>
+<p><?php echo do_shortcode( '[podd-definition define="bot"]' ) ?></p>
