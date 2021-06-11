@@ -44,7 +44,9 @@ For a full list of items, characteristics and supported devices, please see the 
 * describe engine capacities: see `wp help device engine` for details;
 * display devices statistics: see `wp help device analytics` for details.
 
-For a full help on WP-CLI commands in Device Detector, please [read this guide](https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md).
+For a full help on WP-CLI commands in Device Detector, please [read this guide](https://perfops.one/device-detector-wpcli).
+
+> **Device Detector** is part of [PerfOps One](https://perfops.one/), a suite of free and open source WordPress plugins dedicated to observability and operations performance.
 
 Based on the amazing [Matomo](https://github.com/matomo-org/matomo) UDD, Device Detector is a free and open source plugin for WordPress. It integrates many other free and open source works (as-is or modified). Please, see 'about' tab in the plugin settings to see the details.
 
@@ -114,7 +116,7 @@ You can report bugs and suggest ideas via the [GitHub issue tracker](https://git
 
 == Changelog ==
 
-Please, see [full changelog](https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/CHANGELOG.md) on GitHub.
+Please, see [full changelog](https://perfops.one/device-detector-changelog).
 
 == Upgrade Notice ==
 
