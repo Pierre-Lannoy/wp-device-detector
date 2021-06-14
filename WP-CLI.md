@@ -1,4 +1,4 @@
-Device Detector is fully usable from command-line, thanks to [WP-CLI](https://wp-cli.org/). You can set APCu Manager options and much more, without using a web browser.
+Device Detector is fully usable from command-line, thanks to [WP-CLI](https://wp-cli.org/). You can set Device Detector options and much more, without using a web browser.
 
 1. [Obtaining statistics about devices](#obtaining-statistics-about-device-usage) - `wp device analytics`
 2. [Describing a device](#describing-a-device) - `wp device describe`
