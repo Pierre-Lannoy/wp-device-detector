@@ -6,7 +6,7 @@
 
 __Device Detector__ is a full featured analytics reporting and management tool that detects all devices accessing your WordPress site.
 
-See [WordPress directory page](https://wordpress.org/plugins/device-detector/). 
+See [WordPress directory page](https://wordpress.org/plugins/device-detector/) or [official website](https://perfops.one/device-detector). 
 
 For each call made to your site, __Device Detector__ analyzes the sent header, detects the device doing the call (and its characteristics) and can:
 
@@ -29,6 +29,8 @@ __Device Detector__ can report the following main items and characteristics:
 For a full list of items, characteristics and supported devices, please see the 'devices' tab in the plugin settings.
 
 __Device Detector__ supports multisite report delegation and per site configuration (see FAQ).
+
+> __Device Detector__ is part of [PerfOps One](https://perfops.one/), a suite of free and open source WordPress plugins dedicated to observability and operations performance.
 
 Based on the amazing [Matomo](https://github.com/matomo-org/matomo) UDD, Device Detector is a free and open source plugin for WordPress. It integrates many other free and open source works (as-is or modified). Please, see 'about' tab in the plugin settings to see the details.
 
