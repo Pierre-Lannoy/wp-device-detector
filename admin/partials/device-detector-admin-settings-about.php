@@ -28,7 +28,7 @@ $trademarks = esc_html__( 'All brands, icons and graphic illustrations are regis
 $icon       = '<img class="podd-about-logo" style="opacity:0;" src="' . PODeviceDetector\Plugin\Core::get_base64_logo() . '" />';
 
 ?>
-<h2><?php echo esc_html( PODD_PRODUCT_NAME . ' ' . PODD_VERSION ); ?></h2>
+<h2><?php echo esc_html( PODD_PRODUCT_NAME . ' ' . PODD_VERSION ); ?> / <a href="https://perfops.one">PerfOps One</a></h2>
 <?php echo $icon; ?>
 <?php echo $warning; ?>
 <p><?php echo $intro; ?></p>

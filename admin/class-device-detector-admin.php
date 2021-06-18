@@ -223,7 +223,7 @@ class Device_Detector_Admin {
 	public function add_row_meta( $links, $file ) {
 		if ( 0 === strpos( $file, PODD_SLUG . '/' ) ) {
 			$links[] = '<a href="https://wordpress.org/support/plugin/' . PODD_SLUG . '/">' . __( 'Support', 'device-detector' ) . '</a>';
-			$links[] = '<a href="https://github.com/Pierre-Lannoy/wp-device-detector">' . __( 'GitHub repository', 'device-detector' ) . '</a>';
+			$links[] = '<a href="https://perfops.one">PefOps One</a>';
 		}
 		return $links;
 	}
