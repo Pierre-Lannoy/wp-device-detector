@@ -67,7 +67,7 @@ class Detector {
 			self::$cache[ $id ] = $device;
 			return self::$cache[ $id ];
 		}
-		$span = \DecaLog\Engine::tracesLogger( PODD_SLUG )->start_span( 'Detection' );
+		$span = \DecaLog\Engine::tracesLogger( PODD_SLUG )->start_span( 'Detection', DECALOG_SPAN_MAIN_RUN );
 		\DecaLog\Engine::eventsLogger( PODD_SLUG )->debug( 'Cache miss.' );
 		DeviceParserAbstract::setVersionTruncation( \UDD\Parser\Device\DeviceParserAbstract::VERSION_TRUNCATION_NONE );
 		$parser = new \UDD\DeviceDetector( $ua );
