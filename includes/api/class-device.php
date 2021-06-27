@@ -70,7 +70,11 @@ class Device {
 					$this->bot_category = $bot['category'];
 				}
 				$this->bot_full_category = $this->get_bot_full_category();
-				$this->bot_url           = $bot['url'];
+				if ( array_key_exists( 'url', $bot ) ) {
+					$this->bot_url = $bot['url'];
+				} else {
+					$this->bot_url = '';
+				}
 				if ( array_key_exists( 'producer', $bot ) ) {
 					if ( array_key_exists( 'name', $bot['producer'] ) ) {
 						$this->bot_producer_name = $bot['producer']['name'];
