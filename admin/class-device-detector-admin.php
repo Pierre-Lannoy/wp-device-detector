@@ -20,7 +20,7 @@ use PODeviceDetector\System\Blog;
 use PODeviceDetector\System\Date;
 use PODeviceDetector\System\Timezone;
 use PODeviceDetector\Plugin\Feature\CSSModifier;
-use PerfOpsOne\AdminMenus;
+use PerfOpsOne\Menus;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -84,7 +84,7 @@ class Device_Detector_Admin {
 	 * @return array    The completed menus array.
 	 * @since 1.0.0
 	 */
-	public function init_perfops_admin_menus( $perfops ) {
+	public function init_perfopsone_admin_menus( $perfops ) {
 		if ( Role::SUPER_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() ) {
 			$perfops['settings'][] = [
 				'name'          => PODD_PRODUCT_NAME,
@@ -96,7 +96,6 @@ class Device_Detector_Admin {
 				'menu_title'    => PODD_PRODUCT_NAME,
 				'capability'    => 'manage_options',
 				'callback'      => [ $this, 'get_settings_page' ],
-				'position'      => 50,
 				'plugin'        => PODD_SLUG,
 				'version'       => PODD_VERSION,
 				'activated'     => true,
@@ -114,7 +113,6 @@ class Device_Detector_Admin {
 				'menu_title'    => esc_html__( 'Devices', 'device-detector' ),
 				'capability'    => 'manage_options',
 				'callback'      => [ $this, 'get_viewer_page' ],
-				'position'      => 50,
 				'plugin'        => PODD_SLUG,
 				'activated'     => Option::network_get( 'analytics' ),
 				'remedy'        => esc_url( admin_url( 'admin.php?page=podd-settings' ) ),
@@ -138,13 +136,22 @@ class Device_Detector_Admin {
 	}
 
 	/**
+	 * Dispatch the items in the settings menu.
+	 *
+	 * @since 2.0.0
+	 */
+	public function finalize_admin_menus() {
+		Menus::finalize();
+	}
+
+	/**
 	 * Set the items in the settings menu.
 	 *
 	 * @since 1.0.0
 	 */
 	public function init_admin_menus() {
-		add_filter( 'init_perfops_admin_menus', [ $this, 'init_perfops_admin_menus' ] );
-		AdminMenus::initialize();
+		add_filter( 'init_perfopsone_admin_menus', [ $this, 'init_perfopsone_admin_menus' ] );
+		Menus::initialize();
 	}
 
 	/**
