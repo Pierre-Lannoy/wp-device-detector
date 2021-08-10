@@ -12,7 +12,7 @@
 namespace PODeviceDetector\Plugin\Feature;
 
 use UDD\DeviceDetector;
-use UDD\Parser\Device\DeviceParserAbstract;
+use UDD\Parser\Device\AbstractDeviceParser;
 use PODeviceDetector\System\Cache;
 
 use PODeviceDetector\API\Device;
@@ -69,7 +69,7 @@ class Detector {
 		}
 		$span = \DecaLog\Engine::tracesLogger( PODD_SLUG )->startSpan( 'Detection', DECALOG_SPAN_MAIN_RUN );
 		\DecaLog\Engine::eventsLogger( PODD_SLUG )->debug( 'Cache miss.' );
-		DeviceParserAbstract::setVersionTruncation( \UDD\Parser\Device\DeviceParserAbstract::VERSION_TRUNCATION_NONE );
+		AbstractDeviceParser::setVersionTruncation( \UDD\Parser\Device\AbstractDeviceParser::VERSION_TRUNCATION_NONE );
 		$parser = new \UDD\DeviceDetector( $ua );
 		$parser->parse();
 		$device = new Device( $parser );
@@ -248,7 +248,7 @@ class Detector {
 				$result = \UDD\Parser\Client\FeedReader::getAvailableClients();
 				break;
 			case 'brand':
-				$result = \UDD\Parser\Device\DeviceParserAbstract::$deviceBrands;
+				$result = \UDD\Parser\Device\AbstractDeviceParser::$deviceBrands;
 				break;
 			case 'bot':
 				$result = [];

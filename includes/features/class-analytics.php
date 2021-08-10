@@ -31,7 +31,7 @@ use PODeviceDetector\Plugin\Feature\ChannelTypes;
 use UDD\DeviceDetector;
 use UDD\Parser\Client\Browser;
 use UDD\Parser\OperatingSystem;
-use UDD\Parser\Device\DeviceParserAbstract;
+use UDD\Parser\Device\AbstractDeviceParser;
 use Feather;
 use Flagiconcss;
 use Morpheus;
@@ -1423,8 +1423,8 @@ class Analytics {
 				$title    = $this->get_title_selector();
 				break;
 			case 'device':
-				if ( array_key_exists( $this->id, DeviceParserAbstract::$deviceBrands ) ) {
-					$subtitle = DeviceParserAbstract::$deviceBrands[ $this->id ] . ( '-' !== $this->extended ? ' ' . $this->extended : '' );
+				if ( array_key_exists( $this->id, AbstractDeviceParser::$deviceBrands ) ) {
+					$subtitle = AbstractDeviceParser::$deviceBrands[ $this->id ] . ( '-' !== $this->extended ? ' ' . $this->extended : '' );
 				} else {
 					$subtitle = __( 'Generic', 'device-detector' );
 				}
