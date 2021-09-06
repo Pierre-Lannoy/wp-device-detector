@@ -38,10 +38,10 @@ class Initializer {
 		\PODeviceDetector\System\Sitehealth::init();
 		\PODeviceDetector\Plugin\Feature\Schema::init();
 		\PODeviceDetector\System\APCu::init();
-		if ( 'en_US' !== determine_locale() ) {
+		//if ( 'en_US' !== determine_locale() ) {
 			unload_textdomain( PODD_SLUG );
 			load_plugin_textdomain( PODD_SLUG );
-		}
+		//}
 	}
 
 	/**
