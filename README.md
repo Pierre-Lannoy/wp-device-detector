@@ -36,15 +36,11 @@ Based on the amazing [Matomo](https://github.com/matomo-org/matomo) UDD, Device 
 
 ## WP-CLI
 
-__Device Detector__ supports an extensive set of WP-CLI commands to:
+__Device Detector__ implements a set of WP-CLI commands. For a full help on these commands, please read [this guide](WP-CLI.md).
 
-* get a device detail: see `wp help device describe` for details;
-* display Device Detector status: see `wp help device status` for details;
-* toggle on/off main settings: see `wp help device settings` for details;
-* describe engine capacities: see `wp help device engine` for details;
-* display devices statistics: see `wp help device analytics` for details.
+## Hooks
 
-For a full help on WP-CLI commands in Device Detector, please [read this guide](WP-CLI.md).
+__Device Detector__ introduces some filters and actions to allow plugin customization. Please, read the [hooks reference](HOOKS.md) to learn more about them.
 
 ## Installation
 

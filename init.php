@@ -12,7 +12,7 @@ define( 'PODD_PRODUCT_URL', 'https://github.com/Pierre-Lannoy/wp-device-detector
 define( 'PODD_PRODUCT_SHORTNAME', 'Device Detector' );
 define( 'PODD_PRODUCT_ABBREVIATION', 'podd' );
 define( 'PODD_SLUG', 'device-detector' );
-define( 'PODD_VERSION', '2.4.0' );
+define( 'PODD_VERSION', '2.5.0-dev0' );
 define( 'PODD_API_VERSION', '1' );
 define( 'PODD_CODENAME', '"-"' );
 
