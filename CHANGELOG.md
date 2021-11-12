@@ -17,7 +17,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Improved update process on high-traffic sites to avoid concurrent resources accesses.
 - Updated icons for brands, browsers and oses.
 - Upgraded UDD from version 4.3.0 to version 5.0.0: dozens of added and improved detections.
-- [BC] Device Detector API version is now v3. 
+- [BC] Device Detector API version is now v3.
+- Updated labels and links in plugins page.
 - Updated the `README.md` file.
 
 ### Fixed
