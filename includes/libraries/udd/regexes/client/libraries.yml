@@ -143,3 +143,26 @@
 - regex: 'akka-http/([\.\d]+)'
   name: 'Akka HTTP'
   version: '$1'
+
+# this added need added tests
+- regex: 'aria2(?:/(\d+[\.\d]+))?'
+  name: 'Aria2'
+  version: '$1'
+
+- regex: 'BTWebClient/'
+  name: 'uTorrent'
+  version: ''
+
+- regex: 'gvfs/(?:(\d+[\.\d]+))?'
+  name: 'gvfs'
+  version: '$1'
+
+# https://openwrt.org/packages/pkgdata/uclient-fetch
+- regex: 'uclient-fetch'
+  name: 'uclient-fetch'
+  version: ''
+
+# https://github.com/microsoft/cpprestsdk
+- regex: 'cpprestsdk/([\.\d]+)'
+  name: 'C++ REST SDK'
+  version: '$1'
