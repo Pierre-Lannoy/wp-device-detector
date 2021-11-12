@@ -9,10 +9,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Compatibility with WordPress 5.9.
 - 3 new devices types can be detected: smart speakers, wearables and peripherals (projectors, etc.).
 - New API properties: `device_is_smart_speaker`, `device_is_wearable` and `device_is_peripheral`.
+- New icons for brands.
 - The available hooks (filters and actions) are now described in `HOOKS.md` file.
 
 ### Changed
+- Improved detection for iOS and iPadOS.
 - Improved update process on high-traffic sites to avoid concurrent resources accesses.
+- Updated icons for brands, browsers and oses.
 - Upgraded UDD from version 4.3.0 to version 5.0.0: dozens of added and improved detections.
 - [BC] Device Detector API version is now v3. 
 - Updated the `README.md` file.
