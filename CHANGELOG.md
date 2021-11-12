@@ -3,14 +3,18 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.5.0] - Not yet released
+## [3.0.0] - Not yet released
 
 ### Added
 - Compatibility with WordPress 5.9.
+- 3 new devices types can be detected: smart speakers, wearables and peripherals (projectors, etc.).
+- New API properties: `device_is_smart_speaker`, `device_is_wearable` and `device_is_peripheral`.
 - The available hooks (filters and actions) are now described in `HOOKS.md` file.
 
 ### Changed
 - Improved update process on high-traffic sites to avoid concurrent resources accesses.
+- Upgraded UDD from version 4.3.0 to version 5.0.0: dozens of added and improved detections.
+- [BC] Device Detector API version is now v3. 
 - Updated the `README.md` file.
 
 ### Fixed

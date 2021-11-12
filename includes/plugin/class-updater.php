@@ -71,7 +71,7 @@ class Updater {
 	 */
 	private function update( $from ) {
 		$schema = new Schema();
-		$schema->update();
+		$schema->update( $from );
 		Cache::delete_pool();
 		\DecaLog\Engine::eventsLogger( PODD_SLUG )->notice( 'Cache purged.' );
 	}

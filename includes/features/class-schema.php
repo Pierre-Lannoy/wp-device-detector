@@ -11,6 +11,9 @@
 
 namespace PODeviceDetector\Plugin\Feature;
 
+use PODeviceDetector\Plugin\Feature\ClassTypes;
+use PODeviceDetector\Plugin\Feature\ClientTypes;
+use PODeviceDetector\Plugin\Feature\DeviceTypes;
 use PODeviceDetector\System\Option;
 use PODeviceDetector\System\Database;
 use PODeviceDetector\System\Environment;
@@ -19,9 +22,6 @@ use PODeviceDetector\System\Favicon;
 use PODeviceDetector\System\Cache;
 use PODeviceDetector\System\Timezone;
 use PODeviceDetector\Plugin\Feature\Detector;
-use PODeviceDetector\Plugin\Feature\ClassTypes;
-use PODeviceDetector\Plugin\Feature\DeviceTypes;
-use PODeviceDetector\Plugin\Feature\ClientTypes;
 
 /**
  * Define the schema functionality.
@@ -197,16 +197,62 @@ class Schema {
 	/**
 	 * Update the schema.
 	 *
+	 * @param   string $from   The version from which the plugin is updated.
 	 * @since    1.1.0
 	 */
-	public function update() {
+	public function update( $from ) {
 		global $wpdb;
-		try {
-			$this->create_table();
-			\DecaLog\Engine::eventsLogger( PODD_SLUG )->debug( sprintf( 'Table "%s" updated.', $wpdb->base_prefix . self::$statistics ) );
-			\DecaLog\Engine::eventsLogger( PODD_SLUG )->info( 'Schema updated.' );
-		} catch ( \Throwable $e ) {
-			\DecaLog\Engine::eventsLogger( PODD_SLUG )->alert( sprintf( 'Unable to update "%s" table: %s', $wpdb->base_prefix . self::$statistics, $e->getMessage() ), [ 'code' => $e->getCode() ] );
+
+		// Starting from 3.0.0, Device Detector supports smart speakers, wearables and peripheral detection.
+		// We have to make a copy of the table, delete the old one, then rename the newly created table to avoid
+		// potential "#1118 - Row size too large" error that may appear if we just make a "ALTER TABLE ... MODIFY COLUMN ...".
+		if ( version_compare( '3.0.0', $from, '>' ) ) {
+			try {
+				$charset_collate = 'DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci';
+				$sql             = 'CREATE TABLE IF NOT EXISTS ' . $wpdb->base_prefix . self::$statistics . '_mig';
+				$sql            .= " (`timestamp` date NOT NULL DEFAULT '0000-00-00',";
+				$sql            .= " `site` int(11) UNSIGNED NOT NULL DEFAULT '0',";
+				$sql            .= " `channel` enum('cli','cron','ajax','xmlrpc','api','feed','wback','wfront','unknown') NOT NULL DEFAULT 'unknown',";
+				$sql            .= " `hit` int(11) UNSIGNED NOT NULL DEFAULT '1',";
+				$sql            .= " `class` enum('" . implode( "','", ClassTypes::$classes ) . "') NOT NULL DEFAULT 'other',";
+				$sql            .= " `device` enum('" . implode( "','", DeviceTypes::$devices ) . "') NOT NULL DEFAULT 'other',";
+				$sql            .= " `client` enum('" . implode( "','", ClientTypes::$clients ) . "') NOT NULL DEFAULT 'other',";
+				$sql            .= " `brand_id` varchar(2) NOT NULL DEFAULT '-',";
+				$sql            .= " `brand` varchar(40) NOT NULL DEFAULT '-',";  // May be device brand or bot producer.
+				$sql            .= " `model` varchar(40) NOT NULL DEFAULT '-',";
+				$sql            .= " `client_id` varchar(2) NOT NULL DEFAULT '-',";
+				$sql            .= " `name` varchar(40) NOT NULL DEFAULT '-',";  // May be client name or bot name.
+				$sql            .= " `client_version` varchar(20) NOT NULL DEFAULT '-',";
+				$sql            .= " `engine` varchar(20) NOT NULL DEFAULT '-',";
+				$sql            .= " `os_id` varchar(3) NOT NULL DEFAULT '-',";
+				$sql            .= " `os` varchar(25) NOT NULL DEFAULT '-',";
+				$sql            .= " `os_version` varchar(20) NOT NULL DEFAULT '-',";
+				$sql            .= " `url` varchar(2083) NOT NULL DEFAULT '-',";
+				$sql            .= ' UNIQUE KEY u_stat (timestamp, site, channel, class, device, client, brand_id, model, name, client_version, os_id, os_version)';
+				$sql            .= ") $charset_collate;";
+				// phpcs:ignore
+				$wpdb->query( $sql );
+
+				$sql = 'INSERT INTO ' . $wpdb->base_prefix . self::$statistics . '_mig (`timestamp`, `site`, `channel`, `hit`, `class`, `device`, `client`, `brand_id`, `brand`, `model`, `client_id`, `name`, `client_version`, `engine`, `os_id`, `os`, `os_version`, `url`) SELECT `timestamp`, `site`, `channel`, `hit`, `class`, `device`, `client`, `brand_id`, `brand`, `model`, `client_id`, `name`, `client_version`, `engine`, `os_id`, `os`, `os_version`, `url` FROM ' . $wpdb->base_prefix . self::$statistics . ';';
+				// phpcs:ignore
+				if ( false === $wpdb->query( $sql ) ) {
+					throw new \Exception();
+				}
+				$sql = 'DROP TABLE IF EXISTS ' . $wpdb->base_prefix . self::$statistics;
+				// phpcs:ignore
+				if ( false === $wpdb->query( $sql ) ) {
+					throw new \Exception();
+				}
+				$sql = 'RENAME TABLE ' . $wpdb->base_prefix . self::$statistics . '_mig TO ' . $wpdb->base_prefix . self::$statistics . ';';
+				// phpcs:ignore
+				if ( false === $wpdb->query( $sql ) ) {
+					throw new \Exception();
+				}
+				\DecaLog\Engine::eventsLogger( PODD_SLUG )->debug( sprintf( 'Table "%s" updated.', $wpdb->base_prefix . self::$statistics ) );
+				\DecaLog\Engine::eventsLogger( PODD_SLUG )->info( 'Schema updated.' );
+			} catch ( \Throwable $e ) {
+				\DecaLog\Engine::eventsLogger( PODD_SLUG )->alert( sprintf( 'Unable to update "%s" table: %s', $wpdb->base_prefix . self::$statistics, $e->getMessage() ), [ 'code' => $e->getCode() ] );
+			}
 		}
 	}
 

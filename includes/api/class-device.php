@@ -51,6 +51,9 @@ class Device {
 			$this->device_is_car_browser           = $detector->isCarBrowser();
 			$this->device_is_tv                    = $detector->isTV();
 			$this->device_is_smart_display         = $detector->isSmartDisplay();
+			$this->device_is_smart_speaker         = $detector->isSmartSpeaker();
+			$this->device_is_wearable              = $detector->isWearable();
+			$this->device_is_peripheral            = $detector->isPeripheral();
 			$this->device_is_camera                = $detector->isCamera();
 			$this->device_full_type                = $this->get_device_full_type();
 			$this->client_is_browser               = $detector->isBrowser();
@@ -244,6 +247,15 @@ class Device {
 		}
 		if ( $this->device_is_smart_display ) {
 			return DeviceTypes::$device_names['smart-display'];
+		}
+		if ( $this->device_is_smart_speaker ) {
+			return DeviceTypes::$device_names['smart-speaker'];
+		}
+		if ( $this->device_is_wearable ) {
+			return DeviceTypes::$device_names['wearable'];
+		}
+		if ( $this->device_is_peripheral ) {
+			return DeviceTypes::$device_names['peripheral'];
 		}
 		if ( $this->device_is_camera ) {
 			return DeviceTypes::$device_names['camera'];
@@ -466,6 +478,24 @@ class Device {
 	 * @since   1.0.0
 	 */
 	public $device_is_smart_display = false;
+
+	/**
+	 * @var boolean  True if it's a smart speaker, false otherwise.
+	 * @since   3.0.0
+	 */
+	public $device_is_smart_speaker = false;
+
+	/**
+	 * @var boolean  True if it's a wearable, false otherwise.
+	 * @since   3.0.0
+	 */
+	public $device_is_wearable = false;
+
+	/**
+	 * @var boolean  True if it's a peripheral, false otherwise.
+	 * @since   3.0.0
+	 */
+	public $device_is_peripheral = false;
 
 	/**
 	 * @var boolean  True if it's a camera, false otherwise.

@@ -28,7 +28,7 @@ class DeviceTypes {
 	 * @since  1.0.0
 	 * @var    array    $devices    Maintains the devices definitions.
 	 */
-	public static $devices = [ 'camera','car-browser','console','featurephone','phablet','portable-media-player','smartphone','smart-display','tablet','tv','other' ];
+	public static $devices = [ 'camera','car-browser','console','featurephone','phablet','portable-media-player','smartphone','smart-display','smart-speaker','wearable','peripheral','tablet','tv','other' ];
 
 	/**
 	 * The list of available devices names.
@@ -52,6 +52,9 @@ class DeviceTypes {
 		self::$device_names['portable-media-player'] = esc_html__( 'Portable media player', 'device-detector' );
 		self::$device_names['smartphone']            = esc_html__( 'Smartphone', 'device-detector' );
 		self::$device_names['smart-display']         = esc_html__( 'Smart display', 'device-detector' );
+		self::$device_names['smart-speaker']         = esc_html__( 'Smart speaker', 'device-detector' );
+		self::$device_names['wearable']              = esc_html__( 'Wearable', 'device-detector' );
+		self::$device_names['peripheral']            = esc_html__( 'Peripheral', 'device-detector' );
 		self::$device_names['tablet']                = esc_html__( 'Tablet', 'device-detector' );
 		self::$device_names['tv']                    = esc_html__( 'TV', 'device-detector' );
 		self::$device_names['other']                 = esc_html__( 'Other', 'device-detector' );

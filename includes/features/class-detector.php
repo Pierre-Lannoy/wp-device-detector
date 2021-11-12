@@ -119,6 +119,12 @@ class Detector {
 						return 'smartphone';
 					} elseif ( $value->device_is_smart_display ) {
 						return 'smart-display';
+					} elseif ( $value->device_is_smart_speaker ) {
+						return 'smart-speaker';
+					} elseif ( $value->device_is_wearable ) {
+						return 'wearable';
+					} elseif ( $value->device_is_peripheral ) {
+						return 'peripheral';
 					} elseif ( $value->device_is_tablet ) {
 						return 'tablet';
 					} elseif ( $value->device_is_tv ) {
@@ -277,7 +283,7 @@ class Detector {
 				$result = [ esc_html__( 'Mobile', 'device-detector' ), esc_html__( 'Desktop', 'device-detector' ), esc_html__( 'Bot', 'device-detector' ) ];
 				break;
 			case 'device':
-				$result = [ esc_html__( 'Smart Display', 'device-detector' ), esc_html__( 'Smartphone', 'device-detector' ), esc_html__( 'Tablet', 'device-detector' ), esc_html__( 'TV', 'device-detector' ), esc_html__( 'Feature Phone', 'device-detector' ), esc_html__( 'Phablet', 'device-detector' ), esc_html__( 'Portable Media Player', 'device-detector' ), esc_html__( 'Camera', 'device-detector' ), esc_html__( 'Car Browser', 'device-detector' ), esc_html__( 'Console', 'device-detector' ) ];
+				$result = [ esc_html__( 'Smart Speaker', 'device-detector' ), esc_html__( 'Wearable', 'device-detector' ), esc_html__( 'Peripheral', 'device-detector' ), esc_html__( 'Smart Display', 'device-detector' ), esc_html__( 'Smartphone', 'device-detector' ), esc_html__( 'Tablet', 'device-detector' ), esc_html__( 'TV', 'device-detector' ), esc_html__( 'Feature Phone', 'device-detector' ), esc_html__( 'Phablet', 'device-detector' ), esc_html__( 'Portable Media Player', 'device-detector' ), esc_html__( 'Camera', 'device-detector' ), esc_html__( 'Car Browser', 'device-detector' ), esc_html__( 'Console', 'device-detector' ) ];
 				break;
 			case 'client':
 				$result = [ esc_html__( 'PIM', 'device-detector' ), esc_html__( 'Browser', 'device-detector' ), esc_html__( 'Application Library', 'device-detector' ), esc_html__( 'Media Player', 'device-detector' ), esc_html__( 'Feed Reader', 'device-detector' ), esc_html__( 'Mobile Application', 'device-detector' ) ];
