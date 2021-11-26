@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Improved detection for iOS and iPadOS.
 - Improved update process on high-traffic sites to avoid concurrent resources accesses.
 - Updated icons for brands, browsers and oses.
+- X axis for graphs have been redesigned and are more accurate.
 - Upgraded UDD from version 4.3.0 to version 5.0.0: dozens of added and improved detections.
 - [BC] Device Detector API version is now v3.
 - Updated labels and links in plugins page.

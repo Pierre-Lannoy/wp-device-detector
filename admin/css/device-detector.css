@@ -32,6 +32,7 @@
     transition: opacity 1.4s ease-in;
 }
 
+
 .podd_test_ua_container {
     padding: 8px;
 }
@@ -561,7 +562,7 @@
 }
 
 .ct-labels .ct-horizontal {
-    transform: translateX(-18px);
+    transform: translateX(-32px);
 }
 
 .ct-labels .ct-vertical {
