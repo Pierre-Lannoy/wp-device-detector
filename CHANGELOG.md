@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Compatibility with WordPress 5.9.
 - 3 new devices types can be detected: smart speakers, wearables and peripherals (projectors, etc.).
 - New API properties: `device_is_smart_speaker`, `device_is_wearable` and `device_is_peripheral`.
+- New button in settings to install recommended plugins.
 - New icons for brands.
 - The available hooks (filters and actions) are now described in `HOOKS.md` file.
 
