@@ -3,7 +3,7 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [3.0.0] - Not yet released
+## [3.0.0] - 2021-12-07
 
 ### Added
 - Compatibility with WordPress 5.9.
