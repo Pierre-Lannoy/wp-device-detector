@@ -13,7 +13,7 @@ wp_localize_script(
 	PODD_ASSETS_ID,
 	'describer',
 	[
-		'restUrl'   => esc_url_raw( rest_url() . 'device-detector/v' . IPLOCATOR_API_VERSION . '/describe' ),
+		'restUrl'   => esc_url_raw( rest_url() . 'device-detector/v' . PODD_API_VERSION . '/describe' ),
 		'restNonce' => wp_create_nonce( 'wp_rest' ),
         'sGeneric'  => esc_html__( 'Generic', 'device-detector' ),
 	]
