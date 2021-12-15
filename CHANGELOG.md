@@ -3,6 +3,11 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - Not Yet Released
+
+### Changed
+- Updated DecaLog SDK from version 2.0.1 to version 2.0.2.
+
 ## [3.0.2] - 2021-12-15
 
 ### Fixed

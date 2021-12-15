@@ -26,7 +26,7 @@ class Engine {
 	 * @since  1.0.0
 	 * @var    string    $version    Maintains the engine version.
 	 */
-	private static $version = '2.0.1';
+	private static $version = '2.0.2';
 
 	/**
 	 * The logger instances and parameters.
