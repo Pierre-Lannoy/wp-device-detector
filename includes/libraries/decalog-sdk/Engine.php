@@ -294,5 +294,5 @@ if ( ! defined( 'DECALOG_SPAN_SHUTDOWN' ) ) {
 }
 
 if ( ! defined( 'DECALOG_TRACEID' ) ) {
-	define( 'DECALOG_TRACEID', $this->generate_unique_id( 32 ) );
+	define( 'DECALOG_TRACEID', \DecaLog\Engine::generate_unique_id( 32 ) );
 }
