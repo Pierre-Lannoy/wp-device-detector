@@ -29,7 +29,7 @@ $img = '<img id="podd_test_ua_wait" style="display:none;width:22px;vertical-alig
 <div class="wrap">
 	<h2><?php echo esc_html__( 'Devices Test', 'device-detector' ); ?></h2>
     <div class="podd_test_ua_container">
-        <input class="regular-text" id="podd_test_ua_value" placeholder="" type="text" value="<?php echo filter_input( INPUT_SERVER, 'HTTP_USER_AGENT', FILTER_SANITIZE_STRING ); ?>">
+        <input class="regular-text" id="podd_test_ua_value" placeholder="" type="text" value="<?php echo filter_input( INPUT_SERVER, 'HTTP_USER_AGENT', FILTER_SANITIZE_FULL_SPECIAL_CHARS ); ?>">
         <button id="podd_test_ua_action" class="button button-primary"><span id="podd_test_ua_text"><?php echo esc_html__( 'Test Now', 'device-detector' ); ?></span><?php echo $img; ?></button>
     </div>
     <div id="podd_test_ua_cdescriber"><div id="podd_test_ua_describer" style="display:none"></div></div>

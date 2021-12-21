@@ -53,7 +53,7 @@ class Detector {
 	 */
 	public static function new( $ua = '' ) {
 		if ( '' === $ua ) {
-			$ua = filter_input( INPUT_SERVER, 'HTTP_USER_AGENT', FILTER_SANITIZE_STRING );
+			$ua = filter_input( INPUT_SERVER, 'HTTP_USER_AGENT', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 		}
 		if ( ! isset( $ua ) ) {
 			$ua = 'unknown';
