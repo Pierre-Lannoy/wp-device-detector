@@ -57,7 +57,7 @@ class Icons {
 		// phpcs:ignore
 		$id = Cache::id( serialize( [ 'name' => $name, 'type' => $type ] ), 'morpheus/' );
 		if ( Cache::is_memory() ) {
-			$flag = Cache::get_shared( $id );
+			$flag = Cache::get_global( $id );
 			if ( $flag ) {
 				return $flag;
 			}
@@ -71,7 +71,7 @@ class Icons {
 		}
 		if ( Cache::is_memory() ) {
 			// phpcs:ignore
-			Cache::set_shared( $id, file_get_contents( $filename ), 'infinite' );
+			Cache::set_global( $id, file_get_contents( $filename ), 'infinite' );
 		} else {
 			// phpcs:ignore
 			self::$icons[ $fname ] = file_get_contents( $filename );
