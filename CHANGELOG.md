@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 - Object caching method may be wrongly detected in Site Health status (thanks to [freshuk](https://profiles.wordpress.org/freshuk/)).
 - There may be name collisions with internal APCu cache.
+- An innocuous Mysql error may be triggered at plugin activation.
 
 ## [3.0.2] - 2021-12-15
 

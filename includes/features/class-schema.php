@@ -65,7 +65,7 @@ class Schema {
 	 * @since    1.0.0
 	 */
 	public static function write() {
-		if ( Option::network_get( 'analytics' ) ) {
+		if ( Option::network_get( 'analytics', false ) ) {
 			self::write_current_to_database();
 		}
 		self::purge();
@@ -188,6 +188,7 @@ class Schema {
 			$this->create_table();
 			\DecaLog\Engine::eventsLogger( PODD_SLUG )->debug( sprintf( 'Table "%s" created.', $wpdb->base_prefix . self::$statistics ) );
 			\DecaLog\Engine::eventsLogger( PODD_SLUG )->info( 'Schema installed.' );
+			Option::network_set( 'analytics', true );
 		} catch ( \Throwable $e ) {
 			\DecaLog\Engine::eventsLogger( PODD_SLUG )->alert( sprintf( 'Unable to create "%s" table: %s', $wpdb->base_prefix . self::$statistics, $e->getMessage() ), [ 'code' => $e->getCode() ] );
 			\DecaLog\Engine::eventsLogger( PODD_SLUG )->alert( 'Schema not installed.', [ 'code' => $e->getCode() ] );
