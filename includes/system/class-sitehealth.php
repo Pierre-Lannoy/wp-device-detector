@@ -120,7 +120,7 @@ class Sitehealth {
 		$key = 'perfopsone_objectcache';
 		if ( ! array_key_exists( $key, $debug_info ) ) {
 			$debug_info[ $key ] = [
-				'label'  => esc_html__( 'Object cache', 'device-detector' ),
+				'label'  => 'PerfOps One - ' . esc_html__( 'Object cache', 'device-detector' ),
 				'fields' => Cache::debug_info(),
 			];
 		}
