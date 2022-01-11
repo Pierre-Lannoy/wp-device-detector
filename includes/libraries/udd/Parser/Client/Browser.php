@@ -85,6 +85,7 @@ class Browser extends AbstractClientParser
         'BF' => 'Byffox',
         'CA' => 'Camino',
         'CL' => 'CCleaner',
+        'CJ' => 'ChanjetCloud',
         'C6' => 'Chedot',
         'C0' => 'Centaury',
         'CC' => 'Coc Coc',
@@ -169,7 +170,10 @@ class Browser extends AbstractClientParser
         'HE' => 'Helio',
         'HO' => 'hola! Browser',
         'HJ' => 'HotJava',
-        'HU' => 'Huawei Browser',
+        'HU' => 'Huawei Browser Mobile',
+        'HP' => 'Huawei Browser',
+        'IO' => 'iBrowser',
+        'IS' => 'iBrowser Mini',
         'IB' => 'IBrowse',
         'IC' => 'iCab',
         'I2' => 'iCab Mobile',
@@ -338,6 +342,7 @@ class Browser extends AbstractClientParser
         'ST' => 'Streamy',
         'SX' => 'Swiftfox',
         'SZ' => 'Seznam Browser',
+        'TP' => 'T+Browser',
         'TR' => 'T-Browser',
         'TO' => 't-online.de Browser',
         'TA' => 'Tao Browser',
@@ -406,7 +411,8 @@ class Browser extends AbstractClientParser
             'SG', 'SS', 'SU', 'SV', 'SW', 'SY', 'SZ', 'T1', 'TA',
             'TB', 'TG', 'TR', 'TS', 'TU', 'TV', 'UB', 'UR', 'VE',
             'VG', 'VI', 'VM', 'WP', 'WH', 'XV', 'YJ', 'YN', 'FH',
-            'B1', 'BO', 'HB', 'PC', 'LA', 'LT', 'PD', 'HR',
+            'B1', 'BO', 'HB', 'PC', 'LA', 'LT', 'PD', 'HR', 'HU',
+            'HP', 'IO', 'TP', 'CJ',
         ],
         'Firefox'            => [
             'AX', 'BI', 'BF', 'BH', 'BN', 'C0', 'CU', 'EI', 'F1',
@@ -437,7 +443,7 @@ class Browser extends AbstractClientParser
         'MN', 'MZ', 'NX', 'OC', 'OI', 'OM', 'OZ', 'PU', 'PI',
         'PE', 'QU', 'RE', 'S0', 'S7', 'SA', 'SB', 'SG', 'SK',
         'ST', 'SU', 'T1', 'UH', 'UM', 'UT', 'VE', 'VV', 'WI',
-        'WP', 'YN',
+        'WP', 'YN', 'IO', 'IS',
     ];
 
     /**
