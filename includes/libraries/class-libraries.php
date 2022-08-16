@@ -252,7 +252,7 @@ class Libraries {
 		$list[]          = $item;
 		$item            = [];
 		$item['name']    = 'Moment';
-		$item['version'] = '2.29.2';
+		$item['version'] = '2.29.4';
 		$item['author']  = sprintf( esc_html__( '%s & contributors', 'device-detector' ), 'Tim Wood' );
 		$item['url']     = 'https://github.com/moment/moment';
 		$item['license'] = $this->license_name( 'mit' );
