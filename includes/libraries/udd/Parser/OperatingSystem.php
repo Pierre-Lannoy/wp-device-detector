@@ -94,6 +94,7 @@ class OperatingSystem extends AbstractParser
         'LIN' => 'GNU/Linux',
         'LND' => 'LindowsOS',
         'LNS' => 'Linspire',
+        'LEN' => 'Lineage OS',
         'LBT' => 'Lubuntu',
         'LOS' => 'Lumin OS',
         'VLN' => 'VectorLinux',
@@ -112,6 +113,7 @@ class OperatingSystem extends AbstractParser
         'MRE' => 'MRE',
         'WII' => 'Nintendo',
         'NDS' => 'Nintendo Mobile',
+        'NOV' => 'Nova',
         'OS2' => 'OS/2',
         'T64' => 'OSF1',
         'OBS' => 'OpenBSD',
@@ -125,9 +127,11 @@ class OperatingSystem extends AbstractParser
         'PS3' => 'PlayStation',
         'PUR' => 'PureOS',
         'RHT' => 'Red Hat',
+        'REV' => 'Revenge OS',
         'ROS' => 'RISC OS',
         'ROK' => 'Roku OS',
         'RSO' => 'Rosa',
+        'ROU' => 'RouterOS',
         'REM' => 'Remix OS',
         'REX' => 'REX',
         'RZD' => 'RazoDroiD',
@@ -135,6 +139,7 @@ class OperatingSystem extends AbstractParser
         'SSE' => 'SUSE',
         'SAF' => 'Sailfish OS',
         'SEE' => 'SeewoOS',
+        'SIR' => 'Sirin OS',
         'SLW' => 'Slackware',
         'SOS' => 'Solaris',
         'SYL' => 'Syllable',
@@ -174,7 +179,7 @@ class OperatingSystem extends AbstractParser
     protected static $osFamilies = [
         'Android'               => [
             'AND', 'CYN', 'FIR', 'REM', 'RZD', 'MLD', 'MCD', 'YNS', 'GRI', 'HAR',
-            'ADR', 'CLR', 'BOS',
+            'ADR', 'CLR', 'BOS', 'REV', 'LEN', 'SIR',
         ],
         'AmigaOS'               => ['AMG', 'MOR'],
         'BlackBerry'            => ['BLB', 'QNX'],
@@ -193,6 +198,7 @@ class OperatingSystem extends AbstractParser
             'ORD', 'TOS', 'RSO', 'DEE', 'FRE', 'MAG', 'FEN', 'CAI', 'PCL', 'HAS',
             'LOS', 'DVK', 'ROK', 'OWR', 'OTV', 'KTV', 'PUR', 'PLA', 'FUC', 'PAR',
             'FOR', 'MON', 'KAN', 'ZEN', 'LND', 'LNS', 'CHN', 'AMZ', 'TEN', 'CST',
+            'NOV', 'ROU',
         ],
         'Mac'                   => ['MAC'],
         'Mobile Gaming Console' => ['PSP', 'NDS', 'XBX'],
@@ -315,7 +321,7 @@ class OperatingSystem extends AbstractParser
 
         $platform    = $this->parsePlatform();
         $family      = self::getOsFamily($short);
-        $androidApps = ['com.hisense.odinbrowser'];
+        $androidApps = ['com.hisense.odinbrowser', 'com.seraphic.openinet.pre', 'com.appssppa.idesktoppcbrowser'];
 
         if (null !== $this->clientHints) {
             if (\in_array($this->clientHints->getApp(), $androidApps) && 'Android' !== $name) {
@@ -437,7 +443,7 @@ class OperatingSystem extends AbstractParser
         return [
             'name'       => $name,
             'short_name' => $short,
-            'version'    => $version,
+            'version'    => $this->buildVersion($version, []),
         ];
     }
 
@@ -520,7 +526,7 @@ class OperatingSystem extends AbstractParser
             }
 
             if (false !== \strpos($arch, 'x64')
-                || (false !== \strpos($arch, 'x86')) && '64' === $this->clientHints->getBitness()
+                || (false !== \strpos($arch, 'x86') && '64' === $this->clientHints->getBitness())
             ) {
                 return 'x64';
             }
@@ -542,7 +548,7 @@ class OperatingSystem extends AbstractParser
             return 'SuperH';
         }
 
-        if ($this->matchUserAgent('64-?bit|WOW64|(?:Intel)?x64|win64|amd64|x86_?64')) {
+        if ($this->matchUserAgent('64-?bit|WOW64|(?:Intel)?x64|WINDOWS_64|win64|amd64|x86_?64')) {
             return 'x64';
         }
 

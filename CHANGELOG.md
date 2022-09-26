@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 - Improved ephemeral cache in analytics.
+- Upgraded UDD from version 6.0.0 to version 6.0.3: dozens of added and improved detections.
 
 ### Fixed
 - [SEC003] Moment.js library updated to 2.29.4 / [Regular Expression Denial of Service (ReDoS)](https://github.com/moment/moment/issues/6012).
