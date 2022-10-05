@@ -7,12 +7,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 - Compatibility with WordPress 6.1.
-- [WPCLI] The result of `wp device` commands are now logged in [DecaLog](https://wordpress.org/plugins/decalog/).
+- [WPCLI] The results of `wp device` commands are now logged in [DecaLog](https://wordpress.org/plugins/decalog/).
 
 ### Changed
 - Improved ephemeral cache in analytics.
 - Upgraded UDD from version 6.0.0 to version 6.0.3: dozens of added and improved detections.
-- [WPCLI] The result of `wp device` commands are now prefixed by the product name.
+- [WPCLI] The results of `wp device` commands are now prefixed by the product name.
 
 ### Fixed
 - [SEC003] Moment.js library updated to 2.29.4 / [Regular Expression Denial of Service (ReDoS)](https://github.com/moment/moment/issues/6012).
