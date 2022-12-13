@@ -45,7 +45,7 @@ class Device_Detector_Public {
 	 * @since 1.0.0
 	 */
 	public function enqueue_styles() {
-		$this->assets->register_style( PODD_ASSETS_ID, PODD_PUBLIC_URL, 'css/device-detector.min.css' );
+		//$this->assets->register_style( PODD_ASSETS_ID, PODD_PUBLIC_URL, 'css/device-detector.min.css' );
 	}
 
 	/**
@@ -54,7 +54,7 @@ class Device_Detector_Public {
 	 * @since 1.0.0
 	 */
 	public function enqueue_scripts() {
-		$this->assets->register_script( PODD_ASSETS_ID, PODD_PUBLIC_URL, 'js/device-detector.min.js', [ 'jquery' ] );
+		//$this->assets->register_script( PODD_ASSETS_ID, PODD_PUBLIC_URL, 'js/device-detector.min.js', [ 'jquery' ] );
 	}
 
 }
