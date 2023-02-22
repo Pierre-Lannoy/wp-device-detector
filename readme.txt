@@ -1,5 +1,5 @@
 === Device Detector ===
-Contributors: PierreLannoy
+Contributors: PierreLannoy, hosterra
 Tags: bot, detection, detector, device, mobile
 Requires at least: 5.2
 Requires PHP: 7.2
