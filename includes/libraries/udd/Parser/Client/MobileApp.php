@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace UDD\Parser\Client;
 
+use UDD\Cache\CacheInterface;
 use UDD\ClientHints;
 use UDD\Parser\Client\Hints\AppHints;
 
@@ -69,6 +70,17 @@ class MobileApp extends AbstractClientParser
     {
         parent::setUserAgent($ua);
         $this->appHints->setUserAgent($ua);
+    }
+
+    /**
+     * Sets the Cache class
+     *
+     * @param CacheInterface $cache
+     */
+    public function setCache(CacheInterface $cache): void
+    {
+        parent::setCache($cache);
+        $this->appHints->setCache($cache);
     }
 
     /**

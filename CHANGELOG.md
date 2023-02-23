@@ -15,6 +15,7 @@ This sponsoring is a way to keep PerfOps One plugins suite free, open source and
 - Compatibility with WordPress 6.2.
 
 ### Changed
+- Upgraded UDD from version 6.0.3 to version 6.1.0: dozens of added and improved detections.
 - Improved loading by removing unneeded jQuery references in public rendering (thanks to [Kishorchand](https://github.com/Kishorchandth)).
 
 ### Fixed

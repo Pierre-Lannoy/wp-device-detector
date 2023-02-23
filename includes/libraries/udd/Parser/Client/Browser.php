@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace UDD\Parser\Client;
 
+use UDD\Cache\CacheInterface;
 use UDD\ClientHints;
 use UDD\Parser\Client\Browser\Engine;
 use UDD\Parser\Client\Hints\BrowserHints;
@@ -519,6 +520,7 @@ class Browser extends AbstractClientParser
         'WH' => 'Whale Browser',
         'WO' => 'wOSBrowser',
         'WT' => 'WeTab Browser',
+        'WL' => 'Wolvic',
         'YG' => 'YAGI',
         'YJ' => 'Yahoo! Japan Browser',
         'YA' => 'Yandex Browser',
@@ -586,7 +588,7 @@ class Browser extends AbstractClientParser
             'FB', 'FE', 'FF', 'FM', 'FR', 'FY', 'GZ', 'I4', 'IF',
             'IW', 'LH', 'LY', 'MB', 'MN', 'MO', 'MY', 'OA', 'OS',
             'PI', 'PX', 'QA', 'QM', 'S5', 'SX', 'TF', 'TO', 'WF',
-            'ZV', 'FP', 'AD',
+            'ZV', 'FP', 'AD', 'WL',
         ],
         'Internet Explorer'  => ['BZ', 'CZ', 'IE', 'IM', 'PS'],
         'Konqueror'          => ['KO'],
@@ -661,6 +663,17 @@ class Browser extends AbstractClientParser
     {
         parent::setUserAgent($ua);
         $this->browserHints->setUserAgent($ua);
+    }
+
+    /**
+     * Sets the Cache class
+     *
+     * @param CacheInterface $cache
+     */
+    public function setCache(CacheInterface $cache): void
+    {
+        parent::setCache($cache);
+        $this->browserHints->setCache($cache);
     }
 
     /**
@@ -748,7 +761,7 @@ class Browser extends AbstractClientParser
 
             // If version from client hints report 2022 or 2022.04, then is the Iridium browser
             // https://iridiumbrowser.de/news/2022/05/16/version-2022-04-released
-            if ('2022' === $version || '2022.04' === $version) {
+            if ('2021.12' === $version || '2022' === $version || '2022.04' === $version) {
                 $name          = 'Iridium';
                 $short         = 'I1';
                 $engine        = $browserFromUserAgent['engine'];
