@@ -33,6 +33,8 @@ For a full list of items, characteristics and supported devices, please see the 
 __Device Detector__ supports multisite report delegation and per site configuration (see FAQ).
 
 > __Device Detector__ is part of [PerfOps One](https://perfops.one/), a suite of free and open source WordPress plugins dedicated to observability and operations performance.
+> 
+> __The development of the PerfOps One suite is sponsored by [Hosterra - Ethical & Sustainable Internet Hosting](https://hosterra.eu/).__
 
 Based on the amazing [Matomo](https://github.com/matomo-org/matomo) UDD, Device Detector is a free and open source plugin for WordPress. It integrates many other free and open source works (as-is or modified). Please, see 'about' tab in the plugin settings to see the details.
 
