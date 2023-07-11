@@ -3,6 +3,14 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.5.0] - Not Yet Released
+
+### Added
+- Compatibility with WordPress 6.3.
+
+### Changed
+- The color for `shmop` test in Site Health is now gray to not worry to much about it (was previously orange).
+
 ## [3.4.1] - 2023-03-02
 
 ### Fixed
