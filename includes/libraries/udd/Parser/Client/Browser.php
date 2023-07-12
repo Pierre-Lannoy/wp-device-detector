@@ -16,6 +16,7 @@ use UDD\Cache\CacheInterface;
 use UDD\ClientHints;
 use UDD\Parser\Client\Browser\Engine;
 use UDD\Parser\Client\Hints\BrowserHints;
+use UDD\Yaml\ParserInterface as YamlParser;
 
 /**
  * Class Browser
@@ -268,6 +269,7 @@ class Browser extends AbstractClientParser
         'I4' => 'IceCat',
         'ID' => 'IceDragon',
         'IV' => 'Isivioo',
+        'I8' => 'IVVI Browser',
         'IW' => 'Iceweasel',
         'IN' => 'Inspect Browser',
         'IE' => 'Internet Explorer',
@@ -345,6 +347,7 @@ class Browser extends AbstractClientParser
         'NO' => 'Nokia OSS Browser',
         'NV' => 'Nokia Ovi Browser',
         'NX' => 'Nox Browser',
+        'N1' => 'NOMone VR Browser',
         'NE' => 'NetSurf',
         'NF' => 'NetFront',
         'NL' => 'NetFront Life',
@@ -388,6 +391,7 @@ class Browser extends AbstractClientParser
         'PM' => 'Pale Moon',
         'PY' => 'Polypane',
         'PP' => 'Oppo Browser',
+        'P6' => 'Opus Browser',
         'PR' => 'Palm Pre',
         'PU' => 'Puffin',
         '2P' => 'Puffin Web Browser',
@@ -431,6 +435,7 @@ class Browser extends AbstractClientParser
         'SO' => 'Sogou Mobile Browser',
         'RF' => 'SOTI Surf',
         '2S' => 'Soul Browser',
+        'T0' => 'Soundy Browser',
         'SF' => 'Safari',
         'PV' => 'Safari Technology Preview',
         'S5' => 'Safe Exam Browser',
@@ -517,6 +522,7 @@ class Browser extends AbstractClientParser
         'WE' => 'WebPositive',
         'WF' => 'Waterfox',
         'WB' => 'Wave Browser',
+        'WA' => 'Wavebox',
         'WH' => 'Whale Browser',
         'WO' => 'wOSBrowser',
         'WT' => 'WeTab Browser',
@@ -581,7 +587,7 @@ class Browser extends AbstractClientParser
             'XO', 'U0', 'B0', 'VA', 'X0', 'NX', 'O5', 'R1', 'I1',
             'HO', 'A5', 'X1', '18', 'B5', 'B6', 'TC', 'A6', '2X',
             'F4', 'YG', 'WR', 'NA', 'DM', '1M', 'A7', 'XN', 'XT',
-            'XB', 'W1', 'HT', 'B8', 'F5', 'B9',
+            'XB', 'W1', 'HT', 'B8', 'F5', 'B9', 'WA', 'T0', 'HC',
         ],
         'Firefox'            => [
             'AX', 'BI', 'BF', 'BH', 'BN', 'C0', 'CU', 'EI', 'F1',
@@ -619,7 +625,7 @@ class Browser extends AbstractClientParser
         'O4', 'XO', 'U0', 'B0', 'VA', 'X0', 'A5', 'X1', '18',
         'B5', 'B6', 'TC', 'A6', '2X', 'F4', 'YG', 'WR', 'NA',
         'DM', '1M', 'A7', 'XN', 'XT', 'XB', 'W1', 'HT', 'B7',
-        'B9',
+        'B9', 'T0', 'I8',
     ];
 
     /**
@@ -741,6 +747,17 @@ class Browser extends AbstractClientParser
     {
         return \in_array($browser, self::$mobileOnlyBrowsers) || (\in_array($browser, self::$availableBrowsers)
                 && \in_array(\array_search($browser, self::$availableBrowsers), self::$mobileOnlyBrowsers));
+    }
+
+    /**
+     * Sets the YamlParser class
+     *
+     * @param YamlParser $yamlParser
+     */
+    public function setYamlParser(YamlParser $yamlParser): void
+    {
+        parent::setYamlParser($yamlParser);
+        $this->browserHints->setYamlParser($this->getYamlParser());
     }
 
     /**

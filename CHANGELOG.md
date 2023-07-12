@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Compatibility with WordPress 6.3.
 
 ### Changed
+- Upgraded UDD from version 6.1.0 to version 6.1.3: dozens of added and improved detections.
 - The color for `shmop` test in Site Health is now gray to not worry to much about it (was previously orange).
 
 ## [3.4.1] - 2023-03-02

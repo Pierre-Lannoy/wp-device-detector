@@ -15,6 +15,7 @@ namespace UDD\Parser\Client;
 use UDD\Cache\CacheInterface;
 use UDD\ClientHints;
 use UDD\Parser\Client\Hints\AppHints;
+use UDD\Yaml\ParserInterface as YamlParser;
 
 /**
  * Class MobileApp
@@ -81,6 +82,17 @@ class MobileApp extends AbstractClientParser
     {
         parent::setCache($cache);
         $this->appHints->setCache($cache);
+    }
+
+    /**
+     * Sets the YamlParser class
+     *
+     * @param YamlParser $yamlParser
+     */
+    public function setYamlParser(YamlParser $yamlParser): void
+    {
+        parent::setYamlParser($yamlParser);
+        $this->appHints->setYamlParser($this->getYamlParser());
     }
 
     /**
