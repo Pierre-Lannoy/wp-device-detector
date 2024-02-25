@@ -62,7 +62,7 @@ class Libraries {
 			'name'    => 'Universal Device Detection',
 			'prefix'  => 'UDD',
 			'base'    => PODD_VENDOR_DIR . 'udd/',
-			'version' => '6.1.3',
+			'version' => '6.3.0',
 			// phpcs:ignore
 			'author'  => sprintf( esc_html__( '%s & contributors', 'device-detector' ), 'Matomo Analytics' ),
 			'url'     => 'https://github.com/matomo-org/device-detector',
@@ -86,8 +86,8 @@ class Libraries {
 			'base'    => PODD_VENDOR_DIR . 'morpheus/',
 			'version' => '1.0.0',
 			// phpcs:ignore
-			'author'  => 'Pierre Lannoy',
-			'url'     => 'https://pierre.lannoy.fr',
+			'author'  => sprintf( esc_html__( '%s & contributors', 'device-detector' ), 'Matomo Analytics' ),
+			'url'     => 'https://github.com/matomo-org/matomo-icons',
 			'license' => 'lgpl3',
 			'langs'   => 'en',
 		];

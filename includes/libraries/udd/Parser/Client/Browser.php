@@ -26,7 +26,7 @@ use UDD\Yaml\ParserInterface as YamlParser;
 class Browser extends AbstractClientParser
 {
     /**
-     * @var BrowserHints|null
+     * @var BrowserHints
      */
     private $browserHints;
 
@@ -68,6 +68,7 @@ class Browser extends AbstractClientParser
         '1D' => 'Dragon Browser',
         '1E' => 'Easy Browser',
         'DW' => 'Dark Web Browser',
+        'D6' => 'Dark Browser',
         '18' => '18+ Privacy Browser',
         '1B' => '115 Browser',
         'DM' => '1DM Browser',
@@ -80,6 +81,7 @@ class Browser extends AbstractClientParser
         'AB' => 'ABrowse',
         'BW' => 'AdBlock Browser',
         'A7' => 'Adult Browser',
+        'A9' => 'Airfind Secure Browser',
         'AF' => 'ANT Fresco',
         'AG' => 'ANTGalio',
         'AL' => 'Aloha Browser',
@@ -100,6 +102,7 @@ class Browser extends AbstractClientParser
         'AV' => 'Amiga Voyager',
         'AW' => 'Amiga Aweb',
         'PN' => 'APN Browser',
+        'RA' => 'Arc',
         'AI' => 'Arvin',
         'AK' => 'Ask.com',
         'AU' => 'Asus Browser',
@@ -112,6 +115,7 @@ class Browser extends AbstractClientParser
         'A1' => 'AwoX',
         'BA' => 'Beaker Browser',
         'BM' => 'Beamrise',
+        'F7' => 'BF Browser',
         'BB' => 'BlackBerry Browser',
         'H1' => 'BrowseHere',
         'B8' => 'Browser Hup Pro',
@@ -134,6 +138,7 @@ class Browser extends AbstractClientParser
         'BN' => 'Borealis Navigator',
         'BR' => 'Brave',
         'BK' => 'BriskBard',
+        'K2' => 'BroKeep Browser',
         'B3' => 'Browspeed Browser',
         'BX' => 'BrowseX',
         'BZ' => 'Browzar',
@@ -141,8 +146,9 @@ class Browser extends AbstractClientParser
         '4B' => 'BrowsBit',
         'BY' => 'Biyubi',
         'BF' => 'Byffox',
-        'B4' => 'BF Browser',
+        'B4' => 'BXE Browser',
         'CA' => 'Camino',
+        '0C' => 'Cave Browser',
         'CL' => 'CCleaner',
         'C8' => 'CG Browser',
         'CJ' => 'ChanjetCloud',
@@ -175,6 +181,7 @@ class Browser extends AbstractClientParser
         'C5' => 'Chromium GOST',
         'CY' => 'Cyberfox',
         'CS' => 'Cheshire',
+        'RC' => 'Crow Browser',
         'CT' => 'Crusta',
         'CG' => 'Craving Explorer',
         'CZ' => 'Crazy Browser',
@@ -191,6 +198,7 @@ class Browser extends AbstractClientParser
         'DT' => 'Delta Browser',
         'D0' => 'Desi Browser',
         'DS' => 'DeskBrowse',
+        'D2' => 'DoCoMo',
         'DF' => 'Dolphin',
         'DZ' => 'Dolphin Zero',
         'DO' => 'Dorado',
@@ -201,6 +209,7 @@ class Browser extends AbstractClientParser
         'DD' => 'DuckDuckGo Privacy Browser',
         'EC' => 'Ecosia',
         'EW' => 'Edge WebView',
+        'EV' => 'Every Browser',
         'EI' => 'Epic',
         'EL' => 'Elinks',
         'EN' => 'EinkBro',
@@ -212,6 +221,7 @@ class Browser extends AbstractClientParser
         'EP' => 'GNOME Web',
         'G1' => 'G Browser',
         'ES' => 'Espial TV Browser',
+        'FG' => 'fGet',
         'FA' => 'Falkon',
         'FX' => 'Faux Browser',
         'F4' => 'Fiery Browser',
@@ -236,6 +246,8 @@ class Browser extends AbstractClientParser
         'FS' => 'Flast',
         'F5' => 'Flyperlink',
         'FU' => 'FreeU',
+        'F6' => 'Freedom Browser',
+        'FT' => 'Frost',
         'F3' => 'Frost+',
         'FI' => 'Fulldive',
         'GA' => 'Galeon',
@@ -243,10 +255,12 @@ class Browser extends AbstractClientParser
         'GH' => 'Ghostery Privacy Browser',
         'GI' => 'GinxDroid Browser',
         'GB' => 'Glass Browser',
+        'GD' => 'Godzilla Browser',
         'GE' => 'Google Earth',
         'GP' => 'Google Earth Pro',
         'GO' => 'GOG Galaxy',
         'GR' => 'GoBrowser',
+        'G2' => 'GO Browser',
         'HB' => 'Harman Browser',
         'HS' => 'HasBrowser',
         'HA' => 'Hawk Turbo Browser',
@@ -255,6 +269,8 @@ class Browser extends AbstractClientParser
         'HX' => 'Hexa Web Browser',
         'HI' => 'Hi Browser',
         'HO' => 'hola! Browser',
+        'H4' => 'Holla Web Browser',
+        'H5' => 'HotBrowser',
         'HJ' => 'HotJava',
         'HT' => 'HTC Browser',
         'HU' => 'Huawei Browser Mobile',
@@ -273,10 +289,13 @@ class Browser extends AbstractClientParser
         'IV' => 'Isivioo',
         'I8' => 'IVVI Browser',
         'IW' => 'Iceweasel',
+        'N3' => 'Incognito Browser',
         'IN' => 'Inspect Browser',
+        'I9' => 'Insta Browser',
         'IE' => 'Internet Explorer',
         'I7' => 'Internet Browser Secure',
         'I5' => 'Indian UC Mini Browser',
+        'Z0' => 'InBrowser',
         'IM' => 'IE Mobile',
         'IR' => 'Iron',
         'JB' => 'Japan Browser',
@@ -321,6 +340,7 @@ class Browser extends AbstractClientParser
         'LX' => 'Lynx',
         'L2' => 'Lynket Browser',
         'MD' => 'Mandarin',
+        'M5' => 'MarsLab Web Browser',
         'M1' => 'mCent',
         'MB' => 'MicroB',
         'MC' => 'NCSA Mosaic',
@@ -360,6 +380,9 @@ class Browser extends AbstractClientParser
         'NS' => 'Netscape',
         'WR' => 'NextWord Browser',
         'NT' => 'NTENT Browser',
+        'NU' => 'Nuanti Meta',
+        'NI' => 'Nuviu',
+        'O9' => 'Ocean Browser',
         'OC' => 'Oculus Browser',
         'O6' => 'Odd Browser',
         'O1' => 'Opera Mini iOS',
@@ -372,6 +395,7 @@ class Browser extends AbstractClientParser
         'O5' => 'Office Browser',
         'HH' => 'OhHai Browser',
         'OE' => 'ONE Browser',
+        'N4' => 'Onion Browser',
         'Y1' => 'Opera Crypto',
         'OX' => 'Opera GX',
         'OG' => 'Opera Neon',
@@ -419,12 +443,16 @@ class Browser extends AbstractClientParser
         'LY' => 'PolyBrowser',
         'PI' => 'PrivacyWall',
         'P4' => 'Privacy Explorer Fast Safe',
+        'P3' => 'Private Internet Browser',
+        'P5' => 'Proxy Browser',
         'P2' => 'Pi Browser',
         'P0' => 'PronHub Browser',
         'PC' => 'PSI Secure Browser',
         'RW' => 'Reqwireless WebViewer',
         'PS' => 'Microsoft Edge',
         'QA' => 'Qazweb',
+        'Q3' => 'Qmamu',
+        'Q4' => 'Quick Search TV',
         'Q2' => 'QQ Browser Lite',
         'Q1' => 'QQ Browser Mini',
         'QQ' => 'QQ Browser',
@@ -437,6 +465,7 @@ class Browser extends AbstractClientParser
         'RE' => 'Realme Browser',
         'RK' => 'Rekonq',
         'RM' => 'RockMelt',
+        'RB' => 'Roku Browser',
         'SB' => 'Samsung Browser',
         '3L' => 'Samsung Browser Lite',
         'SA' => 'Sailfish Browser',
@@ -460,6 +489,7 @@ class Browser extends AbstractClientParser
         'S1' => 'SimpleBrowser',
         '3S' => 'SilverMob US',
         'SY' => 'Sizzy',
+        'K3' => 'Skye',
         'SK' => 'Skyfire',
         'SS' => 'Seraphic Sraf',
         'KK' => 'SiteKiosk',
@@ -468,6 +498,7 @@ class Browser extends AbstractClientParser
         'S7' => 'SP Browser',
         '9S' => 'Sony Small Browser',
         '8S' => 'Secure Private Browser',
+        'X2' => 'SecureX',
         'T1' => 'Stampy Browser',
         '7S' => '7Star',
         'SQ' => 'Smart Browser',
@@ -479,6 +510,7 @@ class Browser extends AbstractClientParser
         'S2' => 'Splash',
         'SI' => 'Sputnik Browser',
         'SR' => 'Sunrise',
+        '0S' => 'Sunflower Browser',
         'SP' => 'SuperBird',
         'SU' => 'Super Fast Browser',
         '5S' => 'SuperFast Browser',
@@ -497,6 +529,8 @@ class Browser extends AbstractClientParser
         'TR' => 'T-Browser',
         'TO' => 't-online.de Browser',
         'TA' => 'Tao Browser',
+        'TH' => 'Thor',
+        '1T' => 'Tor Browser',
         'TF' => 'TenFourFox',
         'TB' => 'Tenta Browser',
         'TE' => 'Tesla Browser',
@@ -519,13 +553,16 @@ class Browser extends AbstractClientParser
         'UE' => 'Ume Browser',
         'V0' => 'vBrowser',
         'VA' => 'Vast Browser',
+        'V3' => 'VD Browser',
         'VE' => 'Venus Browser',
+        'WD' => 'Vewd Browser',
         'N0' => 'Nova Video Downloader Pro',
         'VS' => 'Viasat Browser',
         'VI' => 'Vivaldi',
         'VV' => 'vivo Browser',
         'V2' => 'Vivid Browser Mini',
         'VB' => 'Vision Mobile Browser',
+        'V4' => 'Vertex Surf',
         'VM' => 'VMware AirWatch',
         'WI' => 'Wear Internet Browser',
         'WP' => 'Web Explorer',
@@ -537,6 +574,7 @@ class Browser extends AbstractClientParser
         'WH' => 'Whale Browser',
         'WO' => 'wOSBrowser',
         'WT' => 'WeTab Browser',
+        '1W' => 'World Browser',
         'WL' => 'Wolvic',
         'YG' => 'YAGI',
         'YJ' => 'Yahoo! Japan Browser',
@@ -560,6 +598,7 @@ class Browser extends AbstractClientParser
         'ZE' => 'Zetakey',
         'ZV' => 'Zvu',
         'ZI' => 'Zirco Browser',
+        'ZR' => 'Zordo Browser',
 
         // detected browsers in older versions
         // 'IA' => 'Iceape',  => pim
@@ -599,14 +638,18 @@ class Browser extends AbstractClientParser
             'HO', 'A5', 'X1', '18', 'B5', 'B6', 'TC', 'A6', '2X',
             'F4', 'YG', 'WR', 'NA', 'DM', '1M', 'A7', 'XN', 'XT',
             'XB', 'W1', 'HT', 'B8', 'F5', 'B9', 'WA', 'T0', 'HC',
-            'O6', 'P7', 'LJ', 'LC', 'O7', 'N2', 'A8', 'P8',
+            'O6', 'P7', 'LJ', 'LC', 'O7', 'N2', 'A8', 'P8', 'RB',
+            '1W', 'EV', 'I9', 'V4', 'H4', '1T', 'M5', '0S', '0C',
+            'ZR', 'D6', 'F6', 'RC', 'WD', 'P3', 'FT', 'A9', 'X2',
+            'N3', 'GD', 'O9', 'Q3', 'F7', 'K2', 'P5', 'H5', 'V3',
+            'K3', 'Q4', 'G2',
         ],
         'Firefox'            => [
             'AX', 'BI', 'BF', 'BH', 'BN', 'C0', 'CU', 'EI', 'F1',
             'FB', 'FE', 'FF', 'FM', 'FR', 'FY', 'GZ', 'I4', 'IF',
             'IW', 'LH', 'LY', 'MB', 'MN', 'MO', 'MY', 'OA', 'OS',
-            'PI', 'PX', 'QA', 'QM', 'S5', 'SX', 'TF', 'TO', 'WF',
-            'ZV', 'FP', 'AD', 'WL',
+            'PI', 'PX', 'QA', 'S5', 'SX', 'TF', 'TO', 'WF', 'ZV',
+            'FP', 'AD', 'WL',
         ],
         'Internet Explorer'  => ['BZ', 'CZ', 'IE', 'IM', 'PS'],
         'Konqueror'          => ['KO'],
@@ -638,6 +681,10 @@ class Browser extends AbstractClientParser
         'B5', 'B6', 'TC', 'A6', '2X', 'F4', 'YG', 'WR', 'NA',
         'DM', '1M', 'A7', 'XN', 'XT', 'XB', 'W1', 'HT', 'B7',
         'B9', 'T0', 'I8', 'O6', 'P7', 'O8', '4B', 'A8', 'P8',
+        '1W', 'EV', 'Z0', 'I9', 'V4', 'H4', 'M5', '0S', '0C',
+        'ZR', 'D6', 'F6', 'P3', 'FT', 'A9', 'X2', 'NI', 'FG',
+        'TH', 'N3', 'GD', 'O9', 'Q3', 'F7', 'K2', 'N4', 'P5',
+        'H5', 'V3', 'G2',
     ];
 
     /**
@@ -646,7 +693,9 @@ class Browser extends AbstractClientParser
      * @var array<string, array<string>>
      */
     protected static $clientHintMapping = [
-        'Chrome' => ['Google Chrome'],
+        'Chrome'                     => ['Google Chrome'],
+        'Vewd Browser'               => ['Vewd Core'],
+        'DuckDuckGo Privacy Browser' => ['DuckDuckGo'],
     ];
 
     /**
@@ -788,17 +837,25 @@ class Browser extends AbstractClientParser
             $engine        = '';
             $engineVersion = '';
 
-            // If version from client hints report 2022 or 2022.04, then is the Iridium browser
-            // https://iridiumbrowser.de/news/2022/05/16/version-2022-04-released
-            if ('2021.12' === $version || '2022' === $version || '2022.04' === $version) {
-                $name          = 'Iridium';
-                $short         = 'I1';
-                $engine        = $browserFromUserAgent['engine'];
-                $engineVersion = $browserFromUserAgent['engine_version'];
+            // If the version reported from the client hints is YYYY or YYYY.MM (e.g., 2022 or 2022.04),
+            // then it is the Iridium browser
+            // https://iridiumbrowser.de/news/
+            if (\preg_match('/^202[0-4]/', $version)) {
+                $name  = 'Iridium';
+                $short = 'I1';
             }
 
             if ('Atom' === $name || 'Huawei Browser' === $name) {
                 $version = $browserFromUserAgent['version'];
+            }
+
+            if ('DuckDuckGo Privacy Browser' === $name) {
+                $version = '';
+            }
+
+            if ('Vewd Browser' === $name) {
+                $engine        = $browserFromUserAgent['engine'] ?? '';
+                $engineVersion = $browserFromUserAgent['engine_version'] ?? '';
             }
 
             // If client hints report Chromium, but user agent detects a Chromium based browser, we favor this instead
@@ -817,7 +874,7 @@ class Browser extends AbstractClientParser
                 $short = $browserFromUserAgent['short_name'];
             }
 
-            // If useragent detects another browser, but the family matches, we use the detected engine from useragent
+            // If user agent detects another browser, but the family matches, we use the detected engine from user agent
             if ($name !== $browserFromUserAgent['name']
                 && self::getBrowserFamily($name) === self::getBrowserFamily($browserFromUserAgent['name'])
             ) {
@@ -878,6 +935,13 @@ class Browser extends AbstractClientParser
             $engineVersion = '';
         }
 
+        // the browser simulate ua for Android OS
+        if ('Every Browser' === $name) {
+            $family        = 'Chrome';
+            $engine        = 'Blink';
+            $engineVersion = '';
+        }
+
         return [
             'type'           => 'browser',
             'name'           => $name,
@@ -917,7 +981,7 @@ class Browser extends AbstractClientParser
                     }
                 }
 
-                // If we detected a brand, that is not chromium, we will use it, otherwise we will look further
+                // If we detected a brand, that is not Chromium, we will use it, otherwise we will look further
                 if ('' !== $name && 'Chromium' !== $name) {
                     break;
                 }
@@ -934,7 +998,7 @@ class Browser extends AbstractClientParser
     }
 
     /**
-     * Returns the browser that can be detected from useragent
+     * Returns the browser that can be detected from user agent
      *
      * @return array
      *

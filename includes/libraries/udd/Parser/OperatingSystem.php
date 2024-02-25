@@ -54,6 +54,7 @@ class OperatingSystem extends AbstractParser
         'QNX' => 'BlackBerry Tablet OS',
         'BOS' => 'Bliss OS',
         'BMP' => 'Brew',
+        'BSN' => 'BrightSignOS',
         'CAI' => 'Caixa Mágica',
         'CES' => 'CentOS',
         'CST' => 'CentOS Stream',
@@ -87,6 +88,7 @@ class OperatingSystem extends AbstractParser
         'INF' => 'Inferno',
         'JME' => 'Java ME',
         'KOS' => 'KaiOS',
+        'KAL' => 'Kali',
         'KAN' => 'Kanotix',
         'KNO' => 'Knoppix',
         'KTV' => 'KreaTV',
@@ -97,6 +99,7 @@ class OperatingSystem extends AbstractParser
         'LEN' => 'Lineage OS',
         'LBT' => 'Lubuntu',
         'LOS' => 'Lumin OS',
+        'LUN' => 'LuneOS',
         'VLN' => 'VectorLinux',
         'MAC' => 'Mac',
         'MAE' => 'Maemo',
@@ -119,6 +122,7 @@ class OperatingSystem extends AbstractParser
         'OBS' => 'OpenBSD',
         'OWR' => 'OpenWrt',
         'OTV' => 'Opera TV',
+        'ORA' => 'Oracle Linux',
         'ORD' => 'Ordissimo',
         'PAR' => 'Pardus',
         'PCL' => 'PCLinuxOS',
@@ -154,8 +158,10 @@ class OperatingSystem extends AbstractParser
         'TEN' => 'TencentOS',
         'TDX' => 'ThreadX',
         'TIZ' => 'Tizen',
+        'TIV' => 'TiVo OS',
         'TOS' => 'TmaxOS',
         'UBT' => 'Ubuntu',
+        'VID' => 'VIDAA',
         'WAS' => 'watchOS',
         'WER' => 'Wear OS',
         'WTV' => 'WebTV',
@@ -203,12 +209,12 @@ class OperatingSystem extends AbstractParser
             'ORD', 'TOS', 'RSO', 'DEE', 'FRE', 'MAG', 'FEN', 'CAI', 'PCL', 'HAS',
             'LOS', 'DVK', 'ROK', 'OWR', 'OTV', 'KTV', 'PUR', 'PLA', 'FUC', 'PAR',
             'FOR', 'MON', 'KAN', 'ZEN', 'LND', 'LNS', 'CHN', 'AMZ', 'TEN', 'CST',
-            'NOV', 'ROU', 'ZOR', 'RED',
+            'NOV', 'ROU', 'ZOR', 'RED', 'KAL', 'ORA', 'VID', 'TIV', 'BSN',
         ],
         'Mac'                   => ['MAC'],
         'Mobile Gaming Console' => ['PSP', 'NDS', 'XBX'],
         'Real-time OS'          => ['MTK', 'TDX', 'MRE', 'JME', 'REX'],
-        'Other Mobile'          => ['WOS', 'POS', 'SBA', 'TIZ', 'SMG', 'MAE'],
+        'Other Mobile'          => ['WOS', 'POS', 'SBA', 'TIZ', 'SMG', 'MAE', 'LUN'],
         'Symbian'               => ['SYM', 'SYS', 'SY3', 'S60', 'S40'],
         'Unix'                  => ['SOS', 'AIX', 'HPX', 'BSD', 'NBS', 'OBS', 'DFB', 'SYL', 'IRI', 'T64', 'INF'],
         'WebTV'                 => ['WTV'],
@@ -308,6 +314,27 @@ class OperatingSystem extends AbstractParser
                 if ('HarmonyOS' === $name) {
                     $version = '';
                 }
+
+                if ('Fire OS' === $osFromUserAgent['name']) {
+                        $majorVersion = (int) (\explode('.', $version, 1)[0] ?? '0');
+
+                        $fireOsVersionMapping = [
+                            '11'    => '8',
+                            '10'    => '8',
+                            '9'     => '7',
+                            '7'     => '6',
+                            '5'     => '5',
+                            '4.4.3' => '4.5.1',
+                            '4.4.2' => '4',
+                            '4.2.2' => '3',
+                            '4.0.3' => '3',
+                            '4.0.2' => '3',
+                            '4'     => '2',
+                            '2'     => '1',
+                        ];
+
+                        $version = $fireOsVersionMapping[$version] ?? $fireOsVersionMapping[$majorVersion] ?? $version;
+                }
             }
 
             $short = $osFromClientHints['short_name'];
@@ -330,7 +357,10 @@ class OperatingSystem extends AbstractParser
 
         $platform    = $this->parsePlatform();
         $family      = self::getOsFamily($short);
-        $androidApps = ['com.hisense.odinbrowser', 'com.seraphic.openinet.pre', 'com.appssppa.idesktoppcbrowser'];
+        $androidApps = [
+            'com.hisense.odinbrowser', 'com.seraphic.openinet.pre', 'com.appssppa.idesktoppcbrowser',
+            'every.browser.inc',
+        ];
 
         if (null !== $this->clientHints) {
             if (\in_array($this->clientHints->getApp(), $androidApps) && 'Android' !== $name) {
