@@ -3,13 +3,15 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [3.7.0] - Not Yet Released
+## [3.7.0] - 2024-03-02
 
 ### Added
 - Compatibility with WordPress 6.5.
 
 ### Changed
 - Upgraded UDD from version 6.1.6 to version 6.3.0: dozens of added and improved detections.
+- Minimal required WordPress version is now 6.1.
+- Minimal required PHP version is now 8.1.
 
 ### Fixed
 - There's a typo in Morpheus project URL.

@@ -10,9 +10,9 @@
  * Plugin Name:       Device Detector
  * Plugin URI:        https://perfops.one/device-detector
  * Description:       Full featured analytics reporting and management tool that detects all devices accessing your WordPress site.
- * Version:           3.6.0
- * Requires at least: 5.2
- * Requires PHP:      7.2
+ * Version:           3.7.0
+ * Requires at least: 6.1
+ * Requires PHP:      8.1
  * Author:            Pierre Lannoy / PerfOps One
  * Author URI:        https://perfops.one
  * License:           GPLv3
