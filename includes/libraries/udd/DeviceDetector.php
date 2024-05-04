@@ -68,7 +68,7 @@ class DeviceDetector
     /**
      * Current version number of DeviceDetector
      */
-    public const VERSION = '6.3.0';
+    public const VERSION = '6.3.1';
 
     /**
      * Constant used as value for unknown browser / os
@@ -776,7 +776,7 @@ class DeviceDetector
      */
     protected function hasAndroidTableFragment(): bool
     {
-        $regex = 'Android( [\.0-9]+)?; Tablet;';
+        $regex = 'Android( [\.0-9]+)?; Tablet;|.*\-tablet$';
 
         return !!$this->matchUserAgent($regex);
     }
@@ -788,7 +788,19 @@ class DeviceDetector
      */
     protected function hasAndroidMobileFragment(): bool
     {
-        $regex = 'Android( [\.0-9]+)?; Mobile;';
+        $regex = 'Android( [\.0-9]+)?; Mobile;|.*\-mobile$';
+
+        return !!$this->matchUserAgent($regex);
+    }
+
+    /**
+     * Returns if the parsed UA contains the 'Android; Mobile VR;' fragment
+     *
+     * @return bool
+     */
+    protected function hasAndroidVRFragment(): bool
+    {
+        $regex = 'Android( [\.0-9]+)?; Mobile VR;| VR ';
 
         return !!$this->matchUserAgent($regex);
     }
@@ -935,7 +947,7 @@ class DeviceDetector
         /**
          * All devices containing VR fragment are assumed to be a wearable
          */
-        if (null === $this->device && $this->matchUserAgent(' VR ')) {
+        if (null === $this->device && $this->hasAndroidVRFragment()) {
             $this->device = AbstractDeviceParser::DEVICE_TYPE_WEARABLE;
         }
 
@@ -1053,7 +1065,7 @@ class DeviceDetector
          */
         if (\in_array($clientName, [
             'Kylo', 'Espial TV Browser', 'LUJO TV Browser', 'LogicUI TV Browser', 'Open TV Browser', 'Seraphic Sraf',
-            'Opera Devices', 'Crow Browser', 'Vewd Browser', 'TiviMate', 'Quick Search TV',
+            'Opera Devices', 'Crow Browser', 'Vewd Browser', 'TiviMate', 'Quick Search TV', 'QJY TV Browser', 'TV Bro',
         ])
         ) {
             $this->device = AbstractDeviceParser::DEVICE_TYPE_TV;
