@@ -147,6 +147,7 @@ class OperatingSystem extends AbstractParser
         'PIO' => 'Raspberry Pi OS',
         'RAS' => 'Raspbian',
         'RHT' => 'Red Hat',
+        'RST' => 'Red Star',
         'RED' => 'RedOS',
         'REV' => 'Revenge OS',
         'ROS' => 'RISC OS',
@@ -232,7 +233,7 @@ class OperatingSystem extends AbstractParser
             'FOR', 'MON', 'KAN', 'ZEN', 'LND', 'LNS', 'CHN', 'AMZ', 'TEN', 'CST',
             'NOV', 'ROU', 'ZOR', 'RED', 'KAL', 'ORA', 'VID', 'TIV', 'BSN', 'RAS',
             'UOS', 'PIO', 'FRI', 'LIR', 'WEB', 'SER', 'ASP', 'AOS', 'LOO', 'EUL',
-            'SCI', 'ALP', 'CLO', 'ROC', 'OVZ', 'PVE',
+            'SCI', 'ALP', 'CLO', 'ROC', 'OVZ', 'PVE', 'RST',
         ],
         'Mac'                   => ['MAC'],
         'Mobile Gaming Console' => ['PSP', 'NDS', 'XBX'],
@@ -667,7 +668,7 @@ class OperatingSystem extends AbstractParser
             }
         }
 
-        if ($this->matchUserAgent('arm|aarch64|Apple ?TV|Watch ?OS|Watch1,[12]')) {
+        if ($this->matchUserAgent('arm|.*arm64|aarch64|Apple ?TV|Watch ?OS|Watch1,[12]')) {
             return 'ARM';
         }
 
@@ -691,7 +692,7 @@ class OperatingSystem extends AbstractParser
             return 'x64';
         }
 
-        if ($this->matchUserAgent('.+32bit|.+win32|(?:i[0-9]|x)86|i86pc')) {
+        if ($this->matchUserAgent('.*32bit|.*win32|(?:i[0-9]|x)86|i86pc')) {
             return 'x86';
         }
 

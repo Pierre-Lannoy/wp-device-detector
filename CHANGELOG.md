@@ -3,6 +3,18 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0] - 2024-05-xx
+
+### Added
+- [BC] To enable installation on more heterogeneous platforms, the plugin now adapts its internal logging mode to already loaded libraries.
+
+### Changed
+- Updated DecaLog SDK from version 4.1.0 to version 5.0.0.
+- Upgraded UDD from version 6.3.1 to version 6.3.2: dozens of added and improved detections.
+
+### Fixed
+- PHP error with some plugins like Woocommerce Paypal Payments.
+
 ## [3.8.0] - 2024-05-07
 
 ### Changed

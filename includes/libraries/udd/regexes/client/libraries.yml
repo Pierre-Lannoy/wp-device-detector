@@ -606,3 +606,8 @@
   name: 'httprs'
   version: '$1'
   url: 'https://github.com/http-server-rs/http-server'
+
+- regex: 'Boto3(?:/(\d+[\.\d]+))?'
+  name: 'Boto3'
+  version: '$1'
+  url: 'https://github.com/boto/boto3'
