@@ -8,8 +8,6 @@ __Device Detector__ is a full featured analytics reporting and management tool t
 
 See [WordPress directory page](https://wordpress.org/plugins/device-detector/) or [official website](https://perfops.one/device-detector).
 
-> 🎁 Give this plugin a drive test on a free dummy site: [One-Click Test!](https://tastewp.com/new/?pre-installed-plugin-slug=device-detector)
-
 For each call made to your site, __Device Detector__ analyzes the sent header, detects the device doing the call (and its characteristics) and can:
 
 * modify the `is_mobile()` WordPress core function to be more precise and reliable;

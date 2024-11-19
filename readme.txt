@@ -14,8 +14,6 @@ Full featured analytics reporting and management tool that detects all devices a
 
 **Device Detector** is a full featured analytics reporting and management tool that detects all devices accessing your WordPress site.
 
-> 🎁 Give this plugin a drive test on a free dummy site: [One-Click Test!](https://tastewp.com/new/?pre-installed-plugin-slug=device-detector)
-
 For each call made to your site, **Device Detector** analyzes the sent header, detects the device doing the call (and its characteristics) and can:
 
 * modify the `is_mobile()` WordPress core function to be more precise and reliable;
