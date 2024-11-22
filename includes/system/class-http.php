@@ -186,7 +186,7 @@ class Http {
 	 * @since  1.0.0
 	 */
 	public static function user_agent() {
-		return PODD_PRODUCT_NAME . ' (' . Environment::wordpress_version_id() . '; ' . Environment::plugin_version_id() . '; +' . PODD_PRODUCT_URL . ')';
+		return 'PerfOps One - ' . PODD_PRODUCT_NAME . ' / ' . PODD_VERSION . ' (https://perfops.one/' . PODD_SLUG . ')';
 	}
 
 	/**
