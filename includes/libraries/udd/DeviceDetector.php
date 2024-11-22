@@ -68,7 +68,7 @@ class DeviceDetector
     /**
      * Current version number of DeviceDetector
      */
-    public const VERSION = '6.3.2';
+    public const VERSION = '6.4.1';
 
     /**
      * Constant used as value for unknown browser / os
@@ -1040,6 +1040,27 @@ class DeviceDetector
         }
 
         /**
+         * All devices running Puffin Secure Browser that contain letter 'D' are assumed to be desktops
+         */
+        if (null === $this->device && $this->matchUserAgent('Puffin/(?:\d+[.\d]+)[LMW]D')) {
+            $this->device = AbstractDeviceParser::DEVICE_TYPE_DESKTOP;
+        }
+
+        /**
+         * All devices running Puffin Web Browser that contain letter 'P' are assumed to be smartphones
+         */
+        if (null === $this->device && $this->matchUserAgent('Puffin/(?:\d+[.\d]+)[AIFLW]P')) {
+            $this->device = AbstractDeviceParser::DEVICE_TYPE_SMARTPHONE;
+        }
+
+        /**
+         * All devices running Puffin Web Browser that contain letter 'T' are assumed to be tablets
+         */
+        if (null === $this->device && $this->matchUserAgent('Puffin/(?:\d+[.\d]+)[AILW]T')) {
+            $this->device = AbstractDeviceParser::DEVICE_TYPE_TABLET;
+        }
+
+        /**
          * All devices running Opera TV Store are assumed to be a tv
          */
         if ($this->matchUserAgent('Opera TV Store| OMI/')) {
@@ -1049,7 +1070,7 @@ class DeviceDetector
         /**
          * All devices that contain Andr0id in string are assumed to be a tv
          */
-        if ($this->matchUserAgent('Andr0id|(?:Android(?: UHD)?|Google) TV|\(lite\) TV|BRAVIA')) {
+        if ($this->matchUserAgent('Andr0id|(?:Android(?: UHD)?|Google) TV|\(lite\) TV|BRAVIA| TV$')) {
             $this->device = AbstractDeviceParser::DEVICE_TYPE_TV;
         }
 

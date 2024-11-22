@@ -3,6 +3,25 @@ All notable changes to **Device Detector** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **Device Detector** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.2.0] - 2024-11-22
+
+### Added
+- Compatibility with WordPress 6.7.
+
+### Changed
+- Upgraded UDD from version 6.3.2 to version 6.4.1: dozens of added and improved detections.
+- Ability to self-update from Github.
+- The plugin user agent is now more consistent and "standard".
+
+### Fixed
+- There's a WordPress core "feature" which causes some PII to leak (to wp.org) during plugin and theme updates. This is no more the case for this plugin.
+- In some cases, a WordPress notice can be triggered concerning the loading sequence of translations.
+
+### Removed
+- Test site launching from wordpress.org plugin page.
+- All Databeam hooks and libraries, as the Databeam project is abandoned.
+- Dependency on wp.org for updates.
+
 ## [4.1.0] - 2024-09-10
 
 ### Added
