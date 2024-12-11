@@ -71,6 +71,7 @@ class AnalyticsFactory {
 		if ( empty( $id ) ) {
 			$id = '';
 		}
+		$id = sanitize_key( $id );
 		if ( ! ( $extended = filter_input( INPUT_GET, 'extended' ) ) ) {
 			$extended = filter_input( INPUT_POST, 'extended' );
 		}
