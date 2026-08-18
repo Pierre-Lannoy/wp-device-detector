@@ -1,7 +1,7 @@
 # Device Detector
 [![version](https://badgen.net/github/release/Pierre-Lannoy/wp-device-detector/)](https://wordpress.org/plugins/device-detector/)
-[![php](https://badgen.net/badge/php/7.2+/green)](https://wordpress.org/plugins/device-detector/)
-[![wordpress](https://badgen.net/badge/wordpress/5.2+/green)](https://wordpress.org/plugins/device-detector/)
+[![php](https://badgen.net/badge/php/8.2+/green)](https://wordpress.org/plugins/device-detector/)
+[![wordpress](https://badgen.net/badge/wordpress/6.4+/green)](https://wordpress.org/plugins/device-detector/)
 [![license](https://badgen.net/github/license/Pierre-Lannoy/wp-device-detector/)](/license.txt)
 
 __Device Detector__ is a full featured analytics reporting and management tool that detects all devices accessing your WordPress site.
@@ -65,7 +65,3 @@ __Device Detector__ lets you use its detection features inside your own plugins 
 Before submitting an issue or a pull request, please read the [contribution guidelines](CONTRIBUTING.md).
 
 > ⚠️ The `master` branch is the current development state of the plugin. If you want a stable, production-ready version, please pick the last official [release](https://github.com/Pierre-Lannoy/wp-device-detector/releases).
-
-## Smoke tests
-[![WP compatibility](https://plugintests.com/plugins/device-detector/wp-badge.svg)](https://plugintests.com/plugins/device-detector/latest)
-[![PHP compatibility](https://plugintests.com/plugins/device-detector/php-badge.svg)](https://plugintests.com/plugins/device-detector/latest)
