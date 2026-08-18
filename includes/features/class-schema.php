@@ -209,7 +209,7 @@ class Schema {
 		// potential "#1118 - Row size too large" error that may appear if we just make a "ALTER TABLE ... MODIFY COLUMN ...".
 		if ( version_compare( '3.0.0', $from, '>' ) ) {
 			try {
-				$charset_collate = 'DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci';
+				$charset_collate = 'DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci';
 				$sql             = 'CREATE TABLE IF NOT EXISTS ' . $wpdb->base_prefix . self::$statistics . '_mig';
 				$sql            .= " (`timestamp` date NOT NULL DEFAULT '0000-00-00',";
 				$sql            .= " `site` int(11) UNSIGNED NOT NULL DEFAULT '0',";
@@ -288,7 +288,7 @@ class Schema {
 	 */
 	private function create_table() {
 		global $wpdb;
-		$charset_collate = 'DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci';
+		$charset_collate = 'DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci';
 		$sql             = 'CREATE TABLE IF NOT EXISTS ' . $wpdb->base_prefix . self::$statistics;
 		$sql            .= " (`timestamp` date NOT NULL DEFAULT '0000-00-00',";
 		$sql            .= " `site` int(11) UNSIGNED NOT NULL DEFAULT '0',";
