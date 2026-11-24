@@ -62,7 +62,7 @@ class Libraries {
 			'name'    => 'Universal Device Detection',
 			'prefix'  => 'UDD',
 			'base'    => PODD_VENDOR_DIR . 'udd/',
-			'version' => '6.5.0',
+			'version' => '6.5.2',
 			// phpcs:ignore
 			'author'  => 'Matomo Analytics',
 			'url'     => 'https://github.com/matomo-org/device-detector',
